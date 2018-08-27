@@ -49,7 +49,7 @@
     $height="100";
     $cutoff = 6;
     $collection = [
-        ["mission" => "flying", "description" => "날아올라라 주작이여 : 보스 시민 2기", "appendix" => "<strong>(★★ 에픽 제외 모든 공중유닛 1기씩 ★★)</strong><br>"
+        ["mission" => "flying", "description" => "날아올라라 주작이여 : 보스 시민 2기", "appendix" => "<strong>(★★ 에픽 제외 모든 공중유닛 1기씩 ★★)</strong><br>",
          "data" => [
             ["class" => "U",
              "tower" => [
@@ -60,7 +60,7 @@
              "tower" => [
                 ["name" => "R Devourer", "index" => 1, "title" => "디바우러"],
                 ["name" => "R Arbiter", "index" => 1, "title" => "아비터"],
-                ["name" => "R Wraith", "index" => 1, "title" => ""],
+                ["name" => "R Wraith", "index" => 1, "title" => "레이스"],
             ]],
             ["class" => "M",
              "tower" => [
@@ -214,9 +214,11 @@
             </td><td>
 <?php
                 }
-            }
 ?>
             </td>
+<?php
+            }
+?>
         </tr><tr>
             <td></td>
 <?php
