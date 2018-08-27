@@ -1,5 +1,5 @@
 <?php
-  $code = isset($_GET["code"]) ? $_GET["code"]; : $code = "";
+  $code = isset($_GET["code"]) ? $_GET["code"] : $code = "";
   switch ($code) {
     case "100":
       $status = $code." Continue";
