@@ -1,0 +1,257 @@
+﻿<html>
+
+<head>
+<title>랜타디 ReZero 미션 목록</title>
+</head>
+
+<script type='text/javascript'>
+    function toggleByValue(item) {
+        var str = item.value;
+        var all = document.getElementsByTagName(item.nodeName);
+        for (var i=0; i<all.length; i++) {
+            if (item.type == all[i].type && item.value == all[i].value) {
+                all[i].checked = item.checked;
+            }
+        }
+    }
+</script>
+
+<body>
+
+<font color="blue"><strong>Made by aMythos (Mythical#31274)</strong></font><br><br>
+
+<form>
+<fieldset>
+<legend>타워 설명</legend>
+<strong>E</strong> : 에픽<br>
+<strong>U</strong> : 유니크<br>
+<strong>R</strong> : 레어<br>
+<strong>M</strong> : 매직<br>
+<strong>N</strong> : 노말<br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>기본 미션들</legend>
+<strong>1. 편식은 금물 : 미네랄 300<br></strong>== <strong>N</strong> 종류별로 1기씩<br>
+<strong>2. 지긋지긋해 하늘이 Gray색이야 : 미네랄 300, 가스 100<br></strong>== <strong>M</strong> 종류별로 1기씩<br>
+<strong>3. 그 남자 그리고 그 여자 : 미네랄 400<br></strong>== <strong>M</strong> 남자 고스트 1 여자 고스트 1<br>
+<strong>4. 언럭키세븐 : 미네랄 300<br></strong>== <strong>R</strong> 종류 상관없이 7기<br>
+<strong>5. 악운도 운이다 : 미네랄 300<br></strong>== <strong>U</strong> 종류 상관없이 6기<br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>자리 미션 <strong>(M)</strong> : 유니크 시민 1기</legend>
+<font color="red"><strong>빨강</strong></font> : 디파일러<br>
+<font color="blue"><strong>파랑</strong></font> : 다크 템플러 (타워 7, 게이트 1 생산 or 타워 8)<br>
+<font color="yellowgreen"><strong>연두</strong></font> : 여자 고스트<br>
+<font color="purple"><strong>보라</strong></font> : 파이어뱃<br>
+<font color="orange"><strong>주황</strong></font> : 탱크<br>
+<font color="brown"><strong>갈색</strong></font> : 아칸<br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>스타쉽 : 유니크 시민 1기</legend>
+<strong>U</strong>
+발키리 <input type="checkbox" name="starship" value="U Valkyrie" onclick="toggleByValue(this)"/>
+가디언 <input type="checkbox" name="starship" value="U Guardian" onclick="toggleByValue(this)"/><br>
+<strong>R</strong>
+파벳 <input type="checkbox" name="starship" value="R Firebat" onclick="toggleByValue(this)"/>
+디바우러 <input type="checkbox" name="starship" value="R Devourer" onclick="toggleByValue(this)"/><br>
+<strong>M</strong>
+탱크 <input type="checkbox" name="starship" value="M Tank" onclick="toggleByValue(this)"/>
+디파일러 <input type="checkbox" name="starship" value="M Defiler" onclick="toggleByValue(this)"/><br>
+<strong>N</strong>
+벌쳐 <input type="checkbox" name="starship" value="N Vulture" onclick="toggleByValue(this)"/>
+뮤탈 <input type="checkbox" name="starship" value="N Mutalisk" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>인디펜던스 : 유니크 시민 1기</legend>
+<strong>U</strong>
+발키리 <input type="checkbox" name="independence" value="U Valkyrie" onclick="toggleByValue(this)"/>
+리버 <input type="checkbox" name="independence" value="U Reaver" onclick="toggleByValue(this)"/><br>
+<strong>R</strong>
+파벳 <input type="checkbox" name="independence" value="R Firebat" onclick="toggleByValue(this)"/>
+드라군 <input type="checkbox" name="independence" value="R Dragoon" onclick="toggleByValue(this)"/><br>
+<strong>M</strong>
+탱크 <input type="checkbox" name="independence" value="M Tank" onclick="toggleByValue(this)"/>
+아칸 <input type="checkbox" name="independence" value="M Archon" onclick="toggleByValue(this)"/><br>
+<strong>N</strong>
+벌쳐 <input type="checkbox" name="independence" value="N Vulture" onclick="toggleByValue(this)"/>
+드라군 <input type="checkbox" name="independence" value="N Dragoon" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>디스트릭트 9 (= 디나인) : 레어 시민 2기</legend>
+<strong>R</strong>
+촉수 3 <input type="checkbox" name="district9" value="R Sunken 3" onclick="toggleByValue(this)"/>
+아비터 3 <input type="checkbox" name="district9" value="R Arbiter 3" onclick="toggleByValue(this)"/><br>
+<strong>M</strong>
+여자 고스트 3 <input type="checkbox" name="district9" value="M FGhost 3" onclick="toggleByValue(this)"/>
+아칸 3 <input type="checkbox" name="district9" value="M Archon 3" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>나빼고 다 깼네 나빼고 다 : 에픽 시민 1기</legend>
+<strong>U</strong>
+리버 3 <input type="checkbox" name="nadanada" value="U Reaver 3" onclick="toggleByValue(this)"/><br>
+<strong>R</strong>
+레이스 3 <input type="checkbox" name="nadanada" value="R Wraith 3" onclick="toggleByValue(this)"/>
+촉수 3 <input type="checkbox" name="nadanada" value="R Sunken 3" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>천사의 게임들 : 에픽 시민 1기, 미네랄 1000, 가스 4</legend>
+<strong>E</strong>
+거인 <input type="checkbox" name="angelgame" value="E Giant" onclick="toggleByValue(this)"/>
+핵 <input type="checkbox" name="angelgame" value="E Nuclear" onclick="toggleByValue(this)"/><br>
+<strong>U</strong>
+리버 <input type="checkbox" name="angelgame" value="U Reaver"/ onclick="toggleByValue(this)">
+하이 템플러 <input type="checkbox" name="angelgame" value="E High Templar" onclick="toggleByValue(this)"/>
+다크 아칸 <input type="checkbox" name="angelgame" value="E Dark Archon" onclick="toggleByValue(this)"/><br>
+<strong>R</strong>
+드라군 <input type="checkbox" name="angelgame" value="R Dragoon" onclick="toggleByValue(this)"/>
+촉수 <input type="checkbox" name="angelgame" value="R Sunken" onclick="toggleByValue(this)"/>
+디바우러 <input type="checkbox" name="angelgame" value="R Devourer" onclick="toggleByValue(this)"/><br>
+<strong>M</strong>
+아칸 <input type="checkbox" name="angelgame" value="M Archon" onclick="toggleByValue(this)"/>
+스카웃 <input type="checkbox" name="angelgame" value="M Scout" onclick="toggleByValue(this)"/>
+탱크 <input type="checkbox" name="angelgame" value="M Tank" onclick="toggleByValue(this)"/><br>
+<strong>N</strong>
+드라군 <input type="checkbox" name="angelgame" value="N Dragoon" onclick="toggleByValue(this)"/>
+스카웃 <input type="checkbox" name="angelgame" value="N Scout" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>버림받은 자들의 심장 : 라이프 6</legend>
+<strong>R</strong>
+골리앗 3 <input type="checkbox" name="heart" value="R Goliath 3" onclick="toggleByValue(this)"/>
+디파일러 3 <input type="checkbox" name="heart" value="R Defiler 3" onclick="toggleByValue(this)"/><br>
+<strong>N</strong>
+울트라 3 <input type="checkbox" name="heart" value="N Ultralisk 3" onclick="toggleByValue(this)"/>
+뮤탈 3 <input type="checkbox" name="heart" value="N Mutalisk 3" onclick="toggleByValue(this)"/><br><br>
+<font color="red"><strong>(★★ 빨강은 N 2마리씩 보유하면 클리어 ★★)</strong></font><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>날아올라라 주작이여 : 보스 시민 2기</legend>
+<strong>U</strong>
+발키리 <input type="checkbox" name="flying" value="U Valkyrie" onclick="toggleByValue(this)"/>
+가디언 <input type="checkbox" name="flying" value="U Guardian" onclick="toggleByValue(this)"/><br>
+<strong>R</strong>
+디바우러 <input type="checkbox" name="flying" value="R Devourer" onclick="toggleByValue(this)"/>
+아비터 <input type="checkbox" name="flying" value="R Arbiter" onclick="toggleByValue(this)"/>
+레이스 <input type="checkbox" name="flying" value="R Wraith" onclick="toggleByValue(this)"/><br>
+<strong>M</strong>
+스카웃 <input type="checkbox" name="flying" value="M Scout" onclick="toggleByValue(this)"/><br>
+<strong>N</strong>
+뮤탈 <input type="checkbox" name="flying" value="N Mutalisk" onclick="toggleByValue(this)"/>
+스카웃 <input type="checkbox" name="flying" value="N Scout" onclick="toggleByValue(this)"/>
+레이스 <input type="checkbox" name="flying" value="N Wraith" onclick="toggleByValue(this)"/><br><br>
+<strong>(= 에픽 제외 모든 공중유닛 1기씩)</strong><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>비선실세 : 가스 503</legend>
+<strong>U</strong>
+가디언 <input type="checkbox" name="bsss" value="U Guardian" onclick="toggleByValue(this)"/>
+다크 아칸 <input type="checkbox" name="bsss" value="U Dark Archon" onclick="toggleByValue(this)"/>
+하이 템플러 <input type="checkbox" name="bsss" value="U High Templar" onclick="toggleByValue(this)"/><br>
+<strong>R</strong>
+디바우러 <input type="checkbox" name="bsss" value="R Devourer" onclick="toggleByValue(this)"/>
+촉수 <input type="checkbox" name="bsss" value="R Sunken" onclick="toggleByValue(this)"/><br>
+<strong>M</strong>
+디파일러 <input type="checkbox" name="bsss" value="M Defiler" onclick="toggleByValue(this)"/>
+다크 템플러 <input type="checkbox" name="bsss" value="M Dark Templar" onclick="toggleByValue(this)"/>
+스카웃 <input type="checkbox" name="bsss" value="M Scout" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>이상한 사람의 취미생활 : 보스 시민 3기</legend>
+<strong>U</strong> 리버를 제외한 모든 유닛 1기씩<br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>천년의 기다림 : 유니크 시민 1기</legend>
+보스 시민 5기 보유<br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>하이드라의 저주 : 미네랄 400, 가스 400</legend>
+<strong>U</strong>
+히드라 3 <input type="checkbox" name="hidra" value="U Hydralisk 3" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>어느 미치광이의 폭주 : 미네랄 100, 가스 525</legend>
+<strong>E</strong>
+핵 2 <input type="checkbox" name="crazy" value="E Nuclear 2" onclick="toggleByValue(this)"/><br>
+<strong>M</strong>
+남자 고스트 2 <input type="checkbox" name="crazy" value="M MGhost 2" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>더 키스 오브 헬 게이트 : 유니크 시민 2기</legend>
+<strong>E</strong>
+지옥불 3 <input type="checkbox" name="hellgate" value="E Hell Fire 3" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>귤먹다가 짜증이 : 미네랄 300</legend>
+<strong>U</strong>
+리버 3 <input type="checkbox" name="orangeannoying" value="U Reaver 3" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>카리스마 대빵 큰 리버 : 미네랄 800, 가스 800</legend>
+<strong>U</strong>
+리버 5 <input type="checkbox" name="bigbigreaver" value="U Reaver 5" onclick="toggleByValue(this)"/><br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>변경사항</legend>
+<strong>2018.02.03</strong> : 오탈자, 보상 잘못 기록되어 있던 것 수정<br>
+<strong>2018.02.03</strong> : 미치광이 미션 조건 수정, 쩜드라의 저주 -> 하이드라의 저주 수정<br>
+<strong>2018.02.04</strong> : 귤짜증, 카리스마 미션 추가 / 자리미션 보상 기재<br>
+</fieldset>
+</form>
+
+</body>
+
+</html>
