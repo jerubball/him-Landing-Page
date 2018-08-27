@@ -44,7 +44,7 @@
             }
         }
     </script>
-    <?php
+<?php
         $cutoff = 6;
         $collection = [
             ["mission" => "hidra", "description" => "하이드라의 저주 : 미네랄 400, 가스 400",
@@ -87,7 +87,16 @@
                 ]],
             ]],
         ];
-    ?>
+        /*
+            ["mission" => "", "description" => "", "appendix" => ""
+             "data" => [
+                ["class" => "",
+                 "tower" => [
+                    ["name" => "", "index" => 0, "title" => ""],
+                ]],
+            ]],
+        */
+?>
     <h1>랜타디 ReZero 미션 목록</h1>
     <br>
     <form><fieldset>
@@ -118,61 +127,59 @@
         보스 시민 5기 보유<br>
     </fieldset></form>
     <br>
-    <?php
-        $missions = count($collection);
-        for ($i = 0; $i < $missions; $i++) {
-            $missionset = $collection[$i];
-    ?>
+<?php
+    $missions = count($collection);
+    for ($i = 0; $i < $missions; $i++) {
+        $missionset = $collection[$i];
+?>
     <form><fieldset>
         <legend><strong><?php echo $missionset["description"]; ?></strong></legend>
         <table data-mission="<?php echo $missionset["mission"]; ?>">
-            <?php
-                $classes = count($missionset["data"]);
-                for ($j = 0; $j < $classes; $j++) {
-                    $classset = $missionset["data"][$j];
-            ?>
-            <tr><td><strong><?php echo $classset["class"]; ?></strong></td>
-                <td>
-                <?php
+<?php
+        $classes = count($missionset["data"]);
+        for ($j = 0; $j < $classes; $j++) {
+            $classset = $missionset["data"][$j];
+?>
+        <tr><td><strong><?php echo $classset["class"]; ?></strong></td>
+            <td><?php
                     $towers = count($classset["tower"]);
                     for ($k = 0; $k < $towers; $k++) {
                         $towerset = $classset["tower"][$k];
-                ?>
-                    <?php
                         echo $towerset["title"];
                         if ($towerset["index"] > 1) {
                             $align = $towerset["index"] > $cutoff ? "right" : "left";
-                    ?>
-                        </td><td align="<?php echo $align; ?>">
-                    <?php } ?>
-                    <?php
+          ?></td><td align="<?php echo $align; ?>">
+<?php
+                        }
+?>
+<?php
                         for ($l = 0; $l < $towerset["index"]; $l++) {
                     ?>
-                        <?php
+<?php
                             if ($l == $cutoff) {
                         ?>
                             </td><td>
-                        <?php } ?>
+<?php } ?>
                         <input type="checkbox" onclick="toggleClicked(this)"
                             data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>"/>
-                    <?php } ?>
-                    <?php
+<?php } ?>
+<?php
                         $temp = $towerset["index"] - 2 - ($towerset["index"] > $cutoff ? 1 : 0);
                         for ($l = 0; $l < $temp; $l++) {
                     ?>
                         </td><td>
-                    <?php } ?>
-                <?php } ?>
+<?php } ?>
+<?php } ?>
                 </td>
             </tr><tr>
                 <td></td>
-                <?php
+<?php
                     for ($k = 0; $k < $towers; $k++) {
                         $towerset = $classset["tower"][$k];
-                ?>
-                    <?php
+?>
+<?php
                         for ($l = 0; $l < $towerset["index"]; $l++) {
-                    ?>
+?>
                         <td><img width=150 height=100 onclick="toggleClicked(this)" src="./image/<?php echo $towerset["name"]; ?>.png" 
                             data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>"></td>
                     <?php } ?>
