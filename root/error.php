@@ -305,7 +305,7 @@
             <a class="nav-link text-white" href="https://www.nyit.edu/">NYIT</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="mailto:him@nyit.edu">Contact me</a>
+            <a class="nav-link text-white" href="mailto:him.nyit@gmail.com">Contact me</a>
           </li>
         </ul>
         <form class="form-inline m-0">
