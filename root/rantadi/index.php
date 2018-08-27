@@ -49,7 +49,7 @@
     $height="100";
     $cutoff = 6;
     $collection = [
-        ["mission" => "location", "description" => "자리 미션 : 유니크 시민 1기", "appendix" => "<font color=\"blue\"><strong>(★★ 파랑은 타워 7, 게이트 1 생산으로 클리어 가능 ★★)</strong></font><br>"
+        ["mission" => "location", "description" => "자리 미션 : 유니크 시민 1기", "appendix" => "<font color=\"blue\"><strong>(★★ 파랑은 타워 7, 게이트 1 생산으로 클리어 가능 ★★)</strong></font><br>",
          "data" => [
             ["class" => "<font color=\"red\">빨강</font> M",
              "tower" => [
