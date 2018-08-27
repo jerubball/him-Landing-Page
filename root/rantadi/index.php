@@ -156,7 +156,7 @@
             <?php } ?>
         </table>
         <?php
-            if (isset($missionset["appendix"]) {
+            if (isset($missionset["appendix"])) {
                 echo $missionset["appendix"];
             }
         ?>
