@@ -47,27 +47,45 @@
     <?php
         $cutoff = 6;
         $collection = [
-            ["mission" => "hellgate", "description" => "더 키스 오브 헬 게이트 : 유니크 시민 2기",
+            ["mission" => "hidra", "description" => "하이드라의 저주 : 미네랄 400, 가스 400",
              "data" => [
                 ["class" => "U",
                  "tower" => [
+                    ["name" => "U Hydralisk", "index" => 3, "title" => "히드라 3"],
+                ]],
+            ]],
+            ["mission" => "crazy", "description" => "어느 미치광이의 폭주 : 미네랄 100, 가스 525",
+             "data" => [
+                ["class" => "E",
+                 "tower" => [
+                    ["name" => "E Nuclear", "index" => 2, "title" => "핵 2"],
+                ]],
+                ["class" => "M",
+                 "tower" => [
+                    ["name" => "M MGhost", "index" => 2, "title" => "남자 고스트 2"],
+                ]],
+            ]],
+            ["mission" => "hellgate", "description" => "더 키스 오브 헬 게이트 : 유니크 시민 2기",
+             "data" => [
+                ["class" => "E",
+                 "tower" => [
                     ["name" => "E Hell Fire", "index" => 3, "title" => "지옥불 3"],
                 ]],
-             ]],
+            ]],
             ["mission" => "orangeannoying", "description" => "귤먹다가 짜증이 : 미네랄 300",
              "data" => [
                 ["class" => "U",
                  "tower" => [
                     ["name" => "U Reaver", "index" => 3, "title" => "리버 3"],
                 ]],
-             ]],
+            ]],
             ["mission" => "bigbigreaver", "description" => "카리스마 대빵 큰 리버 : 미네랄 800, 가스 800",
              "data" => [
                 ["class" => "U",
                  "tower" => [
                     ["name" => "U Reaver", "index" => 5, "title" => "리버 5"],
                 ]],
-             ]],
+            ]],
         ];
     ?>
     <h1>랜타디 ReZero 미션 목록</h1>
