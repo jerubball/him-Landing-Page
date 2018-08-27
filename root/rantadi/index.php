@@ -187,11 +187,13 @@
             $classset = $missionset["data"][$j];
 ?>
         <tr><td><strong><?php echo $classset["class"]; ?></strong></td>
-            <td><?php
+<?php
             $towers = count($classset["tower"]);
             for ($k = 0; $k < $towers; $k++) {
                 $towerset = $classset["tower"][$k];
-                echo $towerset["title"];
+?>
+            <td><?php echo $towerset["title"]; ?>
+<?php
                 if ($towerset["index"] > 1) {
                     $align = $towerset["index"] > $cutoff ? "right" : "left";
           ?></td><td align="<?php echo $align; ?>">
