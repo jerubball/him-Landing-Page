@@ -47,6 +47,13 @@
     <?php
         $cutoff = 6;
         $collection = [
+            ["mission" => "orangeannoying", "description" => "귤먹다가 짜증이 : 미네랄 300",
+             "data" => [
+                ["class" => "U",
+                 "tower" => [
+                    ["name" => "U Reaver", "index" => 3, "title" => "리버 3"],
+                ]],
+             ]],
             ["mission" => "bigbigreaver", "description" => "카리스마 대빵 큰 리버 : 미네랄 800, 가스 800",
              "data" => [
                 ["class" => "U",
@@ -54,7 +61,6 @@
                     ["name" => "U Reaver", "index" => 5, "title" => "리버 5"],
                 ]],
              ]],
-            
         ];
     ?>
     <h1>랜타디 ReZero 미션 목록</h1>
@@ -149,25 +155,12 @@
             </tr>
             <?php } ?>
         </table>
-            <!--
-            <tr>
-            <td><strong>U</strong></td>
-            <td>리버 5</td>
-            <td><input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=1 onclick="toggleClicked(this)"/>
-                <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=2 onclick="toggleClicked(this)"/>
-                <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=3 onclick="toggleClicked(this)"/>
-                <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=4 onclick="toggleClicked(this)"/>
-                <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=5 onclick="toggleClicked(this)"/></td>
-        </tr><tr>
-            <td></td>
-            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=1 onclick="toggleClicked(this)"></td>
-            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=2 onclick="toggleClicked(this)"></td>
-            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=3 onclick="toggleClicked(this)"></td>
-            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=4 onclick="toggleClicked(this)"></td>
-            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=5 onclick="toggleClicked(this)"></td>
-        </tr></table>
-            -->
-    </fieldset></form>
+        <?php
+            if (isset($missionset["appendix"]) {
+                echo $missionset["appendix"];
+            }
+        ?>
+    </fieldset></form><br>
     <?php } ?>
     
     
