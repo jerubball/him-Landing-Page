@@ -49,6 +49,148 @@
     $height="100";
     $cutoff = 6;
     $collection = [
+        ["mission" => "location", "description" => "자리 미션 : 유니크 시민 1기", "appendix" => "<font color=\"blue\"><strong>(★★ 파랑은 타워 7, 게이트 1 생산으로 클리어 가능 ★★)</strong></font><br>"
+         "data" => [
+            ["class" => "<font color=\"red\">빨강</font> M",
+             "tower" => [
+                ["name" => "M Defiler", "index" => 7, "title" => "디파일러 7"],
+            ]],
+            ["class" => "<font color=\"blue\">파랑</font> M",
+             "tower" => [
+                ["name" => "M Dark Templar", "index" => 8, "title" => "다크 템플러 7+1"],
+            ]],
+            ["class" => "<font color=\"teal\">연두</font> M",
+             "tower" => [
+                ["name" => "M FGhost", "index" => 7, "title" => "여자 고스트 7"],
+            ]],
+            ["class" => "<font color=\"purple\">보라</font> M",
+             "tower" => [
+                ["name" => "M Firebat", "index" => 7, "title" => "파이어뱃 7"],
+            ]],
+            ["class" => "<font color=\"orange\">주황</font> M",
+             "tower" => [
+                ["name" => "M Tank", "index" => 7, "title" => "탱크 7"],
+            ]],
+            ["class" => "<font color=\"brown\">갈색</font> M",
+             "tower" => [
+                ["name" => "M Archon", "index" => 7, "title" => "아칸 7"],
+            ]],
+        ]],
+        ["mission" => "starship", "description" => "스타쉽 : 유니크 시민 1기",
+         "data" => [
+            ["class" => "U",
+             "tower" => [
+                ["name" => "U Valkyrie", "index" => 1, "title" => "발키리"],
+                ["name" => "U Guardian", "index" => 1, "title" => "가디언"],
+            ]],
+            ["class" => "R",
+             "tower" => [
+                ["name" => "R Firebat", "index" => 1, "title" => "파이어뱃"],
+                ["name" => "R Devourer", "index" => 1, "title" => "디바우러"],
+            ]],
+            ["class" => "M",
+             "tower" => [
+                ["name" => "M Tank", "index" => 1, "title" => "탱크"],
+                ["name" => "M Defiler", "index" => 1, "title" => "디파일러"],
+            ]],
+            ["class" => "N",
+             "tower" => [
+                ["name" => "N Vulture", "index" => 1, "title" => "벌쳐"],
+                ["name" => "N Mutalisk", "index" => 1, "title" => "뮤탈"],
+            ]],
+        ]],
+        ["mission" => "independence", "description" => "인디펜던스 : 유니크 시민 1기",
+         "data" => [
+            ["class" => "U",
+             "tower" => [
+                ["name" => "U Valkyrie", "index" => 1, "title" => "발키리"],
+                ["name" => "U Reaver", "index" => 1, "title" => "리버"],
+            ]],
+            ["class" => "R",
+             "tower" => [
+                ["name" => "R Firebat", "index" => 1, "title" => "파이어뱃"],
+                ["name" => "R Dragoon", "index" => 1, "title" => "드라군"],
+            ]],
+            ["class" => "M",
+             "tower" => [
+                ["name" => "M Tank", "index" => 1, "title" => "탱크"],
+                ["name" => "M Archon", "index" => 1, "title" => "아칸"],
+            ]],
+            ["class" => "N",
+             "tower" => [
+                ["name" => "N Vulture", "index" => 1, "title" => "벌쳐"],
+                ["name" => "N Dragoon", "index" => 1, "title" => "드라군"],
+            ]],
+        ]],
+        ["mission" => "district9", "description" => "디스트릭트 9 (= 디나인) : 레어 시민 2기",
+         "data" => [
+            ["class" => "R",
+             "tower" => [
+                ["name" => "R Sunken", "index" => 3, "title" => "촉수 3"],
+                ["name" => "R Arbiter", "index" => 3, "title" => "아비터 3"],
+            ]],
+            ["class" => "M",
+             "tower" => [
+                ["name" => "M FGhost", "index" => 3, "title" => "여자 고스트 3"],
+                ["name" => "M Archon", "index" => 3, "title" => "아칸 3"],
+            ]],
+        ]],
+        ["mission" => "nadanada", "description" => "나빼고 다 깼네 나빼고 다 : 에픽 시민 1기",
+         "data" => [
+            ["class" => "U",
+             "tower" => [
+                ["name" => "U Reaver", "index" => 3, "title" => "리버 3"],
+            ]],
+            ["class" => "R",
+             "tower" => [
+                ["name" => "R Wraith", "index" => 3, "title" => "레이스 3"],
+                ["name" => "R Sunken", "index" => 3, "title" => "촉수 3"],
+            ]],
+        ]],
+        ["mission" => "angelgame", "description" => "천사의 게임들 : 에픽 시민 1기, 미네랄 1000, 가스 4",
+         "data" => [
+            ["class" => "E",
+             "tower" => [
+                ["name" => "E Giant", "index" => 1, "title" => "거인"],
+                ["name" => "E Nuclear", "index" => 1, "title" => "핵"],
+            ]],
+            ["class" => "U",
+             "tower" => [
+                ["name" => "U Reaver", "index" => 1, "title" => "리버"],
+                ["name" => "U High Templar", "index" => 1, "title" => "하이 템플러"],
+                ["name" => "U Dark Archon", "index" => 1, "title" => "다크 아칸"],
+            ]],
+            ["class" => "R",
+             "tower" => [
+                ["name" => "R Dragoon", "index" => 1, "title" => "드라군"],
+                ["name" => "R Sunken", "index" => 1, "title" => "촉수"],
+                ["name" => "R Devourer", "index" => 1, "title" => "디바우러"],
+            ]],
+            ["class" => "M",
+             "tower" => [
+                ["name" => "M Archon", "index" => 1, "title" => "아칸"],
+                ["name" => "M Scout", "index" => 1, "title" => "스카웃"],
+                ["name" => "M Tank", "index" => 1, "title" => "탱크"],
+            ]],
+            ["class" => "N",
+             "tower" => [
+                ["name" => "N Dragoon", "index" => 1, "title" => "드라군"],
+                ["name" => "N Scout", "index" => 1, "title" => "스카웃"],
+            ]],
+        ]],
+        ["mission" => "heart", "description" => "버림받은 자들의 심장 : 라이프 6", "appendix" => "<font color=\"red\"><strong>(★★ 빨강은 N 2마리씩 보유하면 클리어 ★★)</strong></font><br>",
+         "data" => [
+            ["class" => "R",
+             "tower" => [
+                ["name" => "R Goliath", "index" => 3, "title" => "골리앗 3"],
+                ["name" => "R Defiler", "index" => 3, "title" => "디파일러 3"],
+            ]],
+            ["class" => "N",
+             "tower" => [
+                ["name" => "N Ultralisk", "index" => 3, "title" => "울트라 3"],
+                ["name" => "N Mutalisk", "index" => 3, "title" => "뮤탈 3"],
+            ]],
+        ]],
         ["mission" => "flying", "description" => "날아올라라 주작이여 : 보스 시민 2기", "appendix" => "<strong>(★★ 에픽 제외 모든 공중유닛 1기씩 ★★)</strong><br>",
          "data" => [
             ["class" => "U",
@@ -196,7 +338,8 @@
 <?php
                 if ($towerset["index"] > 1) {
                     $align = $towerset["index"] > $cutoff ? "right" : "left";
-          ?></td><td align="<?php echo $align; ?>">
+?>
+            </td><td align="<?php echo $align; ?>">
 <?php
                 }
                 for ($l = 0; $l < $towerset["index"]; $l++) {
