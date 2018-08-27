@@ -110,11 +110,7 @@
                     <?php
                         echo $towerset["title"];
                         if ($towerset["index"] > 1) {
-                            if ($towerset["index" > $cutoff) {
-                                $align = "right";
-                            } else {
-                                $align = "left";
-                            }
+                            $align = $towerset["index"] > $cutoff ? "right" : "left";
                     ?>
                         </td><td align="<?php echo $align; ?>">
                     <?php } ?>
@@ -127,12 +123,24 @@
                             </td><td>
                         <?php } ?>
                         <input type="checkbox" onclick="toggleClicked(this)"
-                            data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>" />
+                            data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>"/>
                     <?php } ?>
-                    
+                    <?php
+                        $temp = $towerset["index"] - 2 - ($towerset["index"] > $cutoff ? 1 : 0);
+                        for ($l = 0; $l < $temp; $l++) {
+                    ?>
+                        </td><td>
+                    <?php } ?>
                 <?php } ?>
                 </td>
             </tr><tr>
+                <td></td>
+                <?php
+                    for ($l = 0; $l < $towerset["index"]; $l++) {
+                ?>
+                    <td><img width=150 height=100 onclick="toggleClicked(this)" src="./image/<?php echo $towerset["name"]; ?>.png" 
+                        data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>"></td>
+                <?php } ?>
             </tr>
             <?php } ?>
         </table>
