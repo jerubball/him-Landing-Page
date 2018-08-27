@@ -45,13 +45,14 @@
         }
     </script>
     <?php
+        $cutoff = 6;
         $collection = [
             ["mission" => "bigbigreaver", "description" => "카리스마 대빵 큰 리버 : 미네랄 800, 가스 800",
              "data" => [
                 ["class" => "U",
                  "tower" => [
-                    ["name" => "U Reaver", "index" => 5, "title" => "리버 5"]
-                ]]
+                    ["name" => "U Reaver", "index" => 5, "title" => "리버 5"],
+                ]],
              ]],
             
         ];
@@ -91,44 +92,70 @@
         for ($i = 0; $i < $missions; $i++) {
             $missionset = $collection[$i];
     ?>
-            <form><fieldset>
-                <legend><strong><?php echo $missionset["description"] ?></strong></legend>
-                <table data-mission="<?php echo $missionset["mission"] ?>">
+    <form><fieldset>
+        <legend><strong><?php echo $missionset["description"]; ?></strong></legend>
+        <table data-mission="<?php echo $missionset["mission"]; ?>">
+            <?php
+                $classes = count($missionset["data"]);
+                for ($j = 0; $j < $classes; $j++) {
+                    $classset = $missionset["data"][$j];
+            ?>
+            <tr><td><strong><?php echo $classset["class"]; ?></strong></td>
+                <td>
+                <?php
+                    $towers = count($classset["tower"]);
+                    for ($k = 0; $k < $towers; $k++) {
+                        $towerset = $classset["tower"][$k];
+                ?>
                     <?php
-                        $classes = count($missionset["data"]);
-                        for ($j = 0; $j < $classes; $j++) {
-                            $classset = $missionset["data"][$j];
+                        echo $towerset["title"];
+                        if ($towerset["index"] > 1) {
+                            if ($towerset["index" > $cutoff) {
+                                $align = "right";
+                            } else {
+                                $align = "left";
+                            }
                     ?>
-                            <tr>
-                                <td><strong><?php echo $classset["class"] ?></strong></td>
-                            </tr><tr>
-                            </tr>
+                        </td><td align="<?php echo $align; ?>">
+                    <?php } ?>
                     <?php
-                        }
+                        for ($l = 0; $l < $towerset["index"]; $l++) {
                     ?>
-                </table>
-                    <!--
-                    <tr>
-                    <td><strong>U</strong></td>
-                    <td>리버 5</td>
-                    <td><input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=1 onclick="toggleClicked(this)"/>
-                        <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=2 onclick="toggleClicked(this)"/>
-                        <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=3 onclick="toggleClicked(this)"/>
-                        <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=4 onclick="toggleClicked(this)"/>
-                        <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=5 onclick="toggleClicked(this)"/></td>
-                </tr><tr>
-                    <td></td>
-                    <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=1 onclick="toggleClicked(this)"></td>
-                    <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=2 onclick="toggleClicked(this)"></td>
-                    <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=3 onclick="toggleClicked(this)"></td>
-                    <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=4 onclick="toggleClicked(this)"></td>
-                    <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=5 onclick="toggleClicked(this)"></td>
-                </tr></table>
-                    -->
-            </fieldset></form>
-    <?php
-        }
-    ?>
+                        <?php
+                            if ($l == $cutoff) {
+                        ?>
+                            </td><td>
+                        <?php } ?>
+                        <input type="checkbox" onclick="toggleClicked(this)"
+                            data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>" />
+                    <?php } ?>
+                    
+                <?php } ?>
+                </td>
+            </tr><tr>
+            </tr>
+            <?php } ?>
+        </table>
+            <!--
+            <tr>
+            <td><strong>U</strong></td>
+            <td>리버 5</td>
+            <td><input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=3 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=4 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=5 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=3 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=4 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="bigbigreaver" data-tower="U Reaver" data-index=5 onclick="toggleClicked(this)"></td>
+        </tr></table>
+            -->
+    </fieldset></form>
+    <?php } ?>
     
     
     <br>
