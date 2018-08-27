@@ -78,7 +78,7 @@
             ["class" => "U",
              "tower" => [
                 ["name" => "U Guardian", "index" => 1, "title" => "가디언"],
-                ["name" => "U Dark Archo", "index" => 1, "title" => "다크 아칸"],
+                ["name" => "U Dark Archon", "index" => 1, "title" => "다크 아칸"],
                 ["name" => "U High Templar", "index" => 1, "title" => "하이 템플러"],
             ]],
             ["class" => "R",
@@ -192,7 +192,7 @@
             for ($k = 0; $k < $towers; $k++) {
                 $towerset = $classset["tower"][$k];
 ?>
-            <td><?php echo $towerset["title"]; ?>
+            <td><?php echo $towerset["title"]; ?> 
 <?php
                 if ($towerset["index"] > 1) {
                     $align = $towerset["index"] > $cutoff ? "right" : "left";
@@ -207,7 +207,7 @@
                     }
 ?>
                 <input type="checkbox" onclick="toggleClicked(this)"
-                    data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?>/>
+                    data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> />
 <?php
                 }
                 $temp = $towerset["index"] - 2 - ($towerset["index"] > $cutoff ? 1 : 0);
@@ -229,7 +229,7 @@
                 for ($l = 0; $l < $towerset["index"]; $l++) {
 ?>
             <td><img src="./image/<?php echo $towerset["name"]; ?>.png" width="<?php echo $width; ?>" height="<?php echo $height; ?>" onclick="toggleClicked(this)" 
-                data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?>></td>
+                data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> ></td>
 <?php
                 }
             }
@@ -241,14 +241,16 @@
         </table>
 <?php
         if (isset($missionset["appendix"])) {
-            echo $missionset["appendix"];
+?>
+        <?php echo $missionset["appendix"]; ?> 
+<?php
         }
 ?>
-    </fieldset></form><br>
+    </fieldset></form>
+    <br>
 <?php
     }
 ?>
-    <br>
     <form><fieldset>
         <legend><strong>변경사항</strong></legend>
         <strong>2018.02.03</strong> : 오탈자, 보상 잘못 기록되어 있던 것 수정<br>
