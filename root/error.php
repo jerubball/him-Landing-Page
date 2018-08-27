@@ -1,9 +1,5 @@
 <?php
-  if (isset($_GET["code"])) {
-    $code = $_GET["code"];
-  } else {
-    $code = "";
-  }
+  $code = isset($_GET["code"])) ? $_GET["code"]; : $code = "";
   switch ($code) {
     case "100":
       $status = $code." Continue";
@@ -277,7 +273,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://him-nyit.ddns.net/wireframe.css">
-  <title><?php echo $status ?></title>
+  <title><?php echo $status; ?></title>
 </head>
 
 <body>
@@ -319,7 +315,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class=<?php echo "\"display-1 font-italic ".$style."\"" ?>><?php echo $status ?></h1>
+          <h1 class="display-1 font-italic <?php echo $style; ?>"><?php echo $status; ?></h1>
         </div>
       </div>
     </div>
