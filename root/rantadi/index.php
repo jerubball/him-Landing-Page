@@ -106,6 +106,7 @@
                     <?php
                         }
                     ?>
+                </table>
                     <!--
                     <tr>
                     <td><strong>U</strong></td>
