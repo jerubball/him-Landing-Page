@@ -136,10 +136,15 @@
             </tr><tr>
                 <td></td>
                 <?php
-                    for ($l = 0; $l < $towerset["index"]; $l++) {
+                    for ($k = 0; $k < $towers; $k++) {
+                        $towerset = $classset["tower"][$k];
                 ?>
-                    <td><img width=150 height=100 onclick="toggleClicked(this)" src="./image/<?php echo $towerset["name"]; ?>.png" 
-                        data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>"></td>
+                    <?php
+                        for ($l = 0; $l < $towerset["index"]; $l++) {
+                    ?>
+                        <td><img width=150 height=100 onclick="toggleClicked(this)" src="./image/<?php echo $towerset["name"]; ?>.png" 
+                            data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>"></td>
+                    <?php } ?>
                 <?php } ?>
             </tr>
             <?php } ?>
