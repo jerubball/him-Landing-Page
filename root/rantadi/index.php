@@ -142,58 +142,64 @@
 ?>
         <tr><td><strong><?php echo $classset["class"]; ?></strong></td>
             <td><?php
-                    $towers = count($classset["tower"]);
-                    for ($k = 0; $k < $towers; $k++) {
-                        $towerset = $classset["tower"][$k];
-                        echo $towerset["title"];
-                        if ($towerset["index"] > 1) {
-                            $align = $towerset["index"] > $cutoff ? "right" : "left";
+            $towers = count($classset["tower"]);
+            for ($k = 0; $k < $towers; $k++) {
+                $towerset = $classset["tower"][$k];
+                echo $towerset["title"];
+                if ($towerset["index"] > 1) {
+                    $align = $towerset["index"] > $cutoff ? "right" : "left";
           ?></td><td align="<?php echo $align; ?>">
 <?php
-                        }
+                }
 ?>
 <?php
-                        for ($l = 0; $l < $towerset["index"]; $l++) {
-                    ?>
-<?php
-                            if ($l == $cutoff) {
-                        ?>
-                            </td><td>
-<?php } ?>
-                        <input type="checkbox" onclick="toggleClicked(this)"
-                            data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>"/>
-<?php } ?>
-<?php
-                        $temp = $towerset["index"] - 2 - ($towerset["index"] > $cutoff ? 1 : 0);
-                        for ($l = 0; $l < $temp; $l++) {
-                    ?>
-                        </td><td>
-<?php } ?>
-<?php } ?>
-                </td>
-            </tr><tr>
-                <td></td>
-<?php
-                    for ($k = 0; $k < $towers; $k++) {
-                        $towerset = $classset["tower"][$k];
+                for ($l = 0; $l < $towerset["index"]; $l++) {
+                    if ($l == $cutoff) {
 ?>
+            </td><td>
 <?php
-                        for ($l = 0; $l < $towerset["index"]; $l++) {
+                    }
 ?>
-                        <td><img width=150 height=100 onclick="toggleClicked(this)" src="./image/<?php echo $towerset["name"]; ?>.png" 
-                            data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>"></td>
-                    <?php } ?>
-                <?php } ?>
-            </tr>
-            <?php } ?>
-        </table>
-        <?php
-            if (isset($missionset["appendix"])) {
-                echo $missionset["appendix"];
+                <input type="checkbox" onclick="toggleClicked(this)"
+                    data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>"/>
+<?php
+                }
+                $temp = $towerset["index"] - 2 - ($towerset["index"] > $cutoff ? 1 : 0);
+                for ($l = 0; $l < $temp; $l++) {
+?>
+            </td><td>
+<?php
+                }
             }
-        ?>
+?>
+            </td>
+        </tr><tr>
+            <td></td>
+<?php
+            for ($k = 0; $k < $towers; $k++) {
+                $towerset = $classset["tower"][$k];
+                for ($l = 0; $l < $towerset["index"]; $l++) {
+?>
+            <td><img width=150 height=100 onclick="toggleClicked(this)" src="./image/<?php echo $towerset["name"]; ?>.png" 
+                data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index="<?php echo $l; ?>"></td>
+<?php
+                }
+            }
+?>
+        </tr>
+<?php
+        }
+?>
+        </table>
+<?php
+        if (isset($missionset["appendix"])) {
+            echo $missionset["appendix"];
+        }
+?>
     </fieldset></form><br>
-    <?php } ?>
+<?php
+    }
+?>
     <br>
     <form><fieldset>
         <legend><strong>변경사항</strong></legend>
