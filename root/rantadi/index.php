@@ -47,6 +47,13 @@
     <?php
         $cutoff = 6;
         $collection = [
+            ["mission" => "hellgate", "description" => "더 키스 오브 헬 게이트 : 유니크 시민 2기",
+             "data" => [
+                ["class" => "U",
+                 "tower" => [
+                    ["name" => "E Hell Fire", "index" => 3, "title" => "지옥불 3"],
+                ]],
+             ]],
             ["mission" => "orangeannoying", "description" => "귤먹다가 짜증이 : 미네랄 300",
              "data" => [
                 ["class" => "U",
@@ -162,8 +169,6 @@
         ?>
     </fieldset></form><br>
     <?php } ?>
-    
-    
     <br>
     <form><fieldset>
         <legend><strong>변경사항</strong></legend>
