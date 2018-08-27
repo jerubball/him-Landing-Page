@@ -1,0 +1,593 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>랜타디 ReZero 미션 목록</title>
+</head>
+<script type='text/javascript'>
+    // set all qualifying CheckBox to state.
+    function setCheckBox(tag, type, tower, index, check) {
+        var all = document.getElementsByTagName(tag);
+        for (var i = 0; i < all.length; i++) {
+            if (all[i].type == type && all[i].dataset["tower"] == tower && all[i].dataset["index"] == index) {
+                all[i].checked = check;
+            }
+        }
+    }
+    // get CheckBox state from first matching CheckBox.
+    function getCheckBox(tag, type, tower, index) {
+        var all = document.getElementsByTagName(tag);
+        for (var i = 0; i < all.length; i++) {
+            if (all[i].type == type && all[i].dataset["tower"] == tower && all[i].dataset["index"] == index) {
+                return all[i].checked;
+            }
+        }
+    }
+    // Toggle all other CheckBox when CheckBox is clicked.
+    function toggleCheckBoxClicked(item) {
+        var data = item.dataset;
+        setCheckBox(item.nodeName, item.type, data["tower"], data["index"], item.checked);
+    }
+    // Toggle all matching CheckBox when image is clicked.
+    function toggleImageClicked(item) {
+        var tag = "INPUT", type = "checkbox", data = item.dataset;
+        var check = !getCheckBox(tag, type, data["tower"], data["index"]);
+        setCheckBox(tag, type, data["tower"], data["index"], check);
+    }
+    // Choose between functions.
+    function toggleClicked(item) {
+        if (item.nodeName == "INPUT" && item.type == "checkbox") {
+            toggleCheckBoxClicked(item);
+        } else {
+            toggleImageClicked(item);
+        }
+    }
+</script>
+<body>
+    <h1>랜타디 ReZero 미션 목록</h1>
+    <br>
+    <form><fieldset>
+        <legend><strong>타워 설명</strong></legend>
+        <strong>E</strong> : 에픽<br>
+        <strong>U</strong> : 유니크<br>
+        <strong>R</strong> : 레어<br>
+        <strong>M</strong> : 매직<br>
+        <strong>N</strong> : 노말<br>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>기본 미션들</strong></legend>
+        <strong>1. 편식은 금물 : 미네랄 300<br></strong>== <strong>N</strong> 종류별로 1기씩<br>
+        <strong>2. 지긋지긋해 하늘이 Gray색이야 : 미네랄 300, 가스 100<br></strong>== <strong>M</strong> 종류별로 1기씩<br>
+        <strong>3. 그 남자 그리고 그 여자 : 미네랄 400<br></strong>== <strong>M</strong> 남자 고스트 1 여자 고스트 1<br>
+        <strong>4. 언럭키세븐 : 미네랄 300<br></strong>== <strong>R</strong> 종류 상관없이 7기<br>
+        <strong>5. 악운도 운이다 : 미네랄 300<br></strong>== <strong>U</strong> 종류 상관없이 6기<br>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>자리 미션 : 유니크 시민 1기</strong></legend>
+        <table><tr>
+            <td><font color="red"><strong>빨강</strong></font> <strong>M</strong></td>
+            <td>디파일러 7</td>
+            <td align="right">
+                <input type="checkbox" data-mission="location1" data-tower="M Defiler" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location1" data-tower="M Defiler" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location1" data-tower="M Defiler" data-index=3 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location1" data-tower="M Defiler" data-index=4 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location1" data-tower="M Defiler" data-index=5 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location1" data-tower="M Defiler" data-index=6 onclick="toggleClicked(this)"/></td>
+            <td><input type="checkbox" data-mission="location1" data-tower="M Defiler" data-index=7 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M Defiler.png" width=150 height=100 data-mission="location1" data-tower="M Defiler" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Defiler.png" width=150 height=100 data-mission="location1" data-tower="M Defiler" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Defiler.png" width=150 height=100 data-mission="location1" data-tower="M Defiler" data-index=3 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Defiler.png" width=150 height=100 data-mission="location1" data-tower="M Defiler" data-index=4 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Defiler.png" width=150 height=100 data-mission="location1" data-tower="M Defiler" data-index=5 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Defiler.png" width=150 height=100 data-mission="location1" data-tower="M Defiler" data-index=6 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Defiler.png" width=150 height=100 data-mission="location1" data-tower="M Defiler" data-index=7 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><font color="blue"><strong>파랑</strong></font> <strong>M</strong></td>
+            <td>다크 템플러 7+1</td>
+            <td align="right">
+                <input type="checkbox" data-mission="location2" data-tower="M Dark Templar" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location2" data-tower="M Dark Templar" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location2" data-tower="M Dark Templar" data-index=3 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location2" data-tower="M Dark Templar" data-index=4 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location2" data-tower="M Dark Templar" data-index=5 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location2" data-tower="M Dark Templar" data-index=6 onclick="toggleClicked(this)"/></td>
+            <td><input type="checkbox" data-mission="location2" data-tower="M Dark Templar" data-index=7 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location2" data-tower="M Dark Templar" data-index=8 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M Dark Templar.png" width=150 height=100 data-mission="location2" data-tower="M Dark Templar" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Dark Templar.png" width=150 height=100 data-mission="location2" data-tower="M Dark Templar" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Dark Templar.png" width=150 height=100 data-mission="location2" data-tower="M Dark Templar" data-index=3 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Dark Templar.png" width=150 height=100 data-mission="location2" data-tower="M Dark Templar" data-index=4 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Dark Templar.png" width=150 height=100 data-mission="location2" data-tower="M Dark Templar" data-index=5 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Dark Templar.png" width=150 height=100 data-mission="location2" data-tower="M Dark Templar" data-index=6 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Dark Templar.png" width=150 height=100 data-mission="location2" data-tower="M Dark Templar" data-index=7 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Dark Templar.png" width=150 height=100 data-mission="location2" data-tower="M Dark Templar" data-index=8 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><font color="yellowgreen"><strong>연두</strong></font> <strong>M</strong></td>
+            <td>여자 고스트 7</td>
+            <td align="right">
+                <input type="checkbox" data-mission="location3" data-tower="M FGhost" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location3" data-tower="M FGhost" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location3" data-tower="M FGhost" data-index=3 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location3" data-tower="M FGhost" data-index=4 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location3" data-tower="M FGhost" data-index=5 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location3" data-tower="M FGhost" data-index=6 onclick="toggleClicked(this)"/></td>
+            <td><input type="checkbox" data-mission="location3" data-tower="M FGhost" data-index=7 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M FGhost.png" width=150 height=100 data-mission="location3" data-tower="M FGhost" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M FGhost.png" width=150 height=100 data-mission="location3" data-tower="M FGhost" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M FGhost.png" width=150 height=100 data-mission="location3" data-tower="M FGhost" data-index=3 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M FGhost.png" width=150 height=100 data-mission="location3" data-tower="M FGhost" data-index=4 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M FGhost.png" width=150 height=100 data-mission="location3" data-tower="M FGhost" data-index=5 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M FGhost.png" width=150 height=100 data-mission="location3" data-tower="M FGhost" data-index=6 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M FGhost.png" width=150 height=100 data-mission="location3" data-tower="M FGhost" data-index=7 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><font color="purple"><strong>보라</strong></font> <strong>M</strong></td>
+            <td>파이어뱃 7</td>
+            <td align="right">
+                <input type="checkbox" data-mission="location4" data-tower="M Firebat" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location4" data-tower="M Firebat" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location4" data-tower="M Firebat" data-index=3 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location4" data-tower="M Firebat" data-index=4 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location4" data-tower="M Firebat" data-index=5 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location4" data-tower="M Firebat" data-index=6 onclick="toggleClicked(this)"/></td>
+            <td><input type="checkbox" data-mission="location4" data-tower="M Firebat" data-index=7 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M Firebat.png" width=150 height=100 data-mission="location4" data-tower="M Firebat" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Firebat.png" width=150 height=100 data-mission="location4" data-tower="M Firebat" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Firebat.png" width=150 height=100 data-mission="location4" data-tower="M Firebat" data-index=3 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Firebat.png" width=150 height=100 data-mission="location4" data-tower="M Firebat" data-index=4 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Firebat.png" width=150 height=100 data-mission="location4" data-tower="M Firebat" data-index=5 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Firebat.png" width=150 height=100 data-mission="location4" data-tower="M Firebat" data-index=6 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Firebat.png" width=150 height=100 data-mission="location4" data-tower="M Firebat" data-index=7 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><font color="orange"><strong>주황</strong></font> <strong>M</strong></td>
+            <td>탱크 7</td>
+            <td align="right">
+                <input type="checkbox" data-mission="location5" data-tower="M Tank" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location5" data-tower="M Tank" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location5" data-tower="M Tank" data-index=3 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location5" data-tower="M Tank" data-index=4 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location5" data-tower="M Tank" data-index=5 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location5" data-tower="M Tank" data-index=6 onclick="toggleClicked(this)"/></td>
+            <td><input type="checkbox" data-mission="location5" data-tower="M Tank" data-index=7 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M Tank.png" width=150 height=100 data-mission="location5" data-tower="M Tank" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Tank.png" width=150 height=100 data-mission="location5" data-tower="M Tank" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Tank.png" width=150 height=100 data-mission="location5" data-tower="M Tank" data-index=3 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Tank.png" width=150 height=100 data-mission="location5" data-tower="M Tank" data-index=4 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Tank.png" width=150 height=100 data-mission="location5" data-tower="M Tank" data-index=5 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Tank.png" width=150 height=100 data-mission="location5" data-tower="M Tank" data-index=6 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Tank.png" width=150 height=100 data-mission="location5" data-tower="M Tank" data-index=7 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><font color="brown"><strong>갈색</strong></font> <strong>M</strong></td>
+            <td>아칸 7</td>
+            <td align="right">
+                <input type="checkbox" data-mission="location6" data-tower="M Archon" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location6" data-tower="M Archon" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location6" data-tower="M Archon" data-index=3 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location6" data-tower="M Archon" data-index=4 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location6" data-tower="M Archon" data-index=5 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="location6" data-tower="M Archon" data-index=6 onclick="toggleClicked(this)"/></td>
+            <td><input type="checkbox" data-mission="location6" data-tower="M Archon" data-index=7 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="location6" data-tower="M Archon" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="location6" data-tower="M Archon" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="location6" data-tower="M Archon" data-index=3 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="location6" data-tower="M Archon" data-index=4 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="location6" data-tower="M Archon" data-index=5 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="location6" data-tower="M Archon" data-index=6 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="location6" data-tower="M Archon" data-index=7 onclick="toggleClicked(this)"></td>
+        </tr></table>
+        <font color="blue"><strong>(★★ 파랑은 타워 7, 게이트 1 생산으로 클리어 가능 ★★)</strong></font><br>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>스타쉽 : 유니크 시민 1기</strong></legend>
+        <table><tr>
+            <td><strong>U</strong></td>
+            <td>발키리 <input type="checkbox" data-mission="starship" data-tower="U Valkyrie" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>가디언 <input type="checkbox" data-mission="starship" data-tower="U Guardian" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/U Valkyrie.png" width=150 height=100 data-mission="starship" data-tower="U Valkyrie" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/U Guardian.png" width=150 height=100 data-mission="starship" data-tower="U Guardian" data-index=1 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><strong>R</strong></td>
+            <td>파이어뱃 <input type="checkbox" data-mission="starship" data-tower="R Firebat" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>디바우러 <input type="checkbox" data-mission="starship" data-tower="R Devourer" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/R Firebat.png" width=150 height=100 data-mission="starship" data-tower="R Firebat" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/R Devourer.png" width=150 height=100 data-mission="starship" data-tower="R Devourer" data-index=1 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><strong>M</strong></td>
+            <td>탱크 <input type="checkbox" data-mission="starship" data-tower="M Tank" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>디파일러 <input type="checkbox" data-mission="starship" data-tower="M Defiler" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M Tank.png" width=150 height=100 data-mission="starship" data-tower="M Tank" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Defiler.png" width=150 height=100 data-mission="starship" data-tower="M Defiler" data-index=1 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><strong>N</strong></td>
+            <td>벌쳐 <input type="checkbox" data-mission="starship" data-tower="N Vulture" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>뮤탈 <input type="checkbox" data-mission="starship" data-tower="N Mutalisk" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/N Vulture.png" width=150 height=100 data-mission="starship" data-tower="N Vulture" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/N Mutalisk.png" width=150 height=100 data-mission="starship" data-tower="N Mutalisk" data-index=1 onclick="toggleClicked(this)"></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>인디펜던스 : 유니크 시민 1기</strong></legend>
+        <table><tr>
+            <td><strong>U</strong></td>
+            <td>발키리 <input type="checkbox" data-mission="independence" data-tower="U Valkyrie" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>리버 <input type="checkbox" data-mission="independence" data-tower="U Reaver" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/U Valkyrie.png" width=150 height=100 data-mission="independence" data-tower="U Valkyrie" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100 data-mission="independence" data-tower="U Reaver" data-index=1 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><strong>R</strong></td>
+            <td>파이어뱃 <input type="checkbox" data-mission="independence" data-tower="R Firebat" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>드라군 <input type="checkbox" data-mission="independence" data-tower="R Dragoon" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/R Firebat.png" width=150 height=100 data-mission="independence" data-tower="R Firebat" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/R Dragoon.png" width=150 height=100 data-mission="independence" data-tower="R Dragoon" data-index=1 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><strong>M</strong></td>
+            <td>탱크 <input type="checkbox" data-mission="independence" data-tower="M Tank" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>아칸 <input type="checkbox" data-mission="independence" data-tower="M Archon" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M Tank.png" width=150 height=100 data-mission="independence" data-tower="M Tank" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="independence" data-tower="M Archon" data-index=1 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><strong>N</strong></td>
+            <td>벌쳐 <input type="checkbox" data-mission="independence" data-tower="N Vulture" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>드라군 <input type="checkbox" data-mission="independence" data-tower="N Dragoon" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/N Vulture.png" width=150 height=100 data-mission="independence" data-tower="N Vulture" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/N Dragoon.png" width=150 height=100 data-mission="independence" data-tower="N Dragoon" data-index=1 onclick="toggleClicked(this)"></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>디스트릭트 9 (= 디나인) : 레어 시민 2기</strong></legend>
+        <table><tr>
+            <td><strong>R</strong></td>
+            <td>촉수 3</td>
+            <td><input type="checkbox" data-mission="district9" data-tower="R Sunken" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="district9" data-tower="R Sunken" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="district9" data-tower="R Sunken" data-index=3 onclick="toggleClicked(this)"/></td>
+            <td></td>
+            <td>아비터 3</td>
+            <td><input type="checkbox" data-mission="district9" data-tower="R Arbiter" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="district9" data-tower="R Arbiter" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="district9" data-tower="R Arbiter" data-index=3 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/R Sunken.png" width=150 height=100 data-mission="district9" data-tower="R Sunken" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/R Sunken.png" width=150 height=100 data-mission="district9" data-tower="R Sunken" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/R Sunken.png" width=150 height=100 data-mission="district9" data-tower="R Sunken" data-index=3 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/R Arbiter.png" width=150 height=100 data-mission="district9" data-tower="R Arbiter" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/R Arbiter.png" width=150 height=100 data-mission="district9" data-tower="R Arbiter" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/R Arbiter.png" width=150 height=100 data-mission="district9" data-tower="R Arbiter" data-index=3 onclick="toggleClicked(this)"></td>
+        </tr><tr>
+            <td><strong>M</strong></td>
+            <td>여자 고스트 3</td>
+            <td><input type="checkbox" data-mission="district9" data-tower="M FGhost" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="district9" data-tower="M FGhost" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="district9" data-tower="M FGhost" data-index=3 onclick="toggleClicked(this)"/></td>
+            <td></td>
+            <td>아칸 3</td>
+            <td><input type="checkbox" data-mission="district9" data-tower="M Archon" data-index=1 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="district9" data-tower="M Archon" data-index=2 onclick="toggleClicked(this)"/>
+                <input type="checkbox" data-mission="district9" data-tower="M Archon" data-index=3 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M FGhost.png" width=150 height=100 data-mission="district9" data-tower="M FGhost" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M FGhost.png" width=150 height=100 data-mission="district9" data-tower="M FGhost" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M FGhost.png" width=150 height=100 data-mission="district9" data-tower="M FGhost" data-index=3 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="district9" data-tower="M Archon" data-index=1 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="district9" data-tower="M Archon" data-index=2 onclick="toggleClicked(this)"></td>
+            <td><img src="./image/M Archon.png" width=150 height=100 data-mission="district9" data-tower="M Archon" data-index=3 onclick="toggleClicked(this)"></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>나빼고 다 깼네 나빼고 다 : 에픽 시민 1기</strong></legend>
+        <table><tr>
+            <td><strong>U</strong></td>
+            <td>리버 3 <input type="checkbox" data-mission="nadanada" data-tower="U Reaver" data-index=3 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>R</strong></td>
+            <td>레이스 3 <input type="checkbox" data-mission="nadanada" data-tower="R Wraith" data-index=3 onclick="toggleClicked(this)"/></td>
+            <td></td>
+            <td></td>
+            <td>촉수 3 <input type="checkbox" data-mission="nadanada" data-tower="R Sunken" data-index=3 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/R Wraith.png" width=150 height=100></td>
+            <td><img src="./image/R Wraith.png" width=150 height=100></td>
+            <td><img src="./image/R Wraith.png" width=150 height=100></td>
+            <td><img src="./image/R Sunken.png" width=150 height=100></td>
+            <td><img src="./image/R Sunken.png" width=150 height=100></td>
+            <td><img src="./image/R Sunken.png" width=150 height=100></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>천사의 게임들 : 에픽 시민 1기, 미네랄 1000, 가스 4</strong></legend>
+        <table><tr>
+            <td><strong>E</strong></td>
+            <td>거인 <input type="checkbox" data-mission="angelgame" data-tower="E Giant" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>핵 <input type="checkbox" data-mission="angelgame" data-tower="E Nuclear" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/E Giant.png" width=150 height=100></td>
+            <td><img src="./image/E Nuclear.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>U</strong></td>
+            <td>리버 <input type="checkbox" data-mission="angelgame" data-tower="U Reaver" data-index=1 onclick="toggleClicked(this)"></td>
+            <td>하이 템플러 <input type="checkbox" data-mission="angelgame" data-tower="U High Templar" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>다크 아칸 <input type="checkbox" data-mission="angelgame" data-tower="U Dark Archon" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+            <td><img src="./image/U High Templar.png" width=150 height=100></td>
+            <td><img src="./image/U Dark Archon.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>R</strong></td>
+            <td>드라군 <input type="checkbox" data-mission="angelgame" data-tower="R Dragoon" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>촉수 <input type="checkbox" data-mission="angelgame" data-tower="R Sunken" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>디바우러 <input type="checkbox" data-mission="angelgame" data-tower="R Devourer" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/R Dragoon.png" width=150 height=100></td>
+            <td><img src="./image/R Sunken.png" width=150 height=100></td>
+            <td><img src="./image/R Devourer.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>M</strong></td>
+            <td>아칸 <input type="checkbox" data-mission="angelgame" data-tower="M Archon" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>스카웃 <input type="checkbox" data-mission="angelgame" data-tower="M Scout" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>탱크 <input type="checkbox" data-mission="angelgame" data-tower="M Tank" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M Archon.png" width=150 height=100></td>
+            <td><img src="./image/M Scout.png" width=150 height=100></td>
+            <td><img src="./image/M Tank.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>N</strong></td>
+            <td>드라군 <input type="checkbox" data-mission="angelgame" data-tower="N Dragoon" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>스카웃 <input type="checkbox" data-mission="angelgame" data-tower="N Scout" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/N Dragoon.png" width=150 height=100></td>
+            <td><img src="./image/N Scout.png" width=150 height=100></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>버림받은 자들의 심장 : 라이프 6</strong></legend>
+        <table><tr>
+            <td><strong>R</strong></td>
+            <td>골리앗 3 <input type="checkbox" data-mission="heart" data-tower="R Goliath" data-index=3 onclick="toggleClicked(this)"/></td>
+            <td></td>
+            <td></td>
+            <td>디파일러 3 <input type="checkbox" data-mission="heart" data-tower="R Defiler" data-index=3 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/R Goliath.png" width=150 height=100></td>
+            <td><img src="./image/R Goliath.png" width=150 height=100></td>
+            <td><img src="./image/R Goliath.png" width=150 height=100></td>
+            <td><img src="./image/R Defiler.png" width=150 height=100></td>
+            <td><img src="./image/R Defiler.png" width=150 height=100></td>
+            <td><img src="./image/R Defiler.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>N</strong></td>
+            <td>울트라 3 <input type="checkbox" data-mission="heart" data-tower="N Ultralisk" data-index=3 onclick="toggleClicked(this)"/></td>
+            <td></td>
+            <td></td>
+            <td>뮤탈 3 <input type="checkbox" data-mission="heart" data-tower="N Mutalisk" data-index=3 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/N Ultralisk.png" width=150 height=100></td>
+            <td><img src="./image/N Ultralisk.png" width=150 height=100></td>
+            <td><img src="./image/N Ultralisk.png" width=150 height=100></td>
+            <td><img src="./image/N Mutalisk.png" width=150 height=100></td>
+            <td><img src="./image/N Mutalisk.png" width=150 height=100></td>
+            <td><img src="./image/N Mutalisk.png" width=150 height=100></td>
+        </tr></table>
+        <font color="red"><strong>(★★ 빨강은 N 2마리씩 보유하면 클리어 ★★)</strong></font><br>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>날아올라라 주작이여 : 보스 시민 2기</strong></legend>
+        <table><tr>
+            <td><strong>U</strong></td>
+            <td>발키리 <input type="checkbox" data-mission="flying" data-tower="U Valkyrie" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>가디언 <input type="checkbox" data-mission="flying" data-tower="U Guardian" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/U Valkyrie.png" width=150 height=100></td>
+            <td><img src="./image/U Guardian.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>R</strong></td>
+            <td>디바우러 <input type="checkbox" data-mission="flying" data-tower="R Devourer" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>아비터 <input type="checkbox" data-mission="flying" data-tower="R Arbiter" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>레이스 <input type="checkbox" data-mission="flying" data-tower="R Wraith" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/R Devourer.png" width=150 height=100></td>
+            <td><img src="./image/R Arbiter.png" width=150 height=100></td>
+            <td><img src="./image/R Wraith.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>M</strong></td>
+            <td>스카웃 <input type="checkbox" data-mission="flying" data-tower="M Scout" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M Scout.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>N</strong></td>
+            <td>뮤탈 <input type="checkbox" data-mission="flying" data-tower="N Mutalisk" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>스카웃 <input type="checkbox" data-mission="flying" data-tower="N Scout" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>레이스 <input type="checkbox" data-mission="flying" data-tower="N Wraith" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/N Mutalisk.png" width=150 height=100></td>
+            <td><img src="./image/N Scout.png" width=150 height=100></td>
+            <td><img src="./image/N Wraith.png" width=150 height=100></td>
+        </tr></table>
+        <strong>(★★ 에픽 제외 모든 공중유닛 1기씩 ★★)</strong><br>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>비선실세 : 가스 503</strong></legend>
+        <table><tr>
+            <td><strong>U</strong></td>
+            <td>가디언 <input type="checkbox" data-mission="bsss" data-tower="U Guardian" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>다크 아칸 <input type="checkbox" data-mission="bsss" data-tower="U Dark Archon" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>하이 템플러 <input type="checkbox" data-mission="bsss" data-tower="U High Templar" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/U Guardian.png" width=150 height=100></td>
+            <td><img src="./image/U Dark Archon.png" width=150 height=100></td>
+            <td><img src="./image/U High Templar.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>R</strong></td>
+            <td>디바우러 <input type="checkbox" data-mission="bsss" data-tower="R Devourer" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>촉수 <input type="checkbox" data-mission="bsss" data-tower="R Sunken" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/R Devourer.png" width=150 height=100></td>
+            <td><img src="./image/R Sunken.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>M</strong></td>
+            <td>디파일러 <input type="checkbox" data-mission="bsss" data-tower="M Defiler" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>다크 템플러 <input type="checkbox" data-mission="bsss" data-tower="M Dark Templar" data-index=1 onclick="toggleClicked(this)"/></td>
+            <td>스카웃 <input type="checkbox" data-mission="bsss" data-tower="M Scout" data-index=1 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M Defiler.png" width=150 height=100></td>
+            <td><img src="./image/M Dark Templar.png" width=150 height=100></td>
+            <td><img src="./image/M Scout.png" width=150 height=100></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>이상한 사람의 취미생활 : 보스 시민 3기</strong></legend>
+        <strong>U</strong> 리버를 제외한 모든 유닛 1기씩<br>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>천년의 기다림 : 유니크 시민 1기</strong></legend>
+        보스 시민 5기 보유<br>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>하이드라의 저주 : 미네랄 400, 가스 400</strong></legend>
+        <table><tr>
+            <td><strong>U</strong></td>
+            <td>히드라 3 <input type="checkbox" data-mission="hidra" data-tower="U Hydralisk" data-index=3 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/U Hydralisk.png" width=150 height=100></td>
+            <td><img src="./image/U Hydralisk.png" width=150 height=100></td>
+            <td><img src="./image/U Hydralisk.png" width=150 height=100></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>어느 미치광이의 폭주 : 미네랄 100, 가스 525</strong></legend>
+        <table><tr>
+            <td><strong>E</strong></td>
+            <td>핵 2 <input type="checkbox" data-mission="crazy" data-tower="E Nuclear" data-index=2 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/E Nuclear.png" width=150 height=100></td>
+            <td><img src="./image/E Nuclear.png" width=150 height=100></td>
+        </tr><tr>
+            <td><strong>M</strong></td>
+            <td>남자 고스트 2 <input type="checkbox" data-mission="crazy" data-tower="M MGhost" data-index=2 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/M MGhost.png" width=150 height=100></td>
+            <td><img src="./image/M MGhost.png" width=150 height=100></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>더 키스 오브 헬 게이트 : 유니크 시민 2기</strong></legend>
+        <table><tr>
+            <td><strong>E</strong></td>
+            <td>지옥불 3 <input type="checkbox" data-mission="hellgate" data-tower="E Hell Fire" data-index=3 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/E Hell Fire.png" width=150 height=100></td>
+            <td><img src="./image/E Hell Fire.png" width=150 height=100></td>
+            <td><img src="./image/E Hell Fire.png" width=150 height=100></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>귤먹다가 짜증이 : 미네랄 300</strong></legend>
+        <table><tr>
+            <td><strong>U</strong></td>
+            <td>리버 3 <input type="checkbox" data-mission="orangeannoying" data-tower="U Reaver" data-index=3 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>카리스마 대빵 큰 리버 : 미네랄 800, 가스 800</strong></legend>
+        <table><tr>
+            <td><strong>U</strong></td>
+            <td>리버 5 <input type="checkbox" data-mission="bigbigreaver" data-tower="U Reaver" data-index=5 onclick="toggleClicked(this)"/></td>
+        </tr><tr>
+            <td></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+            <td><img src="./image/U Reaver.png" width=150 height=100></td>
+        </tr></table>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>변경사항</strong></legend>
+        <strong>2018.02.03</strong> : 오탈자, 보상 잘못 기록되어 있던 것 수정<br>
+        <strong>2018.02.03</strong> : 미치광이 미션 조건 수정, 쩜드라의 저주 -> 하이드라의 저주 수정<br>
+        <strong>2018.02.04</strong> : 귤짜증, 카리스마 미션 추가 / 자리미션 보상 기재<br>
+        <strong>2018.08.24</strong> : 체크 박스 스크립트 추가<br>
+        <strong>2018.08.25</strong> : 타워 스크린샷 추가<br>
+    </fieldset></form>
+    <br>
+    <font color="blue"><strong>Made by aMythos (Mythical#31274)</strong></font>
+    <br>
+    <strong>Edit & Host by him.nyit@gmail.com</strong>
+    <br>
+</body>
+</html>
