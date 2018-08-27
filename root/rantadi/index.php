@@ -50,7 +50,7 @@
              "data" => [
                 ["class" => "U",
                  "tower" => [
-                    ["name" = "U Reaver", "index" => 5, "title" => "리버 5"]
+                    ["name" => "U Reaver", "index" => 5, "title" => "리버 5"]
                 ]]
              ]],
             
