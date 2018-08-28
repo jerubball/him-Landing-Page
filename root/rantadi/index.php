@@ -68,7 +68,7 @@
     $height="100";
     $cutoff = 6;
     $collection = [
-        ["mission" => "location", "description" => "자리 미션 : 유니크 시민 1기", "appendix" => "<font color=\"blue\"><strong>(★★ 파랑은 타워 7, 게이트 1 생산으로 클리어 가능 ★★)</strong></font><br>",
+        ["mission" => "location", "description" => "자리 미션 : 유니크 시민 1기", "preface" => "<font color=\"blue\">(★ 파랑은 타워 7, 게이트 1 생산으로 클리어 가능 ★)</font><br>",
          "data" => [
             ["class" => "<font color=\"red\">빨강</font> M",
              "tower" => [
@@ -197,7 +197,7 @@
                 ["name" => "N Scout", "index" => 1, "title" => "스카웃"],
             ]],
         ]],
-        ["mission" => "heart", "description" => "버림받은 자들의 심장 : 라이프 6", "appendix" => "<font color=\"red\"><strong>(★★ 빨강은 N 2마리씩 보유하면 클리어 ★★)</strong></font><br>",
+        ["mission" => "heart", "description" => "버림받은 자들의 심장 : 라이프 6", "preface" => "<font color=\"red\">(★ 빨강은 <b>N</b> 2마리씩 보유하면 클리어 ★)</font><br>",
          "data" => [
             ["class" => "R",
              "tower" => [
@@ -210,7 +210,7 @@
                 ["name" => "N Mutalisk", "index" => 3, "title" => "뮤탈 3"],
             ]],
         ]],
-        ["mission" => "flying", "description" => "날아올라라 주작이여 : 보스 시민 2기", "appendix" => "<strong>(★★ 에픽 제외 모든 공중유닛 1기씩 ★★)</strong><br>",
+        ["mission" => "flying", "description" => "날아올라라 주작이여 : 보스 시민 2기", "preface" => "(★ 에픽 제외 모든 공중유닛 1기씩 ★)<br>",
          "data" => [
             ["class" => "U",
              "tower" => [
@@ -338,6 +338,13 @@
         <legend><input type="radio" disabled=true
             id="<?php echo $missionset["mission"]; ?>" data-mission="<?php echo $missionset["mission"]; ?>"/>
         <strong><?php echo $missionset["description"]; ?></strong></legend>
+<?php
+        if (isset($missionset["preface"])) {
+?>
+        <?php echo $missionset["preface"]; ?> 
+<?php
+        }
+?>
         <table data-mission="<?php echo $missionset["mission"]; ?>">
 <?php
         $classes = count($missionset["data"]);
