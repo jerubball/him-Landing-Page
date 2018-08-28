@@ -36,6 +36,8 @@
                     state = all[i].checked;
                 }
             }
+            alert(state);
+            alert(element);
             if (state && element != undefined) {
                 element.checked = true;
             }
