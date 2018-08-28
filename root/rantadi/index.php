@@ -68,7 +68,7 @@
     $height="100";
     $cutoff = 6;
     $collection = [
-        ["mission" => "strangehobby", "description" => "이상한 사람의 취미생활 : 보스 시민 3기", "preface" => "(★ 리버를 제외한 모든 유닛 1기씩 ★)",
+        ["mission" => "strangehobby", "description" => "이상한 사람의 취미생활 : 보스 시민 3기", "preface" => "(★ 리버를 제외한 모든 <b>U</b> 유닛 1기씩 ★)",
          "data" => [
             ["class" => "U",
              "tower" => [
@@ -106,6 +106,14 @@
             ["class" => "<font color=\"brown\">갈색</font> M",
              "tower" => [
                 ["name" => "M Archon", "index" => 7, "title" => "아칸 7"],
+            ]],
+        ]],
+        ["mission" => "themanthewoman", "description" => "", "appendix" => "그 남자 그리고 그 여자 : 미네랄 400"
+         "data" => [
+            ["class" => "M",
+             "tower" => [
+                ["name" => "M MGhost", "index" => 1, "title" => "남자 고스트"],
+                ["name" => "M FGhost", "index" => 1, "title" => "여자 고스트"],
             ]],
         ]],
         ["mission" => "starship", "description" => "스타쉽 : 유니크 시민 1기",
@@ -332,7 +340,6 @@
         <legend><strong>기본 미션들</strong></legend>
         <strong>1. 편식은 금물 : 미네랄 300<br></strong>== <strong>N</strong> 종류별로 1기씩<br>
         <strong>2. 지긋지긋해 하늘이 Gray색이야 : 미네랄 300, 가스 100<br></strong>== <strong>M</strong> 종류별로 1기씩<br>
-        <strong>3. 그 남자 그리고 그 여자 : 미네랄 400<br></strong>== <strong>M</strong> 남자 고스트 1 여자 고스트 1<br>
         <strong>4. 언럭키세븐 : 미네랄 300<br></strong>== <strong>R</strong> 종류 상관없이 7기<br>
         <strong>5. 악운도 운이다 : 미네랄 300<br></strong>== <strong>U</strong> 종류 상관없이 6기<br>
     </fieldset></form>
