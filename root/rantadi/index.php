@@ -316,8 +316,8 @@
         $missionset = $collection[$i];
 ?>
     <form><fieldset>
-        <legend><strong><?php echo $missionset["description"]; ?></strong>
-            <input type="radio" data-mission="<?php echo $missionset["mission"]; ?>"/></legend>
+        <legend><input type="radio" disabled=true data-mission="<?php echo $missionset["mission"]; ?>"/>
+            <strong><?php echo $missionset["description"]; ?></strong></legend>
         <table data-mission="<?php echo $missionset["mission"]; ?>">
 <?php
         $classes = count($missionset["data"]);
