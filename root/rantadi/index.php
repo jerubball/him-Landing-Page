@@ -481,7 +481,7 @@
 <?php
     }
 ?>
-    <form id=<?php echo ($missions + $offset); ?> <data-mission="changelog"><fieldset>
+    <form id=<?php echo ($missions + $offset); ?> data-mission="changelog"><fieldset>
         <legend><strong>변경사항</strong></legend>
         <strong>2018.02.03</strong> : 오탈자, 보상 잘못 기록되어 있던 것 수정<br>
         <strong>2018.02.03</strong> : 미치광이 미션 조건 수정, 쩜드라의 저주 -> 하이드라의 저주 수정<br>
