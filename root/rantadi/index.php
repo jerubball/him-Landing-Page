@@ -310,18 +310,14 @@
         <strong>U</strong> 리버를 제외한 모든 유닛 1기씩<br>
     </fieldset></form>
     <br>
-    <form><fieldset>
-        <legend><strong>천년의 기다림 : 유니크 시민 1기</strong></legend>
-        보스 시민 5기 보유<br>
-    </fieldset></form>
-    <br>
 <?php
     $missions = count($collection);
     for ($i = 0; $i < $missions; $i++) {
         $missionset = $collection[$i];
 ?>
     <form><fieldset>
-        <legend><strong><?php echo $missionset["description"]; ?></strong></legend>
+        <legend><strong><?php echo $missionset["description"]; ?></strong>
+            <input type="radio" data-mission="<?php echo $missionset["mission"]; ?>"/></legend>
         <table data-mission="<?php echo $missionset["mission"]; ?>">
 <?php
         $classes = count($missionset["data"]);
@@ -394,6 +390,11 @@
 <?php
     }
 ?>
+    <form><fieldset>
+        <legend><strong>천년의 기다림 : 유니크 시민 1기</strong></legend>
+        보스 시민 5기 보유<br>
+    </fieldset></form>
+    <br>
     <form><fieldset>
         <legend><strong>변경사항</strong></legend>
         <strong>2018.02.03</strong> : 오탈자, 보상 잘못 기록되어 있던 것 수정<br>
