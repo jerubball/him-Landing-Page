@@ -24,16 +24,34 @@
                 }
             }
         }
+        // update Radio buttons.
+        function updateRadioButton(tag, type, mission) {
+            var all = document.getElementsByTagName(tag);
+            var radio = "radio", element;
+            var state = true;
+            for (var i = 0; state && i < all.length; i++) {
+                if (all[i].type == radio) {
+                    element = all[i];
+                } else if (all[i].type == type && all[i].dataset["mission"] == mission) {
+                    state = all[i].checked;
+                }
+            }
+            if (state && element != undefined) {
+                element.checked = true;
+            }
+        }
         // Toggle all other CheckBox when CheckBox is clicked.
         function toggleCheckBoxClicked(item) {
             var data = item.dataset;
             setCheckBox(item.nodeName, item.type, data["tower"], data["index"], item.checked);
+            updateRadioButton(item.nodeName, item.type, data["mission"]);
         }
         // Toggle all matching CheckBox when image is clicked.
         function toggleImageClicked(item) {
             var tag = "INPUT", type = "checkbox", data = item.dataset;
             var check = !getCheckBox(tag, type, data["tower"], data["index"]);
             setCheckBox(tag, type, data["tower"], data["index"], check);
+            updateRadioButton(tag, type, data["mission"]);
         }
         // Choose between functions.
         function toggleClicked(item) {
