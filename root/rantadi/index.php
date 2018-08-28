@@ -36,6 +36,9 @@
                         state = all[j].checked;
                     }
                 }
+                if (state) {
+                    element.checked = true;
+                }
             }
         }
         // Toggle all other CheckBox when CheckBox is clicked.
