@@ -29,15 +29,27 @@
             var tables = document.getElementsByTagName("TABLE");
             for (var i = 0; i < tables.length; i++) {
                 var mission = tables[i].dataset["mission"], element = document.getElementById(mission);
-                var state = true;
                 var all = tables[i].getElementsByTagName(tag);
-                for (var j = 0; state && j < all.length; j++) {
-                    if (all[j].type == type && all[j].dataset["mission"] == mission) {
-                        state = all[j].checked;
+                if (mission == "location") {
+                    var state = true;
+                    for (var j = 0; state && j < all.length; j++) {
+                        if (all[j].type == type && all[j].dataset["mission"] == mission && all[j].dataset["tower"] == tower) {
+                            state = all[j].checked;
+                        }
                     }
-                }
-                if (state) {
-                    element.checked = true;
+                    if (state) {
+                        element.checked = true;
+                    }
+                } else {
+                    var state = true;
+                    for (var j = 0; state && j < all.length; j++) {
+                        if (all[j].type == type && all[j].dataset["mission"] == mission) {
+                            state = all[j].checked;
+                        }
+                    }
+                    if (state) {
+                        element.checked = true;
+                    }
                 }
             }
         }
