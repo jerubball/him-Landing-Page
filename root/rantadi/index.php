@@ -404,10 +404,10 @@
         $missionset = $collection[$i];
         $number = $i + $offset;
 ?>
-    <form id=<?php echo $number; ?> data-mission="<?php echo $number.". ".$missionset["mission"]; ?>"><fieldset>
+    <form id=<?php echo $number; ?> data-mission="<?php echo $missionset["mission"]; ?>"><fieldset>
         <legend><input type="radio" disabled=true
             id="<?php echo $missionset["mission"]; ?>" data-mission="<?php echo $missionset["mission"]; ?>"/>
-        <strong><?php echo $missionset["description"]; ?></strong></legend>
+        <strong><?php echo $number.". ".$missionset["description"]; ?></strong></legend>
 <?php
         if (isset($missionset["preface"])) {
 ?>
