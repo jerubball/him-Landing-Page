@@ -377,17 +377,17 @@
         <strong>N</strong> : 노말<br>
     </fieldset></form>
     <br>
-    <form id=1 ><fieldset>
+    <form id=1 data-mission="unluckseven"><fieldset>
         <legend><strong>1. 언럭키세븐 : 미네랄 300</strong></legend>
         (★ <strong>R</strong> 종류 상관없이 7기 ★)<br>
     </fieldset></form>
     <br>
-    <form id=2 ><fieldset>
+    <form id=2 data-mission="unluckluck"><fieldset>
         <legend><strong>2. 악운도 운이다 : 미네랄 300</strong></legend>
         (★ <strong>U</strong> 종류 상관없이 6기 ★)<br>
     </fieldset></form>
     <br>
-    <form id=3 ><fieldset>
+    <form id=3 data-mission="thousandyears"><fieldset>
         <legend><strong>3. 천년의 기다림 : 유니크 시민 1기</strong></legend>
         (★ 보스 시민 5기 보유 ★)<br>
     </fieldset></form>
@@ -481,7 +481,7 @@
 <?php
     }
 ?>
-    <form><fieldset>
+    <form id=<?php echo ($missions + $offset); ?> <data-mission="changelog"><fieldset>
         <legend><strong>변경사항</strong></legend>
         <strong>2018.02.03</strong> : 오탈자, 보상 잘못 기록되어 있던 것 수정<br>
         <strong>2018.02.03</strong> : 미치광이 미션 조건 수정, 쩜드라의 저주 -> 하이드라의 저주 수정<br>
