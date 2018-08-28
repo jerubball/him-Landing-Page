@@ -108,7 +108,7 @@
                 ["name" => "M Archon", "index" => 7, "title" => "아칸 7"],
             ]],
         ]],
-        ["mission" => "themanthewoman", "description" => "", "appendix" => "그 남자 그리고 그 여자 : 미네랄 400"
+        ["mission" => "themanthewoman", "description" => "그 남자 그리고 그 여자 : 미네랄 400",
          "data" => [
             ["class" => "M",
              "tower" => [
@@ -316,7 +316,7 @@
         ]],
     ];
     /*
-        ["mission" => "", "description" => "", "appendix" => ""
+        ["mission" => "", "description" => "", "preface" => "", "appendix" => "",
          "data" => [
             ["class" => "",
              "tower" => [
