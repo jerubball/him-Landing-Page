@@ -81,32 +81,32 @@
     $offset = 4;
     $cutoff = 6;
     $collection = [
-        ["mission" => "", "description" => "", "preface" => "",
+        ["mission" => "nounbalance", "description" => "편식은 금물 : 미네랄 300", "preface" => "(★ <b>N</b> 종류별로 1기씩 ★)<br>",
          "data" => [
-            ["class" => "",
+            ["class" => "N",
              "tower" => [
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
+                ["name" => "N Dragoon", "index" => 1, "title" => "드라군"],
+                ["name" => "N Wraith", "index" => 1, "title" => "레이스"],
+                ["name" => "N Marine", "index" => 1, "title" => "마린"],
+                ["name" => "N Mutalisk", "index" => 1, "title" => "뮤탈"],
+                ["name" => "N Vulture", "index" => 1, "title" => "벌쳐"],
+                ["name" => "N Scout", "index" => 1, "title" => "스카웃"],
+                ["name" => "N Ultralisk", "index" => 1, "title" => "울트라"],
+                ["name" => "N Hydralisk", "index" => 1, "title" => "히드라"],
             ]],
         ]],
-        ["mission" => "", "description" => "", "preface" => "",
+        ["mission" => "weareone", "description" => "지긋지긋해 하늘이 Gray색이야 : 미네랄 300, 가스 100", "preface" => "(★ <b>M</b> 종류별로 1기씩 ★)<br>",
          "data" => [
-            ["class" => "",
+            ["class" => "M",
              "tower" => [
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
-                ["name" => "", "index" => 1, "title" => ""],
+                ["name" => "M MGhost", "index" => 1, "title" => "남자 고스트"],
+                ["name" => "M Defiler", "index" => 1, "title" => "디파일러"],
+                ["name" => "M Dark Templar", "index" => 1, "title" => "다크 템플러"],
+                ["name" => "M Scout", "index" => 1, "title" => "스카웃"],
+                ["name" => "M Archon", "index" => 1, "title" => "아칸"],
+                ["name" => "M FGhost", "index" => 1, "title" => "여자 고스트"],
+                ["name" => "M Tank", "index" => 1, "title" => "탱크"],
+                ["name" => "M Firebat", "index" => 1, "title" => "파이어뱃"],
             ]],
         ]],
         ["mission" => "strangehobby", "description" => "이상한 사람의 취미생활 : 보스 시민 3기", "preface" => "(★ 리버를 제외한 모든 <b>U</b> 유닛 1기씩 ★)<br>",
@@ -368,7 +368,7 @@
 ?>
     <h1>랜타디 ReZero 미션 목록</h1>
     <br>
-    <form><fieldset>
+    <form id=0 data-mission="description" ><fieldset>
         <legend><strong>타워 설명</strong></legend>
         <strong>E</strong> : 에픽<br>
         <strong>U</strong> : 유니크<br>
@@ -377,24 +377,18 @@
         <strong>N</strong> : 노말<br>
     </fieldset></form>
     <br>
-    <form><fieldset>
-        <legend><strong>기본 미션들</strong></legend>
-        <strong>1. 편식은 금물 : 미네랄 300<br></strong>== <strong>N</strong> 종류별로 1기씩<br>
-        <strong>2. 지긋지긋해 하늘이 Gray색이야 : 미네랄 300, 가스 100<br></strong>== <strong>M</strong> 종류별로 1기씩<br>
-    </fieldset></form>
-    <br>
     <form id=1 ><fieldset>
-        <legend><strong>언럭키세븐 : 미네랄 300</strong></legend>
+        <legend><strong>1. 언럭키세븐 : 미네랄 300</strong></legend>
         (★ <strong>R</strong> 종류 상관없이 7기 ★)<br>
     </fieldset></form>
     <br>
     <form id=2 ><fieldset>
-        <legend><strong>악운도 운이다 : 미네랄 300</strong></legend>
+        <legend><strong>2. 악운도 운이다 : 미네랄 300</strong></legend>
         (★ <strong>U</strong> 종류 상관없이 6기 ★)<br>
     </fieldset></form>
     <br>
     <form id=3 ><fieldset>
-        <legend><strong>천년의 기다림 : 유니크 시민 1기</strong></legend>
+        <legend><strong>3. 천년의 기다림 : 유니크 시민 1기</strong></legend>
         (★ 보스 시민 5기 보유 ★)<br>
     </fieldset></form>
     <br>
