@@ -24,34 +24,32 @@
                 }
             }
         }
-        // update Radio buttons.
-        function updateRadioButton(tag, type, mission) {
-            var all = document.getElementsByTagName(tag);
-            var radio = "radio", element;
-            var state = true;
-            for (var i = 0; state && i < all.length; i++) {
-                if (all[i].type == radio && all[i].dataset["mission"] == mission) {
-                    element = all[i];
-                } else if (all[i].type == type && all[i].dataset["mission"] == mission) {
-                    state = all[i].checked;
+        // update all mission related radio button.
+        function updateRadioButton(tag, type, tower) {
+            var tables = document.getElementsByTagName("TABLE");
+            for (var i = 0; i < tables.length; i++) {
+                var mission = tables[i].dataset["mission"], element = document.getElementById(mission);
+                var state = true;
+                var all = tables[i].getElementsByTagName(tag);
+                for (var j = 0; state && j < all.length; j++) {
+                    if (all[i].type == type && all[i].dataset["mission"] == mission) {
+                        state = all[i].checked;
+                    }
                 }
-            }
-            if (state && element != undefined) {
-                element.checked = true;
             }
         }
         // Toggle all other CheckBox when CheckBox is clicked.
         function toggleCheckBoxClicked(item) {
             var data = item.dataset;
             setCheckBox(item.nodeName, item.type, data["tower"], data["index"], item.checked);
-            updateRadioButton(item.nodeName, item.type, data["mission"]);
+            updateRadioButton(item.nodeName, item.type, data["tower"]);
         }
         // Toggle all matching CheckBox when image is clicked.
         function toggleImageClicked(item) {
             var tag = "INPUT", type = "checkbox", data = item.dataset;
             var check = !getCheckBox(tag, type, data["tower"], data["index"]);
             setCheckBox(tag, type, data["tower"], data["index"], check);
-            updateRadioButton(tag, type, data["mission"]);
+            updateRadioButton(tag, type, data["tower"]);
         }
         // Choose between functions.
         function toggleClicked(item) {
@@ -333,9 +331,10 @@
     for ($i = 0; $i < $missions; $i++) {
         $missionset = $collection[$i];
 ?>
-    <form><fieldset>
-        <legend><input type="radio" disabled=true data-mission="<?php echo $missionset["mission"]; ?>"/>
-            <strong><?php echo $missionset["description"]; ?></strong></legend>
+    <form data-mission="<?php echo $missionset["mission"]; ?>"><fieldset>
+        <legend><input type="radio" disabled=true
+            id="<?php echo $missionset["mission"]; ?>" data-mission="<?php echo $missionset["mission"]; ?>"/>
+        <strong><?php echo $missionset["description"]; ?></strong></legend>
         <table data-mission="<?php echo $missionset["mission"]; ?>">
 <?php
         $classes = count($missionset["data"]);
