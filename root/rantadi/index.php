@@ -402,8 +402,9 @@
     $missions = count($collection);
     for ($i = 0; $i < $missions; $i++) {
         $missionset = $collection[$i];
+        $number = $i + $offset;
 ?>
-    <form id=<?php echo ($i + $offset); ?> data-mission="<?php echo $missionset["mission"]; ?>"><fieldset>
+    <form id=<?php echo $number; ?> data-mission="<?php echo $number.". ".$missionset["mission"]; ?>"><fieldset>
         <legend><input type="radio" disabled=true
             id="<?php echo $missionset["mission"]; ?>" data-mission="<?php echo $missionset["mission"]; ?>"/>
         <strong><?php echo $missionset["description"]; ?></strong></legend>
