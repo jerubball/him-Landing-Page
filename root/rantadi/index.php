@@ -30,14 +30,12 @@
             var radio = "radio", element;
             var state = true;
             for (var i = 0; state && i < all.length; i++) {
-                if (all[i].type == radio) {
+                if (all[i].type == radio && all[i].dataset["mission"] == mission) {
                     element = all[i];
                 } else if (all[i].type == type && all[i].dataset["mission"] == mission) {
                     state = all[i].checked;
                 }
             }
-            alert(state);
-            alert(element);
             if (state && element != undefined) {
                 element.checked = true;
             }
