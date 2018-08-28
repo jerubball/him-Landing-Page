@@ -68,6 +68,19 @@
     $height="100";
     $cutoff = 6;
     $collection = [
+        ["mission" => "strangehobby", "description" => "이상한 사람의 취미생활 : 보스 시민 3기", "preface" => "(★ 리버를 제외한 모든 유닛 1기씩 ★)",
+         "data" => [
+            ["class" => "U",
+             "tower" => [
+                ["name" => "U Guardian", "index" => 1, "title" => "가디언"],
+                ["name" => "U Dark Archon", "index" => 1, "title" => "다크 아칸"],
+                ["name" => "U Marine", "index" => 1, "title" => "마린"],
+                ["name" => "U Valkyrie", "index" => 1, "title" => "발키리"],
+                ["name" => "U Zergling", "index" => 1, "title" => "저글링"],
+                ["name" => "U High Templar", "index" => 1, "title" => "하이 템플러"],
+                ["name" => "U Hydralisk", "index" => 1, "title" => "히드라"],
+            ]],
+        ]],
         ["mission" => "location", "description" => "자리 미션 : 유니크 시민 1기", "preface" => "<font color=\"blue\">(★ 파랑은 타워 7, 게이트 1 생산으로 클리어 가능 ★)</font><br>",
          "data" => [
             ["class" => "<font color=\"red\">빨강</font> M",
@@ -322,11 +335,6 @@
         <strong>3. 그 남자 그리고 그 여자 : 미네랄 400<br></strong>== <strong>M</strong> 남자 고스트 1 여자 고스트 1<br>
         <strong>4. 언럭키세븐 : 미네랄 300<br></strong>== <strong>R</strong> 종류 상관없이 7기<br>
         <strong>5. 악운도 운이다 : 미네랄 300<br></strong>== <strong>U</strong> 종류 상관없이 6기<br>
-    </fieldset></form>
-    <br>
-    <form><fieldset>
-        <legend><strong>이상한 사람의 취미생활 : 보스 시민 3기</strong></legend>
-        <strong>U</strong> 리버를 제외한 모든 유닛 1기씩<br>
     </fieldset></form>
     <br>
 <?php
