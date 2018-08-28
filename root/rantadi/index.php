@@ -32,8 +32,8 @@
                 var state = true;
                 var all = tables[i].getElementsByTagName(tag);
                 for (var j = 0; state && j < all.length; j++) {
-                    if (all[i].type == type && all[i].dataset["mission"] == mission) {
-                        state = all[i].checked;
+                    if (all[j].type == type && all[j].dataset["mission"] == mission) {
+                        state = all[j].checked;
                     }
                 }
             }
