@@ -30,18 +30,7 @@
             for (var i = 0; i < tables.length; i++) {
                 var mission = tables[i].dataset["mission"], element = document.getElementById(mission);
                 var all = tables[i].getElementsByTagName(tag);
-                if (mission == "unluckluck" || mission == "unluckseven") {
-                    var amount = mission == "unluckluck" ? 6 : mission == "unluckseven" ? 7 : 0;
-                    var count = 0;
-                    for (var j = 0; j < all.length; j++) {
-                        if (all[j].type == type && all[j].dataset["mission"] == mission) {
-                            count++;
-                        }
-                    }
-                    if (count >= amount) {
-                        element.checked = true;
-                    }
-                } else if (mission == "location") {
+                    if (mission == "location") {
                     var state = true;
                     for (var j = 0; state && j < all.length; j++) {
                         if (all[j].type == type && all[j].dataset["mission"] == mission && all[j].dataset["tower"] == tower) {
@@ -91,34 +80,6 @@
     $height="100";
     $cutoff = 6;
     $collection = [
-        ["mission" => "unluckseven", "description" => "언럭키세븐 : 미네랄 300", "preface" => "", "appendix" => "(★ <b>R</b> 종류 상관없이 7기 ★)<br>",
-         "data" => [
-            ["class" => "R",
-             "tower" => [
-                ["name" => "R Goliath", "index" => 1, "title" => "골리앗"],
-                ["name" => "R Devourer", "index" => 1, "title" => "디바우러"],
-                ["name" => "R Defiler", "index" => 1, "title" => "디파일러"],
-                ["name" => "R Dragoon", "index" => 1, "title" => "드라군"],
-                ["name" => "R Wraith", "index" => 1, "title" => "레이스"],
-                ["name" => "R Arbiter", "index" => 1, "title" => "아비터"],
-                ["name" => "R Sunken", "index" => 1, "title" => "촉수"],
-                ["name" => "R Firebat", "index" => 1, "title" => "파이어뱃"],
-            ]],
-        ]],
-        ["mission" => "unluckluck", "description" => "악운도 운이다 : 미네랄 300", "preface" => "(★ <b>U</b> 종류 상관없이 6기 ★)<br>",
-         "data" => [
-            ["class" => "U",
-             "tower" => [
-                ["name" => "U Guardian", "index" => 1, "title" => "가디언"],
-                ["name" => "U Dark Archon", "index" => 1, "title" => "다크 아칸"],
-                ["name" => "U Reaver", "index" => 1, "title" => "리버"],
-                ["name" => "U Marine", "index" => 1, "title" => "마린"],
-                ["name" => "U Valkyrie", "index" => 1, "title" => "발키리"],
-                ["name" => "U Zergling", "index" => 1, "title" => "저글링"],
-                ["name" => "U High Templar", "index" => 1, "title" => "하이 템플러"],
-                ["name" => "U Hydralisk", "index" => 1, "title" => "히드라"],
-            ]],
-        ]],
         ["mission" => "strangehobby", "description" => "이상한 사람의 취미생활 : 보스 시민 3기", "preface" => "(★ 리버를 제외한 모든 <b>U</b> 유닛 1기씩 ★)<br>",
          "data" => [
             ["class" => "U",
@@ -391,7 +352,21 @@
         <legend><strong>기본 미션들</strong></legend>
         <strong>1. 편식은 금물 : 미네랄 300<br></strong>== <strong>N</strong> 종류별로 1기씩<br>
         <strong>2. 지긋지긋해 하늘이 Gray색이야 : 미네랄 300, 가스 100<br></strong>== <strong>M</strong> 종류별로 1기씩<br>
-        <strong>4. 언럭키세븐 : 미네랄 300<br></strong>== <strong>R</strong> 종류 상관없이 7기<br>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>언럭키세븐 : 미네랄 300</strong></legend>
+        (★ <strong>R</strong> 종류 상관없이 7기 ★)<br>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>악운도 운이다 : 미네랄 300</strong></legend>
+        (★ <strong>U</strong> 종류 상관없이 6기 ★)<br>
+    </fieldset></form>
+    <br>
+    <form><fieldset>
+        <legend><strong>천년의 기다림 : 유니크 시민 1기</strong></legend>
+        (★ 보스 시민 5기 보유 ★)<br>
     </fieldset></form>
     <br>
 <?php
@@ -482,11 +457,6 @@
 <?php
     }
 ?>
-    <form><fieldset>
-        <legend><strong>천년의 기다림 : 유니크 시민 1기</strong></legend>
-        보스 시민 5기 보유<br>
-    </fieldset></form>
-    <br>
     <form><fieldset>
         <legend><strong>변경사항</strong></legend>
         <strong>2018.02.03</strong> : 오탈자, 보상 잘못 기록되어 있던 것 수정<br>
