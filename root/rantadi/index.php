@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>랜타디 ReZero 미션 목록</title>
+    <link rel="shortcut icon" href="/favicon-alt.ico">
 </head>
 <body>
     <script type='text/javascript'>
