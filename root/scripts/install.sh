@@ -4,13 +4,13 @@ list="apache2 default-jdk default-mysql-client default-mysql-server docker emacs
 
 if [[ $(id -u) -ne 0 ]]
 then
-    sudo install.sh
+    sudo ./install.sh
 else
     apt update
     apt upgrade
-
+    
     apt install -y $list
-
+    
     apt update
     apt upgrade
 fi
