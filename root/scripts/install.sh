@@ -9,7 +9,7 @@ else
     mode=1
 fi
 
-if [[ $mode -gt 0 ]]
+if [[ $mode -eq 0 ]]
 then
     sudo install.sh all
 else
