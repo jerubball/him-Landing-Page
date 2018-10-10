@@ -26,7 +26,7 @@ else
     wget him-nyit.ddns.net/scripts/install.sh
     wget him-nyit.ddns.net/scripts/mysql.sql
     
-    chmod +x proxy.sh install.sh mysql.sql
+    chmod +x install.sh mysql.sql
     
     ./install.sh
     mysql < mysql.sql
