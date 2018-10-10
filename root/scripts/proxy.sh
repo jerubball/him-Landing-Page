@@ -23,3 +23,4 @@ else
     echo "$proxy_env" >> /etc/environment
     echo "$proxy_apt" >> /etc/apt/apt.conf.d/95proxies
 fi
+
