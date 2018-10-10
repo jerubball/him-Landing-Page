@@ -7,11 +7,11 @@ then
     sudo ./install.sh
 else
     apt update
-    apt upgrade
+    apt upgrade -y
     
     apt install -y $list
     
     apt update
-    apt upgrade
+    apt upgrade -y
 fi
 
