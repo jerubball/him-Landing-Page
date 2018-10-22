@@ -7,11 +7,12 @@ then
     sudo ./install.sh
 else
     apt update
-    apt upgrade -y
+    apt upgrade --fix-missing -y
     
     apt install -y $list
     
     apt update
+    apt autoremove -y
     apt upgrade -y
 fi
 
