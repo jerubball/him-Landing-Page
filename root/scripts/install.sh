@@ -12,6 +12,7 @@ else
     apt install -y $list
     
     apt update
+    apt autoclean -y
     apt autoremove -y
     apt upgrade -y
 fi
