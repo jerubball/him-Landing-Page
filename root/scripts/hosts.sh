@@ -1,6 +1,7 @@
 #!/bin/bash
 
 host_names="
+# The following lines define named intranet hosts
 192.168.163.201 EGGC-603-01
 192.168.163.202 EGGC-603-02
 192.168.163.203 EGGC-603-03
