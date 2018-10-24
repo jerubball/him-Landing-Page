@@ -35,7 +35,7 @@ host_names="
 
 if [[ $(id -u) -ne 0 ]]
 then
-    sudo ./$0
+    sudo ./$0 $@
 else
     echo "$host_names" >> /etc/hosts
 fi

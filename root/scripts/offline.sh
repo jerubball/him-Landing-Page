@@ -20,20 +20,14 @@ Acquire::ftp::proxy \"http://proxy5.nyit.edu:80/\";
 
 if [[ $(id -u) -ne 0 ]]
 then
-    sudo ./$0
+    sudo ./$0 $@
 else
     echo "$proxy_env" >> /etc/environment
     echo "$proxy_apt" >> /etc/apt/apt.conf.d/95proxies
     
-    wget him-nyit.ddns.net/scripts/install.sh
-    wget him-nyit.ddns.net/scripts/mysql.sql
-    
-    chmod +x install.sh mysql.sql
-    
-    ./install.sh
-    mysql < mysql.sql
-    
-    rm install.sh mysql.sql
-    
+    wget him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
+    chmod +x him-get.sh
+    ./him-get.sh install mysql
+    rm him-get.sh
 fi
 

@@ -20,7 +20,7 @@ Acquire::ftp::proxy \"http://proxy5.nyit.edu:80/\";
 
 if [[ $(id -u) -ne 0 ]]
 then
-    sudo ./$0
+    sudo ./$0 $@
 else
     echo "$proxy_env" >> /etc/environment
     echo "$proxy_apt" >> /etc/apt/apt.conf.d/95proxies

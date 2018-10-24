@@ -4,7 +4,7 @@ list="anacron apache2 apt boinc cron default-jdk default-mysql-client default-my
 
 if [[ $(id -u) -ne 0 ]]
 then
-    sudo ./$0
+    sudo ./$0 $@
 else
     apt update
     apt upgrade --fix-missing -y
