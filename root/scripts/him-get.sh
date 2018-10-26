@@ -10,7 +10,7 @@ sudo=false
 
 while [[ $# > 0 ]]
 do
-    curren=$1
+    current=$1
     shift
     
     if [[ $current == "--help" || $current == "-h" ]]
