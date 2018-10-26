@@ -1,6 +1,6 @@
 #!/bin/bash
 
-help-topic="
+help="
 him-get: script executer from him-nyit.ddns.net
 usage: ./him-get.sh [OPTIONS] SCRIPTS
 "
@@ -15,7 +15,7 @@ do
     
     if [[ $current == "--help" || $current == "-h" ]]
     then
-        echo "$help-topic"
+        echo "$help"
         exit
         
     elif [[ $current == "--update" || $current == "-u" ]]
