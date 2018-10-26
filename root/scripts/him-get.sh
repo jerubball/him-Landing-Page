@@ -6,6 +6,7 @@ usage: ./him-get.sh [OPTIONS] SCRIPTS
 "
 pass=false
 keep=false
+sudo=false
 
 while [[ $# > 0 ]]
 do
@@ -19,7 +20,9 @@ do
         
     elif [[ $current == "--update" || $current == "-u" ]]
     then
+        cd $(dirname "$0")
         wget him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
+        chmod +x him-get.sh
         exit
         
     elif [[ $current == "--pass" || $current == "-p" ]]
