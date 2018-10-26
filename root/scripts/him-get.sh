@@ -1,30 +1,51 @@
 #!/bin/bash
 
-pass=false
-keep=false
-
-if [[ $(id -u) -ne 0 ]]
-then
-    sudo ./$0 $@
-else
-    while [[ $# > 0 ]]
-    do
-        if [[ $1 == "--help"     ]]
-        then
-            echo "
+help-topic="
 him-get: script executer from him-nyit.ddns.net
 usage: ./him-get.sh [OPTIONS] SCRIPTS
 "
-            exit
-        elif [[ $1 == "--pass" ]]
+pass=false
+keep=false
+
+while [[ $# > 0 ]]
+do
+    curren=$1
+    shift
+    
+    if [[ $current == "--help" || $current == "-h" ]]
+    then
+        echo "$help-topic"
+        exit
+        
+    elif [[ $current == "--update" || $current == "-u" ]]
+    then
+        wget him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
+        exit
+        
+    elif [[ $current == "--pass" || $current == "-p" ]]
+    then
+        pass=true
+        
+    elif [[ $current == "--keep" || $current == "-k" ]]
+    then
+        keep=true
+        
+    else
+        wget him-nyit.ddns.net/scripts/$current.sh -O $current.sh
+        chmod +x $current.sh
+        
+        if [[ $pass == false ]]
         then
+            ./$current.sh
         else
-            wget him-nyit.ddns.net/scripts/$1.sh -O $1.sh
-            chmod +x $1.sh
-            ./$1.sh
-            rm $1.sh
+            ./$current.sh $*
+            shift $#
         fi
-        shift
-    done
-fi
+        
+        if [[ $keep == false ]]
+        then
+            rm $current.sh
+        fi
+    fi
+done
 

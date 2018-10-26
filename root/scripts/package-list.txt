@@ -68,3 +68,4 @@ netcat
 nmap
 nbtscan
 samba
+beep
