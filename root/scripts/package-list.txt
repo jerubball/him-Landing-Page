@@ -46,6 +46,7 @@ docker
 fuseiso
 fdisk
 git
+easygit
 texlive
 texworks
 rsync

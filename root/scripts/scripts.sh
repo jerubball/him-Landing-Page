@@ -7,7 +7,7 @@ then
 else
     wget him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
     chmod +x him-get.sh
-    ./him-get.sh proxy install mysql
+    ./him-get.sh install mysql
     rm him-get.sh
 fi
 
