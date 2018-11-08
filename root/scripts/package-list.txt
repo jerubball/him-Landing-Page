@@ -58,6 +58,7 @@ virtualbox
 virtualbox-qt
 numlockx
 pvm
+pvm-dev
 wireshark
 tshark
 ettercap-text-only
@@ -70,3 +71,4 @@ nmap
 nbtscan
 samba
 beep
+resolvconf
