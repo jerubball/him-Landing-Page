@@ -5,17 +5,19 @@ him-get: script executer from him-nyit.ddns.net
 usage: ./him-get.sh [OPTIONS] SCRIPTS
 
 OPTIONS:
-    -h --help   : bring this help topic
-    -s --sudo   : run with elevated priviledge
-    -u --update : update him-get script
-    -k --keep   : keep the script after execution
-    -p --pass   : pass all following but except next argument as parameter of next argument
+    -h --help    : bring this help topic
+    -s --sudo    : run with elevated priviledge
+    -u --update  : update him-get script
+    -n --nothing : do not execute script
+    -k --keep    : keep the script after execution
+    -p --pass    : pass all following but except next argument as parameter of next argument
 
 The options will be parsed in entered order.
 "
-pass=false
-keep=false
 sudo=false
+none=false
+keep=false
+pass=false
 
 while [[ $# > 0 ]]
 do
@@ -41,6 +43,10 @@ do
         chmod +x him-get.sh
         exit
         
+    elif [[ $1 == "--nothing" || $1 == "-n" ]]
+    then
+        none=true
+        
     elif [[ $1 == "--keep" || $1 == "-k" ]]
     then
         keep=true
@@ -56,12 +62,15 @@ do
         wget him-nyit.ddns.net/scripts/$current.sh -O $current.sh
         chmod +x $current.sh
         
-        if [[ $pass == false ]]
+        if [[ $none == false ]]
         then
-            ./$current.sh
-        else
-            ./$current.sh $*
-            shift $#
+            if [[ $pass == false ]]
+            then
+                ./$current.sh
+            else
+                ./$current.sh $*
+                shift $#
+            fi
         fi
         
         if [[ $keep == false ]]
