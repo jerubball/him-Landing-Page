@@ -27,10 +27,10 @@ do
     fi
 done
 
-    ssh ieee@EGGC-603-14 $@
-    ssh ieee@EGGC-603-15 $@
-    ssh ieee@EGGC-603-16 $@
-    ssh ieee@EGGC-603-17 $@
-    ssh ieee@EGGC-603-18 $@
-    ssh ieee@EGGC-603-19 $@
+    ssh -t ieee@EGGC-603-14 $@
+    ssh -t ieee@EGGC-603-15 $@
+    ssh -t ieee@EGGC-603-16 $@
+    ssh -t ieee@EGGC-603-17 $@
+    ssh -t ieee@EGGC-603-18 $@
+    ssh -t ieee@EGGC-603-19 $@
 
