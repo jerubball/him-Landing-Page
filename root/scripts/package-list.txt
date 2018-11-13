@@ -72,3 +72,10 @@ nbtscan
 samba
 beep
 resolvconf
+ufw
+gufw
+mailutils
+iptables
+shorewall
+fail2ban
+gamin
