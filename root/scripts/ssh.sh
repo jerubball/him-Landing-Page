@@ -8,6 +8,7 @@ Usage: ./ssh.sh [OPTIONS] COMMAND
 
 OPTIONS:
     -h --help    : bring this help topic
+    -v --version : display script version
     -s --sudo    : run with elevated priviledge
     -c --copy-id : adds this machine as authroized host to all servers
 
@@ -44,7 +45,7 @@ do
     # execute command
     else
         cont=0
-        if [[ copy == 1 ]]
+        if [[ $copy == 1 ]]
         then
             ssh -t ieee@EGGC-603-14 $@
             ssh -t ieee@EGGC-603-15 $@

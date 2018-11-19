@@ -1,13 +1,15 @@
 #!/bin/bash
 
-help="
+version="
 him-get version 1.16
     script executer from him-nyit.ddns.net
-
+"
+help="
 Usage: ./him-get.sh [OPTIONS] SCRIPTS
 
 OPTIONS:
     -h --help    : bring this help topic
+    -v --version : display script version
     -s --sudo    : run with elevated priviledge
     -u --update  : update him-get script
     -n --nothing : do not execute script
@@ -19,16 +21,19 @@ The options will be processed in entered order.
 none=1
 keep=1
 pass=1
-cont=0
+cont=1
 
 while [[ $cont == 1 || $# > 0 ]]
 do
     # print help topic
-    if [[ $1 == "--help" || $1 == "-h" ]]
+    if [[ $1 == "--help" || $1 == "-h" || $# == 0 ]]
     then
         echo "$help"
         exit
         
+    # print script version
+    elif [[ $1 == "--version" || $1 == "-v" ]]
+    
     # run as sudo
     elif [[ $1 == "--sudo" || $1 == "-s" ]]
     then
@@ -68,7 +73,6 @@ do
         
     # execute script
     else
-        cont=0
         current=$1
         shift
         
@@ -91,4 +95,5 @@ do
             rm $current.sh
         fi
     fi
+    cont=0
 done
