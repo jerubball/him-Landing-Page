@@ -38,7 +38,7 @@ do
     if [[ $1 == -* ]]
     then
         # print help topic
-        if [[ $1 == "--help" || $1 == "-h"]]
+        if [[ $1 == "--help" || $1 == "-h" ]]
         then
             echo "$version"
             echo "$help"
