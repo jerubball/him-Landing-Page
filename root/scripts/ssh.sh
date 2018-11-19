@@ -1,9 +1,10 @@
 #!/bin/bash
 
-help="
-him-ssh version 1.8
+version="
+him-ssh version 1.9
     ssh command executer from him-nyit.ddns.net
-
+"
+help="
 Usage: ./ssh.sh [OPTIONS] COMMAND
 
 OPTIONS:
@@ -22,7 +23,14 @@ do
     # print help topic
     if [[ $1 == "--help" || $1 == "-h" ]]
     then
+        echo "$version"
         echo "$help"
+        exit
+        
+    # print script version
+    elif [[ $1 == "--version" || $1 == "-v" ]]
+    then
+        echo "$version"
         exit
         
     # run as sudo

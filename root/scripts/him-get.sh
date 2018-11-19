@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-get version 1.16
+him-get version 1.17
     script executer from him-nyit.ddns.net
 "
 help="
@@ -28,12 +28,16 @@ do
     # print help topic
     if [[ $1 == "--help" || $1 == "-h" || $# == 0 ]]
     then
+        echo "$version"
         echo "$help"
         exit
         
     # print script version
     elif [[ $1 == "--version" || $1 == "-v" ]]
-    
+    then
+        echo "$version"
+        exit
+        
     # run as sudo
     elif [[ $1 == "--sudo" || $1 == "-s" ]]
     then
