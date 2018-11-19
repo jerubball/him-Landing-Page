@@ -1,10 +1,10 @@
 #!/bin/bash
 
 help="
-him-ssh version 1.7
+him-ssh version 1.8
     ssh command executer from him-nyit.ddns.net
 
-usage: ./ssh.sh [OPTIONS] COMMAND
+Usage: ./ssh.sh [OPTIONS] COMMAND
 
 OPTIONS:
     -h --help    : bring this help topic
@@ -14,8 +14,9 @@ OPTIONS:
 The options will be processed in entered order.
 "
 copy=1
+cont=1
 
-while true
+while [[ $cont == 1 || $# > 0 ]]
 do
     # print help topic
     if [[ $1 == "--help" || $1 == "-h" ]]
@@ -42,6 +43,7 @@ do
         
     # execute command
     else
+        cont=0
         if [[ copy == 1 ]]
         then
             ssh -t ieee@EGGC-603-14 $@
@@ -60,7 +62,4 @@ do
             ssh-copy-id ieee@EGGC-603-19
         fi
     fi
-    
-    # do-while condition
-    [[ $# > 0 ]] || exit
 done

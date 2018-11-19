@@ -1,10 +1,10 @@
 #!/bin/bash
 
 help="
-him-get version 1.15
+him-get version 1.16
     script executer from him-nyit.ddns.net
 
-usage: ./him-get.sh [OPTIONS] SCRIPTS
+Usage: ./him-get.sh [OPTIONS] SCRIPTS
 
 OPTIONS:
     -h --help    : bring this help topic
@@ -19,8 +19,9 @@ The options will be processed in entered order.
 none=1
 keep=1
 pass=1
+cont=0
 
-while [[ $# > 0 ]]
+while [[ $cont == 1 || $# > 0 ]]
 do
     # print help topic
     if [[ $1 == "--help" || $1 == "-h" ]]
@@ -67,6 +68,7 @@ do
         
     # execute script
     else
+        cont=0
         current=$1
         shift
         
