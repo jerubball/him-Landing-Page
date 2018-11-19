@@ -25,6 +25,7 @@ default-jdk
 python
 python3
 python-pip
+idle
 apache2
 php
 php-all-dev
@@ -79,3 +80,4 @@ iptables
 shorewall
 fail2ban
 gamin
+keychain

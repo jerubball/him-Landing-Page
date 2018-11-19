@@ -1,7 +1,9 @@
 #!/bin/bash
 
 help="
-him-get: script executer from him-nyit.ddns.net
+him-get version 1.15
+    script executer from him-nyit.ddns.net
+
 usage: ./him-get.sh [OPTIONS] SCRIPTS
 
 OPTIONS:
@@ -12,20 +14,21 @@ OPTIONS:
     -k --keep    : keep the script after execution
     -p --pass    : pass all following but except next argument as parameter of next argument
 
-The options will be parsed in entered order.
+The options will be processed in entered order.
 "
-sudo=false
-none=false
-keep=false
-pass=false
+none=1
+keep=1
+pass=1
 
 while [[ $# > 0 ]]
 do
+    # print help topic
     if [[ $1 == "--help" || $1 == "-h" ]]
     then
         echo "$help"
         exit
         
+    # run as sudo
     elif [[ $1 == "--sudo" || $1 == "-s" ]]
     then
         if [[ $(id -u) -ne 0 ]]
@@ -33,9 +36,10 @@ do
             shift
             sudo ./$0 $@
             shift $#
+            exit
         fi
-        exit
         
+    # do update and exit
     elif [[ $1 == "--update" || $1 == "-u" ]]
     then
         cd $(dirname "$0")
@@ -43,18 +47,25 @@ do
         chmod +x him-get.sh
         exit
         
+    # do not execute script
     elif [[ $1 == "--nothing" || $1 == "-n" ]]
     then
-        none=true
+        none=0
+        shift
         
+    # keep script after execution
     elif [[ $1 == "--keep" || $1 == "-k" ]]
     then
-        keep=true
+        keep=0
+        shift
         
+    # pass remaining argument
     elif [[ $1 == "--pass" || $1 == "-p" ]]
     then
-        pass=true
+        pass=0
+        shift
         
+    # execute script
     else
         current=$1
         shift
@@ -62,9 +73,9 @@ do
         wget him-nyit.ddns.net/scripts/$current.sh -O $current.sh
         chmod +x $current.sh
         
-        if [[ $none == false ]]
+        if [[ $none == 1 ]]
         then
-            if [[ $pass == false ]]
+            if [[ $pass == 1 ]]
             then
                 ./$current.sh
             else
@@ -73,11 +84,9 @@ do
             fi
         fi
         
-        if [[ $keep == false ]]
+        if [[ $keep == 1 ]]
         then
             rm $current.sh
         fi
     fi
-    shift
 done
-
