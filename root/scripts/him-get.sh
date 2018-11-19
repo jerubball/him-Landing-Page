@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-get version 1.17
+him-get version 1.18
     script executer from him-nyit.ddns.net
 "
 help="
@@ -18,62 +18,82 @@ OPTIONS:
 
 The options will be processed in entered order.
 "
+cont=1
 none=1
 keep=1
 pass=1
-cont=1
 
 while [[ $cont == 1 || $# > 0 ]]
 do
-    # print help topic
-    if [[ $1 == "--help" || $1 == "-h" || $# == 0 ]]
+    # print help for no argument
+    if [[ $# == 0 ]]
     then
         echo "$version"
         echo "$help"
-        exit
-        
-    # print script version
-    elif [[ $1 == "--version" || $1 == "-v" ]]
+        exit 
+    fi
+    cont=0
+    
+    # option processing
+    if [[ $1 == -* ]]
     then
-        echo "$version"
-        exit
-        
-    # run as sudo
-    elif [[ $1 == "--sudo" || $1 == "-s" ]]
-    then
-        if [[ $(id -u) -ne 0 ]]
+        # print help topic
+        if [[ $1 == "--help" || $1 == "-h"]]
         then
-            shift
-            sudo ./$0 $@
-            shift $#
+            echo "$version"
+            echo "$help"
             exit
+            
+        # print script version
+        elif [[ $1 == "--version" || $1 == "-v" ]]
+        then
+            echo "$version"
+            exit
+            
+        # run as sudo
+        elif [[ $1 == "--sudo" || $1 == "-s" ]]
+        then
+            if [[ $(id -u) -ne 0 ]]
+            then
+                shift
+                sudo ./$0 $@
+                shift $#
+                exit
+            fi
+            
+        # do update and exit
+        elif [[ $1 == "--update" || $1 == "-u" ]]
+        then
+            cd $(dirname "$0")
+            wget him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
+            chmod +x him-get.sh
+            exit
+            
+        # do not execute script
+        elif [[ $1 == "--nothing" || $1 == "-n" ]]
+        then
+            none=0
+            shift
+            
+        # keep script after execution
+        elif [[ $1 == "--keep" || $1 == "-k" ]]
+        then
+            keep=0
+            shift
+            
+        # pass remaining argument
+        elif [[ $1 == "--pass" || $1 == "-p" ]]
+        then
+            pass=0
+            shift
+            
+        # unrecognized option
+        else
+            echo "unrecognized option: $1"
+            echo "$help"
+            exit
+            
         fi
-        
-    # do update and exit
-    elif [[ $1 == "--update" || $1 == "-u" ]]
-    then
-        cd $(dirname "$0")
-        wget him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
-        chmod +x him-get.sh
-        exit
-        
-    # do not execute script
-    elif [[ $1 == "--nothing" || $1 == "-n" ]]
-    then
-        none=0
-        shift
-        
-    # keep script after execution
-    elif [[ $1 == "--keep" || $1 == "-k" ]]
-    then
-        keep=0
-        shift
-        
-    # pass remaining argument
-    elif [[ $1 == "--pass" || $1 == "-p" ]]
-    then
-        pass=0
-        shift
         
     # execute script
     else
@@ -99,5 +119,4 @@ do
             rm $current.sh
         fi
     fi
-    cont=0
 done

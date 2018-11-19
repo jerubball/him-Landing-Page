@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.9
+him-ssh version 1.10
     ssh command executer from him-nyit.ddns.net
 "
 help="
@@ -15,40 +15,51 @@ OPTIONS:
 
 The options will be processed in entered order.
 "
-copy=1
 cont=1
+copy=1
 
 while [[ $cont == 1 || $# > 0 ]]
 do
-    # print help topic
-    if [[ $1 == "--help" || $1 == "-h" ]]
+    # option processing
+    if [[ $1 == -* ]]
     then
-        echo "$version"
-        echo "$help"
-        exit
-        
-    # print script version
-    elif [[ $1 == "--version" || $1 == "-v" ]]
-    then
-        echo "$version"
-        exit
-        
-    # run as sudo
-    elif [[ $1 == "--sudo" || $1 == "-s" ]]
-    then
-        if [[ $(id -u) -ne 0 ]]
+        # print help topic
+        if [[ $1 == "--help" || $1 == "-h" ]]
         then
-            shift
-            sudo ./$0 $@
-            shift $#
+            echo "$version"
+            echo "$help"
             exit
+            
+        # print script version
+        elif [[ $1 == "--version" || $1 == "-v" ]]
+        then
+            echo "$version"
+            exit
+            
+        # run as sudo
+        elif [[ $1 == "--sudo" || $1 == "-s" ]]
+        then
+            if [[ $(id -u) -ne 0 ]]
+            then
+                shift
+                sudo ./$0 $@
+                shift $#
+                exit
+            fi
+            
+        # copy identity to all other
+        elif [[ $1 == "--copy-id" || $1 == "-c" ]]
+        then
+            copy=0
+            shift
+            
+        # unrecognized option
+        else
+            echo "unrecognized option: $1"
+            echo "$help"
+            exit
+            
         fi
-        
-    #
-    elif [[ $1 == "--copy-id" || $1 == "-c" ]]
-    then
-        copy=0
-        shift
         
     # execute command
     else
