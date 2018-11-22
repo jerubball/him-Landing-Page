@@ -1,23 +1,35 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.11
+him-ssh version 1.12
     ssh command executer from him-nyit.ddns.net
 "
 help="
 Usage: ./ssh.sh [OPTIONS] COMMAND
 
 OPTIONS:
-    -h --help         : bring this help topic
-    -v --version      : display script version
-    -s --sudo         : run with elevated priviledge
-    -u --user name    : specify login username
-    -c --copy-id      : adds this machine as authroized host to all servers
+    -h --help
+        : bring this help topic
+    -v --version
+        : display script version
+    -s --sudo
+        : run with elevated priviledge
+    -c --copy-id
+        : adds this machine as authroized host to all servers
+    -u --user name
+        : specify login username
+    -h --host filename
+        : specify file with hostnames
+    -d --download filename
+        : download and use remote hostnames
+          By default, script will download host-list-mint.txt file.
 
 The options will be processed in entered order.
 "
 cont=1
 copy=1
+host=1
+list=""
 name=""
 
 while [[ $cont == 1 || $# > 0 ]]
@@ -49,6 +61,12 @@ do
                 exit
             fi
             
+        # copy identity to all other
+        elif [[ $1 == "--copy-id" || $1 == "-c" ]]
+        then
+            copy=0
+            shift
+            
         # specify username
         elif [[ $1 == "--user" || $1 == "-u" ]]
         then
@@ -56,12 +74,24 @@ do
             name="$1@"
             shift
             
-        # copy identity to all other
-        elif [[ $1 == "--copy-id" || $1 == "-c" ]]
+        # specify host file
+        elif [[ $1 == "--host" || $1 == "-h" ]]
         then
-            copy=0
+            host=0
+            shift
+            list="$(cat $1)"
             shift
             
+        # download host file
+        elif [[ $1 == "--download" || $1 == "-d" ]]
+        then
+            host=0
+            shift
+            wget him-nyit.ddns.net/scripts/$1 -O $1
+            list="$(cat $1)"
+            shift
+            
+        elif
         # unrecognized option
         else
             echo "unrecognized option: $1"
@@ -73,22 +103,27 @@ do
     # execute command
     else
         cont=0
+        
+        if [[ $host == 1 ]]
+        then
+            host=0
+            wget him-nyit.ddns.net/scripts/host-list-mint.txt -O host-list-mint.txt
+            list="$(cat $1)"
+        fi
+        
         if [[ $copy == 1 ]]
         then
-            ssh -t $nameEGGC-603-14 $@
-            ssh -t $nameEGGC-603-15 $@
-            ssh -t $nameEGGC-603-16 $@
-            ssh -t $nameEGGC-603-17 $@
-            ssh -t $nameEGGC-603-18 $@
-            ssh -t $nameEGGC-603-19 $@
+            for host in $list
+            do
+                ssh -t $name$host $@
+            done
             shift $#
         else
-            ssh-copy-id $nameEGGC-603-14
-            ssh-copy-id $nameEGGC-603-15
-            ssh-copy-id $nameEGGC-603-16
-            ssh-copy-id $nameEGGC-603-17
-            ssh-copy-id $nameEGGC-603-18
-            ssh-copy-id $nameEGGC-603-19
+            copy=1
+            for host in $list
+            do
+                ssh-copy-id $name$list
+            done
         fi
     fi
 done

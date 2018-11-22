@@ -1,24 +1,33 @@
 #!/bin/bash
 
 version="
-him-get version 1.19
+him-get version 1.20
     script executer from him-nyit.ddns.net
 "
 help="
 Usage: ./him-get.sh [OPTIONS] SCRIPTS
 
 OPTIONS:
-    -h --help     : bring this help topic
-    -v --version  : display script version
-    -s --sudo     : run with elevated priviledge
-    -u --update   : update him-get script
-    -e --execute  : execute as script
-                    This is default option.
-                    When this option is selected, .sh extension is assumed.
-    -n --nothing  : do not execute script
-    -k --keep     : keep files
-    -r --remove   : remove files
-    -p --pass     : pass all following but except next argument as parameter of next argument
+    -h --help
+        : bring this help topic
+    -v --version
+        : display script version
+    -s --sudo
+        : run with elevated priviledge
+    -u --update
+        : update him-get script
+    -e --execute
+        : execute as script
+          This is default option.
+          When this option is selected, .sh extension is assumed.
+    -n --nothing
+        : do not execute script
+    -k --keep
+        : keep files
+    -r --remove
+        : remove files
+    -p --pass
+        : pass all following but except next argument as parameter of next argument
 
 The options will be processed in entered order.
 "
