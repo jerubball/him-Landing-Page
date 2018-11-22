@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.12
+him-ssh version 1.13
     ssh command executer from him-nyit.ddns.net
 "
 help="
@@ -91,7 +91,6 @@ do
             list="$(cat $1)"
             shift
             
-        elif
         # unrecognized option
         else
             echo "unrecognized option: $1"

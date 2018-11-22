@@ -1,11 +1,11 @@
 #!/bin/bash
 
 version="
-him-template version 1.0
-    script template from him-nyit.ddns.net
+him-get-him-get version 1.0
+    fix broken him-get script from him-nyit.ddns.net
 "
 help="
-Usage: ./template.sh [OPTIONS] COMMAND
+Usage: ./get-him-get.sh [OPTIONS]
 
 OPTIONS:
     -h --help
@@ -59,5 +59,8 @@ do
     # execute command
     else
         cont=0
+        wget him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
+        chmod +x him-get.sh
+        exit
     fi
 done
