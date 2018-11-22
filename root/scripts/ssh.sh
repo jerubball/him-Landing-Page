@@ -1,22 +1,24 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.10
+him-ssh version 1.11
     ssh command executer from him-nyit.ddns.net
 "
 help="
 Usage: ./ssh.sh [OPTIONS] COMMAND
 
 OPTIONS:
-    -h --help    : bring this help topic
-    -v --version : display script version
-    -s --sudo    : run with elevated priviledge
-    -c --copy-id : adds this machine as authroized host to all servers
+    -h --help         : bring this help topic
+    -v --version      : display script version
+    -s --sudo         : run with elevated priviledge
+    -u --user name    : specify login username
+    -c --copy-id      : adds this machine as authroized host to all servers
 
 The options will be processed in entered order.
 "
 cont=1
 copy=1
+name=""
 
 while [[ $cont == 1 || $# > 0 ]]
 do
@@ -47,6 +49,13 @@ do
                 exit
             fi
             
+        # specify username
+        elif [[ $1 == "--user" || $1 == "-u" ]]
+        then
+            shift
+            name="$1@"
+            shift
+            
         # copy identity to all other
         elif [[ $1 == "--copy-id" || $1 == "-c" ]]
         then
@@ -66,20 +75,20 @@ do
         cont=0
         if [[ $copy == 1 ]]
         then
-            ssh -t ieee@EGGC-603-14 $@
-            ssh -t ieee@EGGC-603-15 $@
-            ssh -t ieee@EGGC-603-16 $@
-            ssh -t ieee@EGGC-603-17 $@
-            ssh -t ieee@EGGC-603-18 $@
-            ssh -t ieee@EGGC-603-19 $@
+            ssh -t $nameEGGC-603-14 $@
+            ssh -t $nameEGGC-603-15 $@
+            ssh -t $nameEGGC-603-16 $@
+            ssh -t $nameEGGC-603-17 $@
+            ssh -t $nameEGGC-603-18 $@
+            ssh -t $nameEGGC-603-19 $@
             shift $#
         else
-            ssh-copy-id ieee@EGGC-603-14
-            ssh-copy-id ieee@EGGC-603-15
-            ssh-copy-id ieee@EGGC-603-16
-            ssh-copy-id ieee@EGGC-603-17
-            ssh-copy-id ieee@EGGC-603-18
-            ssh-copy-id ieee@EGGC-603-19
+            ssh-copy-id $nameEGGC-603-14
+            ssh-copy-id $nameEGGC-603-15
+            ssh-copy-id $nameEGGC-603-16
+            ssh-copy-id $nameEGGC-603-17
+            ssh-copy-id $nameEGGC-603-18
+            ssh-copy-id $nameEGGC-603-19
         fi
     fi
 done

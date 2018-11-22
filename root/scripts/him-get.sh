@@ -1,25 +1,29 @@
 #!/bin/bash
 
 version="
-him-get version 1.18
+him-get version 1.19
     script executer from him-nyit.ddns.net
 "
 help="
 Usage: ./him-get.sh [OPTIONS] SCRIPTS
 
 OPTIONS:
-    -h --help    : bring this help topic
-    -v --version : display script version
-    -s --sudo    : run with elevated priviledge
-    -u --update  : update him-get script
-    -n --nothing : do not execute script
-    -k --keep    : keep the script after execution
-    -p --pass    : pass all following but except next argument as parameter of next argument
+    -h --help     : bring this help topic
+    -v --version  : display script version
+    -s --sudo     : run with elevated priviledge
+    -u --update   : update him-get script
+    -e --execute  : execute as script
+                    This is default option.
+                    When this option is selected, .sh extension is assumed.
+    -n --nothing  : do not execute script
+    -k --keep     : keep files
+    -r --remove   : remove files
+    -p --pass     : pass all following but except next argument as parameter of next argument
 
 The options will be processed in entered order.
 "
 cont=1
-none=1
+exec=1
 keep=1
 pass=1
 
@@ -69,16 +73,28 @@ do
             chmod +x him-get.sh
             exit
             
+        # execute script
+        elif [[ $1 == "--execute" || $1 == "-e" ]]
+        then
+            exec=0
+            shift
+            
         # do not execute script
         elif [[ $1 == "--nothing" || $1 == "-n" ]]
         then
-            none=0
+            exec=1
             shift
             
-        # keep script after execution
+        # keep file
         elif [[ $1 == "--keep" || $1 == "-k" ]]
         then
             keep=0
+            shift
+            
+        # remove file
+        elif [[ $1 == "--remove" || $1 == "-r" ]]
+        then
+            keep=1
             shift
             
         # pass remaining argument
@@ -100,23 +116,28 @@ do
         current=$1
         shift
         
-        wget him-nyit.ddns.net/scripts/$current.sh -O $current.sh
-        chmod +x $current.sh
-        
-        if [[ $none == 1 ]]
+        if [[ $exec == 1 ]]
         then
+            wget him-nyit.ddns.net/scripts/$current -O $current
+            
+        else
+            $current="$current.sh"
+            
+            wget him-nyit.ddns.net/scripts/$current -O $current
+            chmod +x $current
+            
             if [[ $pass == 1 ]]
             then
-                ./$current.sh
+                ./$current
             else
-                ./$current.sh $*
+                ./$current $*
                 shift $#
             fi
         fi
         
         if [[ $keep == 1 ]]
         then
-            rm $current.sh
+            rm $current
         fi
     fi
 done
