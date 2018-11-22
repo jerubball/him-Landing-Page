@@ -19,6 +19,7 @@ vim
 emacs
 nano
 gcc
+g++
 openjdk-8-jdk
 openjdk-11-jdk
 default-jdk
@@ -47,7 +48,10 @@ docker
 fuseiso
 fdisk
 git
+git-all
 easygit
+gitg
+git-cola
 texlive
 texworks
 rsync
@@ -81,3 +85,5 @@ shorewall
 fail2ban
 gamin
 keychain
+mpich
+libmpich-dev
