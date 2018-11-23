@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-hosts version 1.3
+him-hosts version 1.4
     intranet host name script from him-nyit.ddns.net
 "
 help="
@@ -114,7 +114,7 @@ do
                 then
                     echo "$line" >> /etc/hosts
                 fi
-            done
+            done < $file
         fi
     fi
 done
