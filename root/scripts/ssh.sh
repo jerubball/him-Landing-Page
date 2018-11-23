@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.13
+him-ssh version 1.14
     ssh command executer from him-nyit.ddns.net
 "
 help="
@@ -29,8 +29,10 @@ The options will be processed in entered order.
 cont=1
 copy=1
 host=1
+down=1
 list=""
 name=""
+args=""
 
 while [[ $cont == 1 || $# > 0 ]]
 do
@@ -79,16 +81,16 @@ do
         then
             host=0
             shift
-            list="$(cat $1)"
+            list="$1"
             shift
             
         # download host file
         elif [[ $1 == "--download" || $1 == "-d" ]]
         then
             host=0
+            down=0
             shift
-            wget him-nyit.ddns.net/scripts/$1 -O $1
-            list="$(cat $1)"
+            list="$1"
             shift
             
         # unrecognized option
@@ -106,9 +108,16 @@ do
         if [[ $host == 1 ]]
         then
             host=0
-            wget him-nyit.ddns.net/scripts/host-list-mint.txt -O host-list-mint.txt
-            list="$(cat $1)"
+            down=0
+            list="host-list-mint.txt"
         fi
+        if [[ $down != 1 ]]
+        then
+            down=1
+            wget him-nyit.ddns.net/scripts/$list -O $list
+        fi
+        
+        list="$(cat $list)"
         
         if [[ $copy == 1 ]]
         then

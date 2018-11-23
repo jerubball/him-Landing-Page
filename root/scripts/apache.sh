@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-apache version 1.4
+him-apache version 1.5
     script to set apache folder permission from him-nyit.ddns.net
 "
 help="
@@ -86,10 +86,10 @@ do
             fi
             
             sudo ./$0 $args$@
-            shift $@
+            shift $#
             exit
-        else
             
+        else
             if [[ $grps == 1 ]]
             then
                 $name="adm"
