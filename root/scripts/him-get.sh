@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-get version 1.20
+him-get version 1.21
     script executer from him-nyit.ddns.net
 "
 help="
@@ -85,13 +85,13 @@ do
         # execute script
         elif [[ $1 == "--execute" || $1 == "-e" ]]
         then
-            exec=0
+            exec=1
             shift
             
         # do not execute script
         elif [[ $1 == "--nothing" || $1 == "-n" ]]
         then
-            exec=1
+            exec=0
             shift
             
         # keep file
@@ -125,12 +125,12 @@ do
         current=$1
         shift
         
-        if [[ $exec == 1 ]]
+        if [[ $exec != 1 ]]
         then
             wget him-nyit.ddns.net/scripts/$current -O $current
             
         else
-            $current="$current.sh"
+            current="$current.sh"
             
             wget him-nyit.ddns.net/scripts/$current -O $current
             chmod +x $current
