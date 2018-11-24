@@ -4,10 +4,15 @@
     <meta charset="utf-8">
     <title>Time is</title>
     <style>
-        div.box{
-            height: 90%;
-            width: 90%;
-            display: table-cell;
+        body.main {
+            background-color: #000000;
+        }
+        div.box {
+            width: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
             vertical-align: middle;
         }
@@ -16,21 +21,43 @@
             font-family: orbitron;
             font-size: 500%;
             font-weight: bold;
-            text-align: center;
-            vertical-align: middle;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateY(-50%);
-            transform: translateX(-50%);
+            line-height: 1;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
-<body style="background-color:black" onload="timer = setInterval(update, 200)">
+<body class="main" id="main" onload="init()">
     <script type='text/javascript'>
+        //const format = { localeMatcher: 'best fit', formatMatcher: 'best fit', timeZone: 'UTC', hour12: 'false', era: 'short', };
+        const format = { year: 'numeric', month: 'short', day: '2-digit', weekday: 'short', hourCycle: 'h23', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+        const parameter = new URL(window.location.href).searchParams;
+        const mode = parameter.get('mode') == null ? "" : parameter.get('mode');
+        const space = parameter.get('space') == null ? "" : parameter.get('space');
+        
+        function init() {
+            var timer = setInterval(update, 250);
+        }
+        
         function update() {
+            var text = "";
             var d = new Date();
-            document.getElementById("text").innerHTML = d.toLocaleTimeString();
+            
+            if (mode == 'unix') {
+                text = Math.round(d.getTime() / 1000);
+            }
+            else if (mode == 'none') {
+                text = d.toLocaleDateString() + " " + d.toLocaleTimeString();
+            }
+            else if (mode == 'plain') {
+                text = d.toLocaleDateString('en-US', format);
+            }
+            else {
+                var item = d.toLocaleDateString('en-US', format).toUpperCase();
+                text = item.substring(13,17) + space + item.substring(5,8) + space + item.substring(9,11) + space + item.substring(0,3) + space + item.substring(19,21) + space + item.substring(22,24) + space + item.substring(28,31) + space + item.substring(25,27);
+            }
+            
+            document.getElementById("text").innerHTML = text;
         }
     </script>
     <div class="box" id="box">
