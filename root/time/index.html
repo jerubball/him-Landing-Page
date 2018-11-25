@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Time is</title>
+    <title id="title">him-nyit: time</title>
     <style>
         body.main {
             background-color: #000000;
@@ -19,7 +19,7 @@
         p.text {
             color: #00FF00;
             font-family: orbitron;
-            font-size: 500%;
+            font-size: 400%;
             font-weight: bold;
             line-height: 1;
             margin: 0;
@@ -29,11 +29,15 @@
 </head>
 <body class="main" id="main" onload="init()">
     <script type='text/javascript'>
-        //const format = { localeMatcher: 'best fit', formatMatcher: 'best fit', timeZone: 'UTC', hour12: 'false', era: 'short', };
-        const format = { year: 'numeric', month: 'short', day: '2-digit', weekday: 'short', hourCycle: 'h23', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+        //const format = { localeMatcher: 'best fit', formatMatcher: 'best fit', timeZone: 'UTC', };
+        //const format = { era: 'short', year: 'numeric', month: 'short', day: '2-digit', weekday: 'short', hour12: 'false', hourCycle: 'h23', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+        const format_date = { era: 'short', year: 'numeric', month: 'short', day: '2-digit', weekday: 'short' };
+        const format_time = { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
         const parameter = new URL(window.location.href).searchParams;
         const mode = parameter.get('mode') == null ? "" : parameter.get('mode');
         const space = parameter.get('space') == null ? "" : parameter.get('space');
+        const line = parameter.get('line') == null ? "<br>" : parameter.get('line');
+        const locale = 'en-US';
         
         function init() {
             var timer = setInterval(update, 250);
@@ -41,23 +45,36 @@
         
         function update() {
             var text = "";
-            var d = new Date();
+            var now = new Date();
             
             if (mode == 'unix') {
-                text = Math.round(d.getTime() / 1000);
+                text = Math.round(now.getTime() / 1000);
             }
             else if (mode == 'none') {
-                text = d.toLocaleDateString() + " " + d.toLocaleTimeString();
+                text = now.toLocaleDateString() + line + now.toLocaleTimeString();
             }
             else if (mode == 'plain') {
-                text = d.toLocaleDateString('en-US', format);
+                text = now.toLocaleDateString(locale, format_date).toUpperCase() + line + now.toLocaleTimeString(locale, format_time).toUpperCase();
             }
             else {
-                var item = d.toLocaleDateString('en-US', format).toUpperCase();
-                text = item.substring(13,17) + space + item.substring(5,8) + space + item.substring(9,11) + space + item.substring(0,3) + space + item.substring(19,21) + space + item.substring(22,24) + space + item.substring(28,31) + space + item.substring(25,27);
+                var item1 = now.getFullYear() + space + now.toLocaleDateString(locale, {month: 'short'}).toUpperCase() + space + now.toLocaleDateString(locale, {day: '2-digit'}) + space + now.toLocaleDateString(locale, {weekday: 'short'}).toUpperCase() + space;
+                var timezone = now.toLocaleTimeString(locale, {timeZoneName: 'short'});
+                timezone = timezone.substring(timezone.length - 3).toUpperCase();
+                var item2 = space + numberFormat(now.getHours(), 2) + space + numberFormat(now.getMinutes(), 2) + space + timezone + space + numberFormat(now.getSeconds(), 2);
+                text = item1 + item2;
+                //var item = now.toLocaleDateString(locale, format).toUpperCase();
+                //text = item.substring(13,17) + space + item.substring(5,8) + space + item.substring(9,11) + space + item.substring(0,3) + space + item.substring(19,21) + space + item.substring(22,24) + space + item.substring(28,31) + space + item.substring(25,27);
             }
             
             document.getElementById("text").innerHTML = text;
+        }
+        
+        function numberFormat(number, digit) {
+            var string = number.toString();
+            while (string.length < digit) {
+                string = "0" + string;
+            }
+            return string;
         }
     </script>
     <div class="box" id="box">
