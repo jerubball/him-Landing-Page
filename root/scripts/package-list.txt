@@ -2,6 +2,9 @@ sudo
 apt
 dpkg
 yum
+perlbrew
+linuxbrew-wrapper
+tree
 htop
 hwinfo
 net-tools
@@ -47,6 +50,8 @@ mysql-workbench
 docker
 fuseiso
 fdisk
+parted
+gparted
 git
 git-all
 easygit

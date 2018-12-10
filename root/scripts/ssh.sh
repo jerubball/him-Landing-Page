@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.14
+him-ssh version 1.15
     ssh command executer from him-nyit.ddns.net
 "
 help="
@@ -130,7 +130,7 @@ do
             copy=1
             for host in $list
             do
-                ssh-copy-id $name$list
+                ssh-copy-id $name$host
             done
         fi
     fi

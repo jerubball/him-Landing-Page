@@ -8,12 +8,14 @@ then
 else
     apt update
     apt upgrade --fix-missing -y
+    apt autoclean -y
+    apt autoremove -y
     
     apt install -y $list
     
     apt update
+    apt upgrade -y
     apt autoclean -y
     apt autoremove -y
-    apt upgrade -y
 fi
 
