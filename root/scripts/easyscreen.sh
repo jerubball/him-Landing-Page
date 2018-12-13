@@ -110,7 +110,7 @@ do
         then
             echo "$promptname"
             read name
-            if [[ $option == 2 || $option == 3 || $option == 4 ]]
+            if [[ $option == 2 || $option == 3 || $option == 5 ]]
             then
                 echo "$promptapp"
                 read app
