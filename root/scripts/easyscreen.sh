@@ -1,11 +1,11 @@
 #!/bin/bash
 
 version="
-him-easyscreen version 1.2
+him-easyscreen version 1.3
     screen utility helper from him-nyit.ddns.net
 "
 help="
-Usage: ./easyscreen.sh [NAME COMMAND]
+Usage: ./easyscreen.sh [OPTIONS] [COMMAND NAME PROGRAM]
 
 OPTIONS:
     -h --help
@@ -14,6 +14,27 @@ OPTIONS:
         : display script version
     -s --sudo
         : run with elevated priviledge
+    
+    s show
+        : show screen session to terminal
+          use [Ctrl] + [A], [D] to detach from screen session
+    t start
+        : start and show screen session
+          Program must be provided.
+    l silent
+        : start screen session in background
+          Program must be provided.
+    p stop
+        : terminate screen session
+    r restart
+        : terminate and silent start screen session
+          Program must be provided.
+    u status
+        : show screen session status
+    c clear
+        : clear terminal
+    x exit
+        : exit interactive mode
 "
 
 prompt="Choose: (S) Show, (T) Start, (L) Silent, (P) Stop, (R) Restart, (U) Status, (C) Clear, (X) Exit"
@@ -21,6 +42,8 @@ promptenter="Press Enter to continue."
 promptname="Set screen name."
 promptapp="Enter command."
 promptprefix="Enter prefix command."
+promptnoapp="No program specified."
+promptrunning="Program already running."
 promptinvalid="Invalid option: "
 
 manual=0
@@ -122,8 +145,7 @@ do
             shift
             if [[ $# -eq 0 && ( $option == 2 || $option == 3 || $option == 5 ) ]]
             then
-                echo "No program specified."
-                exit 1
+                echo "$promptnoapp"
             fi
             app=$*
             shift $#
@@ -137,11 +159,21 @@ do
         elif [[ $option -eq 2 ]]
         then
             # start
-            $prefix screen -mS "$name" $app
+            if [[ "$(screen -ls "$name" | grep "$name")" == "" ]]
+            then
+                $prefix screen -mS "$name" $app
+            else
+                echo "$promptrunning"
+            fi
         elif [[ $option -eq 3 ]]
         then
             # silent
-            $prefix screen -dmS "$name" $app
+            if [[ "$(screen -ls "$name" | grep "$name")" == "" ]]
+            then
+                $prefix screen -dmS "$name" $app
+            else
+                echo "$promptrunning"
+            fi
         elif [[ $option -eq 4 ]]
         then
             # stop
