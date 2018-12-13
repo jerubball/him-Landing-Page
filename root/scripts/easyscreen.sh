@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-easyscreen version 1.1
+him-easyscreen version 1.2
     screen utility helper from him-nyit.ddns.net
 "
 help="
@@ -110,7 +110,7 @@ do
         then
             echo "$promptname"
             read name
-            if [[ $option == 1 || $option == 2 || $option == 4 ]]
+            if [[ $option == 2 || $option == 3 || $option == 4 ]]
             then
                 echo "$promptapp"
                 read app
@@ -120,7 +120,7 @@ do
         else
             name=$1
             shift
-            if [[ $# -eq 0 && ( $option == 1 || $option == 2 || $option == 4 ) ]]
+            if [[ $# -eq 0 && ( $option == 2 || $option == 3 || $option == 5 ) ]]
             then
                 echo "No program specified."
                 exit 1
