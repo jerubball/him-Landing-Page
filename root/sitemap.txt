@@ -8,3 +8,6 @@ https://him-nyit.ddns.net/TrackingSystem/login.html
 
 http://him-nyit.ddns.net/rantadi
 https://him-nyit.ddns.net/rantadi
+
+http://him-nyit.ddns.net/time
+https://him-nyit.ddns.net/time
