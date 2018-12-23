@@ -39,6 +39,8 @@
         const space = parameter.get('space') == null ? "" : parameter.get('space');
         const line = parameter.get('line') == null ? "<br>" : parameter.get('line');
         const locale = 'en-US';
+        const timestamp = 855814500000;
+        const timelapse = 876543.21 * 3600000;
         
         function init() {
             var timer = setInterval(update, 250);
@@ -50,6 +52,17 @@
             
             if (mode == 'unix') {
                 text = Math.round(now.getTime() / 1000);
+            }
+            else if (mode == 'countdown') {
+                text = (Math.round((timelapse + timestamp - now.getTime()) / 360) / 10000).toString();
+                var pos1 = text.indexOf('.') + 1;
+                if (pos1 < 0) {
+                    text += '.';
+                    pos1 = text.length;
+                }
+                for (var pos2 = text.length - pos1; pos2 < 4; pos2++) {
+                    text += '0';
+                }
             }
             else if (mode == 'none') {
                 text = now.toLocaleDateString() + line + now.toLocaleTimeString();
