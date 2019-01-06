@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html onclick="toggleFullscreen()">
 <head>
     <meta charset="utf-8">
     <title id="title">him-nyit: time</title>
@@ -39,16 +39,13 @@
         const convertTime = function(input) {
             if (input == null || input == '') {
                 return 855814500000;
-            }
-            else if (!isNaN(input)) {
+            } else if (!isNaN(input)) {
                 return parseInt(input) * 1000;
-            }
-            else {
+            } else {
                 var date = new Date(input)
                 if (!isNaN(date)) {
                     return date.getTime();
-                }
-                else {
+                } else {
                     return 855814500000;
                 }
             }
@@ -57,26 +54,19 @@
         const convertUnit = function(input) {
             if (input == null || input == '') {
                 return 3600000;
-            }
-            else if (!isNaN(input)) {
+            } else if (!isNaN(input)) {
                 return parseInt(input);
-            }
-            else if (input == 'minute' || input == 'min') {
+            } else if (input == 'minute' || input == 'min') {
                 return 60000;
-            }
-            else if (input == 'second' || input == 'sec') {
+            } else if (input == 'second' || input == 'sec') {
                 return 1000;
-            }
-            else if (input == 'day') {
+            } else if (input == 'day') {
                 return 86400000;
-            }
-            else if (input == 'month' || input == 'mo') {
+            } else if (input == 'month' || input == 'mo') {
                 return 2629742400;
-            }
-            else if (input == 'year' || input == 'yr') {
+            } else if (input == 'year' || input == 'yr') {
                 return 31556908800;
-            }
-            else {
+            } else {
                 return 3600000;
             }
         }
@@ -121,20 +111,15 @@
             
             if (mode == 'unix') {
                 text = Math.round(now.getTime() / 1000);
-            }
-            else if (mode == 'countdown') {
+            } else if (mode == 'countdown') {
                 text = numberFormatDecimal(numberDigit((timelapse + timestamp - now.getTime()) / timefactor, 4), 4);
-            }
-            else if (mode == 'countup') {
+            } else if (mode == 'countup') {
                 text = numberFormatDecimal(numberDigit((now.getTime() - timestamp) / timefactor, 4), 4);
-            }
-            else if (mode == 'none') {
+            } else if (mode == 'none') {
                 text = now.toLocaleDateString() + line + now.toLocaleTimeString();
-            }
-            else if (mode == 'plain') {
+            } else if (mode == 'plain') {
                 text = now.toLocaleDateString(locale, format_date).toUpperCase() + line + now.toLocaleTimeString(locale, format_time).toUpperCase();
-            }
-            else {
+            } else {
                 var item1 = now.getFullYear() + space + now.toLocaleDateString(locale, {month: 'short'}).toUpperCase() + space + now.toLocaleDateString(locale, {day: '2-digit'}) + space + now.toLocaleDateString(locale, {weekday: 'short'}).toUpperCase() + space;
                 var timezone = now.toLocaleTimeString(locale, {timeZoneName: 'short'});
                 timezone = timezone.substring(timezone.length - 3).toUpperCase();
@@ -154,29 +139,48 @@
             
             if (mode == 'unix') {
                 font = "9vw";
-            }
-            else if (mode == 'countdown' || mode == 'countup') {
+            } else if (mode == 'countdown' || mode == 'countup') {
                 if (timefactor > 3000000) {
                     font = "9vw";
-                }
-                else if (timefactor > 50000) {
+                } else if (timefactor > 50000) {
                     font = "8vw";
-                }
-                else {
+                } else {
                     font = "7vw";
                 }
-            }
-            else if (mode == 'none') {
+            } else if (mode == 'none') {
                 font = "7vw";
-            }
-            else if (mode == 'plain') {
+            } else if (mode == 'plain') {
                 font = "7vw";
-            }
-            else {
+            } else {
                 font = "5vw";
             }
             
             document.getElementById("text").style.fontSize = font;
+        }
+        
+        const toggleFullscreen = function() {
+            if (document.fullscreen || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+            else {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                }
+            }
         }
     </script>
     <div class="box" id="box">
