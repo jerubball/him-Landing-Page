@@ -64,6 +64,17 @@
                     text += '0';
                 }
             }
+            else if (mode == 'countup') {
+                text = (Math.round((now.getTime() - timestamp) / 360) / 10000).toString();
+                var pos1 = text.indexOf('.') + 1;
+                if (pos1 < 0) {
+                    text += '.';
+                    pos1 = text.length;
+                }
+                for (var pos2 = text.length - pos1; pos2 < 4; pos2++) {
+                    text += '0';
+                }
+            }
             else if (mode == 'none') {
                 text = now.toLocaleDateString() + line + now.toLocaleTimeString();
             }
