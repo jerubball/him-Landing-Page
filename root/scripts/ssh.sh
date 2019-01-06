@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.15
+him-ssh version 1.16
     ssh command executer from him-nyit.ddns.net
 "
 help="
@@ -18,7 +18,7 @@ OPTIONS:
         : adds this machine as authroized host to all servers
     -u --user name
         : specify login username
-    -h --host filename
+    -o --host filename
         : specify file with hostnames
     -d --download filename
         : download and use remote hostnames
@@ -77,7 +77,7 @@ do
             shift
             
         # specify host file
-        elif [[ $1 == "--host" || $1 == "-h" ]]
+        elif [[ $1 == "--host" || $1 == "-o" ]]
         then
             host=0
             shift
@@ -123,6 +123,7 @@ do
         then
             for host in $list
             do
+                echo "Connecting to $name$host"
                 ssh -t $name$host $@
             done
             shift $#
