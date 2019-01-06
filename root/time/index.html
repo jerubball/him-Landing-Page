@@ -38,23 +38,26 @@
         const mode = parameter.get('mode') == null ? "" : parameter.get('mode');
         const space = parameter.get('space') == null ? "" : parameter.get('space');
         const line = parameter.get('line') == null ? "<br>" : parameter.get('line');
+        const timestamp = parameter.get('time') == null ? 855814500000 : parseInt(parameter.get('line')) * 1000;
         const locale = 'en-US';
-        const timestamp = 855814500000;
         const timelapse = 876543.21 * 3600000;
+        const timefactor = 3600000;
         
-        function init() {
+        const init = function() {
             var timer = setInterval(update, 250);
         }
         
-        function update() {
+        const update = function() {
+            var font = "5vw";
             var text = "";
             var now = new Date();
             
             if (mode == 'unix') {
                 text = Math.round(now.getTime() / 1000);
+                font = "9vw";
             }
             else if (mode == 'countdown') {
-                text = (Math.round((timelapse + timestamp - now.getTime()) / 360) / 10000).toString();
+                text = numberDigit((timelapse + timestamp - now.getTime()) / timefactor, 4).toString();
                 var pos1 = text.indexOf('.') + 1;
                 if (pos1 < 0) {
                     text += '.';
@@ -63,9 +66,10 @@
                 for (var pos2 = text.length - pos1; pos2 < 4; pos2++) {
                     text += '0';
                 }
+                font = "9vw";
             }
             else if (mode == 'countup') {
-                text = (Math.round((now.getTime() - timestamp) / 360) / 10000).toString();
+                text = numberDigit((now.getTime() - timestamp) / timefactor, 4).toString();
                 var pos1 = text.indexOf('.') + 1;
                 if (pos1 < 0) {
                     text += '.';
@@ -74,12 +78,15 @@
                 for (var pos2 = text.length - pos1; pos2 < 4; pos2++) {
                     text += '0';
                 }
+                font = "9vw";
             }
             else if (mode == 'none') {
                 text = now.toLocaleDateString() + line + now.toLocaleTimeString();
+                font = "7vw";
             }
             else if (mode == 'plain') {
                 text = now.toLocaleDateString(locale, format_date).toUpperCase() + line + now.toLocaleTimeString(locale, format_time).toUpperCase();
+                font = "7vw";
             }
             else {
                 var item1 = now.getFullYear() + space + now.toLocaleDateString(locale, {month: 'short'}).toUpperCase() + space + now.toLocaleDateString(locale, {day: '2-digit'}) + space + now.toLocaleDateString(locale, {weekday: 'short'}).toUpperCase() + space;
@@ -92,14 +99,20 @@
             }
             
             document.getElementById("text").innerHTML = text;
+            document.getElementById("text").style.fontSize = font;
         }
         
-        function numberFormat(number, digit) {
+        const numberFormat = function(number, digit) {
             var string = number.toString();
             while (string.length < digit) {
                 string = "0" + string;
             }
             return string;
+        }
+        
+        const numberDigit = function(number, digit) {
+            var divisor = Math.pow(10, digit);
+            return Math.round(number * divisor) / divisor);
         }
     </script>
     <div class="box" id="box">
