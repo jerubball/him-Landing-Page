@@ -65,12 +65,29 @@
                 return 1000;
             } else if (input == 'day') {
                 return 86400000;
+            } else if (input == 'week' {
+                return 604800000;
             } else if (input == 'month' || input == 'mo') {
-                return 2629742400;
+                return 2629743000;
             } else if (input == 'year' || input == 'yr') {
-                return 31556908800;
+                return 31556926000;
             } else {
                 return 3600000;
+            }
+        }
+        
+        const convertSpan = function(input, timestamp) {
+            if (input == null || input == '') {
+                return 876543.21 * 3600000;
+            } else if (!isNaN(input)) {
+                return parseInt(input);
+            } else {
+                var date = new Date(input)
+                if (!isNaN(date)) {
+                    return date.getTime() - timestamp;
+                } else {
+                    return 876543.21 * 3600000;
+                }
             }
         }
         
@@ -79,8 +96,8 @@
         const line = parameter.get('line') == null ? "<br>" : parameter.get('line');
         const timestamp = convertTime(parameter.get('time'));
         const timefactor = convertUnit(parameter.get('unit'));
+        const timelapse = convertSpan(parameter.get('span'), timestamp);
         const locale = 'en-US';
-        const timelapse = 876543.21 * 3600000;
         
         const numberFormat = function(number, digit) {
             var str = number.toString();
