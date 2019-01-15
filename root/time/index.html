@@ -39,56 +39,84 @@
         const format_time = { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
         const parameter = new URL(window.location.href).searchParams;
         
-        const convertTime = function(input) {
-            if (input == null || input == '') {
-                return 855814500000;
-            } else if (!isNaN(input)) {
-                return parseInt(input) * 1000;
-            } else {
-                var date = new Date(input)
-                if (!isNaN(date)) {
-                    return date.getTime();
-                } else {
-                    return 855814500000;
-                }
-            }
-        }
-        
-        const convertUnit = function(input) {
-            if (input == null || input == '') {
-                return 3600000;
-            } else if (!isNaN(input)) {
-                return parseInt(input);
+        /** process time unit to milliseconds */
+        const convertTimeUnit = function(input) {
+            if (input == 'second' || input == 'sec') {
+                return 1000;
             } else if (input == 'minute' || input == 'min') {
                 return 60000;
-            } else if (input == 'second' || input == 'sec') {
-                return 1000;
+            } else if (input == 'hour' || input == 'hr') {
+                return 3600000;
             } else if (input == 'day') {
                 return 86400000;
-            } else if (input == 'week' {
+            } else if (input == 'week') {
                 return 604800000;
             } else if (input == 'month' || input == 'mo') {
                 return 2629743000;
             } else if (input == 'year' || input == 'yr') {
                 return 31556926000;
-            } else {
-                return 3600000;
             }
+            return null;
         }
         
-        const convertSpan = function(input, timestamp) {
-            if (input == null || input == '') {
-                return 876543.21 * 3600000;
-            } else if (!isNaN(input)) {
-                return parseInt(input);
-            } else {
-                var date = new Date(input)
-                if (!isNaN(date)) {
-                    return date.getTime() - timestamp;
+        /** process time parameter for start time */
+        const convertTime = function(input) {
+            if (input != null && input != '') {
+                if (!isNaN(input)) {
+                    return parseInt(input) * 1000;
                 } else {
-                    return 876543.21 * 3600000;
+                    var date = new Date(input);
+                    if (!isNaN(date)) {
+                        return date.getTime();
+                    }
                 }
             }
+            return 855814500000;
+        }
+        
+        /** process unit parameter for display unit */
+        const convertUnit = function(input) {
+            if (input != null && input != '') {
+                if (!isNaN(input)) {
+                    return parseInt(input);
+                } else {
+                    var result = convertTimeUnit(input);
+                    if (result != null) {
+                        return result;
+                    }
+                }
+            }
+            return 3600000;
+        }
+        
+        /** process span parameter for duration */
+        const convertSpan = function(input, timestamp) {
+            if (input != null && input != '') {
+                if (!isNaN(input)) {
+                    return parseInt(input) * 1000 - timestamp;
+                } else if (input == 'shorter') {
+                    return 2355555600000;
+                } else if (input == 'short') {
+                    return 2755555560000;
+                } else if (input == 'long') {
+                    return 3155555556000;
+                } else if (input == 'longer') {
+                    return 3555555555600;
+                } else {
+                    var arr = input.split(' ');
+                    if (arr.length == 2 && !isNaN(arr[0])) {
+                        var result = convertTimeUnit(arr[1]);
+                        if (result != null) {
+                            return parseInt(arr[0]) * result;
+                        }
+                    }
+                    var date = new Date(input);
+                    if (!isNaN(date)) {
+                        return date.getTime() - timestamp;
+                    }
+                }
+            }
+            return 3155555556000;
         }
         
         const mode = parameter.get('mode') == null ? "" : parameter.get('mode');
@@ -99,6 +127,7 @@
         const timelapse = convertSpan(parameter.get('span'), timestamp);
         const locale = 'en-US';
         
+        /** add leading zeros to number */
         const numberFormat = function(number, digit) {
             var str = number.toString();
             while (str.length < digit) {
@@ -107,6 +136,7 @@
             return str;
         }
         
+        /** add trailing zeros to decimal number */
         const numberFormatDecimal = function(number, digit) {
             var str = number.toString();
             var dot = str.indexOf('.') + 1;
@@ -120,6 +150,7 @@
             return str;
         }
         
+        /** truncate decimal number to digits */
         const numberDigit = function(number, digit) {
             var divisor = Math.pow(10, digit);
             return Math.round(number * divisor) / divisor;
