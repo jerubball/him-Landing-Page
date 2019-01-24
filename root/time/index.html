@@ -161,14 +161,14 @@
             if (number > 0) {
                 var count = 0;
                 while (number % 10 == 0) {
-                    num /= 10;
+                    number /= 10;
                     count++;
                 }
-                num = num % 10;
+                number %= 10;
                 while (count-- > 0) {
-                    num *= 10;
+                    number *= 10;
                 }
-                return num;
+                return number;
             } else {
                 return 0;
             }
