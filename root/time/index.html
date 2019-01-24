@@ -156,12 +156,43 @@
             return Math.round(number * divisor) / divisor;
         }
         
+        /** return only rightmost nonzero digit */
+        const number10 = function(number) {
+            if (number > 0) {
+                var count = 0;
+                while (number % 10 == 0) {
+                    num /= 10;
+                    count++;
+                }
+                num = num % 10;
+                while (count-- > 0) {
+                    num *= 10;
+                }
+                return num;
+            } else {
+                return 0;
+            }
+        }
+        
+        /** format time as the format */
+        const timeFormat = function(now) {
+            var item1 = now.getFullYear() + space + now.toLocaleDateString(locale, {month: 'short'}).toUpperCase() + space + now.toLocaleDateString(locale, {day: '2-digit'}) + space + now.toLocaleDateString(locale, {weekday: 'short'}).toUpperCase() + space;
+            var timezone = now.toLocaleTimeString(locale, {timeZoneName: 'short'});
+            timezone = timezone.substring(timezone.length - 3).toUpperCase();
+            var item2 = space + numberFormat(now.getHours(), 2) + space + numberFormat(now.getMinutes(), 2) + space + timezone + space + numberFormat(now.getSeconds(), 2);
+            return item1 + item2;
+            //var item = now.toLocaleDateString(locale, format).toUpperCase();
+            //return item.substring(13,17) + space + item.substring(5,8) + space + item.substring(9,11) + space + item.substring(0,3) + space + item.substring(19,21) + space + item.substring(22,24) + space + item.substring(28,31) + space + item.substring(25,27);
+        }
+        
         const update = function() {
             var text = "";
             var now = new Date();
             
             if (mode == 'unix') {
                 text = Math.round(now.getTime() / 1000);
+            } else if (mode == 'unix10') {
+                text = number10(Math.round(now.getTime() / 1000));
             } else if (mode == 'countdown') {
                 text = numberFormatDecimal(numberDigit((timelapse + timestamp - now.getTime()) / timefactor, 4), 4);
             } else if (mode == 'countup') {
@@ -171,13 +202,7 @@
             } else if (mode == 'plain') {
                 text = now.toLocaleDateString(locale, format_date).toUpperCase() + line + now.toLocaleTimeString(locale, format_time).toUpperCase();
             } else {
-                var item1 = now.getFullYear() + space + now.toLocaleDateString(locale, {month: 'short'}).toUpperCase() + space + now.toLocaleDateString(locale, {day: '2-digit'}) + space + now.toLocaleDateString(locale, {weekday: 'short'}).toUpperCase() + space;
-                var timezone = now.toLocaleTimeString(locale, {timeZoneName: 'short'});
-                timezone = timezone.substring(timezone.length - 3).toUpperCase();
-                var item2 = space + numberFormat(now.getHours(), 2) + space + numberFormat(now.getMinutes(), 2) + space + timezone + space + numberFormat(now.getSeconds(), 2);
-                text = item1 + item2;
-                //var item = now.toLocaleDateString(locale, format).toUpperCase();
-                //text = item.substring(13,17) + space + item.substring(5,8) + space + item.substring(9,11) + space + item.substring(0,3) + space + item.substring(19,21) + space + item.substring(22,24) + space + item.substring(28,31) + space + item.substring(25,27);
+                text = timeFormat(now);
             }
             
             document.getElementById("text").innerHTML = text;
@@ -188,7 +213,7 @@
             
             var font = "5vw";
             
-            if (mode == 'unix') {
+            if (mode == 'unix' || mode == 'unix10') {
                 font = "9vw";
             } else if (mode == 'countdown' || mode == 'countup') {
                 if (timefactor > 3000000) {
