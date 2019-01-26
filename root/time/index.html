@@ -125,6 +125,7 @@
         const timestamp = convertTime(parameter.get('time'));
         const timefactor = convertUnit(parameter.get('unit'));
         const timelapse = convertSpan(parameter.get('span'), timestamp);
+        const base = parameter.get('base') == null ? 10 : parseInt(parameter.get('base'));
         const locale = 'en-US';
         
         /** add leading zeros to number */
@@ -160,13 +161,13 @@
         const number10 = function(number) {
             if (number > 0) {
                 var count = 0;
-                while (number % 10 == 0) {
-                    number /= 10;
+                while (number % base == 0) {
+                    number /= base;
                     count++;
                 }
-                number %= 10;
+                number %= base;
                 while (count-- > 0) {
-                    number *= 10;
+                    number *= base;
                 }
                 return number;
             } else {
@@ -190,9 +191,9 @@
             var now = new Date();
             
             if (mode == 'unix') {
-                text = Math.round(now.getTime() / 1000);
+                text = Math.round(now.getTime() / 1000).toString(base).toUpperCase();
             } else if (mode == 'unix10') {
-                text = number10(Math.round(now.getTime() / 1000));
+                text = number10(Math.round(now.getTime() / 1000)).toString(base).toUpperCase();
             } else if (mode == 'countdown') {
                 text = numberFormatDecimal(numberDigit((timelapse + timestamp - now.getTime()) / timefactor, 4), 4);
             } else if (mode == 'countup') {
@@ -214,7 +215,15 @@
             var font = "5vw";
             
             if (mode == 'unix' || mode == 'unix10') {
-                font = "9vw";
+                if (base > 8) {
+                    font = "9vw";
+                } else if (base > 4) {
+                    font = "8vw";
+                } else if (base > 2) {
+                    font = "7vw";
+                } else {
+                    font = "5vw";
+                }
             } else if (mode == 'countdown' || mode == 'countup') {
                 if (timefactor > 3000000) {
                     font = "9vw";
