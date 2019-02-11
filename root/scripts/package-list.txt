@@ -7,6 +7,7 @@ linuxbrew-wrapper
 tree
 htop
 hwinfo
+hardinfo
 net-tools
 wget
 dialog
