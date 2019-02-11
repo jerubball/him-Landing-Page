@@ -74,18 +74,145 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <ul class="">
-            <li>
-              <h3 class="">
-                <a href="./him-get.sh">him-get.sh</a>
-              </h3>
-            </li>
-            <li>
-              <h3 class="">
-                <a href="./get-him-get.sh">get-him-get.sh</a>
-              </h3>
-            </li>
-          </ul>
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Explaination</th>
+                <th scope="col">Values</th>
+                <th scope="col">Allowed modes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">mode</th>
+                <td>Sets display mode.</td>
+                <td>
+                  <ul>
+                    <li><b>unix</b></li>
+                    Unix timestamp in seconds.
+                    <li><b>unix10</b></li>
+                    <li><b>countdown</b></li>
+                    Count to referenced time.
+                    <li><b>countup</b></li>
+                    Count from referenced time.
+                    <li><b>simple</b></li>
+                    Date and time in number.
+                    <li><b>plain</b></li>
+                    Date and time in full text.
+                    <li><b>him</b> (default)</li>
+                    HIM timestamp.
+                  </ul>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">time</th>
+                <td>Sets referenced time.</td>
+                <td>
+                  <ul>
+                    <li>Single integer representing Unix timestamp.</li>
+                    <li>String formatted using RFC 2822 or ISO 8601 standard.</li>
+                  </ul>
+                </td>
+                <td>countdown<br>countup</td>
+              </tr>
+              <tr>
+                <th scope="row">unit</th>
+                <td>Sets display unit.</td>
+                <td>
+                  <ul>
+                    <li>Single positive integer representing milliseconds.</li>
+                    <li><b>second</b>, <b>sec</b></li>
+                    <li><b>minute</b>, <b>min</b></li>
+                    <li><b>hour</b>, <b>hr</b> (default)</li>
+                    <li><b>day</b></li>
+                    <li><b>week</b>, <b>wk</b></li>
+                    <li><b>month</b>, <b>mo</b></li>
+                    1/12th of Gregorian calendar year. (30.436 days)
+                    <li><b>year</b>, <b>yr</b></li>
+                    Average Gregorian calendar year. (365.24 days)
+                  </ul>
+                </td>
+                <td>countdown<br>countup</td>
+              </tr>
+              <tr>
+                <th scope="row">span</th>
+                <td>Sets duration.</td>
+                <td>
+                  <ul>
+                    <li>Single integer representing Unix timestamp.</li>
+                    <li>String formatted using RFC 2822 or ISO 8601 standard.</li>
+                    <li>Any number followed by space and units from above.</li>
+                    e.g. <b>100 year</b>
+                    <li><b>shorter</b></li>
+                    654,321 hours.
+                    <li><b>short</b></li>
+                    765,432.1 hours.
+                    <li><b>long</b> (default)</li>
+                    876,543.21 hours.
+                    <li><b>longer</b></li>
+                    987,654.321 hours.
+                  </ul>
+                </td>
+                <td>countdown</td>
+              </tr>
+              <tr>
+                <th scope="row">base</th>
+                <td>Sets base of number.</td>
+                <td>
+                  <ul>
+                    <li>Any integer from 2 to 36.</li>
+                    <li><b>binary</b>, <b>bin</b></li>
+                    base 2.
+                    <li><b>octal</b>, <b>oct</b></li>
+                    base 8.
+                    <li><b>decimal</b>, <b>dec</b> (default)</li>
+                    base 10.
+                    <li><b>hexadecimal</b>, <b>hex</b></li>
+                    base 16.
+                  </ul>
+                </td>
+                <td>unix<br>unix10</td>
+              </tr>
+              <tr>
+                <th scope="row">digit</th>
+                <td>Sets decimal digit.</td>
+                <td>
+                  <ul>
+                    <li>Any positive integer.</li>
+                    <li>Default value depends on unit, between 3 and 6.</li>
+                  </ul>
+                </td>
+                <td>countup<br>countdown</td>
+              </tr>
+              <tr>
+                <th scope="row">space</th>
+                <td>Sets space character.</td>
+                <td>
+                  <ul>
+                    <li>Any string.</li>
+                    <li><b>\n</b></li>
+                    new line.
+                    <li>Default value is empty string.</li>
+                  </ul>
+                </td>
+                <td>him</td>
+              </tr>
+              <tr>
+                <th scope="row">line</th>
+                <td>Sets line character.</td>
+                <td>
+                  <ul>
+                    <li>Any string.</li>
+                    <li><b>\n</b> (default)</li>
+                    new line.
+                  </ul>
+                </td>
+                <td>simple<br>plain</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
