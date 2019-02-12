@@ -1,0 +1,5 @@
+
+User-agent: *
+Disallow:
+
+Sitemap: http://him-nyit.ddns.net/sitemap.txt
