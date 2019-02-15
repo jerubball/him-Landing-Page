@@ -323,7 +323,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="display-3 font-italic <?php echo $style; ?>"><?php echo $status; ?></h1>
+          <h1 class="display-4 font-italic <?php echo $style; ?>"><?php echo $status; ?></h1>
         </div>
       </div>
     </div>
