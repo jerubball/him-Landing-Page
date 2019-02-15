@@ -47,6 +47,8 @@ wine-stable
 wine32
 wine64
 winetricks
+ntp
+ntpdate
 gimp
 exfat-fuse
 exfat-utils
