@@ -1,21 +1,122 @@
 #!/bin/bash
 
-list="anacron apache2 apt boinc cron default-jdk default-mysql-client default-mysql-server dialog docker dpkg easy-rsa emacs exfat-fuse exfat-utils fdisk fuseiso gcc gimp git htop hwinfo mysql-client mysql-server mysql-workbench nano net-tools nodejs numlockx openjdk-11-jdk openjdk-8-jdk openssh-client openssh-server openssl openvpn php php-all-dev pvm python python-pip python3 rsync screen ssh sudo telnet texlive texworks vim virtualbox virtualbox-qt vsftpd wget wine-stable wine32 wine64 winetricks yum"
+version="
+him-install version 1.2
+    apt package installer from him-nyit.ddns.net
+"
+help="
+Usage: ./install.sh [OPTIONS]
 
-if [[ $(id -u) -ne 0 ]]
-then
-    sudo ./$0 $@
-else
-    apt update
-    apt upgrade --fix-missing -y
-    apt autoclean -y
-    apt autoremove -y
-    
-    apt install -y $list
-    
-    apt update
-    apt upgrade -y
-    apt autoclean -y
-    apt autoremove -y
-fi
+OPTIONS:
+    -h --help
+        : bring this help topic
+    -v --version
+        : display script version
+    -l --list filename
+        : specify package list file
+    -d --download filename
+        : download and use pakcage list file
+          By default, script will download package-list.txt file.
+
+The options will be processed in entered order.
+"
+cont=1
+file=1
+down=1
+list=""
+args=""
+
+while [[ $cont == 1 || $# > 0 ]]
+do
+    # option processing
+    if [[ $1 == -* ]]
+    then
+        # print help topic
+        if [[ $1 == "--help" || $1 == "-h" ]]
+        then
+            echo "$version"
+            echo "$help"
+            exit
+            
+        # print script version
+        elif [[ $1 == "--version" || $1 == "-v" ]]
+        then
+            echo "$version"
+            exit
+            
+        # specify list file
+        elif [[ $1 == "--list" || $1 == "-l" ]]
+        then
+            file=0
+            shift
+            list="$1"
+            shift
+            
+        # download list file
+        elif [[ $1 == "--download" || $1 == "-d" ]]
+        then
+            file=0
+            down=0
+            shift
+            list="$1"
+            shift
+            
+        # unrecognized option
+        else
+            echo "unrecognized option: $1"
+            echo "$help"
+            exit
+            
+        fi
+        
+    # execute command
+    else
+        cont=0
+        
+        if [[ $(id -u) -ne 0 ]]
+        then
+            if [[ $down != 1 ]]
+            then
+                args="$args-d $list "
+                
+            elif [[ $file != 1 ]]
+            then
+                args="$args-l $list "
+            fi
+            
+            sudo ./$0 $args$@
+            shift $#
+            exit
+            
+        else
+            if [[ $file == 1 ]]
+            then
+                file=0
+                down=0
+                list="package-list.txt"
+            fi
+            if [[ $down != 1 ]]
+            then
+                down=1
+                wget him-nyit.ddns.net/scripts/$list -O $list
+            fi
+            
+            list="$(cat $list)"
+            
+            apt update
+            apt upgrade --fix-missing -y
+            
+            for item in $list
+            do
+                apt install -y $item
+            done
+            shift $#
+            
+            apt update
+            apt autoclean -y
+            apt upgrade --fix-missing -y
+            apt autoremove -y
+        fi
+    fi
+done
 

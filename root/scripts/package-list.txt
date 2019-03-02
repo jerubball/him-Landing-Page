@@ -83,7 +83,9 @@ dsniff
 ngrep
 fping
 netcat
+socat
 nmap
+traceroute
 nbtscan
 samba
 beep

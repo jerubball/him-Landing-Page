@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-apache version 1.5
+him-apache version 1.6
     script to set apache folder permission from him-nyit.ddns.net
 "
 help="
@@ -78,11 +78,11 @@ do
         then
             if [[ $grps != 1 ]]
             then
-                $args="$args-g $name "
+                args="$args-g $name "
             fi
             if [[ $perm != 1 ]]
             then
-                $args="$args-p $code "
+                args="$args-p $code "
             fi
             
             sudo ./$0 $args$@
@@ -92,11 +92,11 @@ do
         else
             if [[ $grps == 1 ]]
             then
-                $name="adm"
+                name="adm"
             fi
             if [[ $perm == 1 ]]
             then
-                $code="775"
+                code="775"
             fi
             
             chmod -R $code /etc/apache2
