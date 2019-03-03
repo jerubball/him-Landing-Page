@@ -123,6 +123,7 @@ do
         then
             for host in $list
             do
+                #todo. add hash comment
                 echo "Connecting to $name$host"
                 ssh -t $name$host $@
             done

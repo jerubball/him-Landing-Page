@@ -57,6 +57,8 @@ default-mysql-server
 mysql-client
 mysql-server
 mysql-workbench
+sqlite
+sqlite3
 docker
 fuseiso
 fdisk
