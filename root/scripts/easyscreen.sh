@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-easyscreen version 1.3
+him-easyscreen version 1.4
     screen utility helper from him-nyit.ddns.net
 "
 help="
@@ -36,6 +36,11 @@ OPTIONS:
     x exit
         : exit interactive mode
 "
+contact="
+Contact for bug report, suggestion, and other information.
+    EMAIL: him.nyit@gmail.com
+    WEBSITE: http://him-nyit.ddns.net
+"
 
 prompt="Choose: (S) Show, (T) Start, (L) Silent, (P) Stop, (R) Restart, (U) Status, (C) Clear, (X) Exit"
 promptenter="Press Enter to continue."
@@ -59,12 +64,14 @@ then
     then
         echo "$version"
         echo "$help"
+        echo "$contact"
         exit
         
     # print script version
     elif [[ $1 == "--version" || $1 == "-v" ]]
     then
         echo "$version"
+        echo "$contact"
         exit
     # run as sudo
     elif [[ $1 == "--sudo" || $1 == "-s" ]]

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.16
+him-ssh version 1.17
     ssh command executer from him-nyit.ddns.net
 "
 help="
@@ -26,6 +26,11 @@ OPTIONS:
 
 The options will be processed in entered order.
 "
+contact="
+Contact for bug report, suggestion, and other information.
+    EMAIL: him.nyit@gmail.com
+    WEBSITE: http://him-nyit.ddns.net
+"
 cont=1
 copy=1
 host=1
@@ -44,12 +49,14 @@ do
         then
             echo "$version"
             echo "$help"
+            echo "$contact"
             exit
             
         # print script version
         elif [[ $1 == "--version" || $1 == "-v" ]]
         then
             echo "$version"
+            echo "$contact"
             exit
             
         # run as sudo

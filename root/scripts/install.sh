@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-install version 1.2
+him-install version 1.3
     apt package installer from him-nyit.ddns.net
 "
 help="
@@ -20,6 +20,11 @@ OPTIONS:
 
 The options will be processed in entered order.
 "
+contact="
+Contact for bug report, suggestion, and other information.
+    EMAIL: him.nyit@gmail.com
+    WEBSITE: http://him-nyit.ddns.net
+"
 cont=1
 file=1
 down=1
@@ -36,12 +41,14 @@ do
         then
             echo "$version"
             echo "$help"
+            echo "$contact"
             exit
             
         # print script version
         elif [[ $1 == "--version" || $1 == "-v" ]]
         then
             echo "$version"
+            echo "$contact"
             exit
             
         # specify list file

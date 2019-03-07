@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-get version 1.21
+him-get version 1.22
     script executer from him-nyit.ddns.net
 "
 help="
@@ -31,6 +31,11 @@ OPTIONS:
 
 The options will be processed in entered order.
 "
+contact="
+Contact for bug report, suggestion, and other information.
+    EMAIL: him.nyit@gmail.com
+    WEBSITE: http://him-nyit.ddns.net
+"
 cont=1
 exec=1
 keep=1
@@ -43,6 +48,7 @@ do
     then
         echo "$version"
         echo "$help"
+        echo "$contact"
         exit 
     fi
     cont=0
@@ -55,12 +61,14 @@ do
         then
             echo "$version"
             echo "$help"
+            echo "$contact"
             exit
             
         # print script version
         elif [[ $1 == "--version" || $1 == "-v" ]]
         then
             echo "$version"
+            echo "$contact"
             exit
             
         # run as sudo

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-apache version 1.6
+him-apache version 1.7
     script to set apache folder permission from him-nyit.ddns.net
 "
 help="
@@ -21,6 +21,11 @@ OPTIONS:
 
 The options will be processed in entered order.
 "
+contact="
+Contact for bug report, suggestion, and other information.
+    EMAIL: him.nyit@gmail.com
+    WEBSITE: http://him-nyit.ddns.net
+"
 cont=1
 grps=1
 name=""
@@ -38,12 +43,14 @@ do
         then
             echo "$version"
             echo "$help"
+            echo "$contact"
             exit
             
         # print script version
         elif [[ $1 == "--version" || $1 == "-v" ]]
         then
             echo "$version"
+            echo "$contact"
             exit
             
         # set group name
