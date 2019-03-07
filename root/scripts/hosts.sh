@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-hosts version 1.5
+him-hosts version 1.6
     intranet host name script from him-nyit.ddns.net
 "
 help="
@@ -12,7 +12,7 @@ OPTIONS:
         : bring this help topic
     -v --version
         : display script version
-    -h --host filename
+    -o --host filename
         : specify file with hostnames
     -d --download filename
         : download and use remote hostnames
@@ -52,7 +52,7 @@ do
             exit
             
         # specify host file
-        elif [[ $1 == "--host" || $1 == "-h" ]]
+        elif [[ $1 == "--host" || $1 == "-o" ]]
         then
             host=0
             shift
