@@ -169,27 +169,20 @@ do
         current=$1
         shift
         
-        if [[ $exec != 1 ]]
+        if [[ $literal == 1 ]]
         then
-            if [[ $https == 1 ]]
-            then
-                wget him-nyit.ddns.net/scripts/$current -O $current
-            else
-                wget https://him-nyit.ddns.net/scripts/$current -O $current
-            fi
-            
+            current="$current.sh"
+        fi
+        
+        if [[ $https == 1 ]]
+        then
+            wget him-nyit.ddns.net/scripts/$current -O $current
         else
-            if [[ $literal == 1 ]]
-            then
-                current="$current.sh"
-            fi
-            
-            if [[ $https == 1 ]]
-            then
-                wget him-nyit.ddns.net/scripts/$current -O $current
-            else
-                wget https://him-nyit.ddns.net/scripts/$current -O $current
-            fi
+            wget https://him-nyit.ddns.net/scripts/$current -O $current
+        fi
+        
+        if [[ $exec == 1 ]]
+        then
             chmod +x $current
             
             if [[ $pass == 1 ]]
