@@ -14,6 +14,8 @@ OPTIONS:
         : display script version
     -s --sudo
         : run with elevated priviledge
+    --https
+        : use https
 
 The options will be processed in entered order.
 "
@@ -23,6 +25,7 @@ Contact for bug report, suggestion, and other information.
     WEBSITE: http://him-nyit.ddns.net
 "
 cont=1
+https=1
 
 while [[ $cont == 1 || $# > 0 ]]
 do
@@ -55,6 +58,12 @@ do
                 exit
             fi
             
+        # download as https
+        elif [[ $1 == "--https"]]
+        then
+            https=0
+            shift
+            
         # unrecognized option
         else
             echo "unrecognized option: $1"
@@ -66,7 +75,12 @@ do
     # execute command
     else
         cont=0
-        wget him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
+        if [[ $https == 1 ]]
+        then
+            wget him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
+        else
+            wget https://him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
+        fi
         chmod +x him-get.sh
         exit
     fi
