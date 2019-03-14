@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.17
+him-ssh version 1.18
     ssh command executer from him-nyit.ddns.net
 "
 help="
