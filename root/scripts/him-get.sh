@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-get version 1.23
+him-get version 1.24
     script executer from him-nyit.ddns.net
 "
 help="
