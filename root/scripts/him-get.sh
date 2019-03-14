@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-get version 1.22
+him-get version 1.23
     script executer from him-nyit.ddns.net
 "
 help="
@@ -18,14 +18,24 @@ OPTIONS:
         : update him-get script
     -e --execute
         : execute as script
-          This is default option.
-          When this option is selected, .sh extension is assumed.
+          This is default option when -e or -n is not specified.
     -n --nothing
         : do not execute script
-    -k --keep
-        : keep files
     -r --remove
         : remove files
+          This is default option when -k or -r is not specified.
+    -k --keep
+        : keep files
+    -c --script
+        : assume .sh extension
+          This is default option when -c or -l is not specified.
+    -l --literal
+        : do not assume any file extension
+    --http
+        : download using http
+          This is default option when --http or --https is not specified.
+    --https
+        : download using https
     -p --pass
         : pass all following but except next argument as parameter of next argument
 
@@ -39,6 +49,8 @@ Contact for bug report, suggestion, and other information.
 cont=1
 exec=1
 keep=1
+literal=1
+https=1
 pass=1
 
 while [[ $cont == 1 || $# > 0 ]]
@@ -102,16 +114,40 @@ do
             exec=0
             shift
             
+        # remove file
+        elif [[ $1 == "--remove" || $1 == "-r" ]]
+        then
+            keep=1
+            shift
+            
         # keep file
         elif [[ $1 == "--keep" || $1 == "-k" ]]
         then
             keep=0
             shift
             
-        # remove file
-        elif [[ $1 == "--remove" || $1 == "-r" ]]
+        # assume .sh extension
+        elif [[ $1 == "--script" || $1 == "-c" ]]
         then
-            keep=1
+            literal=1
+            shift
+            
+        # do not assume file extension
+        elif [[ $1 == "--literal" || $1 == "-l" ]]
+        then
+            literal=0
+            shift
+            
+        # download as http
+        elif [[ $1 == "--http"]]
+        then
+            https=1
+            shift
+            
+        # download as https
+        elif [[ $1 == "--https"]]
+        then
+            https=0
             shift
             
         # pass remaining argument
@@ -135,12 +171,25 @@ do
         
         if [[ $exec != 1 ]]
         then
-            wget him-nyit.ddns.net/scripts/$current -O $current
+            if [[ $https == 1 ]]
+            then
+                wget him-nyit.ddns.net/scripts/$current -O $current
+            else
+                wget https://him-nyit.ddns.net/scripts/$current -O $current
+            fi
             
         else
-            current="$current.sh"
+            if [[ $literal == 1 ]]
+            then
+                current="$current.sh"
+            fi
             
-            wget him-nyit.ddns.net/scripts/$current -O $current
+            if [[ $https == 1 ]]
+            then
+                wget him-nyit.ddns.net/scripts/$current -O $current
+            else
+                wget https://him-nyit.ddns.net/scripts/$current -O $current
+            fi
             chmod +x $current
             
             if [[ $pass == 1 ]]
@@ -158,3 +207,4 @@ do
         fi
     fi
 done
+
