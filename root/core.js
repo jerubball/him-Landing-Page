@@ -15,3 +15,11 @@ function setProtocol(proto) {
         window.location.protocol = proto;
     }
 }
+
+function toggleProtocol() {
+    if (window.location.protocol == "http:") {
+        window.location.protocol = "https:";
+    } else if (window.location.protocol == "https:") {
+        window.location.protocol = "http:";
+    }
+}
