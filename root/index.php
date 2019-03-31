@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124973345-1"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137014432-1"></script>
@@ -22,7 +21,7 @@
     gtag('config', 'UA-124973345-1');
     gtag('config', 'UA-137014432-1');
   </script>
-  
+  <!-- Global tag -->
   <title>Landing Page</title>
   <link rel="shortcut icon" href="/favicon-alt.ico">
   <link rel="stylesheet" href="/wireframe.css">
@@ -30,6 +29,9 @@
 </head>
 
 <body onload="setTitle('Landing Page')">
+<?php
+  include 'test.html';
+?>
   <nav class="navbar navbar-expand-md bg-secondary navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="/">NYIT-him</a>
@@ -39,7 +41,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="https://him-nyit.ddns.net/">This Site</a>
+            <a class="nav-link" href="https://">This Site</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="ftp://him-nyit.ddns.net/">FTP Site</a>
