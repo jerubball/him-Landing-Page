@@ -1,4 +1,4 @@
-# him-NYIT Landing Page.
+# him Landing Page.
 
 This repository serves as synchronization method for my personal website.
 
@@ -6,4 +6,5 @@ This repository serves as synchronization method for my personal website.
 
 him.nyit@gmail.com
 
+https://hasol.co
 https://him-nyit.ddns.net
