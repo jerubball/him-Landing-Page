@@ -70,8 +70,8 @@
           <h1 class="display-3">Landing Page</h1>
           
 <?php
-  require_once($_SERVER['DOCUMENT_ROOT'].'/test.php');
-  require_once($_SERVER['DOCUMENT_ROOT'].'/test.html');
+  require($_SERVER['DOCUMENT_ROOT'].'/test.php');
+  require($_SERVER['DOCUMENT_ROOT'].'/test.html');
 ?>
         </div>
       </div>
