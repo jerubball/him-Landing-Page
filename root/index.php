@@ -31,6 +31,7 @@
 <body onload="setTitle('Landing Page')">
 <?php
   include '/test.php';
+  echo 'item';
 ?>
   <nav class="navbar navbar-expand-md bg-secondary navbar-dark">
     <div class="container">
