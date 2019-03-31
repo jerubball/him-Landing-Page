@@ -70,7 +70,7 @@
           <h1 class="display-3">Landing Page</h1>
           
 <?php
-  include '/test.html';
+  include('/test.html');
 ?>
         </div>
       </div>
