@@ -1,4 +1,4 @@
-# him Landing Page.
+# Landing Page for hasol.co and him-NYIT
 
 This repository serves as synchronization method for my personal website.
 
