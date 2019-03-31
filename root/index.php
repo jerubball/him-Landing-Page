@@ -29,11 +29,6 @@
 </head>
 
 <body onload="setTitle('Landing Page')">
-<?php
-  include '/test.php';
-  echo 'item';
-?>
-  iiii
   <nav class="navbar navbar-expand-md bg-secondary navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="/">NYIT-him</a>
@@ -73,6 +68,12 @@
       <div class="row">
         <div class="col-md-12">
           <h1 class="display-3">Landing Page</h1>
+          
+<?php
+  include '/test.php';
+  echo 'item';
+?>
+  iiii
         </div>
       </div>
     </div>
