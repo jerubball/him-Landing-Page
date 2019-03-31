@@ -1,1 +1,3 @@
-<a href="https://google.com/">testing</a>
+<?php
+echo "test";
+?>
