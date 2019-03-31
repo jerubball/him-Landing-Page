@@ -1,3 +1,2 @@
-
-
-123232323
+<?php
+echo $_SERVER['DOCUMENT_ROOT'];
