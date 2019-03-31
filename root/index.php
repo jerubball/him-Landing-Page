@@ -30,7 +30,7 @@
 
 <body onload="setTitle('Landing Page')">
 <?php
-  include 'test.html';
+  include 'test.php';
 ?>
   <nav class="navbar navbar-expand-md bg-secondary navbar-dark">
     <div class="container">
