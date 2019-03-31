@@ -70,10 +70,8 @@
           <h1 class="display-3">Landing Page</h1>
           
 <?php
-  include '/test.php';
-  echo 'item';
+  include '/test.html';
 ?>
-  iiii
         </div>
       </div>
     </div>
