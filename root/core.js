@@ -10,8 +10,10 @@ function setTitle(text) {
     document.title = prefix + ": " + text;
 }
 
-function setProtocol(proto) {
-    if (window.location.protocol != proto) {
+function setProtocol(proto, root) {
+    if (root) {
+        window.location.href = proto + "//" + window.location.hostname;
+    } else if (window.location.protocol != proto) {
         window.location.protocol = proto;
     }
 }
