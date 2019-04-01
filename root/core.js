@@ -25,3 +25,11 @@ function toggleProtocol() {
         window.location.protocol = "http:";
     }
 }
+
+function setHostname(name, root) {
+    if (root) {
+        window.location.href = window.location.proto + "//" + name;
+    } else if (window.location.hostname != name) {
+        window.location.hostname = name;
+    }
+}
