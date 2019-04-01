@@ -38,7 +38,7 @@
             for (var i = 0; i < tables.length; i++) {
                 var mission = tables[i].dataset["mission"], element = document.getElementById(mission);
                 var all = tables[i].getElementsByTagName(tag);
-                    if (mission == "location") {
+                if (mission == "location") {
                     var state = true;
                     for (var j = 0; state && j < all.length; j++) {
                         if (all[j].type == type && all[j].dataset["mission"] == mission && all[j].dataset["tower"] == tower) {
@@ -87,7 +87,7 @@
     $width="150";
     $height="100";
     $offset = 4;
-    $cutoff = 6;
+    $cutoff = 5;
     $collection = [
         ["mission" => "nounbalance", "description" => "편식은 금물 : 미네랄 300", "preface" => "(★ <b>N</b> 종류별로 1기씩 ★)<br>",
          "data" => [
