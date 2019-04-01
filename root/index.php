@@ -11,40 +11,9 @@
 </head>
 
 <body onload="setTitle('Landing Page')">
-  <nav class="navbar navbar-expand-md bg-secondary navbar-dark">
-    <div class="container">
-      <a class="navbar-brand" href="/">NYIT-him</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="https://">This Site</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="ftp://him-nyit.ddns.net/">FTP Site</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://sites.nyit.edu/him/home">Google Sites</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/jerubball">GitHub</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="https://www.nyit.edu/">NYIT</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="mailto:him.nyit@gmail.com">Contact me</a>
-          </li>
-        </ul>
-        <form class="form-inline m-0">
-          <input class="form-control mr-2" type="text" placeholder="Search">
-          <button class="btn btn-primary" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
+?>
   <div class="p-4">
     <div class="container">
       <div class="row">
