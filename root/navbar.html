@@ -2,7 +2,17 @@
   <!-- Beginning of Global Navigation Bar -->
   <nav class="navbar navbar-expand-md bg-secondary navbar-dark">
     <div class="container">
-      <div id="navbar-brand-carousel" class="carousel slide" data-ride="carousel" data-interval="2500" style="width:8em;">
+      <style>
+        .carousel-item-next:not(.carousel-item-left),
+        .active.carousel-item-right {
+          transform: translateY(100%);
+        }
+        .carousel-item-prev:not(.carousel-item-right),
+        .active.carousel-item-left {
+          transform: translateY(-100%);
+        }
+      </style>
+      <div id="navbar-brand-carousel" class="carousel slide" data-ride="carousel" data-interval="3000" style="width:6.5em;">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <a class="navbar-brand" href="/">hasol.co</a>
