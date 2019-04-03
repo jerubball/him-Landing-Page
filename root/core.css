@@ -1,0 +1,19 @@
+
+body {
+  display: flex;
+  flex-flow: column;
+}
+
+.body {
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.carousel-item-next:not(.carousel-item-left),
+.vertical.active.carousel-item-right {
+  transform: translateY(100%);
+}
+.carousel-item-prev:not(.carousel-item-right),
+.vertical.active.carousel-item-left {
+  transform: translateY(-100%);
+}
