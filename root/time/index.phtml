@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html onclick="toggleFullscreen()">
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <title id="title">Time</title>
+</head>
+<body class="main" id="main" onload="setTitle('About'); init();">
+  <div class="box" id="box">
+    <p class="text" id="text"></p>
+  </div>
+</body>
