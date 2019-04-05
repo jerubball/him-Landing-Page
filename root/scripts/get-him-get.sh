@@ -59,7 +59,7 @@ do
             fi
             
         # download as https
-        elif [[ $1 == "--https"]]
+        elif [[ $1 == "--https" ]]
         then
             https=0
             shift

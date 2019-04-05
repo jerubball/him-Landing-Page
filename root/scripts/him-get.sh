@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-get version 1.24
+him-get version 1.25
     script executer from him-nyit.ddns.net
 "
 help="
@@ -139,13 +139,13 @@ do
             shift
             
         # download as http
-        elif [[ $1 == "--http"]]
+        elif [[ $1 == "--http" ]]
         then
             https=1
             shift
             
         # download as https
-        elif [[ $1 == "--https"]]
+        elif [[ $1 == "--https" ]]
         then
             https=0
             shift
