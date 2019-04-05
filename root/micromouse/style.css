@@ -1,0 +1,4 @@
+
+.embed-responsive-custom::before {
+    padding-top: 80vh;
+}
