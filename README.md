@@ -6,6 +6,10 @@ This repository serves as synchronization method for my personal website.
 
 him.nyit@gmail.com
 
+contact@hasol.co
+
 https://hasol.co
 
 https://him-nyit.ddns.net
+
+https://nyit-him.ddns.net
