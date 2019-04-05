@@ -2,10 +2,14 @@
 function setTitle(text) {
     var host = window.location.hostname;
     var prefix = "";
-    if (host.includes("hasol.co")) {
+    if (host.includes("localhost")) {
+        prefix = "localhost";
+    } else if (host.includes("hasol.co")) {
         prefix = "hasol.co";
     } else if (host.includes("ddns.net")) {
         prefix = "him-NYIT";
+    } else {
+        prefix = "him";
     }
     document.title = prefix + ": " + text;
 }
