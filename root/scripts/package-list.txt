@@ -50,6 +50,10 @@ perl
 ruby
 racket
 smlnj
+basic256
+brandy
+bwbasic
+yabasic
 wine-stable
 wine32
 wine64
