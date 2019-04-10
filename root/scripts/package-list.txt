@@ -121,4 +121,5 @@ ethtool
 expat
 certbot
 android-sdk
+ibus
 
