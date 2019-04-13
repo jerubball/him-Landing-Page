@@ -4,6 +4,7 @@ dpkg
 yum
 perlbrew
 linuxbrew-wrapper
+aptitude
 tree
 htop
 hwinfo
