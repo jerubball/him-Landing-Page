@@ -5,6 +5,7 @@ yum
 perlbrew
 linuxbrew-wrapper
 aptitude
+snapd
 tree
 htop
 hwinfo
