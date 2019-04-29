@@ -128,4 +128,6 @@ expat
 certbot
 android-sdk
 ibus
-
+wakeonlan
+gwakeonlan
+etherwake
