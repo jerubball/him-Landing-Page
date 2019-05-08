@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.18
+him-ssh version 1.19
     ssh command executer from him-nyit.ddns.net
 "
 help="
@@ -133,7 +133,10 @@ do
                 if [[ "${host:0:1}" != "#" ]]
                 then
                     echo "Connecting to $name$host"
+                    PS-copy="$PS1"
+                    PS1="\[\e]0;ssh $name$host\a\]"
                     ssh -t $name$host $@
+                    PS1="$PS-copy"
                 fi
             done
             shift $#
