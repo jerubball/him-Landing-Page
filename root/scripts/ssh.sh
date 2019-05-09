@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-ssh version 1.21
+him-ssh version 1.22
     ssh command executer from him-nyit.ddns.net
 "
 help="
@@ -133,10 +133,10 @@ do
                 if [[ "${host:0:1}" != "#" ]]
                 then
                     echo "Connecting to $name$host"
-                    echo -e "\essh $name$host\a"
+                    echo -e "\e]0;ssh $name$host\a"
                     #PS1="\[\e]0;ssh $name$host\a\]"
                     ssh -t $name$host $@
-                    echo -e "\e\u@\h: \w\a"
+                    echo -e "\e]0;\u@\h: \w\a"
                 fi
             done
             shift $#
