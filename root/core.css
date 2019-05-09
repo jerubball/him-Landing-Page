@@ -9,11 +9,11 @@ body {
   flex-grow: 1;
 }
 
-.carousel-item-next:not(.carousel-item-left),
+.vertical.carousel-item-next:not(.carousel-item-left),
 .vertical.active.carousel-item-right {
   transform: translateY(100%);
 }
-.carousel-item-prev:not(.carousel-item-right),
+.vertical.carousel-item-prev:not(.carousel-item-right),
 .vertical.active.carousel-item-left {
   transform: translateY(-100%);
 }
