@@ -22,6 +22,17 @@ function setProtocol(proto, root) {
     }
 }
 
+function getSSLmode() {
+    return window.location.protocol == "https:";
+}
+
+function setSSLindicator(item) {
+    if (getSSLmode()) {
+        item.classList.add("active");
+        item.setAttribute("aria-pressed", true);
+    }
+}
+
 function toggleProtocol() {
     if (window.location.protocol == "http:") {
         window.location.protocol = "https:";
