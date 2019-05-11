@@ -1,6 +1,6 @@
 /*!
 * Wireframe Pingendo template (https://templates.pingendo.com)
-* Based on: Bootstrap v4.0.0 (https://getbootstrap.com)
+* Based on: Bootstrap v4.1.3 (https://getbootstrap.com)
 * Copyright 2014-2018 Pingendo (https://pingendo.com)
 */
  
@@ -37,24 +37,41 @@ $body-color: #333;
 $body-color-inverse: invert($body-color) !default;
 $link-color: #8e8e8e;
 
-
-
-
 // Fonts
 $font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $headings-font-family: $font-family-base;
 $display-font-family: $font-family-base;
 $font-weight-normal: 200;
 $headings-font-weight: 200;
+$headings-font-weight: $font-weight-normal;
 $lead-font-size:   1.30rem;
-
+$lead-font-weight:   300;
 $spacer: 1.5rem;
+$font-size-base: 1rem;
+$font-weight-light: 300;
+$font-weight-bold: 700;
+$font-weight-base: $font-weight-normal;
+$line-height-base: 1.5;
+$headings-line-height: 1.2;
 
-@import 'bootstrap-4.0.0';
+@import 'bootstrap-4.1.3';
 
  
 html,body {
    height:100%;
+}
+
+// Color yiq
+@each $name, $value in $theme-colors {
+  .bg-#{$name} {
+    color: color-yiq($value);
+   	input::placeholder {
+      color: transparentize(color-yiq($value), .2);
+    }
+    .input-group-text {
+      color: color-yiq($value);
+    }
+  }
 }
 
 .box-shadow {
@@ -63,85 +80,4 @@ html,body {
 
 .cover {
 	min-height:100%;
-}
-
-
-.bg-gradient {
-  overflow: hidden;
-  color: color-yiq(map-get($theme-colors, 'primary'));
-  background: linear-gradient(-30deg, theme-color("secondary") 0%, theme-color("primary") 50%, theme-color("primary") 100%);
-}
-
-.filter-dark {
-  overflow: hidden;
-  position: relative;
-  color: color-yiq(map-get($theme-colors, 'dark'));
-	&:before {
-    position: absolute;
-    top:0px;
-    left:0px;
-    width:100%;
-    height: 100%;
-    content: ' ';
-    background: rgba(map-get($theme-colors, 'dark'), 0.75);
-  }
-}
-
-.filter-light {
-  overflow: hidden;
-  position: relative;
-  color: color-yiq(map-get($theme-colors, 'light'));
-	&:before {
-    position: absolute;
-    top:0px;
-    left:0px;
-    width:100%;
-    height: 100%;
-    content: ' ';
-    background: rgba(map-get($theme-colors, 'light'),0.75);
-  }
-}
-
-.filter-color {
-  overflow: hidden;
-  position: relative;
-  color: color-yiq(map-get($theme-colors, 'primary'));
-	&:before {
-    position: absolute;
-    top:0px;
-    left:0px;
-    width:100%;
-    height: 100%;
-    content: ' ';
-    background: rgba(map-get($theme-colors, 'primary'), 0.75);
-  }
-}
-
-.filter-gradient {
-  overflow: hidden;
-  position: relative;
-  color: color-yiq(map-get($theme-colors, 'primary'));
-	&:before {
-    position: absolute;
-    top:0px;
-    left:0px;
-    width:100%;
-    height: 100%;
-    content: ' ';
-    background: linear-gradient(-30deg, transparentize(theme-color("secondary"), 0.1) 0%, transparentize(theme-color("primary"), 0.1) 50%, transparentize(theme-color("primary"), 0.05) 100%);
-  }
-}
-
-.filter-fade-in {
-  overflow: hidden;
-  position: relative;
-  &:before {
-    position: absolute;
-    top:0px;
-    left:0px;
-    width:100%;
-    height: 100%;
-    content: ' ';
-    background: linear-gradient($body-bg, transparentize($body-bg, 0.2),transparentize($body-bg, 0.9),transparentize($body-bg, 1));
-	}
 }
