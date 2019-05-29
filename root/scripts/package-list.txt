@@ -17,6 +17,7 @@ screen
 grep
 ed
 vim
+vim-gui-common
 emacs
 nano
 rsync
@@ -133,3 +134,4 @@ gwakeonlan
 etherwake
 netbeans
 codeblocks
+geany
