@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-get version 1.25
+him-get version 1.26
     script executer from him-nyit.ddns.net
 "
 help="
@@ -16,6 +16,8 @@ OPTIONS:
         : run with elevated priviledge
     -u --update
         : update him-get script
+    -i --install
+        : install him-get alias to ~/.bash_alias
     -e --execute
         : execute as script
           This is default option when -e or -n is not specified.
@@ -100,6 +102,12 @@ do
             cd $(dirname "$0")
             wget him-nyit.ddns.net/scripts/him-get.sh -O him-get.sh
             chmod +x him-get.sh
+            exit
+            
+        # add him-get alias and exit
+        elif [[ $1 == "--install" || $1 == "-i" ]]
+        then
+            "alias him-get='$0'" >> ~/.bash_alias
             exit
             
         # execute script
