@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-get version 1.26
+him-get version 1.27
     script executer from him-nyit.ddns.net
 "
 help="
@@ -107,7 +107,7 @@ do
         # add him-get alias and exit
         elif [[ $1 == "--install" || $1 == "-i" ]]
         then
-            "alias him-get='$0'" >> ~/.bash_alias
+            echo "alias him-get='$0'" >> ~/.bash_aliases
             exit
             
         # execute script
