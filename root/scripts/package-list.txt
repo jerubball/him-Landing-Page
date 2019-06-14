@@ -135,3 +135,4 @@ etherwake
 netbeans
 codeblocks
 geany
+rename
