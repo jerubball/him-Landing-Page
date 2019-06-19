@@ -1,1 +1,46 @@
+<?php
+$arr = array_keys($_GET);
+if (sizeof($arr) > 0 && $arr[0] == 'r') {
+  header('Location: /');
+  exit();
+}
+?>
+<!DOCTYPE html>
+<html>
 
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <title>URL shortening &amp; redirect</title>
+</head>
+
+<body onload="setTitle('URL shortening &amp; redirect')">
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
+?>
+
+<div class="body">
+  <div class="p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="">URL shortening &amp; redirect</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="">Create new URL.</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
