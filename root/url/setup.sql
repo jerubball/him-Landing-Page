@@ -1,3 +1,6 @@
+
+-- drop database if exists Website;
+
 create database if not exists Website;
 
 use Website;
