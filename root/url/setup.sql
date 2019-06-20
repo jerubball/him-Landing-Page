@@ -1,6 +1,6 @@
-create database if not exists website;
+create database if not exists Website;
 
-use website;
+use Website;
 
 -- drop table if exists url;
 
