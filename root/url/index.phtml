@@ -1,9 +1,5 @@
 <?php
-$arr = array_keys($_GET);
-if (sizeof($arr) > 0 && $arr[0] == 'r') {
-  header('Location: /');
-  exit();
-}
+  require_once('redirect.php');
 ?>
 <!DOCTYPE html>
 <html>
