@@ -2,14 +2,18 @@ create database if not exists website;
 
 use website;
 
+-- drop table if exists url;
+
 create table if not exists url (
   url  varchar(10)  primary key,
-  redirect varchar(100),
-  created datetime,
-  visited integer
+  redirect  varchar(100)  not null,
+  created  datetime,
+  expires  datetime,
+  visited  integer  not null  default 0
 );
 
 -- alter table url modify url varchar(10) primary key;
--- alter table url modify redirect varchar(100);
+-- alter table url modify redirect varchar(100) not null;
 -- alter table url modify created datetime;
--- alter table url modify visited integer;
+-- alter table url modify expires datetime;
+-- alter table url modify visited integer not null default 0;
