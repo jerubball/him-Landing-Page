@@ -1,49 +1,49 @@
 
 const setTitle = function(text) {
     var host = window.location.hostname;
-    var prefix = "";
-    if (host.includes("localhost")) {
-        prefix = "localhost";
-    } else if (host.includes("hasol.co")) {
-        prefix = "hasol.co";
-    } else if (host.includes("ddns.net")) {
-        prefix = "him-NYIT";
+    var prefix = '';
+    if (host.includes('localhost')) {
+        prefix = 'localhost';
+    } else if (host.includes('hasol.co')) {
+        prefix = 'hasol.co';
+    } else if (host.includes('ddns.net')) {
+        prefix = 'him-NYIT';
     } else {
-        prefix = "him";
+        prefix = 'him';
     }
-    document.title = prefix + ": " + text;
+    document.title = prefix + ': ' + text;
 }
 
 const setProtocol = function(proto, root) {
     if (root) {
-        window.location.href = proto + "//" + window.location.hostname;
+        window.location.href = proto + '//' + window.location.hostname;
     } else if (window.location.protocol != proto) {
         window.location.protocol = proto;
     }
 }
 
 const getSSLmode = function() {
-    return window.location.protocol == "https:";
+    return window.location.protocol == 'https:';
 }
 
 const setSSLindicator = function(item) {
     if (getSSLmode()) {
-        item.classList.add("active");
-        item.setAttribute("aria-pressed", true);
+        item.classList.add('active');
+        item.setAttribute('aria-pressed', true);
     }
 }
 
 const toggleProtocol = function() {
-    if (window.location.protocol == "http:") {
-        window.location.protocol = "https:";
-    } else if (window.location.protocol == "https:") {
-        window.location.protocol = "http:";
+    if (window.location.protocol == 'http:') {
+        window.location.protocol = 'https:';
+    } else if (window.location.protocol == 'https:') {
+        window.location.protocol = 'http:';
     }
 }
 
 const setHostname = function(name, root) {
     if (root) {
-        window.location.href = window.location.protocol + "//" + name;
+        window.location.href = window.location.protocol + '//' + name;
     } else if (window.location.hostname != name) {
         window.location.hostname = name;
     }

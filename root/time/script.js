@@ -134,9 +134,9 @@ const convertHTML = function(input, value) {
     return value;
 }
 
-const mode = parameter.get('mode') == null ? "" : parameter.get('mode');
-const space = convertHTML(parameter.get('space'), "");
-const line = convertHTML(parameter.get('line'), "<br>");
+const mode = parameter.get('mode') == null ? '' : parameter.get('mode');
+const space = convertHTML(parameter.get('space'), '');
+const line = convertHTML(parameter.get('line'), '<br>');
 const timestamp = convertTime(parameter.get('time'));
 const timefactor = convertUnit(parameter.get('unit'));
 const timelapse = convertSpan(parameter.get('span'), timestamp) + timestamp;
@@ -148,7 +148,7 @@ const locale = 'en-US';
 const numberFormat = function(number, size) {
     var str = number.toString();
     while (str.length < size) {
-        str = "0" + str;
+        str = '0' + str;
     }
     return str;
 }
@@ -224,36 +224,36 @@ const update = function() {
 const init = function() {
     var updatefunction = update();
     var timer = setInterval(function() {
-        document.getElementById("text").innerHTML = updatefunction(new Date());
+        document.getElementById('text').innerHTML = updatefunction(new Date());
     }, 250);
     
-    var font = "5vw";
+    var font = '5vw';
     
     if (mode == 'unix' || mode == 'unix10') {
         if (base > 8) {
-            font = "9vw";
+            font = '9vw';
         } else if (base > 4) {
-            font = "8vw";
+            font = '8vw';
         } else if (base > 2) {
-            font = "7vw";
+            font = '7vw';
         } else {
-            font = "4vw";
+            font = '4vw';
         }
     } else if (mode == 'countdown' || mode == 'countup') {
         if (timefactor > 3E6) {
-            font = "9vw";
+            font = '9vw';
         } else if (timefactor > 3E4) {
-            font = "8vw";
+            font = '8vw';
         } else {
-            font = "7vw";
+            font = '7vw';
         }
     } else if (mode == 'simple') {
-        font = "7vw";
+        font = '7vw';
     } else if (mode == 'plain') {
-        font = "7vw";
+        font = '7vw';
     } else {
-        font = "5vw";
+        font = '5vw';
     }
     
-    document.getElementById("text").style.fontSize = font;
+    document.getElementById('text').style.fontSize = font;
 }

@@ -36,14 +36,14 @@ const submitForm = function() {
     var main = document.getElementById('main');
     var wait = document.getElementById('wait');
     
-    if (url.value == "") {
-        failAction("Please enter URL.");
-    } else if (url.value.charAt(0) != "/" && !isValidURL(url.value)) {
-        failAction("Please enter valid URL.");
+    if (url.value == '') {
+        failAction('Please enter URL.');
+    } else if (url.value.charAt(0) != '/' && !isValidURL(url.value)) {
+        failAction('Please enter valid URL.');
     } else {
-        var expireParameter = "";
-        if (expires.value != "") {
-            expireParameter = "&expires=" + encodeURIComponent(expires.value);
+        var expireParameter = '';
+        if (expires.value != '') {
+            expireParameter = '&expires=' + encodeURIComponent(expires.value);
         }
         var xmlhttp = new XMLHttpRequest ();
         xmlhttp.onreadystatechange = function() {
@@ -57,18 +57,18 @@ const submitForm = function() {
                             failAction(response);
                         }
                     } else {
-                        failAction("Unknown error occurred.");
+                        failAction('Unknown error occurred.');
                     }
                     console.log(this.responseText);
                 } else {
-                    failAction("Internal server error occurred.");
+                    failAction('Internal server error occurred.');
                 }
             } else {
                 main.hidden = true;
                 wait.hidden = false;
             }
         };
-        xmlhttp.open ("GET", "create.php?url=" + encodeURIComponent(url.value) + expireParameter, true);
+        xmlhttp.open ('GET', 'create.php?url=' + encodeURIComponent(url.value) + expireParameter, true);
         xmlhttp.send ();
     }
 }
@@ -78,7 +78,7 @@ const backToForm = function() {
     var fail = document.getElementById('fail');
     var failBody = document.getElementById('fail-body');
     fail.hidden = true;
-    failBody.innerHTML = "";
+    failBody.innerHTML = '';
     main.hidden = false;
 }
 
@@ -90,7 +90,7 @@ const copyToClipboard = function() {
         restore[index] = selection.getRangeAt(index);
     }
     selection.selectAllChildren(successBody);
-    document.execCommand("copy");
+    document.execCommand('copy');
     selection.removeAllRanges();
     for (var index = 0; index < restore.length; index++) {
         selection.addRange(restore[index]);
