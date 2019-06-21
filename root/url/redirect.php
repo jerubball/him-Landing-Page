@@ -18,15 +18,23 @@
     } else {
       $url_key = $db_connection->real_escape_string($param_keys[0]);
       //$db_query = 'select * from Website.url where url = "'.$url_key.'"';
-      //$db_query = 'select redirect, visited from Website.url where url = "'.$url_key.'" and (created is null or created < now()) and (expires is null or expires > now())';
-      $db_query = 'select redirect, visited, (created is null or created < now()) as created, (expires is null or expires > now()) as expires from Website.url where url = "'.$url_key.'"';
+      //$db_query = 'select redirect, visited from Website.url where url = "'.$url_key.'" and (created is null or created < now()) and (expires is null or expires > now()) and enabled = true and reserved = false';
+      $db_query = 'select redirect, visited, (created is null or created < now()) as created, (expires is null or expires > now()) as expires, enabled, reserved from Website.url where url = "'.$url_key.'"';
       $db_answer = $db_connection->query($db_query);
       
       if ($db_answer->num_rows > 0) {
         // result found. try redirection.
         $db_array = $db_answer->fetch_assoc();
         
-        if ($db_array['created'] == '0') {
+        if ($db_array['reserved'] == '1') {
+          // reserved keyword.
+          $error = true;
+          $message = 'Reserved URL.';
+        } elseif ($db_array['disabled'] == '0') {
+          // disabled url.
+          $error = true;
+          $message = 'Disabled URL.';
+        } elseif ($db_array['created'] == '0') {
           // created date is future.
           $error = true;
           $message = 'Invalid creation date.';
@@ -55,4 +63,3 @@
     }
   }
 ?>
-
