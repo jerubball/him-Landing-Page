@@ -93,7 +93,6 @@ const submitForm = function() {
                     } else {
                         failAction('Unknown error occurred.');
                     }
-                    console.log(this.responseText);
                 } else {
                     failAction('Internal server error occurred.');
                 }
