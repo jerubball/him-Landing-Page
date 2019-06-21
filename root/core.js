@@ -1,5 +1,5 @@
 
-function setTitle(text) {
+const setTitle = function(text) {
     var host = window.location.hostname;
     var prefix = "";
     if (host.includes("localhost")) {
@@ -14,7 +14,7 @@ function setTitle(text) {
     document.title = prefix + ": " + text;
 }
 
-function setProtocol(proto, root) {
+const setProtocol = function(proto, root) {
     if (root) {
         window.location.href = proto + "//" + window.location.hostname;
     } else if (window.location.protocol != proto) {
@@ -22,18 +22,18 @@ function setProtocol(proto, root) {
     }
 }
 
-function getSSLmode() {
+const getSSLmode = function() {
     return window.location.protocol == "https:";
 }
 
-function setSSLindicator(item) {
+const setSSLindicator = function(item) {
     if (getSSLmode()) {
         item.classList.add("active");
         item.setAttribute("aria-pressed", true);
     }
 }
 
-function toggleProtocol() {
+const toggleProtocol = function() {
     if (window.location.protocol == "http:") {
         window.location.protocol = "https:";
     } else if (window.location.protocol == "https:") {
@@ -41,7 +41,7 @@ function toggleProtocol() {
     }
 }
 
-function setHostname(name, root) {
+const setHostname = function(name, root) {
     if (root) {
         window.location.href = window.location.protocol + "//" + name;
     } else if (window.location.hostname != name) {
@@ -49,7 +49,7 @@ function setHostname(name, root) {
     }
 }
 
-function setFullScreen(state) {
+const setFullScreen = function(state) {
     var current = document.fullscreen || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
     if (state && !current) {
         if (document.documentElement.requestFullscreen) {
@@ -74,7 +74,7 @@ function setFullScreen(state) {
     }
 }
 
-function toggleFullscreen() {
+const toggleFullscreen = function() {
     if (document.fullscreen || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
         if (document.exitFullscreen) {
             document.exitFullscreen();
