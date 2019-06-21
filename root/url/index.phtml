@@ -62,6 +62,14 @@
         </div>
       </div>
     </div>
+    <div class="container" id="wait" hidden>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="">Processing...</h2>
+          <p class="lead" id="wait-body">Please wait.</p>
+        </div>
+      </div>
+    </div>
     <div class="container" id="fail" hidden>
       <div class="row">
         <div class="col-md-6">
@@ -76,7 +84,8 @@
         <div class="col-md-6">
           <h2 class="">Created.</h2>
           <p class="lead" id="success-body"></p>
-          <button type="submit" class="btn btn-primary" id="success-button">Go</button>
+          <button type="submit" class="btn btn-light" id="success-button-copy" onclick="copyToClipboard()">Copy</button>
+          <button type="submit" class="btn btn-primary" id="success-button-go" onclick="goToURL()">Go</button>
         </div>
       </div>
     </div>

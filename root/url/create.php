@@ -18,14 +18,14 @@
         //die ('Connection failed: ' . $db_connection->connect_error);
       } else {
         $charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_';
-        $charsize = sizeof($charset) - 1;
+        $charsize = strlen($charset) - 1;
         
         $url = '';
         $pass = false;
         $length = 5;
         
         while (!$pass) {
-          for ($url = ''; sizeof($url) < $length;) {
+          for ($url = ''; strlen($url) < $length;) {
             $url .= $charset[rand(0, $charsize)];
           }
           
@@ -70,5 +70,10 @@
     $message = 'No parameter given.';
   }
   
-  echo $error.' '.$message;
+  if ($error) {
+    echo 1;
+  } else {
+    echo 0;
+  }
+  echo ' '.$message;
 ?>
