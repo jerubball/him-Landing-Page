@@ -1,5 +1,5 @@
 // set all qualifying CheckBox to state.
-function setCheckBox(tag, type, tower, index, check) {
+const setCheckBox = function(tag, type, tower, index, check) {
     var all = document.getElementsByTagName(tag);
     for (var i = 0; i < all.length; i++) {
         if (all[i].type == type && all[i].dataset["tower"] == tower && all[i].dataset["index"] == index) {
@@ -8,7 +8,7 @@ function setCheckBox(tag, type, tower, index, check) {
     }
 }
 // get CheckBox state from first matching CheckBox.
-function getCheckBox(tag, type, tower, index) {
+const getCheckBox = function(tag, type, tower, index) {
     var all = document.getElementsByTagName(tag);
     for (var i = 0; i < all.length; i++) {
         if (all[i].type == type && all[i].dataset["tower"] == tower && all[i].dataset["index"] == index) {
@@ -17,7 +17,7 @@ function getCheckBox(tag, type, tower, index) {
     }
 }
 // update all mission related radio button.
-function updateRadioButton(tag, type, tower) {
+const updateRadioButton = function(tag, type, tower) {
     var tables = document.getElementsByTagName("TABLE");
     for (var i = 0; i < tables.length; i++) {
         var mission = tables[i].dataset["mission"], element = document.getElementById(mission);
@@ -53,20 +53,20 @@ function updateRadioButton(tag, type, tower) {
     }
 }
 // Toggle all other CheckBox when CheckBox is clicked.
-function toggleCheckBoxClicked(item) {
+const toggleCheckBoxClicked = function(item) {
     var data = item.dataset;
     setCheckBox(item.nodeName, item.type, data["tower"], data["index"], item.checked);
     updateRadioButton(item.nodeName, item.type, data["tower"]);
 }
 // Toggle all matching CheckBox when image is clicked.
-function toggleImageClicked(item) {
+const toggleImageClicked = function(item) {
     var tag = "INPUT", type = "checkbox", data = item.dataset;
     var check = !getCheckBox(tag, type, data["tower"], data["index"]);
     setCheckBox(tag, type, data["tower"], data["index"], check);
     updateRadioButton(tag, type, data["tower"]);
 }
 // Choose between functions.
-function toggleClicked(item) {
+const toggleClicked = function(item) {
     if (item.nodeName == "INPUT" && item.type == "checkbox") {
         toggleCheckBoxClicked(item);
     } else {
