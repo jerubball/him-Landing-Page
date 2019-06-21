@@ -30,6 +30,39 @@ const successAction = function(message) {
     success.hidden = false;
 }
 
+const backToForm = function() {
+    var main = document.getElementById('main');
+    var fail = document.getElementById('fail');
+    var failBody = document.getElementById('fail-body');
+    fail.hidden = true;
+    failBody.innerHTML = '';
+    main.hidden = false;
+}
+
+const copyToClipboard = function() {
+    var successBody = document.getElementById('success-body');
+    var successInfo = document.getElementById('success-info');
+    var successLabel = document.getElementById('success-label');
+    var selection = window.getSelection();
+    var restore = [];
+    for (var index = 0; index < selection.rangeCount; index++) {
+        restore[index] = selection.getRangeAt(index);
+    }
+    selection.selectAllChildren(successBody);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+    for (var index = 0; index < restore.length; index++) {
+        selection.addRange(restore[index]);
+    }
+    successInfo.hidden = false;
+    successLabel.innerHTML = 'Copied to clipboard!';
+}
+
+const goToURL = function() {
+    var successBody = document.getElementById('success-body');
+    window.location.href = successBody.innerHTML;
+}
+
 const submitForm = function() {
     var url = document.getElementById('form-url');
     var expires = document.getElementById('form-expires');
@@ -53,6 +86,7 @@ const submitForm = function() {
                         var response = this.responseText.substring(2);
                         if (this.responseText.charAt(0) == '0') {
                             successAction(window.location.origin + '/url?' + response);
+                            copyToClipboard();
                         } else {
                             failAction(response);
                         }
@@ -71,33 +105,5 @@ const submitForm = function() {
         xmlhttp.open ('GET', 'create.php?url=' + encodeURIComponent(url.value) + expireParameter, true);
         xmlhttp.send ();
     }
-}
-
-const backToForm = function() {
-    var main = document.getElementById('main');
-    var fail = document.getElementById('fail');
-    var failBody = document.getElementById('fail-body');
-    fail.hidden = true;
-    failBody.innerHTML = '';
-    main.hidden = false;
-}
-
-const copyToClipboard = function() {
-    var successBody = document.getElementById('success-body');
-    var selection = window.getSelection();
-    var restore = [];
-    for (var index = 0; index < selection.rangeCount; index++) {
-        restore[index] = selection.getRangeAt(index);
-    }
-    selection.selectAllChildren(successBody);
-    document.execCommand('copy');
-    selection.removeAllRanges();
-    for (var index = 0; index < restore.length; index++) {
-        selection.addRange(restore[index]);
-    }
-}
-
-const goToURL = function() {
-    var successBody = document.getElementById('success-body');
-    window.location.href = successBody.innerHTML;
+    return false;
 }
