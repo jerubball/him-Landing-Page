@@ -32,8 +32,14 @@ const successAction = function(message) {
 
 const backToForm = function() {
     var main = document.getElementById('main');
+    var wait = document.getElementById('wait');
+    var success = document.getElementById('success');
+    var successBody = document.getElementById('success-body');
     var fail = document.getElementById('fail');
     var failBody = document.getElementById('fail-body');
+    wait.hidden = true;
+    success.hidden = true;
+    successBody.innerHTML = '';
     fail.hidden = true;
     failBody.innerHTML = '';
     main.hidden = false;
