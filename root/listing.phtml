@@ -29,14 +29,14 @@
         <div class="col-md-12">
           <h2 class="">Content</h2>
 <?php
-if ($handle = opendir('.')) {
-    while (false !== ($entry = readdir($handle))) {
-        if ($entry != "." && $entry != "..") {
-            echo "$entry\n";
+        if ($handle = opendir('.')) {
+          while (false !== ($entry = readdir($handle))) {
+            if ($entry != "." && $entry != "..") {
+              echo "$entry\n";
+            }
+          }
+          closedir($handle);
         }
-    }
-    closedir($handle);
-}
 ?>
         </div>
       </div>
