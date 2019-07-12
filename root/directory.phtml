@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <title>template</title>
+</head>
+
+<?php
+  $name = str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__).'/';
+?>
+
+<body onload="setTitle('Index of <?php echo $name; ?>')">
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
+?>
+
+<?php
+  if ($dir = opendir('.')) {
+    $table = array();
+    while ($item = readdir($dir)) {
+      if ($item[0] !== '.') {
+        $entry = array();
+        $entry['dir'] = is_dir($item);
+        $entry['name'] = $item;
+        $entry['type'] = filetype($item);
+        $entry['mime'] = mime_content_type($item);
+        $entry['modified'] = filemtime($item);
+        $entry['size'] = $entry['dir'] ? '-' : filesize($item);
+        $table[] = $entry;
+      }
+    }
+    closedir($dir);
+    uasort($table, function($a, $b) {
+      return strnatcasecmp($a['name'], $b['name']);
+    });
+  }
+  function format_name($entry) {
+    return $entry['dir'] ? $entry['name'].'/' : $entry['name'];
+  }
+  function format_type($entry) {
+    return $entry['mime'];
+  }
+  function format_modified($entry) {
+    return date('M d Y, g:i:s a', $entry['modified']);
+  }
+  function format_size($entry) {
+    return $entry['size'];
+  }
+?>
+
+<div class="body">
+  <div class="p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="">Index of <?php echo $name; ?></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+<?php
+  if (!isset($table)) {
+?>
+          <p class="lead">
+            Directory can not be accessed.
+          </p>
+<?php
+  } else {
+?>
+          <table class="table" id="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" onclick="sort(0);">Name</th>
+                <th scope="col" onclick="sort(1);">Type</th>
+                <th scope="col" onclick="sort(2);">Modified</th>
+                <th scope="col" onclick="sort(3);">Size</th>
+              </tr>
+            </thead>
+            <tbody>
+<?php
+    foreach ($table as $entry) {
+?>
+              <tr>
+                <th scope="row" data-data="<?php echo $entry['name']; ?>"><a href="./<?php echo $entry['name']; ?>"><?php echo format_name($entry); ?></a></th>
+                <td data-data="<?php echo $entry['mime']; ?>"><?php echo format_type($entry); ?></td>
+                <td data-data="<?php echo $entry['modified']; ?>"><?php echo format_modified($entry); ?></td>
+                <td data-data="<?php echo $entry['size']; ?>"><?php echo format_size($entry); ?></td>
+              </tr>
+<?php
+    }
+?>
+            </tbody>
+          </table>
+<?php
+  }
+?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
+
+<?php
+/*
+  exec('ls -alF .', $output);
+  exec('ls -1 --group-directories-first', $output);
+  foreach ($output as $item) {
+    $line = exec('file '.$item);
+  }
+  $output = scandir('.');
+  natcasesort($list);
+  $sort = $_GET['sort'];
+  $desc = isset($_GET['desc']) ? -1 : 1;
+  switch($sort) {
+    case 'type':
+      $func = function($a, $b) {
+        return $desc * strnatcasecmp($a['mime'], $b['mime']);
+      };
+      break;
+    default:
+      $func = function($a, $b) {
+        return $desc * strnatcasecmp($a['name'], $b['name']);
+      };
+      break;
+  }
+*/
+?>
