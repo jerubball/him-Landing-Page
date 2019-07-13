@@ -47,9 +47,92 @@
     return date('M d Y, g:i:s a', $entry['modified']);
   }
   function format_size($entry) {
-    return $entry['size'];
+    if (is_numeric($entry['size'])) {
+      $value = intval($entry['size']);
+      $factor = 0;
+      while ($value >= 1000) {
+        $value /= 1024;
+        $factor++;
+      }
+      $prefix = [' B', ' KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB'];
+      if ($factor == 0) {
+        return $value.$prefix[$factor];
+      } else {
+        return sprintf('%.1f', $value).$prefix[$factor];
+      }
+    } else {
+      return $entry['size'];
+    }
   }
 ?>
+
+<style>
+  th.asc.sorted::after {
+    content: " ";
+  }
+  th.desc.sorted::after {
+    content: " ";
+  }
+  th i.fa {
+    visibility: hidden;
+    display: none;
+  }
+  th.asc.sorted i.fa-sort-up, th.desc.sorted i.fa-sort-down {
+    visibility: visible;
+    display: inline-block;
+  }
+</style>
+
+<script>
+    const strnatcasecmp = function(a, b) {
+        return a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'})
+    }
+    const getData = function(table, column) {
+        var arr = [];
+        for (var i = 1; i < table.rows.length; i++) {
+            arr.push({'index': i, 'data': table.rows[i].children[column].dataset['data']});
+        }
+        return arr;
+    }
+    const getHTML = function(table) {
+        var arr = [];
+        for (var i = 0; i < table.rows.length; i++) {
+            arr.push(table.rows[i].innerHTML);
+        }
+        return arr;
+    }
+    const sort = function(column) {
+        var table = document.getElementById('table');
+        var head = table.rows[0];
+        var cell = head.children[column];
+        var html = getHTML(table);
+        var data = getData(table, column);
+        
+        if (cell.classList.contains('sorted')) {
+            cell.classList.replace('asc', 'desc') || cell.classList.replace('desc', 'asc');
+        } else {
+            for (var i = 0; i < head.children.length; i++) {
+                head.children[i].classList.remove('sorted')
+            }
+            cell.classList.add('sorted');
+        }
+        
+        var mode = 0;
+        if (cell.classList.contains('asc')) {
+            mode = 1;
+        } else if (cell.classList.contains('desc')) {
+            mode = -1;
+        }
+        
+        data.sort(function(a, b) {
+            return mode * strnatcasecmp(a['data'], b['data']);
+        });
+        for (var i = 0; i < data.length; i++) {
+            table.rows[i+1].innerHTML = html[data[i]['index']];
+        }
+        return false;
+    }
+</script>
 
 <div class="body">
   <div class="p-4">
@@ -77,10 +160,10 @@
           <table class="table" id="table">
             <thead class="thead-light">
               <tr>
-                <th scope="col" onclick="sort(0);">Name</th>
-                <th scope="col" onclick="sort(1);">Type</th>
-                <th scope="col" onclick="sort(2);">Modified</th>
-                <th scope="col" onclick="sort(3);">Size</th>
+                <th scope="col" onclick="sort(0);" class="asc sorted">Name <i class="fa fa-sort-up"></i> <i class="fa fa-sort-down"></i></th>
+                <th scope="col" onclick="sort(1);" class="asc">Type <i class="fa fa-sort-up"></i> <i class="fa fa-sort-down"></i></th>
+                <th scope="col" onclick="sort(2);" class="asc">Modified <i class="fa fa-sort-up"></i> <i class="fa fa-sort-down"></i></th>
+                <th scope="col" onclick="sort(3);" class="asc">Size <i class="fa fa-sort-up"></i> <i class="fa fa-sort-down"></i></th>
               </tr>
             </thead>
             <tbody>
