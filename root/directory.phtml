@@ -9,7 +9,15 @@
 </head>
 
 <?php
-  $name = str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__).'/';
+  $location = $_SERVER['DOCUMENT_ROOT'].$_SERVER['REQUEST_URI'];
+  if (!is_dir($location)) {
+    $location = dirname($location);
+  }
+  $name = str_replace($_SERVER['DOCUMENT_ROOT'], '', $location);
+  if ($name[-1] !== '/') {
+    $name .= '/';
+  }
+  chdir($location);
 ?>
 
 <body onload="setTitle('Index of <?php echo $name; ?>')">
