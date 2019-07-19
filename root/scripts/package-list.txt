@@ -136,3 +136,4 @@ netbeans
 codeblocks
 geany
 rename
+inotify-tools
