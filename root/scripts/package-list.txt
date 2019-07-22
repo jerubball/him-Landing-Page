@@ -37,6 +37,8 @@ gcc
 g++
 openjdk-8-jdk
 openjdk-11-jdk
+openjdk-12-jdk
+openjdk-13-jdk
 default-jdk
 python
 python3
