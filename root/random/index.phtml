@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <title>random</title>
+</head>
+
+<body onload="setTitle('random')">
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
+?>
+
+<script>
+    const randomInt = function(min, max) {
+        if (max === undefined) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        } else {
+            return Math.floor(Math.random() * min);
+        }
+    }
+    
+    function() {
+        var content = document.getElementById('content');
+        var charset = 'Il1';
+        var minsize = 10;
+        var maxsize = 20;
+        var size = randomInt(minsize, maxsize);
+        var result = '';
+        for (var i = 0; i < size; i++) {
+            result += charset.charAt(randomInt(charset.length));
+        }
+        content.innerHTML = result;
+    } ();
+</script>
+
+<div class="body">
+  <div class="p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="">Random</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p id="content">
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
