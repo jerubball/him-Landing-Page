@@ -17,6 +17,7 @@
   if ($name[-1] !== '/') {
     $name .= '/';
   }
+  $name = str_replace('//', '/', $name);
   chdir($location);
 ?>
 
