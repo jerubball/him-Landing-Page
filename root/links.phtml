@@ -8,7 +8,7 @@
   <title>Links</title>
 </head>
 
-<body onload="setTitle('Links')">
+<body onload="Core.Window.setTitle('Links')">
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
@@ -35,22 +35,22 @@
           <ul class="">
             <li>
               <h3 class="">
-                <a href="#" onclick="setHostname('hasol.co', true)">hasol.co</a>
+                <a href="#" onclick="Core.Window.setHostname('hasol.co', true)">hasol.co</a>
               </h3>
             </li>
             <li>
               <h3 class="">
-                <a href="#" onclick="setHostname('him-nyit.ddns.net', true)">him-nyit.ddns.net</a>
+                <a href="#" onclick="Core.Window.setHostname('him-nyit.ddns.net', true)">him-nyit.ddns.net</a>
               </h3>
             </li>
             <li>
               <h3 class="">
-                <a href="#" onclick="setHostname('nyit-him.ddns.net', true)">nyit-him.ddns.net</a>
+                <a href="#" onclick="Core.Window.setHostname('nyit-him.ddns.net', true)">nyit-him.ddns.net</a>
               </h3>
             </li>
             <li>
               <h3 class="">
-                <a href="#" onclick="setProtocol('ftp:', true)">FTP site</a>
+                <a href="#" onclick="Core.Window.setProtocol('ftp:', true)">FTP site</a>
               </h3>
             </li>
           </ul>
@@ -119,9 +119,6 @@
             </li>
             <li>
               <a href="/links">Links</a>
-            </li>
-            <li>
-              <a href="/redirect">Redirect</a>
             </li>
             <li>
               <a href="/template">Template</a>

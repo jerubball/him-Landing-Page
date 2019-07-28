@@ -9,7 +9,7 @@
   <title>Landing Page</title>
 </head>
 
-<body onload="setTitle('Landing Page')">
+<body onload="Core.Window.setTitle('Landing Page')">
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
@@ -82,9 +82,9 @@
           <ul class="">
             <li>
               <h2 class="">
-                <a href="#" onclick="setProtocol('https:')">On</a> /
-                <a href="#" onclick="setProtocol('http:')">Off</a> /
-                <a href="#" onclick="toggleProtocol()">Toggle</a>
+                <a href="#" onclick="Core.Window.setProtocol('https:')">On</a> /
+                <a href="#" onclick="Core.Window.setProtocol('http:')">Off</a> /
+                <a href="#" onclick="Core.Window.toggleProtocol()">Toggle</a>
               </h2>
             </li>
           </ul>

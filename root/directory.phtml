@@ -23,7 +23,7 @@
   chdir($location);
 ?>
 
-<body onload="setTitle('Index of <?php echo $name; ?>')">
+<body onload="Core.Window.setTitle('Index of <?php echo $name; ?>')">
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>

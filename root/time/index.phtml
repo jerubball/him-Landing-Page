@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html onclick="toggleFullscreen()">
+<html onclick="Core.Window.toggleFullscreen()">
 <head>
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
@@ -8,7 +8,7 @@
   <script src="script.js"></script>
   <title id="title">Time</title>
 </head>
-<body class="main" id="main" onload="setTitle('Time'); setProtocol('https:'); init();">
+<body class="main" id="main" onload="Core.Window.setTitle('Time'); Core.Window.setProtocol('https:'); init();">
   <div class="box" id="box">
     <p class="text" id="text"></p>
   </div>

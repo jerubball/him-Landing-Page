@@ -8,29 +8,21 @@
   <title>random</title>
 </head>
 
-<body onload="setTitle('random')">
+<body onload="Core.Window.setTitle('random')">
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
 
 <script>
-    const randomInt = function(min, max) {
-        if (max === undefined) {
-            return Math.floor(Math.random() * min);
-        } else {
-            return Math.floor(Math.random() * (max - min)) + min;
-        }
-    }
-    
     const action = function() {
         var content = document.getElementById('content');
         var charset = 'Il|'; // 'Il1|'
         var minsize = 50; // 10
         var maxsize = 100; // 20
-        var size = randomInt(minsize, maxsize);
+        var size = Core.Math.randomInt(minsize, maxsize);
         var result = '';
         for (var i = 0; i < size; i++) {
-            result += charset.charAt(randomInt(charset.length));
+            result += charset.charAt(Core.Math.randomInt(charset.length));
         }
         content.innerHTML = result;
     };
