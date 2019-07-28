@@ -16,9 +16,9 @@
 <script>
     const randomInt = function(min, max) {
         if (max === undefined) {
-            return Math.floor(Math.random() * (max - min)) + min;
-        } else {
             return Math.floor(Math.random() * min);
+        } else {
+            return Math.floor(Math.random() * (max - min)) + min;
         }
     }
     
