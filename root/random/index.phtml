@@ -22,7 +22,7 @@
         }
     }
     
-    function() {
+    const action = function() {
         var content = document.getElementById('content');
         var charset = 'Il1';
         var minsize = 10;
@@ -33,7 +33,7 @@
             result += charset.charAt(randomInt(charset.length));
         }
         content.innerHTML = result;
-    } ();
+    };
 </script>
 
 <div class="body">
@@ -50,7 +50,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <p id="content">
+          <p id="content" onload="action();">
           </p>
         </div>
       </div>
