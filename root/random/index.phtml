@@ -5,6 +5,7 @@
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
 ?>
+  <script src="script.js"></script>
   <title>random</title>
 </head>
 
@@ -12,21 +13,6 @@
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
-
-<script>
-    const action = function() {
-        var content = document.getElementById('content');
-        var charset = 'Il|'; // 'Il1|'
-        var minsize = 50; // 10
-        var maxsize = 100; // 20
-        var size = Core.Math.randomInt(minsize, maxsize);
-        var result = '';
-        for (var i = 0; i < size; i++) {
-            result += charset.charAt(Core.Math.randomInt(charset.length));
-        }
-        content.innerHTML = result;
-    };
-</script>
 
 <div class="body">
   <div class="p-4">
@@ -42,9 +28,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <p id="content">
-            <script> action(); </script>
-          </p>
+          <p id="content"></p>
+          <script> update('content'); </script>
         </div>
       </div>
     </div>

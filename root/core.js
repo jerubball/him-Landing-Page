@@ -110,16 +110,25 @@ const Core = Object.freeze({
     
     Math: Object.freeze({
         
-        randomInt(min, max) {
+        randomInt(min, max, inclusive) {
             if (max === undefined) {
                 return Math.floor(Math.random() * min);
             } else {
+                if (inclusive === true) {
+                    max += 1;
+                }
                 return Math.floor(Math.random() * (max - min)) + min;
             }
         },
         
     }),
     
+    
+    Script: {},
+    
+    Local: {},
+    
+    Data: {},
     
 });
 
