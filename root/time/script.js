@@ -3,7 +3,6 @@
 //const format = { era: 'short', year: 'numeric', month: 'short', day: '2-digit', weekday: 'short', hour12: 'false', hourCycle: 'h23', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
 const format_date = { era: 'short', year: 'numeric', month: 'short', day: '2-digit', weekday: 'short' };
 const format_time = { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
-const parameter = new URL(window.location.href).searchParams;
 
 /** process time unit to milliseconds */
 const convertTimeUnit = function(input) {
@@ -134,14 +133,14 @@ const convertHTML = function(input, value) {
     return value;
 }
 
-const mode = parameter.get('mode') == null ? '' : parameter.get('mode');
-const space = convertHTML(parameter.get('space'), '');
-const line = convertHTML(parameter.get('line'), '<br>');
-const timestamp = convertTime(parameter.get('time'));
-const timefactor = convertUnit(parameter.get('unit'));
-const timelapse = convertSpan(parameter.get('span'), timestamp) + timestamp;
-const base = convertBase(parameter.get('base'));
-const digit = convertDigit(parameter.get('digit'), timefactor);
+const mode = Core.Window.param.get('mode') == null ? '' : Core.Window.param.get('mode');
+const space = convertHTML(Core.Window.param.get('space'), '');
+const line = convertHTML(Core.Window.param.get('line'), '<br>');
+const timestamp = convertTime(Core.Window.param.get('time'));
+const timefactor = convertUnit(Core.Window.param.get('unit'));
+const timelapse = convertSpan(Core.Window.param.get('span'), timestamp) + timestamp;
+const base = convertBase(Core.Window.param.get('base'));
+const digit = convertDigit(Core.Window.param.get('digit'), timefactor);
 const locale = 'en-US';
 
 /** add leading zeros to number */
