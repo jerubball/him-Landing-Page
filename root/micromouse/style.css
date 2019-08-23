@@ -2,3 +2,12 @@
 .embed-responsive-custom::before {
     padding-top: 80vh;
 }
+
+img.center {
+    position: absolute;
+    margin: auto !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
