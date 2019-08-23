@@ -11,3 +11,7 @@ img.center {
     left: 0;
     right: 0;
 }
+
+div.carousel-caption {
+    text-shadow: 1px 1px 1px black, 0px 0px 2px black;
+}
