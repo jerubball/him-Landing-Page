@@ -139,3 +139,6 @@ codeblocks
 geany
 rename
 inotify-tools
+ffmpeg
+winff
+qwinff
