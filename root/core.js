@@ -165,7 +165,7 @@ const Core = Object.freeze({
                 }
                 elem.classList.add('sorted');
             }
-            var mode = elem.classList.contains('asc') ? 1 : cell.classList.contains('desc') ? -1 : 0;
+            var mode = elem.classList.contains('asc') ? 1 : elem.classList.contains('desc') ? -1 : 0;
             var sorter = function(a, b) {
                 return mode * Core.Util.strnatcasecmp(a['data'], b['data']);
             };
