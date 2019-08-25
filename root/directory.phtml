@@ -31,6 +31,7 @@
 <?php
   if ($dir = opendir('.')) {
     $table = array();
+    $finfo = finfo_open(FILEINFO_MIME);
     while ($item = readdir($dir)) {
       if ($item[0] !== '.') {
         $entry = array();
@@ -38,6 +39,7 @@
         $entry['name'] = $item;
         $entry['type'] = filetype($item);
         $entry['mime'] = mime_content_type($item);
+        $entry['title'] = finfo_file($finfo, $item);
         $entry['modified'] = filemtime($item);
         $entry['size'] = $entry['dir'] ? '-' : filesize($item);
         $table[] = $entry;
@@ -53,6 +55,9 @@
   }
   function format_type($entry) {
     return $entry['mime'];
+  }
+  function format_title($entry) {
+    return $entry['type'].'; mime='.$entry['title'];
   }
   function format_modified($entry) {
     return date('M d Y, g:i:s a', $entry['modified']);
@@ -184,7 +189,7 @@
 ?>
               <tr>
                 <th scope="row" data-data="<?php echo ++$index; ?>"><a href="./<?php echo $entry['name']; ?>"><?php echo format_name($entry); ?></a></th>
-                <td data-data="<?php echo $entry['mime']; ?>"><?php echo format_type($entry); ?></td>
+                <td data-data="<?php echo $entry['mime']; ?>" title="<?php echo format_title($entry); ?>"><?php echo format_type($entry); ?></td>
                 <td data-data="<?php echo $entry['modified']; ?>"><?php echo format_modified($entry); ?></td>
                 <td data-data="<?php echo $entry['size']; ?>"><?php echo format_size($entry); ?></td>
               </tr>
