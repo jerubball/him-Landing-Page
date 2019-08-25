@@ -218,7 +218,7 @@ const Core = Object.freeze({
                 }
             }
             for (var i = 0; i < elem.tBodies.length; i++) { // set sorting tag data
-                for (var j = 0; j < elem.tBodies[i].rows.length) {
+                for (var j = 0; j < elem.tBodies[i].rows.length; j++) {
                     for (var k = 0; k < elem.tBodies[i].rows[j].cells.length; k++) {
                         var cell = elem.tBodies[i].rows[j].cells[k];
                         cell.dataset['sort'] = func(cell);
