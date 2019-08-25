@@ -211,8 +211,8 @@ const Core = Object.freeze({
                 if (create) { // add sort indicator
                     var up = document.createElement('i');
                     var down = document.createElement('i');
-                    up.classList.add('sort fa fa-sort-up');
-                    down.classList.add('sort fa fa-sort-down');
+                    up.classList.add('sort', 'fa', 'fa-sort-up');
+                    down.classList.add('sort', 'fa', 'fa-sort-down');
                     cell.appendChild(up);
                     cell.appendChild(down);
                 }
