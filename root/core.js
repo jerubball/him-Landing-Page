@@ -132,7 +132,7 @@ const Core = Object.freeze({
                     return i;
                 }
             }
-        }
+        },
         
         objectIndex (obj, item) {
             var keys = Object.keys(obj);
