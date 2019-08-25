@@ -147,7 +147,7 @@ const Core = Object.freeze({
             return a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'});
         },
         
-        sort(elem) {
+        sortTable(elem) {
             if (elem.tagName.toLowerCase() != "th") {
                 return; // stop if not head
             }
