@@ -84,11 +84,11 @@
   th.desc.sorted::after {
     content: " ";
   }
-  th i.fa {
+  th.asc i.fa, th.desc i.fa {
     visibility: hidden;
     display: none;
   }
-  th.asc.sorted i.fa-sort-up, th.desc.sorted i.fa-sort-down {
+  th.asc.sorted i.fa.fa-sort-up, th.desc.sorted i.fa.fa-sort-down {
     visibility: visible;
     display: inline-block;
   }
@@ -179,10 +179,11 @@
             </thead>
             <tbody>
 <?php
+    $index = 0;
     foreach ($table as $entry) {
 ?>
               <tr>
-                <th scope="row" data-data="<?php echo $entry['name']; ?>"><a href="./<?php echo $entry['name']; ?>"><?php echo format_name($entry); ?></a></th>
+                <th scope="row" data-data="<?php echo ++$index; ?>"><a href="./<?php echo $entry['name']; ?>"><?php echo format_name($entry); ?></a></th>
                 <td data-data="<?php echo $entry['mime']; ?>"><?php echo format_type($entry); ?></td>
                 <td data-data="<?php echo $entry['modified']; ?>"><?php echo format_modified($entry); ?></td>
                 <td data-data="<?php echo $entry['size']; ?>"><?php echo format_size($entry); ?></td>
