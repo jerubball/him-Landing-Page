@@ -179,8 +179,8 @@ const Core = Object.freeze({
             for (var i = 0; i < table.tBodies.length; i++) {
                 var data = getData(table.tBodies[i]);
                 data.sort(sorter);
-                for (var j = 0; j < data.length; i++) {
-                    table.tBodies[i].rows[j].innerHTML = data[i]['html'];
+                for (var j = 0; j < data.length; j++) {
+                    table.tBodies[i].rows[j].innerHTML = data[j]['html'];
                 }
             }
             return false;
