@@ -124,7 +124,7 @@
         }
         
         data.sort(function(a, b) {
-            return mode * strnatcasecmp(a['sort'], b['sort']);
+            return mode * strnatcasecmp(a['data'], b['data']);
         });
         for (var i = 0; i < data.length; i++) {
             table.rows[i+1].innerHTML = html[data[i]['index']];
