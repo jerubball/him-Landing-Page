@@ -17,3 +17,23 @@ body {
 .vertical.active.carousel-item-left {
   transform: translateY(-100%);
 }
+
+table.sortable thead th i.sort.fa {
+  visibility: hidden;
+  display: none;
+}
+
+table.sortable thead th.asc.sorted:not(.desc) i.sort.fa.fa-sort-up,
+table.sortable thead th.desc.sorted:not(.desc) i.sort.fa.fa-sort-down {
+  visibility: visible;
+  display: inline-block;
+}
+
+/*
+th.asc.sorted::after {
+content: " ";
+}
+th.desc.sorted::after {
+content: " ";
+}
+*/

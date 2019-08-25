@@ -124,6 +124,73 @@ const Core = Object.freeze({
     }),
     
     
+    Util: Object.freeze({
+        
+        arrayIndex (arr, item) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] === item) {
+                    return i;
+                }
+            }
+        }
+        
+        objectIndex (obj, item) {
+            var keys = Object.keys(obj);
+            for (var i = 0; i < keys.length; i++) {
+                if (obj[keys[i]] === item) {
+                    return keys[i];
+                }
+            }
+        }
+        
+        strnatcasecmp (a, b) {
+            return a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'});
+        }
+        
+        sort(elem) {
+            if (elem.tagName.toLowerCase() != "th") {
+                return; // stop if not head
+            }
+            var table = elem.parentElement.parentElement.parentElement;
+            if (table.tagName.toLowerCase() != "table" || !table.classList.contains('sortable')) {
+                return; // stop if not table or not sortable
+            }
+            var head = table.tHead.rows[0];
+            var column = Core.Util.arrayIndex(elem.parentElement.cells, elem);
+            if (elem.classList.contains('sorted')) {
+                elem.classList.replace('asc', 'desc') || elem.classList.replace('desc', 'asc') || elem.classList.add('asc');
+            } else {
+                for (var i = 0; i < head.children.length; i++) {
+                    head.children[i].classList.remove('sorted');
+                }
+                elem.classList.add('sorted');
+            }
+            var mode = elem.classList.contains('asc') ? 1 : cell.classList.contains('desc') ? -1 : 0;
+            var sorter = function(a, b) {
+                return mode * Core.Util.strnatcasecmp(a['sort'], b['sort']);
+            };
+            var getData = function(body) {
+                var arr = [];
+                for (var i = 0; i < body.rows.length; i++) {
+                    arr.push({'index': i, 'html': body.rows[i].innerHTML,'data': body.rows[i].cells[column].dataset['sort']});
+                }
+                return arr;
+            };
+            for (var i = 0; i < table.tBodies.length; i++) {
+                var data = getData(table.tBodies[i]);
+                data.sort(sorter);
+                for (var j = 0; j < data.length; i++) {
+                    table.tBodies[i].rows[j].innerHTML = data[i]['html'];
+                }
+            }
+            return false;
+        }
+        
+        }
+        
+    }),
+    
+    
     Script: {},
     
     Local: {},
