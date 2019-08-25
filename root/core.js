@@ -148,15 +148,15 @@ const Core = Object.freeze({
         },
         
         sortTable(elem) {
-            if (elem.tagName.toLowerCase() != "th") {
+            if (elem.tagName != 'TH') {
                 return; // stop if not head
             }
             var table = elem.parentElement.parentElement.parentElement;
-            if (table.tagName.toLowerCase() != "table" || !table.classList.contains('sortable')) {
+            if (table.tagName != 'TABLE' || !table.classList.contains('sortable')) {
                 return; // stop if not table or not sortable
             }
-            var head = table.tHead.rows[0];
-            var column = Core.Util.arrayIndex(elem.parentElement.cells, elem);
+            var head = table.tHead.rows[0]; // get header
+            var column = Core.Util.arrayIndex(elem.parentElement.cells, elem); // get column index
             if (elem.classList.contains('sorted')) {
                 elem.classList.replace('asc', 'desc') || elem.classList.replace('desc', 'asc') || elem.classList.add('asc');
             } else {
@@ -169,21 +169,63 @@ const Core = Object.freeze({
             var sorter = function(a, b) {
                 return mode * Core.Util.strnatcasecmp(a['data'], b['data']);
             };
-            var getData = function(body) {
+            var getData = function(body) { // get index, html, sorting data of each row in tbody
                 var arr = [];
                 for (var i = 0; i < body.rows.length; i++) {
-                    arr.push({'index': i, 'html': body.rows[i].innerHTML,'data': body.rows[i].cells[column].dataset['sort']});
+                    arr.push({'index': i, 'html': body.rows[i].innerHTML, 'data': body.rows[i].cells[column].dataset['sort']});
                 }
                 return arr;
             };
             for (var i = 0; i < table.tBodies.length; i++) {
                 var data = getData(table.tBodies[i]);
-                data.sort(sorter);
-                for (var j = 0; j < data.length; j++) {
+                data.sort(sorter); // sort
+                for (var j = 0; j < data.length; j++) { // replace table rows
                     table.tBodies[i].rows[j].innerHTML = data[j]['html'];
                 }
             }
             return false;
+        },
+        
+        makeSortable(elem, func) {
+            if (elem.tagName != 'TABLE') {
+                return; // stop if not table
+            }
+            if (func === undefined) {
+                func = function(item) { // default function
+                    return item.innerText;
+                }
+            }
+            var head = elem.tHead.rows[0]; // get header
+            for (var i = 0; i < head.cells.length; i++) {
+                var cell = head.cells[i];
+                cell.onclick = function(event) { // add click event
+                    Core.Util.sortTable(this);
+                }
+                cell.classList.add('asc');
+                var create = true;
+                for (var j = 0; create && j < cell.children.length; j++) { // detect presence of sort indicator.
+                    if (cell.children[j].tagName == 'I' && cell.children[j].classList.contains('sort')) {
+                        create = false;
+                    }
+                }
+                if (create) { // add sort indicator
+                    var up = document.createElement('i');
+                    var down = document.createElement('i');
+                    up.classList.add('sort fa fa-sort-up');
+                    down.classList.add('sort fa fa-sort-down');
+                    cell.appendChild(up);
+                    cell.appendChild(down);
+                }
+            }
+            for (var i = 0; i < elem.tBodies.length; i++) { // set sorting tag data
+                for (var j = 0; j < elem.tBodies[i].rows.length) {
+                    for (var k = 0; k < elem.tBodies[i].rows[j].cells.length; k++) {
+                        var cell = elem.tBodies[i].rows[j].cells[k];
+                        cell.dataset['sort'] = func(cell);
+                    }
+                }
+            }
+            elem.classList.add('sortable');
         },
         
     }),

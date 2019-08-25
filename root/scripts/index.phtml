@@ -56,7 +56,10 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <table class="table">
+          <table class="table" id="table1">
+          <script>
+            Core.Util.makeSortable(document.getElementById('table1'));
+          </script>
             <thead class="thead-light">
               <tr>
                 <th scope="col">Script</th>
