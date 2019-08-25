@@ -24,7 +24,7 @@ table.sortable thead th i.sort.fa {
 }
 
 table.sortable thead th.asc.sorted:not(.desc) i.sort.fa.fa-sort-up,
-table.sortable thead th.desc.sorted:not(.desc) i.sort.fa.fa-sort-down {
+table.sortable thead th.desc.sorted:not(.asc) i.sort.fa.fa-sort-down {
   visibility: visible;
   display: inline-block;
 }
