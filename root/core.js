@@ -141,11 +141,11 @@ const Core = Object.freeze({
                     return keys[i];
                 }
             }
-        }
+        },
         
         strnatcasecmp (a, b) {
             return a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'});
-        }
+        },
         
         sort(elem) {
             if (elem.tagName.toLowerCase() != "th") {
@@ -184,9 +184,7 @@ const Core = Object.freeze({
                 }
             }
             return false;
-        }
-        
-        }
+        },
         
     }),
     
