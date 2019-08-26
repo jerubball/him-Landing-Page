@@ -209,12 +209,12 @@ const Core = Object.freeze({
                     }
                 }
                 if (create) { // add sort indicator
+                    cell
                     var up = document.createElement('i');
                     var down = document.createElement('i');
                     up.classList.add('sort', 'fa', 'fa-sort-up');
                     down.classList.add('sort', 'fa', 'fa-sort-down');
-                    cell.appendChild(up);
-                    cell.appendChild(down);
+                    cell.append(' ', up, down);
                 }
             }
             for (var i = 0; i < elem.tBodies.length; i++) { // set sorting tag data
