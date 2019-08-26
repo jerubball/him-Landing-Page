@@ -170,9 +170,6 @@
               </tr>
             </tbody>
           </table>
-          <script>
-            Core.Util.makeSortable(document.getElementById('table1'));
-          </script>
         </div>
       </div>
     </div>
@@ -186,7 +183,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <table class="table">
+          <table class="table" id="table2">
             <thead class="thead-light">
               <tr>
                 <th scope="col">Resource</th>
@@ -251,6 +248,10 @@
       </div>
     </div>
   </div>
+  <script>
+    Core.Util.makeSortable(document.getElementById('table1'));
+    Core.Util.makeSortable(document.getElementById('table2'));
+  </script>
 </body>
 
 </html>
