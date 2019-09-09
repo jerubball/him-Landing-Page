@@ -142,3 +142,8 @@ inotify-tools
 ffmpeg
 winff
 qwinff
+w3m
+lynx
+links
+links2
+elinks
