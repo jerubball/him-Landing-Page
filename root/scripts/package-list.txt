@@ -147,3 +147,4 @@ lynx
 links
 links2
 elinks
+html2text
