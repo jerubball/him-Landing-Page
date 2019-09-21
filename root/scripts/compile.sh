@@ -35,6 +35,18 @@ edit="nano"
 comp=1
 prog=1
 
+
+args=$(getopt -q -s bash -l "help,version,sudo,editor,compiler,program" "?hvsecp" "$@")
+if [[ $? == 1 ]]
+then
+    echo "$version"
+    echo "$help"
+    echo "$contact"
+    exit
+fi
+eval set -- "$args"
+
+
 while [[ $cont == 1 || $# > 0 ]]
 do
     # option processing
