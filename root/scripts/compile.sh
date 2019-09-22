@@ -36,19 +36,20 @@ Contact for bug report, suggestion, and other information.
     EMAIL: him.nyit@gmail.com
     WEBSITE: http://him-nyit.ddns.net
 "
-cont=1
-edit="nano"
+edit=1
 comp=1
 prog=1
-
+editarg=1
+comparg=1
+progarg=1
 
 args=$(getopt -q -s bash -l "help,version,sudo,editor,compiler,program,editor-args,compiler-args,program-args" "?hvsecp" "$@")
-if [[ $? == 1 ]]
+if [[ $? == 1 || "$#" == 0 ]]
 then
     echo "$version"
     echo "$help"
     echo "$contact"
-    exit
+    exit 1
 fi
 eval set -- "$args"
 #eval args=($args)
@@ -80,21 +81,33 @@ do
         ;;
         # define editor
         -e | --editor )
+            edit="$2"
+            shift
         ;;
         # define compiler
         -c | --compiler )
+            comp="$2"
+            shift
         ;;
         # define program
         -p | --program )
+            prog="$2"
+            shift
         ;;
         # define editor arguments
         --editor-args )
+            editarg="$2"
+            shift
         ;;
         # define compiler arguments
         --compiler-args )
+            comparg="$2"
+            shift
         ;;
         # define program arguments
         --program-args )
+            progarg="$2"
+            shift
         ;;
         # escape option processing
         -- )
@@ -109,5 +122,7 @@ do
     esac
     shift
 done
+
+echo "$1"
 
 
