@@ -22,6 +22,12 @@ OPTIONS:
     -p --program
         : use specified program to execute output
           Default program is detected from file extension
+    --editor-args
+        : use additional arguments for editor
+    --compiler-args
+        : use additional arguments for compiler
+    --program-args
+        : use additional arguments for program
 
 The options will be processed in entered order.
 "
@@ -36,7 +42,7 @@ comp=1
 prog=1
 
 
-args=$(getopt -q -s bash -l "help,version,sudo,editor,compiler,program" "?hvsecp" "$@")
+args=$(getopt -q -s bash -l "help,version,sudo,editor,compiler,program,editor-args,compiler-args,program-args" "?hvsecp" "$@")
 if [[ $? == 1 ]]
 then
     echo "$version"
@@ -45,56 +51,63 @@ then
     exit
 fi
 eval set -- "$args"
+#eval args=($args)
 
-
-while [[ $cont == 1 || $# > 0 ]]
+while [[ $# > 0 ]]
 do
     # option processing
-    if [[ $1 == -* ]]
-    then
+    case $1 in
         # print help topic
-        if [[ $1 == "--help" || $1 == "-h" ]]
-        then
+        -h | --help | -\? )
             echo "$version"
             echo "$help"
             echo "$contact"
             exit
-            
+        ;;
         # print script version
-        elif [[ $1 == "--version" || $1 == "-v" ]]
-        then
+        -v | --version )
             echo "$version"
             echo "$contact"
             exit
-            
+        ;;
         # run as sudo
-        elif [[ $1 == "--sudo" || $1 == "-s" ]]
-        then
+        -s | --sudo )
             if [[ $(id -u) -ne 0 ]]
             then
-                shift
-                sudo ./$0 $@
-                shift $#
-                exit
+                eval sudo $0 $args
+                exit $?
             fi
-            
+        ;;
         # define editor
-        elif [[ $1 == "--edit" || $1 == "-e" ]]
-        then
+        -e | --editor )
+        ;;
+        # define compiler
+        -c | --compiler )
+        ;;
+        # define program
+        -p | --program )
+        ;;
+        # define editor arguments
+        --editor-args )
+        ;;
+        # define compiler arguments
+        --compiler-args )
+        ;;
+        # define program arguments
+        --program-args )
+        ;;
+        # escape option processing
+        -- )
             shift
-            edit="$1"
-            shift
-            
+            break
+        ;;
         # unrecognized option
-        else
-            echo "unrecognized option: $1"
-            echo "$help"
-            exit
-            
-        fi
-        
-    # execute command
-    else
-        cont=0
-    fi
+        * )
+            echo "unrecognized option"
+            exit 1
+        ;;
+    esac
+    shift
 done
+
+
