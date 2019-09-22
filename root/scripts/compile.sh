@@ -123,6 +123,9 @@ do
     shift
 done
 
-echo "$1"
+name="${1#*.}"
+ext="${1%%.*}"
+echo "$name"
+echo "$ext"
 
 
