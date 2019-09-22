@@ -39,9 +39,9 @@ Contact for bug report, suggestion, and other information.
 edit=1
 comp=1
 prog=1
-editarg=1
-comparg=1
-progarg=1
+editarg=""
+comparg=""
+progarg=""
 
 args=$(getopt -q -s bash -l "help,version,sudo,editor,compiler,program,editor-args,compiler-args,program-args" "?hvsecp" "$@")
 if [[ $? == 1 || "$#" == 0 ]]
@@ -123,9 +123,64 @@ do
     shift
 done
 
-name="${1#*.}"
-ext="${1%%.*}"
-echo "$name"
-echo "$ext"
+name="${1%.*}"
+ext="${1##*.}"
 
+if [[ $edit == 1 ]]
+then
+    if [[ -e ~/.selected_editor ]]
+    then
+        . ~/.selected_editor
+        edit="$SELECTED_EDITOR"
+    elif [[ "$EDITOR" != "" ]]
+    then
+        edit="$EDITOR"
+    elif which editor &> /dev/null
+    then
+        edit="editor"
+    else
+        edit="nano"
+    fi
+fi
+$edit $editarg $2 $1
 
+case $ext in
+    c )
+        if [[ $comp == 1 ]]
+        then
+            comp="gcc"
+        fi
+        $comp $comparg $3 -o $name $1
+        if [[ $prog == 1 ]]
+        then
+            prog=""
+        fi
+        $prog $name $progarg $4
+    ;;
+    cpp )
+        if [[ $comp == 1 ]]
+        then
+            comp="g++"
+        fi
+        $comp $comparg $3 -o $name $1
+        if [[ $prog == 1 ]]
+        then
+            prog=""
+        fi
+        $prog $name $progarg $4
+    ;;
+    java )
+        if [[ $comp == 1 ]]
+        then
+            comp="javac"
+        fi
+        $comp $comparg $3 $1
+        if [[ $prog == 1 ]]
+        then
+            prog="java"
+        fi
+        $prog $name $progarg $4
+    ;;
+    py )
+    ;;
+esac
