@@ -43,7 +43,7 @@ editarg=""
 comparg=""
 progarg=""
 
-args=$(getopt -q -s bash -l "help,version,sudo,editor,compiler,program,editor-args,compiler-args,program-args" "?hvsecp" "$@")
+args=$(getopt -q -s bash -l "help,version,sudo,editor:,compiler:,program:,editor-args:,compiler-args:,program-args:" "?hvse:c:p:" "$@")
 if [[ $? == 1 || "$#" == 0 ]]
 then
     echo "$version"
