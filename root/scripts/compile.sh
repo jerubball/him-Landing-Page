@@ -123,7 +123,7 @@ do
     shift
 done
 
-name="${1%.*}"
+name="$(basename ${1%.*})"
 ext="${1##*.}"
 
 if [[ $edit == 1 ]]
@@ -155,7 +155,7 @@ case $ext in
         then
             prog=""
         fi
-        $prog $name $progarg $4
+        $prog ./$name $progarg $4
     ;;
     cpp )
         if [[ $comp == 1 ]]
@@ -167,7 +167,7 @@ case $ext in
         then
             prog=""
         fi
-        $prog $name $progarg $4
+        $prog ./$name $progarg $4
     ;;
     java )
         if [[ $comp == 1 ]]
