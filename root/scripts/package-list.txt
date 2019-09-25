@@ -148,3 +148,4 @@ links
 links2
 elinks
 html2text
+gnome-disk-utility
