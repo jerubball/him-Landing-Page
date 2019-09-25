@@ -84,6 +84,7 @@ fdisk
 gdisk
 parted
 gparted
+gnome-disk-utility
 git
 git-all
 easygit
@@ -148,4 +149,3 @@ links
 links2
 elinks
 html2text
-gnome-disk-utility
