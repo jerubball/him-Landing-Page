@@ -256,3 +256,9 @@ const init = function() {
     
     document.getElementById('text').style.fontSize = font;
 }
+
+const copyElement = function(elem) {
+    var select = window.getSelection();
+    select.selectAllChildren(elem);
+    document.execCommand("copy");
+}
