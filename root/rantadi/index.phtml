@@ -9,6 +9,9 @@
 </head>
 <body>
 <?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
+?>
+<?php
     $width="150";
     $height="100";
     $offset = 4;
@@ -299,32 +302,42 @@
         ]],
     */
 ?>
-    <h1>랜타디 ReZero 미션 목록</h1>
-    <br>
-    <form id=0 data-mission="description" ><fieldset>
-        <legend><strong>타워 설명</strong></legend>
-        <strong>E</strong> : 에픽<br>
-        <strong>U</strong> : 유니크<br>
-        <strong>R</strong> : 레어<br>
-        <strong>M</strong> : 매직<br>
-        <strong>N</strong> : 노말<br>
-    </fieldset></form>
-    <br>
-    <form id=1 data-mission="unluckseven"><fieldset>
-        <legend><strong>1. 언럭키세븐 : 미네랄 300</strong></legend>
-        (★ <strong>R</strong> 종류 상관없이 7기 ★)<br>
-    </fieldset></form>
-    <br>
-    <form id=2 data-mission="unluckluck"><fieldset>
-        <legend><strong>2. 악운도 운이다 : 미네랄 300</strong></legend>
-        (★ <strong>U</strong> 종류 상관없이 6기 ★)<br>
-    </fieldset></form>
-    <br>
-    <form id=3 data-mission="thousandyears"><fieldset>
-        <legend><strong>3. 천년의 기다림 : 유니크 시민 1기</strong></legend>
-        (★ 보스 시민 5기 보유 ★)<br>
-    </fieldset></form>
-    <br>
+
+<div class="body">
+  <div class="p-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 pb-1">
+          <h1>랜타디 ReZero 미션 목록</h1>
+        </div>
+        <div class="col-md-12 pb-1">
+          <form id=0 data-mission="description" ><fieldset>
+            <legend><strong>타워 설명</strong></legend>
+            <strong>E</strong> : 에픽<br>
+            <strong>U</strong> : 유니크<br>
+            <strong>R</strong> : 레어<br>
+            <strong>M</strong> : 매직<br>
+            <strong>N</strong> : 노말<br>
+          </fieldset></form>
+        </div>
+        <div class="col-md-12 pb-1">
+          <form id=1 data-mission="unluckseven"><fieldset>
+            <legend><strong>1. 언럭키세븐 : 미네랄 300</strong></legend>
+            (★ <strong>R</strong> 종류 상관없이 7기 ★)<br>
+          </fieldset></form>
+        </div>
+        <div class="col-md-12 pb-1">
+          <form id=2 data-mission="unluckluck"><fieldset>
+            <legend><strong>2. 악운도 운이다 : 미네랄 300</strong></legend>
+            (★ <strong>U</strong> 종류 상관없이 6기 ★)<br>
+          </fieldset></form>
+        </div>
+        <div class="col-md-12 pb-1">
+          <form id=3 data-mission="thousandyears"><fieldset>
+            <legend><strong>3. 천년의 기다림 : 유니크 시민 1기</strong></legend>
+            (★ 보스 시민 5기 보유 ★)<br>
+          </fieldset></form>
+        </div>
 <?php
     $missions = count($collection);
     for ($i = 0; $i < $missions; $i++) {
