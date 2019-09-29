@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-compile version 1.2
+him-compile version 1.4
     quick edit and compiler from him-nyit.ddns.net
 "
 help="
@@ -126,19 +126,6 @@ done
 name="$(basename ${1%.*})"
 ext="${1##*.}"
 
-if [[ "$editarg" != "" ]]
-then
-    eval editarg=($editarg)
-fi
-if [[ "$comparg" != "" ]]
-then
-    eval comparg=($comparg)
-fi
-if [[ "$progarg" != "" ]]
-then
-    eval progarg=($progarg)
-fi
-
 if [[ $edit == 1 ]]
 then
     if [[ -e ~/.selected_editor ]]
@@ -163,36 +150,36 @@ case $ext in
         then
             comp="gcc"
         fi
-        $comp $comparg $3 -o $name $1
+        eval $comp $comparg $3 -o $name $1
         if [[ $prog == 1 ]]
         then
             prog=""
         fi
-        $prog ./$name $progarg $4
+        eval $prog ./$name $progarg $4
     ;;
     cpp )
         if [[ $comp == 1 ]]
         then
             comp="g++"
         fi
-        $comp $comparg $3 -o $name $1
+        eval $comp $comparg $3 -o $name $1
         if [[ $prog == 1 ]]
         then
             prog=""
         fi
-        $prog ./$name $progarg $4
+        eval $prog ./$name $progarg $4
     ;;
     java )
         if [[ $comp == 1 ]]
         then
             comp="javac"
         fi
-        $comp $comparg $3 $1
+        eval $comp $comparg $3 $1
         if [[ $prog == 1 ]]
         then
             prog="java"
         fi
-        $prog $name $progarg $4
+        eval $prog $name $progarg $4
     ;;
     py )
     ;;
