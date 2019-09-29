@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-compile version 1.5
+him-compile version 1.6
     quick edit and compiler from him-nyit.ddns.net
 "
 help="
@@ -14,7 +14,8 @@ OPTIONS:
     -s --sudo
         : run with elevated priviledge
     -d --default
-        : load default preset
+        : load default editor preset
+          nano -AZcilm -T4 -$
     -e --editor
         : use specified editor
           Default editor is nano
@@ -38,7 +39,7 @@ Contact for bug report, suggestion, and other information.
     EMAIL: him.nyit@gmail.com
     WEBSITE: http://him-nyit.ddns.net
 "
-edit=1
+edit="nano -AZcilm -T4 -$"
 comp=1
 prog=1
 editarg=""
