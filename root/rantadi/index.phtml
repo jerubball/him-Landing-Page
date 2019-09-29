@@ -344,86 +344,87 @@
         $missionset = $collection[$i];
         $number = $i + $offset;
 ?>
-    <form id=<?php echo $number; ?> data-mission="<?php echo $missionset["mission"]; ?>"><fieldset>
-        <legend><input type="radio" disabled=true
-            id="<?php echo $missionset["mission"]; ?>" data-mission="<?php echo $missionset["mission"]; ?>"/>
-        <strong><?php echo $number.". ".$missionset["description"]; ?></strong></legend>
+        <div class="col-md-12 py-1">
+          <form id=<?php echo $number; ?> data-mission="<?php echo $missionset["mission"]; ?>"><fieldset>
+            <legend><input type="radio" disabled=true
+                id="<?php echo $missionset["mission"]; ?>" data-mission="<?php echo $missionset["mission"]; ?>"/>
+            <strong><?php echo $number.". ".$missionset["description"]; ?></strong></legend>
 <?php
         if (isset($missionset["preface"])) {
 ?>
-        <?php echo $missionset["preface"]; ?> 
+            <?php echo $missionset["preface"]; ?> 
 <?php
         }
 ?>
-        <table data-mission="<?php echo $missionset["mission"]; ?>">
+            <table data-mission="<?php echo $missionset["mission"]; ?>">
 <?php
         $classes = count($missionset["data"]);
         for ($j = 0; $j < $classes; $j++) {
             $classset = $missionset["data"][$j];
 ?>
-        <tr><td><strong><?php echo $classset["class"]; ?></strong></td>
+            <tr><td><strong><?php echo $classset["class"]; ?></strong></td>
 <?php
             $towers = count($classset["tower"]);
             for ($k = 0; $k < $towers; $k++) {
                 $towerset = $classset["tower"][$k];
 ?>
-            <td><?php echo $towerset["title"]; ?> 
+                <td><?php echo $towerset["title"]; ?> 
 <?php
                 if ($towerset["index"] > 1) {
                     $align = $towerset["index"] > $cutoff ? "right" : "left";
 ?>
-            </td><td align="<?php echo $align; ?>">
+                </td><td align="<?php echo $align; ?>">
 <?php
                 }
                 for ($l = 0; $l < $towerset["index"]; $l++) {
                     if ($l == $cutoff) {
 ?>
-            </td><td>
+                </td><td>
 <?php
                     }
 ?>
-                <input type="checkbox" onclick="toggleClicked(this)"
-                    data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> />
+                    <input type="checkbox" onclick="toggleClicked(this)"
+                        data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> />
 <?php
                 }
                 $temp = $towerset["index"] - 2 - ($towerset["index"] > $cutoff ? 1 : 0);
                 for ($l = 0; $l < $temp; $l++) {
 ?>
-            </td><td>
+                </td><td>
 <?php
                 }
 ?>
-            </td>
+                </td>
 <?php
             }
 ?>
-        </tr><tr>
-            <td></td>
+            </tr><tr>
+                <td></td>
 <?php
             for ($k = 0; $k < $towers; $k++) {
                 $towerset = $classset["tower"][$k];
                 for ($l = 0; $l < $towerset["index"]; $l++) {
 ?>
-            <td><img src="./image/<?php echo $towerset["name"]; ?>.php" draggable="false" width="<?php echo $width; ?>" height="<?php echo $height; ?>" onclick="toggleClicked(this)" 
-                data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> ></td>
+                <td><img src="./image/<?php echo $towerset["name"]; ?>.php" draggable="false" width="<?php echo $width; ?>" height="<?php echo $height; ?>" onclick="toggleClicked(this)" 
+                    data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> ></td>
 <?php
                 }
             }
 ?>
-        </tr>
+            </tr>
 <?php
         }
 ?>
-        </table>
+            </table>
 <?php
         if (isset($missionset["appendix"])) {
 ?>
-        <?php echo $missionset["appendix"]; ?> 
+            <?php echo $missionset["appendix"]; ?> 
 <?php
         }
 ?>
-    </fieldset></form>
-    <br>
+          </fieldset></form>
+        </div>
 <?php
     }
 ?>
