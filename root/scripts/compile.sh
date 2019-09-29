@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-compile version 1.0
+him-compile version 1.2
     quick edit and compiler from him-nyit.ddns.net
 "
 help="
@@ -125,6 +125,19 @@ done
 
 name="$(basename ${1%.*})"
 ext="${1##*.}"
+
+if [[ "$editarg" != "" ]]
+then
+    eval editarg=($editarg)
+fi
+if [[ "$comparg" != "" ]]
+then
+    eval comparg=($comparg)
+fi
+if [[ "$progarg" != "" ]]
+then
+    eval progarg=($progarg)
+fi
 
 if [[ $edit == 1 ]]
 then
