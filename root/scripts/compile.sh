@@ -83,7 +83,7 @@ do
         ;;
         # default preset
         -d | --default )
-            edit="nano -AZcilm -T4 -$"
+            edit="nano -ASZcilm -T4 -$"
         ;;
         # define editor
         -e | --editor )
