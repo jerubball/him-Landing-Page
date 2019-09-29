@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-compile version 1.4
+him-compile version 1.5
     quick edit and compiler from him-nyit.ddns.net
 "
 help="
@@ -13,6 +13,8 @@ OPTIONS:
         : display script version
     -s --sudo
         : run with elevated priviledge
+    -d --default
+        : load default preset
     -e --editor
         : use specified editor
           Default editor is nano
@@ -43,7 +45,7 @@ editarg=""
 comparg=""
 progarg=""
 
-args=$(getopt -q -s bash -l "help,version,sudo,editor:,compiler:,program:,editor-args:,compiler-args:,program-args:" "?hvse:c:p:" "$@")
+args=$(getopt -q -s bash -l "help,version,sudo,default,editor:,compiler:,program:,editor-args:,compiler-args:,program-args:" "?hvsde:c:p:" "$@")
 if [[ $? == 1 || "$#" == 0 ]]
 then
     echo "$version"
@@ -78,6 +80,10 @@ do
                 eval sudo $0 $args
                 exit $?
             fi
+        ;;
+        # default preset
+        -d | --default )
+            edit="nano -AZcilm -T4 -$"
         ;;
         # define editor
         -e | --editor )
