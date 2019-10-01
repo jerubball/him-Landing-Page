@@ -1,8 +1,8 @@
 
 .col-custom-class {
-  -ms-flex: 0 0 5.55%;
-  flex: 0 0 5.55%;
-  max-width: 5.55%;
+  -ms-flex: 0 0 3.95rem;
+  flex: 0 0 3.95rem;
+  max-width: 3.95rem;
   text-align: right;
 }
 

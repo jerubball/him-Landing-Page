@@ -359,34 +359,38 @@
             $classset = $missionset["data"][$j];
 ?>
             <div class="row py-1">
-              <div class="col-md col-custom-class px-1">
+              <div class="col col-custom-class p-1">
                 <strong><?php echo $classset["class"]; ?></strong>
               </div>
+              <div class="col px-1">
+                <div class="row">
 <?php
             $towers = count($classset["tower"]);
             for ($k = 0; $k < $towers; $k++) {
                 $towerset = $classset["tower"][$k];
                 for ($l = 0; $l < $towerset["index"]; $l++) {
 ?>
-              <div class="col-md col-custom-tower px-1">
+                  <div class="col-md col-custom-tower p-1">
 <?php
                     if ($l == 0) {
 ?>
-                <?php echo $towerset["title"]; ?> 
+                    <?php echo $towerset["title"]; ?> 
 <?php
                     }
 ?>
-                <br>
-                <input type="checkbox" onclick="toggleClicked(this)"
-                    data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> />
-                <br>
-                <img class="img-custom-tower" src="./image/<?php echo $towerset["name"]; ?>.php" draggable="false" onclick="toggleClicked(this)" 
-                    data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> >
-              </div>
+                    <br>
+                    <input type="checkbox" onclick="toggleClicked(this)"
+                        data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> />
+                    <br>
+                    <img class="img-custom-tower" src="./image/<?php echo $towerset["name"]; ?>.php" draggable="false" onclick="toggleClicked(this)" 
+                        data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> >
+                  </div>
 <?php
                 }
             }
 ?>
+                </div>
+              </div>
             </div>
 <?php
         }
