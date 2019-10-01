@@ -345,7 +345,7 @@
         $number = $i + $offset;
 ?>
         <div class="col-md-12 py-2">
-          <form id=<?php echo $number; ?> data-mission="<?php echo $missionset["mission"]; ?>"><fieldset>
+          <form class="mission" id=<?php echo $number; ?> data-mission="<?php echo $missionset["mission"]; ?>"><fieldset>
             <legend><input type="radio" disabled=true id="<?php echo $missionset["mission"]; ?>" data-mission="<?php echo $missionset["mission"]; ?>"/>
               <strong><?php echo $number.". ".$missionset["description"]; ?></strong></legend>
 <?php
@@ -354,48 +354,42 @@
             <?php echo $missionset["preface"]; ?> 
 <?php
         }
-?>
-            <div class="mission" data-mission="<?php echo $missionset["mission"]; ?>">
-<?php
         $classes = count($missionset["data"]);
         for ($j = 0; $j < $classes; $j++) {
             $classset = $missionset["data"][$j];
 ?>
-              <div class="row py-1">
-                <div class="col-md col-custom-class px-1">
-                  <strong><?php echo $classset["class"]; ?></strong>
-                </div>
+            <div class="row py-1">
+              <div class="col-md col-custom-class px-1">
+                <strong><?php echo $classset["class"]; ?></strong>
+              </div>
 <?php
             $towers = count($classset["tower"]);
             for ($k = 0; $k < $towers; $k++) {
                 $towerset = $classset["tower"][$k];
                 for ($l = 0; $l < $towerset["index"]; $l++) {
 ?>
-                <div class="col-md col-custom-tower px-1">
+              <div class="col-md col-custom-tower px-1">
 <?php
                     if ($l == 0) {
 ?>
-                  <?php echo $towerset["title"]; ?> 
+                <?php echo $towerset["title"]; ?> 
 <?php
                     }
 ?>
-                  <br>
-                  <input type="checkbox" onclick="toggleClicked(this)"
-                      data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> />
-                  <br>
-                  <img class="img-custom-tower" src="./image/<?php echo $towerset["name"]; ?>.php" draggable="false" onclick="toggleClicked(this)" 
-                      data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> >
-                </div>
+                <br>
+                <input type="checkbox" onclick="toggleClicked(this)"
+                    data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> />
+                <br>
+                <img class="img-custom-tower" src="./image/<?php echo $towerset["name"]; ?>.php" draggable="false" onclick="toggleClicked(this)" 
+                    data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> >
+              </div>
 <?php
                 }
             }
 ?>
-              </div>
-<?php
-        }
-?>
             </div>
 <?php
+        }
         if (isset($missionset["appendix"])) {
 ?>
             <?php echo $missionset["appendix"]; ?> 

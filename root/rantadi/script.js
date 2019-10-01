@@ -18,7 +18,7 @@ const getCheckBox = function(tag, type, tower, index) {
 }
 // update all mission related radio button.
 const updateRadioButton = function(tag, type, tower) {
-    var tables = document.getElementsByTagName('TABLE');
+    var tables = document.getElementsByTagName('FORM');
     for (var i = 0; i < tables.length; i++) {
         var mission = tables[i].dataset['mission'], element = document.getElementById(mission);
         var all = tables[i].getElementsByTagName(tag);
