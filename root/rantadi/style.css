@@ -11,6 +11,13 @@ img.img-custom-tower {
   height: auto;
 }
 
+@media (min-width: 488px) {
+  .col-custom-tower {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
 @media (min-width: 576px) {
   .col-custom-tower {
     flex: 0 0 50%;
