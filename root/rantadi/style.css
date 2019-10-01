@@ -1,0 +1,18 @@
+
+.col-custom-class {
+  -ms-flex: 0 0 5.55%;
+  flex: 0 0 5.55%;
+  max-width: 5.55%;
+  text-align: right;
+}
+
+.col-custom-tower {
+  -ms-flex: 0 0 11.8%;
+  flex: 0 0 11.8%;
+  max-width: 11.8%;
+}
+
+img.img-custom-tower {
+  width: 100%;
+  height: auto;
+}

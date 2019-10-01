@@ -4,18 +4,18 @@
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
 ?>
-    <script src="script.js"></script>
-    <title>랜타디 ReZero 미션 목록</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <title>랜타디 ReZero 미션 목록</title>
 </head>
 <body>
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
 <?php
-    $width="150";
-    $height="100";
+    $width="30";
+    $height="20";
     $offset = 4;
-    $cutoff = 5;
     $collection = [
         ["mission" => "nounbalance", "description" => "편식은 금물 : 미네랄 300", "preface" => "(★ <b>N</b> 종류별로 1기씩 ★)<br>",
          "data" => [
@@ -307,10 +307,10 @@
   <div class="p-1">
     <div class="container">
       <div class="row">
-        <div class="col-md-12 py-1">
+        <div class="col-md-12 py-2">
           <h1>랜타디 ReZero 미션 목록</h1>
         </div>
-        <div class="col-md-12 py-1">
+        <div class="col-md-12 py-2">
           <form id=0 data-mission="description" ><fieldset>
             <legend><strong>타워 설명</strong></legend>
             <strong>E</strong> : 에픽<br>
@@ -320,19 +320,19 @@
             <strong>N</strong> : 노말<br>
           </fieldset></form>
         </div>
-        <div class="col-md-12 py-1">
+        <div class="col-md-12 py-2">
           <form id=1 data-mission="unluckseven"><fieldset>
             <legend><strong>1. 언럭키세븐 : 미네랄 300</strong></legend>
             (★ <strong>R</strong> 종류 상관없이 7기 ★)<br>
           </fieldset></form>
         </div>
-        <div class="col-md-12 py-1">
+        <div class="col-md-12 py-2">
           <form id=2 data-mission="unluckluck"><fieldset>
             <legend><strong>2. 악운도 운이다 : 미네랄 300</strong></legend>
             (★ <strong>U</strong> 종류 상관없이 6기 ★)<br>
           </fieldset></form>
         </div>
-        <div class="col-md-12 py-1">
+        <div class="col-md-12 py-2">
           <form id=3 data-mission="thousandyears"><fieldset>
             <legend><strong>3. 천년의 기다림 : 유니크 시민 1기</strong></legend>
             (★ 보스 시민 5기 보유 ★)<br>
@@ -344,11 +344,10 @@
         $missionset = $collection[$i];
         $number = $i + $offset;
 ?>
-        <div class="col-md-12 py-1">
+        <div class="col-md-12 py-2">
           <form id=<?php echo $number; ?> data-mission="<?php echo $missionset["mission"]; ?>"><fieldset>
-            <legend><input type="radio" disabled=true
-                id="<?php echo $missionset["mission"]; ?>" data-mission="<?php echo $missionset["mission"]; ?>"/>
-            <strong><?php echo $number.". ".$missionset["description"]; ?></strong></legend>
+            <legend><input type="radio" disabled=true id="<?php echo $missionset["mission"]; ?>" data-mission="<?php echo $missionset["mission"]; ?>"/>
+              <strong><?php echo $number.". ".$missionset["description"]; ?></strong></legend>
 <?php
         if (isset($missionset["preface"])) {
 ?>
@@ -356,66 +355,46 @@
 <?php
         }
 ?>
-            <table data-mission="<?php echo $missionset["mission"]; ?>">
+            <div class="mission" data-mission="<?php echo $missionset["mission"]; ?>">
 <?php
         $classes = count($missionset["data"]);
         for ($j = 0; $j < $classes; $j++) {
             $classset = $missionset["data"][$j];
 ?>
-            <tr><td><strong><?php echo $classset["class"]; ?></strong></td>
+              <div class="row py-1">
+                <div class="col-md col-custom-class px-1">
+                  <strong><?php echo $classset["class"]; ?></strong>
+                </div>
 <?php
             $towers = count($classset["tower"]);
             for ($k = 0; $k < $towers; $k++) {
                 $towerset = $classset["tower"][$k];
-?>
-                <td><?php echo $towerset["title"]; ?> 
-<?php
-                if ($towerset["index"] > 1) {
-                    $align = $towerset["index"] > $cutoff ? "right" : "left";
-?>
-                </td><td align="<?php echo $align; ?>">
-<?php
-                }
                 for ($l = 0; $l < $towerset["index"]; $l++) {
-                    if ($l == $cutoff) {
 ?>
-                </td><td>
+                <div class="col-md col-custom-tower px-1">
+<?php
+                    if ($l == 0) {
+?>
+                  <?php echo $towerset["title"]; ?> 
 <?php
                     }
 ?>
-                    <input type="checkbox" onclick="toggleClicked(this)"
-                        data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> />
-<?php
-                }
-                $temp = $towerset["index"] - 2 - ($towerset["index"] > $cutoff ? 1 : 0);
-                for ($l = 0; $l < $temp; $l++) {
-?>
-                </td><td>
-<?php
-                }
-?>
-                </td>
-<?php
-            }
-?>
-            </tr><tr>
-                <td></td>
-<?php
-            for ($k = 0; $k < $towers; $k++) {
-                $towerset = $classset["tower"][$k];
-                for ($l = 0; $l < $towerset["index"]; $l++) {
-?>
-                <td><img src="./image/<?php echo $towerset["name"]; ?>.php" draggable="false" width="<?php echo $width; ?>" height="<?php echo $height; ?>" onclick="toggleClicked(this)" 
-                    data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> ></td>
+                  <br>
+                  <input type="checkbox" onclick="toggleClicked(this)"
+                      data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> />
+                  <br>
+                  <img class="img-custom-tower" src="./image/<?php echo $towerset["name"]; ?>.php" draggable="false" onclick="toggleClicked(this)" 
+                      data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> >
+                </div>
 <?php
                 }
             }
 ?>
-            </tr>
+              </div>
 <?php
         }
 ?>
-            </table>
+            </div>
 <?php
         if (isset($missionset["appendix"])) {
 ?>
@@ -428,7 +407,7 @@
 <?php
     }
 ?>
-        <div class="col-md-12 py-1">
+        <div class="col-md-12 py-2">
           <form id=<?php echo ($missions + $offset); ?> data-mission="changelog"><fieldset>
             <legend><strong>변경사항</strong></legend>
             <strong>2018.02.03</strong> : 오탈자, 보상 잘못 기록되어 있던 것 수정<br>
@@ -441,7 +420,7 @@
             <strong>2019.09.29</strong> : Bootstrap 정리<br>
           </fieldset></form>
         </div>
-        <div class="col-md-12 py-1">
+        <div class="col-md-12 py-2">
           <font color="blue"><strong>Made by aMythos (Mythical#31274)</strong></font>
           <br>
           <strong>Edit & Host by him.nyit@gmail.com</strong>
