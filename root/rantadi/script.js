@@ -22,32 +22,34 @@ const updateRadioButton = function(tag, type, tower) {
     for (var i = 0; i < tables.length; i++) {
         var mission = tables[i].dataset['mission'], element = document.getElementById(mission);
         var all = tables[i].getElementsByTagName(tag);
-        if (mission == 'location') {
-            var state = false;
-            for (var j = 0; !state && j < all.length; j++) {
-                if (all[j].type == type && all[j].dataset['mission'] == mission && all[j].dataset['tower'] == tower) {
-                    state = all[j].checked;
-                }
-            }
-            if (state) {
-                for (var j = 0; state && j < all.length; j++) {
+        if (element != null) {
+            if (mission == 'location') {
+                var state = false;
+                for (var j = 0; !state && j < all.length; j++) {
                     if (all[j].type == type && all[j].dataset['mission'] == mission && all[j].dataset['tower'] == tower) {
+                        state = all[j].checked;
+                    }
+                }
+                if (state) {
+                    for (var j = 0; state && j < all.length; j++) {
+                        if (all[j].type == type && all[j].dataset['mission'] == mission && all[j].dataset['tower'] == tower) {
+                            state = all[j].checked;
+                        }
+                    }
+                    if (state) {
+                        element.checked = true;
+                    }
+                }
+            } else {
+                var state = true;
+                for (var j = 0; state && j < all.length; j++) {
+                    if (all[j].type == type && all[j].dataset['mission'] == mission) {
                         state = all[j].checked;
                     }
                 }
                 if (state) {
                     element.checked = true;
                 }
-            }
-        } else {
-            var state = true;
-            for (var j = 0; state && j < all.length; j++) {
-                if (all[j].type == type && all[j].dataset['mission'] == mission) {
-                    state = all[j].checked;
-                }
-            }
-            if (state) {
-                element.checked = true;
             }
         }
     }
