@@ -6,16 +6,18 @@
   text-align: right;
 }
 
-@media (min-width: 400px)
-.col-custom-tower {
-  flex: 0 0 50%;
-  max-width: 50%;
+@media (min-width: 400px) {
+  .col-custom-tower {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
 }
 
-@media (min-width: 550px)
-.col-custom-tower {
-  flex: 0 0 33.33333%;
-  max-width: 33.33333%;
+@media (min-width: 550px) {
+  .col-custom-tower {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
 }
 
 @media (min-width: 700px) {
