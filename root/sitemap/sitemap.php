@@ -22,8 +22,9 @@
     $file = file('sitemap.txt');
     if ($file && sizeof($file) > 1) {
         foreach ($file as $line) {
-            if (strlen($line) > 0) {
-                echo $domain.$line."\r\n";
+            $lin = trim($line);
+            if (strlen($lin) > 0) {
+                echo $domain.$lin."\r\n";
             } else {
                 echo "\r\n";
             }
