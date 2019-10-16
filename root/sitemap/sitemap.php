@@ -24,6 +24,8 @@
         foreach ($file as $line) {
             if (strlen($line) > 0) {
                 echo $domain.$line."\r\n";
+            } else {
+                echo "\r\n";
             }
         }
     } else {
