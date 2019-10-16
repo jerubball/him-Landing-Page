@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://him-nyit.ddns.net/sitemap.txt
+Sitemap: http://hasol.co/sitemap/sitemap.php
