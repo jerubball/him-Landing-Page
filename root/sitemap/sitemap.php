@@ -19,4 +19,11 @@
     echo "\r\n";
     echo $domain."\r\n";
     
+    $file = file('sitemap.txt');
+    if ($file && sizeof($file) > 1) {
+        foreach ($file as $line) {
+            echo $domain.$line."\r\n";
+        }
+    } else {
+    }
 ?>
