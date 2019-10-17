@@ -21,6 +21,7 @@
         if (!isset($depth) || $depth > 0) {
             $nextdepth = isset($depth) ? $depth - 1 : null;
             $output = scandir('./'.$path);
+            natcasesort($output);
             foreach ($output as $item) {
                 if ($item[0] !== '.') {
                     if (is_dir($path.$item)) {
