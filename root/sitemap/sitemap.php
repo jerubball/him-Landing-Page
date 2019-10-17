@@ -1,5 +1,6 @@
 <?php
     header("Content-Type: text/plain");
+    
     $domain = '';
     if (isset($_SERVER['REQUEST_SCHEME'])) {
         $domain = $_SERVER['REQUEST_SCHEME'].'://';
@@ -16,6 +17,24 @@
         $domain .= 'hasol.co/';
     }
     
+    function listdir($domain, $path = '', $depth = null) {
+        if (!isset($depth) || $depth > 0) {
+            $nextdepth = isset($depth) ? $depth - 1 : null;
+            $output = scandir('./'.$path);
+            foreach ($output as $item) {
+                if ($item[0] !== '.') {
+                    if (is_dir($path.$item)) {
+                        $nextpath = $path.$item.'/';
+                        echo $domain.$nextpath."\r\n";
+                        listdir($domain, $nextpath, $nextdepth);
+                    } else {
+                        echo $domain.$path.$item."\r\n";
+                    }
+                }
+            }
+        }
+    }
+    
     echo "\r\n";
     echo $domain."\r\n";
     
@@ -30,5 +49,8 @@
             }
         }
     } else {
+        // exec('tree -filNQ --noreport', $output);
+        chdir('..');
+        listdir($domain);
     }
 ?>
