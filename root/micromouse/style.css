@@ -12,6 +12,12 @@ img.center {
     right: 0;
 }
 
+img.contain {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 div.carousel-caption {
     text-shadow: 1px 1px 1px black, 0px 0px 2px black;
 }
