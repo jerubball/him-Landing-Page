@@ -5,7 +5,7 @@
     header('Location: '.$filename);
     exit();
   } else {
-    header('Location: https://drive.google.com/uc?export=view&id=16Nyl-ZFJhyQrGVAN4XlJui-0fAS9cnS1');
+    header('Location: https://drive.google.com/uc?export=view&id=1EUQDPeAQgKhObhVRR6guNNYrWy_NYJcw');
     exit();
   }
 ?>
