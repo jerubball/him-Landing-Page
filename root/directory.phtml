@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-<?php
-  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
-?>
-  <title>template</title>
-</head>
-
 <?php
   $location = $_SERVER['DOCUMENT_ROOT'].urldecode($_SERVER['REQUEST_URI']);
   if (!is_dir($location)) {
@@ -22,6 +15,13 @@
   }
   chdir($location);
 ?>
+
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <title>Index of <?php echo $name; ?></title>
+</head>
 
 <body onload="Core.Window.setTitle('Index of <?php echo $name; ?>')">
 <?php
