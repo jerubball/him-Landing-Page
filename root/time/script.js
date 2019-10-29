@@ -192,12 +192,12 @@ const number10 = function(number) {
 
 /** format time as the format */
 const timeFormat = function(now) {
-    var item1 = now.getFullYear() + space + now.toLocaleDateString(locale, {month: 'short'}).toUpperCase() + space + now.toLocaleDateString(locale, {day: '2-digit'}) + space + now.toLocaleDateString(locale, {weekday: 'short'}).toUpperCase() + space;
+    var item1 = now.getFullYear() + space + now.toLocaleString(locale, {month: 'short'}).toUpperCase() + space + now.toLocaleString(locale, {day: '2-digit'}) + space + now.toLocaleString(locale, {weekday: 'short'}).toUpperCase() + space;
     var timezone = now.toLocaleTimeString(locale, {timeZoneName: 'short'});
     timezone = timezone.substring(timezone.length - 3).toUpperCase();
     var item2 = space + numberFormat(now.getHours(), 2) + space + numberFormat(now.getMinutes(), 2) + space + timezone + space + numberFormat(now.getSeconds(), 2);
     return item1 + item2;
-    //var item = now.toLocaleDateString(locale, format).toUpperCase();
+    //var item = now.toLocaleString(locale, format).toUpperCase();
     //return item.substring(13,17) + space + item.substring(5,8) + space + item.substring(9,11) + space + item.substring(0,3) + space + item.substring(19,21) + space + item.substring(22,24) + space + item.substring(28,31) + space + item.substring(25,27);
 }
 
@@ -206,53 +206,135 @@ const dateFormat = function(now, str) {
     var result = "";
     for (var i = 0; i < str.length; i++) {
         switch (str[i]) {
-            /*
-Day	---	---
-d	Day of the month, 2 digits with leading zeros	01 to 31
-D	A textual representation of a day, three letters	Mon through Sun
-j	Day of the month without leading zeros	1 to 31
-l (lowercase 'L')	A full textual representation of the day of the week	Sunday through Saturday
-N	ISO-8601 numeric representation of the day of the week (added in PHP 5.1.0)	1 (for Monday) through 7 (for Sunday)
-S	English ordinal suffix for the day of the month, 2 characters	st, nd, rd or th. Works well with j
-w	Numeric representation of the day of the week	0 (for Sunday) through 6 (for Saturday)
-z	The day of the year (starting from 0)	0 through 365
-Week	---	---
-W	ISO-8601 week number of year, weeks starting on Monday	Example: 42 (the 42nd week in the year)
-Month	---	---
-F	A full textual representation of a month, such as January or March	January through December
-m	Numeric representation of a month, with leading zeros	01 through 12
-M	A short textual representation of a month, three letters	Jan through Dec
-n	Numeric representation of a month, without leading zeros	1 through 12
-t	Number of days in the given month	28 through 31
-Year	---	---
-L	Whether it's a leap year	1 if it is a leap year, 0 otherwise.
-o	ISO-8601 week-numbering year. This has the same value as Y, except that if the ISO week number (W) belongs to the previous or next year, that year is used instead. (added in PHP 5.1.0)	Examples: 1999 or 2003
-Y	A full numeric representation of a year, 4 digits	Examples: 1999 or 2003
-y	A two digit representation of a year	Examples: 99 or 03
-Time	---	---
-a	Lowercase Ante meridiem and Post meridiem	am or pm
-A	Uppercase Ante meridiem and Post meridiem	AM or PM
-B	Swatch Internet time	000 through 999
-g	12-hour format of an hour without leading zeros	1 through 12
-G	24-hour format of an hour without leading zeros	0 through 23
-h	12-hour format of an hour with leading zeros	01 through 12
-H	24-hour format of an hour with leading zeros	00 through 23
-i	Minutes with leading zeros	00 to 59
-s	Seconds with leading zeros	00 through 59
-u	Microseconds (added in PHP 5.2.2). Note that date() will always generate 000000 since it takes an integer parameter, whereas DateTime::format() does support microseconds if DateTime was created with microseconds.	Example: 654321
-v	Milliseconds (added in PHP 7.0.0). Same note applies as for u.	Example: 654
-Timezone	---	---
-e	Timezone identifier (added in PHP 5.1.0)	Examples: UTC, GMT, Atlantic/Azores
-I (capital i)	Whether or not the date is in daylight saving time	1 if Daylight Saving Time, 0 otherwise.
-O	Difference to Greenwich time (GMT) in hours	Example: +0200
-P	Difference to Greenwich time (GMT) with colon between hours and minutes (added in PHP 5.1.3)	Example: +02:00
-T	Timezone abbreviation	Examples: EST, MDT ...
-Z	Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive.	-43200 through 50400
-Full Date/Time	---	---
-c	ISO 8601 date (added in PHP 5)	2004-02-12T15:19:21+00:00
-r	» RFC 2822 formatted date	Example: Thu, 21 Dec 2000 16:01:07 +0200
-U	Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)	See also time()
-*/
+            // Day
+            case 'd': // Day of the month, 2 digits with leading zeros
+                result += now.toLocaleString(locale, {day: '2-digit'});
+                break;
+            case 'D': // A textual representation of a day, three letters
+                result += now.toLocaleString(locale, {weekday: 'short'});
+                break;
+            case 'j': // Day of the month without leading zeros
+                result += now.toLocaleString(locale, {day: 'numeric'});
+                break;
+            case 'l': // A full textual representation of the day of the week
+                result += now.toLocaleString(locale, {weekday: 'short'});
+                break;
+            case 'N': // ISO-8601 numeric representation of the day of the week
+                var num = now.getDay()
+                result += num == 0 ? 7 : num;
+                break;
+            case 'S': // English ordinal suffix for the day of the month, 2 characters
+                var num = now.getDate();
+                var temp = num % 10;
+                result += num >= 11 && num <= 13 ? 'th' : temp == 1 ? 'st' : temp == 2 ? 'nd' : temp == 3 ? 'rd' : 'th';
+                break;
+            case 'w': // Numeric representation of the day of the week
+                result += now.getDay();
+                break;
+            case 'z': // The day of the year, starting from 0
+                result += (Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - Date.UTC(now.getFullYear(), 0, 1)) / convertTimeUnit('day');
+                break;
+            // Week
+            case 'W': // ISO-8601 week number of year, weeks starting on Monday
+            
+                break;
+            // Month
+            case 'F': // A full textual representation of a month, such as January or March
+                result += now.toLocaleString(locale, {month: 'long'});
+                break;
+            case 'm': // Numeric representation of a month, with leading zeros
+                result += now.toLocaleString(locale, {month: '2-digit'});
+                break;
+            case 'M': // A short textual representation of a month, three letters
+                result += now.toLocaleString(locale, {month: 'short'});
+                break;
+            case 'n': // Numeric representation of a month, without leading zeros
+                result += now.toLocaleString(locale, {month: 'numeric'});
+                break;
+            case 't': // Number of days in the given month
+            
+                break;
+            // Year
+            case 'L': // Whether it's a leap year
+            // 1 or 0
+            
+                break;
+            case 'o': // ISO-8601 week-numbering year. This has the same value as Y, except that if the ISO week number (W) belongs to the previous or next year, that year is used instead.
+            
+                break;
+            case 'Y': // A full numeric representation of a year, 4 digits
+                result += now.toLocaleString(locale, {year: 'numeric'});
+                break;
+            case 'y': // A two digit representation of a year
+                result += now.toLocaleString(locale, {year: '2-digit'});
+                break;
+            // Time
+            case 'a': // Lowercase Ante meridiem and Post meridiem
+                result += now.toLocaleString(locale, {hour12: true, hour: 'numeric'}).split(' ')[1].toLowerCase();
+                break;
+            case 'A': // Uppercase Ante meridiem and Post meridiem
+                result += now.toLocaleString(locale, {hour12: true, hour: 'numeric'}).split(' ')[1];
+                break;
+            case 'B': // Swatch Internet time
+            // 000 through 999
+            
+                break;
+            case 'g': // 12-hour format of an hour without leading zeros
+                result += now.toLocaleString(locale, {hour12: true, hour: 'numeric'}).split(' ')[0];
+                break;
+            case 'G': // 24-hour format of an hour without leading zeros
+                result += now.toLocaleString(locale, {hour12: false, hour: 'numeric'});
+                break;
+            case 'h': // 12-hour format of an hour with leading zeros
+                result += now.toLocaleString(locale, {hour12: true, hour: '2-digit'}).split(' ')[0];
+                break;
+            case 'H': // 24-hour format of an hour with leading zeros
+                result += now.toLocaleString(locale, {hour12: false, hour: '2-digit'});
+                break;
+            case 'i': // Minutes with leading zeros
+                result += now.toLocaleString(locale, {minute: '2-digit'});
+                break;
+            case 's': // Seconds with leading zeros
+                result += now.toLocaleString(locale, {second: '2-digit'});
+                break;
+            case 'u': // Microseconds
+            
+                break;
+            case 'v': // Milliseconds
+                result += now.getMilliseconds();
+                break;
+            // Timezone
+            case 'e': // Timezone identifier
+                result += now.toLocaleString(locale, {timeZoneName: 'long'});
+                break;
+            case 'I' // Whether or not the date is in daylight saving time
+            // 1 or 0
+            
+                break;
+            case 'O': // Difference to Greenwich time (GMT) in hours
+            // +0200
+            
+                break;
+            case 'P': // Difference to Greenwich time (GMT) with colon between hours and minutes
+            // +02:00
+            
+                break;
+            case 'T': // Timezone abbreviation
+                result += now.toLocaleString(locale, {timeZoneName: 'short'});
+                break;
+            case 'Z': // Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive.
+                result += now.getTimezoneOffset() * 60;
+                break;
+            // Full Date/Time
+            case 'c': // ISO 8601 date
+                result += now.toISOString();
+                break;
+            case 'r': // RFC 2822 formatted date
+                result += now.toString();
+                break;
+            case 'U': // Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)
+                result += now.valueOf();
+                break;
             default:
                 result += str[i];
                 break;
@@ -273,7 +355,7 @@ const update = function() {
     } else if (mode == 'simple') {
         return (now) => now.toLocaleDateString() + line + now.toLocaleTimeString();
     } else if (mode == 'plain') {
-        return (now) => now.toLocaleDateString(locale, format_date).toUpperCase() + line + now.toLocaleTimeString(locale, format_time).toUpperCase();
+        return (now) => now.toLocaleString(locale, format_date).toUpperCase() + line + now.toLocaleTimeString(locale, format_time).toUpperCase();
     } else if (mode == 'him') {
         return (now) => timeFormat(now);
     }
