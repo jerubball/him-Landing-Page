@@ -307,7 +307,7 @@ const dateFormat = function(now, str) {
             case 'e': // Timezone identifier
                 result += now.toLocaleString(locale, {timeZoneName: 'long'});
                 break;
-            case 'I' // Whether or not the date is in daylight saving time
+            case 'I': // Whether or not the date is in daylight saving time
             // 1 or 0
             
                 break;
