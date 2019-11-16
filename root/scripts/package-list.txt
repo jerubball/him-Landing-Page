@@ -50,6 +50,8 @@ apache2
 php
 php-all-dev
 nodejs
+npm
+node-typescript
 jq
 perl
 ruby
