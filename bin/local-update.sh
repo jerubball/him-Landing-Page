@@ -2,4 +2,4 @@
 
 cd ..
 git pull
-cp -rfP ./root/* /usr/local/apache2/htdocs/
+cp -rfP ./root/. /usr/local/apache2/htdocs/

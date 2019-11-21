@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd ..
-cp -rfP ./root/* /var/www/html/
+cp -rfP ./root/. /var/www/html/

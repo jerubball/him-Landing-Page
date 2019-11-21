@@ -2,4 +2,4 @@
 
 cd ..
 git pull
-cp -rfP ./root/* /var/www/html/
+cp -rfP ./root/. /var/www/html/
