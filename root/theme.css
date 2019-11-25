@@ -42,6 +42,18 @@
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
+/*
+Light and Dark color scheme.
+  #000  #fff
+  #333  #ccc
+  #8e8e8e  #717171
+  #686868  #979797
+  #6c757d  #828b93
+  #fcf8e3  #1c1803
+  #e83e8c  #c11765
+  #212529  #d6dade
+ */
+
 *,
 *::before,
 *::after {
@@ -70,16 +82,12 @@ body {
   text-align: left;
   color: #333;
   background-color: white; }
-
 body.light {
   color: #333;
-  background-color: white; 
-}
-
+  background-color: white; }
 body.dark {
   color: #ccc;
-  background-color: black;
-}
+  background-color: black; }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -162,6 +170,14 @@ a {
   a:hover {
     color: #686868;
     text-decoration: underline; }
+body.light a {
+  color: #8e8e8e; }
+  body.light a:hover {
+    color: #686868; }
+body.dark a {
+  color: #717171; }
+  body.dark a:hover {
+    color: #979797; }
 
 a:not([href]):not([tabindex]) {
   color: inherit;
@@ -202,9 +218,13 @@ table {
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  color: #6c757d;
   text-align: left;
-  caption-side: bottom; }
+  caption-side: bottom;
+  color: #6c757d; }
+  body.light caption {
+    color: #6c757d; }
+  body.dark caption {
+    color: #828b93; }
 
 th {
   text-align: inherit; }
@@ -380,6 +400,12 @@ mark,
 .mark {
   padding: 0.2em;
   background-color: #fcf8e3; }
+  body.light mark,
+  body.light .mark {
+    background-color: #fcf8e3; }
+  body.dark mark,
+  body.dark .mark {
+    background-color: #1c1803; }
 
 .list-unstyled {
   padding-left: 0;
@@ -408,6 +434,10 @@ mark,
   color: #6c757d; }
   .blockquote-footer::before {
     content: "\2014 \00A0"; }
+  body.light .blockquote-footer {
+    color: #6c757d; }
+  body.dark .blockquote-footer {
+    color: #828b93; }
 
 .img-fluid {
   max-width: 100%;
@@ -415,12 +445,16 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: white;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
   max-width: 100%;
-  height: auto; }
+  height: auto;
+  background-color: white; }
+  body.light .img-thumbnail {
+    background-color: white; }
+  body.dark .img-thumbnail {
+    background-color: black; }
 
 .figure {
   display: inline-block; }
@@ -439,19 +473,29 @@ code {
   word-break: break-word; }
   a > code {
     color: inherit; }
+  body.light code {
+    color: #e83e8c; }
+  body.dark code {
+    color: #c11765; }
 
 kbd {
   padding: 0.2rem 0.4rem;
   font-size: 87.5%;
-  color: #fff;
-  background-color: #212529;
   border-radius: 0.2rem;
-  box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.25); }
+  box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.25);
+  color: #fff;
+  background-color: #212529; }
   kbd kbd {
     padding: 0;
     font-size: 100%;
     font-weight: 700;
     box-shadow: none; }
+  body.light kbd {
+    color: #fff;
+    background-color: #212529; }
+  body.dark kbd {
+    color: #000;
+    background-color: #d6dade; }
 
 pre {
   display: block;
@@ -461,6 +505,10 @@ pre {
     font-size: inherit;
     color: inherit;
     word-break: normal; }
+  body.light pre {
+    color: #212529; }
+  body.dark pre {
+    color: #d6dade; }
 
 .pre-scrollable {
   max-height: 340px;
