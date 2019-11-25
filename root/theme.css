@@ -1,8 +1,11 @@
 /*!
-* Wireframe Pingendo template (https://templates.pingendo.com)
-* Based on: Bootstrap v4.1.3 (https://getbootstrap.com)
-* Copyright 2014-2018 Pingendo (https://pingendo.com)
-*/
+ * root theme style sheet for hasol.co
+ */
+/*!
+ * Wireframe Pingendo template (https://templates.pingendo.com)
+ * Based on: Bootstrap v4.1.3 (https://getbootstrap.com)
+ * Copyright 2014-2018 Pingendo (https://pingendo.com)
+ */
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -64,8 +67,8 @@ body {
   font-size: 1rem;
   font-weight: 200;
   line-height: 1.5;
-  color: #333;
   text-align: left;
+  color: #333;
   background-color: white; }
 
 [tabindex="-1"]:focus {
