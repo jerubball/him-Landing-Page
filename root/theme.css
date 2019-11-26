@@ -12,6 +12,7 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -40,19 +41,114 @@
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* Light Theme */
+  --primary-light: var(--primary);
+  --secondary-light: var(--secondary);
+  --success-light: var(--success);
+  --info-light: var(--info);
+  --warning-light: var(--warning);
+  --danger-light: var(--danger);
+  --light-light: var(--light);
+  --dark-light: var(--dark);
+  --foreground-light: #000000;
+  --background-light: #ffffff;
+  --text-light: #333333;
+  --link-light: #8e8e8e;
+  --hover-light: #686868;
+  --caption-light: #6c757d;
+  --mark-light: #fcf8e3;
+  --code-light: #e83e8c;
+  --pre-light: #212529;
+  --border-light: #dee2e6;
+  /* Dark Theme */
+  --primary-dark: #323232;
+  --secondary-dark: #4f4f4f;
+  --success-dark: #58d775;
+  --info-dark: #717171;
+  --warning-dark: #f8ba00;
+  --danger-dark: #ca2333;
+  --light-dark: #aaaaaa;
+  --dark-dark: #151515;
+  --foreground-dark: #ffffff;
+  --background-dark: #000000;
+  --text-dark: #cccccc;
+  --link-dark: #717171;
+  --hover-dark: #979797;
+  --caption-dark: #828b93;
+  --mark-dark: #1c1803;
+  --code-dark: #c11765;
+  --pre-dark: #d6dade;
+  --border-dark: #191d21;
+  }
 
 /*
 Light and Dark color scheme.
-  #000  #fff
-  #333  #ccc
-  #8e8e8e  #717171
-  #686868  #979797
-  #6c757d  #828b93
-  #fcf8e3  #1c1803
-  #e83e8c  #c11765
-  #212529  #d6dade
+  primary       #cdcdcd  #323232
+  secondary     #b0b0b0  #4f4f4f
+  success       #28a745  #58d775
+  info          #8e8e8e  #717171
+  warning       #ffc107  #f8ba00
+  danger        #dc3545  #ca2333
+  light         #eaeaea  #aaaaaa
+  dark          #555555  #151515
+  foreground    #000000  #ffffff    kbd-fg
+  background    #ffffff  #000000    body, img-thumbnail
+  text          #333333  #cccccc    body-bg
+  link          #8e8e8e  #717171
+  hover         #686868  #979797
+  caption       #6c757d  #828b93    blockquote-footer
+  mark          #fcf8e3  #1c1803
+  code          #e83e8c  #c11765
+  pre           #212529  #d6dade    kbd-bg
+  border        #dee2e6  #191d21
  */
+
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+  :root {
+    --primary-default: var(--primary-light);
+    --secondary-default: var(--secondary-light);
+    --success-default: var(--success-light);
+    --info-default: var(--info-light);
+    --warning-default: var(--warning-light);
+    --danger-default: var(--danger-light);
+    --light-default: var(--light-light);
+    --dark-default: var(--dark-light);
+    --foreground-default: var(--foreground-light);
+    --background-default: var(--background-light);
+    --text-default: var(--text-light);
+    --link-default: var(--link-light);
+    --hover-default: var(--hover-light);
+    --caption-default: var(--caption-light);
+    --mark-default: var(--mark-light);
+    --code-default: var(--code-light);
+    --pre-default: var(--pre-light);
+    --border-default: var(--border-light);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-default: var(--primary-dark);
+    --secondary-default: var(--secondary-dark);
+    --success-default: var(--success-dark);
+    --info-default: var(--info-dark);
+    --warning-default: var(--warning-dark);
+    --danger-default: var(--danger-dark);
+    --light-default: var(--light-dark);
+    --dark-default: var(--dark-dark);
+    --foreground-default: var(--foreground-dark);
+    --background-default: var(--background-dark);
+    --text-default: var(--text-dark);
+    --link-default: var(--link-dark);
+    --hover-default: var(--hover-dark);
+    --caption-default: var(--caption-dark);
+    --mark-default: var(--mark-dark);
+    --code-default: var(--code-dark);
+    --pre-default: var(--pre-dark);
+    --border-default: var(--border-dark);
+    }
+}
 
 *,
 *::before,
@@ -80,14 +176,14 @@ body {
   font-weight: 200;
   line-height: 1.5;
   text-align: left;
-  color: #333;
-  background-color: white; }
+  color: var(--text-default);
+  background-color: var(--background-default); }
 body.light {
-  color: #333;
-  background-color: white; }
+  color: var(--text-light);
+  background-color: var(--background-light); }
 body.dark {
-  color: #ccc;
-  background-color: black; }
+  color: var(--text-dark);
+  background-color: var(--background-dark); }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -163,21 +259,21 @@ sup {
   top: -.5em; }
 
 a {
-  color: #8e8e8e;
   text-decoration: none;
   background-color: transparent;
-  -webkit-text-decoration-skip: objects; }
+  -webkit-text-decoration-skip: objects;
+  color: var(--link-default); }
   a:hover {
-    color: #686868;
-    text-decoration: underline; }
+    text-decoration: underline;
+    color: var(--hover-default); }
 body.light a {
-  color: #8e8e8e; }
+  color: var(--link-light); }
   body.light a:hover {
-    color: #686868; }
+    color: var(--hover-light); }
 body.dark a {
-  color: #717171; }
+  color: var(--link-dark); }
   body.dark a:hover {
-    color: #979797; }
+    color: var(--hover-dark); }
 
 a:not([href]):not([tabindex]) {
   color: inherit;
@@ -220,11 +316,11 @@ caption {
   padding-bottom: 0.75rem;
   text-align: left;
   caption-side: bottom;
-  color: #6c757d; }
-  body.light caption {
-    color: #6c757d; }
-  body.dark caption {
-    color: #828b93; }
+  color: var(--caption-default); }
+body.light caption {
+  color: var(--caption-light); }
+body.dark caption {
+  color: var(--caption-dark); }
 
 th {
   text-align: inherit; }
@@ -399,13 +495,13 @@ small,
 mark,
 .mark {
   padding: 0.2em;
-  background-color: #fcf8e3; }
-  body.light mark,
-  body.light .mark {
-    background-color: #fcf8e3; }
-  body.dark mark,
-  body.dark .mark {
-    background-color: #1c1803; }
+  background-color: var(--mark-default); }
+body.light mark,
+body.light .mark {
+  background-color: var(--mark-light); }
+body.dark mark,
+body.dark .mark {
+  background-color: var(--mark-dark); }
 
 .list-unstyled {
   padding-left: 0;
@@ -431,13 +527,13 @@ mark,
 .blockquote-footer {
   display: block;
   font-size: 80%;
-  color: #6c757d; }
+  color: var(--caption-default); }
   .blockquote-footer::before {
     content: "\2014 \00A0"; }
-  body.light .blockquote-footer {
-    color: #6c757d; }
-  body.dark .blockquote-footer {
-    color: #828b93; }
+body.light .blockquote-footer {
+  color: var(--caption-light); }
+body.dark .blockquote-footer {
+  color: var(--caption-dark); }
 
 .img-fluid {
   max-width: 100%;
@@ -450,11 +546,11 @@ mark,
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
   max-width: 100%;
   height: auto;
-  background-color: white; }
-  body.light .img-thumbnail {
-    background-color: white; }
-  body.dark .img-thumbnail {
-    background-color: black; }
+  background-color: var(--background-default); }
+body.light .img-thumbnail {
+  background-color: var(--background-light); }
+body.dark .img-thumbnail {
+  background-color: var(--background-dark); }
 
 .figure {
   display: inline-block; }
@@ -469,46 +565,46 @@ mark,
 
 code {
   font-size: 87.5%;
-  color: #e83e8c;
+  color: var(--code-default);
   word-break: break-word; }
   a > code {
     color: inherit; }
-  body.light code {
-    color: #e83e8c; }
-  body.dark code {
-    color: #c11765; }
+body.light code {
+  color: var(--code-light); }
+body.dark code {
+  color: var(--code-dark); }
 
 kbd {
   padding: 0.2rem 0.4rem;
   font-size: 87.5%;
   border-radius: 0.2rem;
   box-shadow: inset 0 -0.1rem 0 rgba(0, 0, 0, 0.25);
-  color: #fff;
-  background-color: #212529; }
+  color: var(--foreground-default);
+  background-color: var(--pre-default); }
   kbd kbd {
     padding: 0;
     font-size: 100%;
     font-weight: 700;
     box-shadow: none; }
-  body.light kbd {
-    color: #fff;
-    background-color: #212529; }
-  body.dark kbd {
-    color: #000;
-    background-color: #d6dade; }
+body.light kbd {
+  color: var(--foreground-light);
+  background-color: var(--pre-light); }
+body.dark kbd {
+  color: var(--foreground-dark);
+  background-color: var(--pre-dark); }
 
 pre {
   display: block;
   font-size: 87.5%;
-  color: #212529; }
+  color: var(--pre-default); }
   pre code {
     font-size: inherit;
     color: inherit;
     word-break: normal; }
-  body.light pre {
-    color: #212529; }
-  body.dark pre {
-    color: #d6dade; }
+body.light pre {
+  color: var(--pre-light); }
+body.dark pre {
+  color: var(--pre-dark); }
 
 .pre-scrollable {
   max-height: 340px;
@@ -1110,12 +1206,12 @@ pre {
   .table td {
     padding: 0.75rem;
     vertical-align: top;
-    border-top: 1px solid #dee2e6; }
+    border-top: 1px solid var(--border-default); }
   .table thead th {
     vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6; }
+    border-bottom: 2px solid var(--border-default); }
   .table tbody + tbody {
-    border-top: 2px solid #dee2e6; }
+    border-top: 2px solid var(--border-default); }
   .table .table {
     background-color: white; }
 
@@ -1124,10 +1220,10 @@ pre {
   padding: 0.3rem; }
 
 .table-bordered {
-  border: 1px solid #dee2e6; }
+  border: 1px solid var(--border-default); }
   .table-bordered th,
   .table-bordered td {
-    border: 1px solid #dee2e6; }
+    border: 1px solid var(--border-default); }
   .table-bordered thead th,
   .table-bordered thead td {
     border-bottom-width: 2px; }
