@@ -37,7 +37,7 @@
       <div class="row">
         <div class="col-md-6">
           <h2 class="">Create new URL.</h2>
-          <form class="" action="" onsubmit="return submitForm()">
+          <form class="" action="" onsubmit="return Script.submitForm()">
             <div class="form-group">
               <label for="Expires">Expires after:</label>
               <select class="form-control" id="form-expires">
@@ -75,7 +75,7 @@
         <div class="col-md-6">
           <h2 class="">Error.</h2>
           <p class="lead" id="fail-body"></p>
-          <button type="submit" class="btn btn-primary" id="fail-button" onclick="backToForm()">Back</button>
+          <button type="submit" class="btn btn-primary" id="fail-button" onclick="Script.backToForm()">Back</button>
         </div>
       </div>
     </div>
@@ -84,9 +84,9 @@
         <div class="col-md-6">
           <h2 class="">Created.</h2>
           <p class="lead" id="success-body"></p>
-          <button type="submit" class="btn btn-light" id="success-button-copy" onclick="copyToClipboard()">Copy</button>
-          <button type="submit" class="btn btn-primary" id="success-button-go" onclick="goToURL()"><b>Go</b></button>
-          <button type="submit" class="btn btn-primary" id="success-button" onclick="backToForm()">Back</button>
+          <button type="submit" class="btn btn-light" id="success-button-copy" onclick="Script.copyToClipboard()">Copy</button>
+          <button type="submit" class="btn btn-primary" id="success-button-go" onclick="Script.goToURL()"><b>Go</b></button>
+          <button type="submit" class="btn btn-primary" id="success-button" onclick="Script.backToForm()">Back</button>
           <p class="" id="success-info" hidden><label for="confirm" id="success-label"></label></p>
         </div>
       </div>
