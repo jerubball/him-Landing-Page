@@ -36,12 +36,12 @@
             <a class="nav-link text-white mr-2" href="mailto:him.nyit@gmail.com">Contact me</a>
           </li>
           <li class="nav-item">
-            <a id="ssl-indicator" class="btn btn-outline-light my-sm-0" href="#" aria-pressed="false" autocomplete="off" data-toggle="button" onclick="Core.Window.toggleProtocol()"><b>SSL</b></a>
-            <script>Core.Window.setSSLindicator(document.getElementById('ssl-indicator'));</script>
-          </li>
-          <li class="nav-item">
-            <a id="dark-indicator" class="btn btn-outline-light my-sm-0" href="#" aria-pressed="false" autocomplete="off" data-toggle="button" onclick="Core.Window.toggleDarkMode()"><b>Dark</b></a>
-            <script>Core.Window.setDarkIndicator(document.getElementById('dark-indicator'));</script>
+            <a id="ssl-indicator" class="btn btn-outline-light my-sm-0 mr-2" href="#" aria-pressed="false" autocomplete="off" data-toggle="button" onclick="Core.Window.toggleProtocol()"><b>SSL</b></a>
+            <a id="dark-indicator" class="btn btn-outline-light my-sm-0 mr-2" href="#" aria-pressed="false" autocomplete="off" data-toggle="button" onclick="Core.Window.toggleDarkMode()"><b>Dark</b></a>
+            <script>
+              Core.Window.setSSLindicator(document.getElementById('ssl-indicator'));
+              Core.Window.setDarkIndicator(document.getElementById('dark-indicator'));
+            </script>
           </li>
         </ul>
         <!--
