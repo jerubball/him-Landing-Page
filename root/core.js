@@ -122,7 +122,7 @@ const Core = Object.freeze({
         },
         
         setDarkIndicator(item) {
-            if (getMediaColorSchemePreference() == 'dark' || document.body.classList.contains('dark')) {
+            if (Core.Window.getMediaColorSchemePreference() == 'dark' || document.body.classList.contains('dark')) {
                 item.classList.add('active');
                 item.setAttribute('aria-pressed', true);
             }
@@ -142,7 +142,7 @@ const Core = Object.freeze({
         },
         
         toggleDarkMode() {
-            if (document.body.classList.contains('light') || (!document.body.classList.contains('dark') && getMediaColorSchemePreference() == 'dark')) {
+            if (document.body.classList.contains('light') || (!document.body.classList.contains('dark') && Core.Window.getMediaColorSchemePreference() == 'dark')) {
                 document.body.classList.remove('dark');
                 document.body.classList.add('light');
             } else {
