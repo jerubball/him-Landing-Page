@@ -9,7 +9,7 @@ use Website;
 
 create table if not exists url (
   url  varchar(10)  primary key,
-  redirect  varchar(100)  not null,
+  redirect  varchar(200)  not null,
   created  datetime,
   expires  datetime,
   visited  integer  not null  default 0,
@@ -18,7 +18,7 @@ create table if not exists url (
 );
 
 -- alter table url modify url varchar(10) primary key;
--- alter table url modify redirect varchar(100) not null;
+-- alter table url modify redirect varchar(200) not null;
 -- alter table url modify created datetime;
 -- alter table url modify expires datetime;
 -- alter table url modify visited integer not null default 0;
