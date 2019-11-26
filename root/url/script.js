@@ -1,4 +1,7 @@
 
+const Script = Object.freeze({
+});
+
 const isValidURL = function(url) {
     try {
         new URL(url);

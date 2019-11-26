@@ -1,3 +1,7 @@
+
+const Script = Object.freeze({
+});
+
 // set all qualifying CheckBox to state.
 const setCheckBox = function(tag, type, tower, index, check) {
     var all = document.getElementsByTagName(tag);

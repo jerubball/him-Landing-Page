@@ -1,4 +1,7 @@
 
+const Script = Object.freeze({
+});
+
 //const format = { localeMatcher: 'best fit', formatMatcher: 'best fit', timeZone: 'UTC', };
 //const format = { era: 'short', year: 'numeric', month: 'short', day: '2-digit', weekday: 'short', hour12: 'false', hourCycle: 'h23', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
 const format_date = { era: 'short', year: 'numeric', month: 'short', day: '2-digit', weekday: 'short' };
