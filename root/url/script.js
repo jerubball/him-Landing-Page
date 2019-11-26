@@ -71,7 +71,7 @@ const Script = Object.freeze({
         window.location.href = successBody.innerHTML;
     },
     
-    submitForm = function() {
+    submitForm() {
         var url = document.getElementById('form-url');
         var expires = document.getElementById('form-expires');
         var main = document.getElementById('main');
