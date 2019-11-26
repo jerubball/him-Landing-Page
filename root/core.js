@@ -110,11 +110,11 @@ const Core = Object.freeze({
         },
         
         getMediaColorSchemePreference() {
-            if (window.matchMedia('(prefers-color-scheme: dark)')) {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 return 'dark';
-            } else if (window.matchMedia('(prefers-color-scheme: light)')) {
+            } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
                 return 'light';
-            } else if (window.matchMedia('(prefers-color-scheme: no-preference)')) {
+            } else if (window.matchMedia('(prefers-color-scheme: no-preference)').matches) {
                 return 'no-preference';
             } else {
                 return '';
@@ -143,11 +143,11 @@ const Core = Object.freeze({
         
         toggleDarkMode() {
             if (document.body.classList.contains('light') || (!document.body.classList.contains('dark') && Core.Window.getMediaColorSchemePreference() == 'dark')) {
-                document.body.classList.remove('dark');
-                document.body.classList.add('light');
-            } else {
                 document.body.classList.remove('light');
                 document.body.classList.add('dark');
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
             }
         },
         
