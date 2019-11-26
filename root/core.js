@@ -172,7 +172,7 @@ const Core = Object.freeze({
     
     Util: Object.freeze({
         
-        arrayIndex (arr, item) {
+        arrayIndex(arr, item) {
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i] === item) {
                     return i;
@@ -180,17 +180,37 @@ const Core = Object.freeze({
             }
         },
         
-        objectIndex (obj, item) {
-            var keys = Object.keys(obj);
-            for (var i = 0; i < keys.length; i++) {
-                if (obj[keys[i]] === item) {
-                    return keys[i];
+        objectIndex(obj, item) {
+            for (var key in obj) {
+                if (obj[key] === item) {
+                    return key;
                 }
             }
         },
         
-        strnatcasecmp (a, b) {
+        strnatcasecmp(a, b) {
             return a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'});
+        },
+        
+        objectKeyComparator(func, key, mode) {
+            if (mode === undefined) {
+                mode = 1;
+            }
+            if (key === undefined) {
+                var keys = this.arrayIntersect(Object.keys(a), Object.keys(b));
+                if (keys.length > 0) {
+                    key = keys[0];
+                } else {
+                    key = '';
+                }
+            }
+            return function(a, b) {
+                return mode * func(a[key], b[key])
+            };
+        },
+        
+        arrayIntersect(a, b) {
+            return a.filter(value => b.includes(value));
         },
         
         sortTable(elem) {
@@ -212,9 +232,7 @@ const Core = Object.freeze({
                 elem.classList.add('sorted');
             }
             var mode = elem.classList.contains('asc') ? 1 : elem.classList.contains('desc') ? -1 : 0;
-            var sorter = function(a, b) {
-                return mode * this.strnatcasecmp(a['data'], b['data']);
-            };
+            var sorter = this.objectKeyComparator(this.strnatcasecmp, 'data', mode);
             var getData = function(body) { // get index, html, sorting data of each row in tbody
                 var arr = [];
                 for (var i = 0; i < body.rows.length; i++) {
