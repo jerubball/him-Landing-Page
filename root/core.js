@@ -32,7 +32,7 @@ const Core = Object.freeze({
         },
         
         setSSLindicator(item) {
-            if (Core.Window.getSSLmode()) {
+            if (this.getSSLmode()) {
                 item.classList.add('active');
                 item.setAttribute('aria-pressed', true);
             }
@@ -122,7 +122,7 @@ const Core = Object.freeze({
         },
         
         setDarkIndicator(item) {
-            if (Core.Window.getMediaColorSchemePreference() == 'dark' || document.body.classList.contains('dark')) {
+            if (this.getMediaColorSchemePreference() == 'dark' || document.body.classList.contains('dark')) {
                 item.classList.add('active');
                 item.setAttribute('aria-pressed', true);
             }
@@ -142,7 +142,7 @@ const Core = Object.freeze({
         },
         
         toggleDarkMode() {
-            if (document.body.classList.contains('light') || (!document.body.classList.contains('dark') && Core.Window.getMediaColorSchemePreference() != 'dark')) {
+            if (document.body.classList.contains('light') || (!document.body.classList.contains('dark') && this.getMediaColorSchemePreference() != 'dark')) {
                 document.body.classList.remove('light');
                 document.body.classList.add('dark');
             } else {
@@ -202,7 +202,7 @@ const Core = Object.freeze({
                 return; // stop if not table or not sortable
             }
             var head = table.tHead.rows[0]; // get header
-            var column = Core.Util.arrayIndex(elem.parentElement.cells, elem); // get column index
+            var column = this.arrayIndex(elem.parentElement.cells, elem); // get column index
             if (elem.classList.contains('sorted')) {
                 elem.classList.replace('asc', 'desc') || elem.classList.replace('desc', 'asc') || elem.classList.add('asc');
             } else {
@@ -213,7 +213,7 @@ const Core = Object.freeze({
             }
             var mode = elem.classList.contains('asc') ? 1 : elem.classList.contains('desc') ? -1 : 0;
             var sorter = function(a, b) {
-                return mode * Core.Util.strnatcasecmp(a['data'], b['data']);
+                return mode * this.strnatcasecmp(a['data'], b['data']);
             };
             var getData = function(body) { // get index, html, sorting data of each row in tbody
                 var arr = [];
@@ -245,7 +245,7 @@ const Core = Object.freeze({
             for (var i = 0; i < head.cells.length; i++) {
                 var cell = head.cells[i];
                 cell.onclick = function(event) { // add click event
-                    Core.Util.sortTable(this);
+                    this.sortTable(this);
                 }
                 cell.classList.add('asc');
                 var create = true;
@@ -279,9 +279,9 @@ const Core = Object.freeze({
     
     Script: {},
     
-    Local: {},
+    //Local: {},
     
-    Data: {},
+    //Data: {},
     
 });
 
