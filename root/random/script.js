@@ -8,10 +8,10 @@ const Script = Object.freeze({
     
     update(id) {
         var elem = document.getElementById(id);
-        var size = Core.Math.randomInt(Script.min, Script.max);
+        var size = Core.Math.randomInt(this.min, this.max);
         var result = '';
         for (var i = 0; i < size; i++) {
-            result += Script.charset.charAt(Core.Math.randomInt(Script.charset.length));
+            result += this.charset.charAt(Core.Math.randomInt(this.charset.length));
         }
         elem.innerHTML = result;
     },
