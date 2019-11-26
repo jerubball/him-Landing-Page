@@ -105,6 +105,52 @@ const Core = Object.freeze({
         
         param: new URLSearchParams(location.search),
         
+        getDarkMode() {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches;
+        },
+        
+        getMediaColorSchemePreference() {
+            if (window.matchMedia('(prefers-color-scheme: dark)')) {
+                return 'dark';
+            } else if (window.matchMedia('(prefers-color-scheme: light)')) {
+                return 'light';
+            } else if (window.matchMedia('(prefers-color-scheme: no-preference)')) {
+                return 'no-preference';
+            } else {
+                return '';
+            }
+        },
+        
+        setDarkIndicator(item) {
+            if (getMediaColorSchemePreference() == 'dark' || document.body.classList.contains('dark')) {
+                item.classList.add('active');
+                item.setAttribute('aria-pressed', true);
+            }
+        },
+        
+        setDarkMode(mode) {
+            if (mode == 'dark') {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+            } else if (mode == 'light') {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+            } else {
+                document.body.classList.remove('dark');
+                document.body.classList.remove('light');
+            }
+        },
+        
+        toggleDarkMode() {
+            if (document.body.classList.contains('light') || (!document.body.classList.contains('dark') && getMediaColorSchemePreference() == 'dark')) {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+            } else {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+            }
+        },
+        
     }),
     
     
