@@ -379,10 +379,10 @@
                     }
 ?>
                     <br>
-                    <input type="checkbox" onclick="toggleClicked(this)"
+                    <input type="checkbox" onclick="Script.toggleClicked(this)"
                         data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> />
                     <br>
-                    <img class="img-custom-tower" src="./image/<?php echo $towerset["name"]; ?>.php" draggable="false" onclick="toggleClicked(this)" 
+                    <img class="img-custom-tower" src="./image/<?php echo $towerset["name"]; ?>.php" draggable="false" onclick="Script.toggleClicked(this)" 
                         data-mission="<?php echo $missionset["mission"]; ?>" data-tower="<?php echo $towerset["name"]; ?>" data-index=<?php echo $l; ?> >
                   </div>
 <?php
