@@ -90,7 +90,7 @@ const Script = Object.freeze({
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4) {
                     if (this.status == 200) {
-                        if (this.responseText.length > 2) {
+                        if (this.responseText.length > 2) { // response is 0 or 1 followed by message.
                             var response = this.responseText.substring(2);
                             if (this.responseText.charAt(0) == '0') {
                                 Script.successAction(window.location.origin + '/url?' + response);
