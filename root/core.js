@@ -172,7 +172,7 @@ const Core = Object.freeze({
     
     Util: Object.freeze({
         
-        arrayIndex(arr, item) {
+        arrayIndex(arr, item) { // find index of item in array.
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i] === item) {
                     return i;
@@ -180,7 +180,7 @@ const Core = Object.freeze({
             }
         },
         
-        objectIndex(obj, item) {
+        objectIndex(obj, item) { // find key of item in object.
             for (var key in obj) {
                 if (obj[key] === item) {
                     return key;
@@ -192,7 +192,7 @@ const Core = Object.freeze({
             return a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'});
         },
         
-        objectKeyComparator(func, key, mode) {
+        objectKeyComparator(func, key, mode) { // get comparator function for object.
             if (mode === undefined) {
                 mode = 1;
             }
@@ -209,7 +209,7 @@ const Core = Object.freeze({
             };
         },
         
-        arrayIntersect(a, b) {
+        arrayIntersect(a, b) { // get new array with elements from both arrays.
             return a.filter(value => b.includes(value));
         },
         
