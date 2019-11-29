@@ -3,9 +3,11 @@
 html {
     background-color: #000000;
 }
+
 body.main {
-    background-color: #000000;
+    background-color: inherit;
 }
+
 div.box {
     width: 95%;
     position: absolute;
@@ -15,12 +17,46 @@ div.box {
     text-align: center;
     vertical-align: middle;
 }
+
 p.text {
+    line-height: 1;
+    margin: 0;
+    padding: 0;
     color: #00FF00;
     font-family: 'Orbitron', sans-serif;
     font-size: 5vw;
     font-weight: bold;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
+}
+
+html.style-default {
+    background-color: #000000;
+}
+
+html.style-default p.text {
+    color: #00FF00;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5vw;
+    font-weight: bold;
+}
+
+html.style-light {
+    background-color: #FFFFFF;
+}
+
+html.style-light p.text {
+    color: #000000;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5vw;
+    font-weight: bold;
+}
+
+html.style-dark {
+    background-color: #000000;
+}
+
+html.style-dark p.text {
+    color: #FFFFFF;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5vw;
+    font-weight: bold;
 }

@@ -100,7 +100,7 @@ Light and Dark color scheme.
   caption       #6c757d  #828b93    blockquote-footer
   mark          #fcf8e3  #1c1803
   code          #e83e8c  #c11765
-  pre           #212529  #d6dade    kbd-bg
+  pre           #212529  #d6dade    kbd-bg table-text
   border        #dee2e6  #191d21
  */
 
@@ -1214,7 +1214,30 @@ body.dark pre {
   .table tbody + tbody {
     border-top: 2px solid var(--border-default); }
   .table .table {
-    background-color: white; }
+    background-color: var(--background-default); }
+body.light .table {
+  color: var(--pre-light); }
+  body.light .table th,
+  body.light .table td {
+    border-top: 1px solid var(--border-light); }
+  body.light .table thead th {
+    border-bottom: 2px solid var(--border-light); }
+  body.light .table tbody + tbody {
+    border-top: 2px solid var(--border-light); }
+  body.light .table .table {
+    background-color: var(--background-light); }
+
+body.dark .table {
+  color: var(--pre-dark); }
+  body.dark .table th,
+  body.dark .table td {
+    border-top: 1px solid var(--border-dark); }
+  body.dark .table thead th {
+    border-bottom: 2px solid var(--border-dark); }
+  body.dark .table tbody + tbody {
+    border-top: 2px solid var(--border-dark); }
+  body.dark .table .table {
+    background-color: var(--background-dark); }
 
 .table-sm th,
 .table-sm td {
@@ -1228,6 +1251,16 @@ body.dark pre {
   .table-bordered thead th,
   .table-bordered thead td {
     border-bottom-width: 2px; }
+body.light .table-bordered {
+  border: 1px solid var(--border-light); }
+  body.light .table-bordered th,
+  body.light .table-bordered td {
+    border: 1px solid var(--border-light); }
+body.dark .table-bordered {
+  border: 1px solid var(--border-dark); }
+  body.dark .table-bordered th,
+  body.dark .table-bordered td {
+    border: 1px solid var(--border-dark); }
 
 .table-borderless th,
 .table-borderless td,
