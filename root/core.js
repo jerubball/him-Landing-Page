@@ -33,6 +33,11 @@ const Core = {
         }
     },
     
+    
+    None: {
+    },
+    
+    
     Window: {
         
         setTitle(text) {
@@ -333,9 +338,13 @@ const Core = {
         }
     },
     
-    Data: {},
+    
+    Data: {
+    },
+    
     
     //Local: {},
+    
     
 }.init();
 

@@ -1,5 +1,7 @@
 
-const Script = Object.freeze({
+const Script = {
+    
+    init: Core.init,
     
     isValidURL(url) {
         try {
@@ -115,4 +117,4 @@ const Script = Object.freeze({
         return false;
     },
     
-});
+}.init(Core.None.__proto__);

@@ -1,5 +1,7 @@
 
-const Script = Object.freeze({
+const Script = {
+    
+    init: Core.init,
     
     mode: Core.Window.param.has('mode') ? Core.Window.param.get('mode') : 'sequence',
     charset: Core.Window.param.has('charset') ? Core.Window.param.get('charset') : 'Il|',
@@ -16,4 +18,4 @@ const Script = Object.freeze({
         elem.innerHTML = result;
     },
     
-});
+}.init(Core.None.__proto__);

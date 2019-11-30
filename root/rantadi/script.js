@@ -1,5 +1,7 @@
 
-const Script = Object.freeze({
+const Script = {
+    
+    init: Core.init,
     
     // set all qualifying CheckBox to state.
     setCheckBox(tag, type, tower, index, check) {
@@ -84,4 +86,4 @@ const Script = Object.freeze({
         }
     },
     
-});
+}.init(Core.None.__proto__);
