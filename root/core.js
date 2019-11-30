@@ -1,8 +1,39 @@
 
-const Core = Object.freeze({
+const Core = {
     
+    init(proto) {
+        if (!Object.isFrozen(this)) {
+            var keep = false;
+            if (proto === undefined) {
+                keep = true;
+                proto = {
+                    get self() {
+                        return this;
+                    },
+                };
+            }
+            var parent = this;
+            var childproto = {
+                __proto__: proto,
+                get parent() {
+                    return parent;
+                },
+            };
+            for (var i in this) {
+                if (typeof(this[i]) == 'object') {
+                    this[i].init = this.init;
+                    this[i].init(childproto);
+                }
+            }
+            this.__proto__ = proto;
+            if (!keep) {
+                delete this.init;
+            }
+            return Object.freeze(this);
+        }
+    },
     
-    Window: Object.freeze({
+    Window: {
         
         setTitle(text) {
             var host = location.hostname;
@@ -151,10 +182,10 @@ const Core = Object.freeze({
             }
         },
         
-    }),
+    },
     
     
-    Math: Object.freeze({
+    Math: {
         
         randomInt(min, max, inclusive) {
             if (max === undefined) {
@@ -167,10 +198,10 @@ const Core = Object.freeze({
             }
         },
         
-    }),
+    },
     
     
-    Util: Object.freeze({
+    Util: {
         
         arrayIndex(arr, item) { // find index of item in array.
             for (var i = 0; i < arr.length; i++) {
@@ -292,16 +323,21 @@ const Core = Object.freeze({
             elem.classList.add('sortable');
         },
         
-    }),
+    },
     
     
-    Script: {},
+    get Script() {
+        try {
+            return Script;
+        } catch (_) {
+        }
+    },
+    
+    Data: {},
     
     //Local: {},
     
-    //Data: {},
-    
-});
+}.init();
 
 
 /*
