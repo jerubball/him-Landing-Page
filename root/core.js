@@ -20,7 +20,7 @@ const Core = {
                 },
             };
             for (var i in this) {
-                if (typeof(this[i]) == 'object') {
+                if (typeof(this[i]) === 'object' && (this[i].__proto__ === Object.prototype || this.[i].__proto__ === Array.prototype)) {
                     this[i].init = this.init;
                     this[i].init(childproto);
                 }
