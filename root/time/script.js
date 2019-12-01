@@ -138,6 +138,10 @@ const Script = {
     
     locale: 'en-US',
     
+    style: function(input) {
+        return input == null || input == '' ? null : input;
+    }(Core.Window.param.get('style')),
+    
     mode: function(input) {
         return input == null ? '' : input;
     }(Core.Window.param.get('mode')),
@@ -408,6 +412,10 @@ const Script = {
         var timer = setInterval(function() {
             document.getElementById('text').innerHTML = update(new Date());
         }, 250);
+        
+        if (this.style !== null) {
+            document.documentElement.classList.add('style-' + this.style);
+        }
         
         document.getElementById('text').style.fontSize = this.font;
     },
