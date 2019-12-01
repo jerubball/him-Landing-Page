@@ -139,7 +139,10 @@ const Script = {
     locale: 'en-US',
     
     style: function(input) {
-        return input == null || input == '' ? null : input;
+        if (input != null && input != '') {
+            return input.split(' ');
+        }
+        return [];
     }(Core.Window.param.get('style')),
     
     mode: function(input) {
@@ -413,8 +416,8 @@ const Script = {
             document.getElementById('text').innerHTML = update(new Date());
         }, 250);
         
-        if (this.style !== null) {
-            document.documentElement.classList.add('style-' + this.style);
+        for (var i in this.style) {
+            document.documentElement.classList.add('style-' + this.style[i]);
         }
         
         document.getElementById('text').style.fontSize = this.font;

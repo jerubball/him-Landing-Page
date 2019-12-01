@@ -60,3 +60,7 @@ html.style-dark p.text {
     font-size: 5vw;
     font-weight: bold;
 }
+
+html.style-monospace p.text {
+    font-family: consolas, hack, monospace;
+}
