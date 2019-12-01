@@ -6,7 +6,7 @@ const Script = {
         this.line = this.convertHTML(Core.Window.param.get('line'), '<br>');
         
         /** process span parameter for duration */
-        this.timelapse = function(input) {
+        this.timelapse = ((input) => {
             if (input != null && input != '') {
                 if (!isNaN(input)) {
                     return parseInt(input) * 1000 - this.timestamp;
@@ -33,10 +33,10 @@ const Script = {
                 }
             }
             return 3155555556000;
-        }(Core.Window.param.get('span')) + this.timestamp;
+        })(Core.Window.param.get('span')) + this.timestamp;
         
         /** process unit parameter for display unit */
-        this.timefactor = function(input) {
+        this.timefactor = ((input) => {
             if (input != null && input != '') {
                 if (!isNaN(input)) {
                     var result = parseInt(input);
@@ -51,10 +51,10 @@ const Script = {
                 }
             }
             return 3600000;
-        }(Core.Window.param.get('unit'));
+        })(Core.Window.param.get('unit'));
         
         /** process digit parameter */
-        this.digit = function(input) {
+        this.digit = ((input) => {
             if (input != null && input != '' && !isNaN(input)) {
                 return parseInt(input);
             }
@@ -67,9 +67,9 @@ const Script = {
             } else {
                 return 3;
             }
-        }(Core.Window.param.get('digit'));
+        })(Core.Window.param.get('digit'));
         
-        this.font = function() {
+        this.font = (() => {
             if (this.mode == 'unix' || this.mode == 'unix10') {
                 if (this.base > 8) {
                     return '9vw';
@@ -95,7 +95,7 @@ const Script = {
             } else {
                 return '5vw';
             }
-        }();
+        })();
         
         /** format time as the format */
         this.timeFormat = function(now) {
@@ -108,7 +108,7 @@ const Script = {
             //return item.substring(13,17) + this.space + item.substring(5,8) + this.space + item.substring(9,11) + this.space + item.substring(0,3) + this.space + item.substring(19,21) + this.space + item.substring(22,24) + this.space + item.substring(28,31) + this.space + item.substring(25,27);
         };
         
-        this.update = function() {
+        this.update = (() => {
             if (this.mode == 'unix') {
                 return (now) => Math.round(now.getTime() / 1000).toString(this.base).toUpperCase();
             } else if (this.mode == 'unix10') {
@@ -125,7 +125,7 @@ const Script = {
                 return (now) => this.timeFormat(now);
             }
             return (now) => this.timeFormat(now);
-        };
+        })();
         
         this.init = Core.init;
         return this.init(Core.None.__proto__);
@@ -404,7 +404,7 @@ const Script = {
     },
     
     setup() {
-        var update = this.update();
+        var update = this.update;
         var timer = setInterval(function() {
             document.getElementById('text').innerHTML = update(new Date());
         }, 250);
