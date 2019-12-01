@@ -2,8 +2,8 @@
 const Script = {
     
     init() {
-        this.space = convertHTML(Core.Window.param.get('space'), '');
-        this.line = convertHTML(Core.Window.param.get('line'), '<br>');
+        this.space = this.convertHTML(Core.Window.param.get('space'), '');
+        this.line = this.convertHTML(Core.Window.param.get('line'), '<br>');
         
         /** process span parameter for duration */
         this.timelapse = function(input) {
