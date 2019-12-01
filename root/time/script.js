@@ -404,8 +404,9 @@ const Script = {
     },
     
     setup() {
+        var update = this.update;
         var timer = setInterval(function() {
-            document.getElementById('text').innerHTML = this.update(new Date());
+            document.getElementById('text').innerHTML = update(new Date());
         }, 250);
         
         document.getElementById('text').style.fontSize = this.font;
