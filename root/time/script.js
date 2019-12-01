@@ -416,7 +416,7 @@ const Script = {
             document.getElementById('text').innerHTML = update(new Date());
         }, 250);
         
-        for (var i in this.style) {
+        for (var i = 0; i < this.style.length; i++) {
             document.documentElement.classList.add('style-' + this.style[i]);
         }
         
