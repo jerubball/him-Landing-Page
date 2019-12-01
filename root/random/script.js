@@ -1,7 +1,10 @@
 
 const Script = {
     
-    init: Core.init,
+    init() {
+        this.init = Core.init;
+        return this.init(Core.None.__proto__);
+    },
     
     mode: Core.Window.param.has('mode') ? Core.Window.param.get('mode') : 'sequence',
     charset: Core.Window.param.has('charset') ? Core.Window.param.get('charset') : 'Il|',
@@ -18,4 +21,4 @@ const Script = {
         elem.innerHTML = result;
     },
     
-}.init(Core.None.__proto__);
+}.init();

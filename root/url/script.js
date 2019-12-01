@@ -1,7 +1,10 @@
 
 const Script = {
     
-    init: Core.init,
+    init() {
+        this.init = Core.init;
+        return this.init(Core.None.__proto__);
+    },
     
     isValidURL(url) {
         try {
@@ -117,4 +120,4 @@ const Script = {
         return false;
     },
     
-}.init(Core.None.__proto__);
+}.init();

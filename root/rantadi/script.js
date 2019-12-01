@@ -1,7 +1,10 @@
 
 const Script = {
     
-    init: Core.init,
+    init() {
+        this.init = Core.init;
+        return this.init(Core.None.__proto__);
+    },
     
     // set all qualifying CheckBox to state.
     setCheckBox(tag, type, tower, index, check) {
@@ -86,4 +89,4 @@ const Script = {
         }
     },
     
-}.init(Core.None.__proto__);
+}.init();
