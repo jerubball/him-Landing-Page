@@ -62,5 +62,5 @@ html.style-dark p.text {
 }
 
 html.style-monospace p.text {
-    font-family: consolas, hack, monospace;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Hack, "Liberation Mono", "Roboto Mono", "Courier New", monospace;
 }
