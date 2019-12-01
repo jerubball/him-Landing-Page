@@ -125,7 +125,7 @@ const Script = {
                 return (now) => this.timeFormat(now);
             }
             return (now) => this.timeFormat(now);
-        }();
+        };
         
         this.init = Core.init;
         return this.init(Core.None.__proto__);
@@ -404,7 +404,7 @@ const Script = {
     },
     
     setup() {
-        var update = this.update;
+        var update = this.update();
         var timer = setInterval(function() {
             document.getElementById('text').innerHTML = update(new Date());
         }, 250);
