@@ -45,9 +45,6 @@ html.style-light {
 
 html.style-light p.text {
     color: #000000;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 5vw;
-    font-weight: bold;
 }
 
 html.style-dark {
@@ -56,9 +53,6 @@ html.style-dark {
 
 html.style-dark p.text {
     color: #FFFFFF;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 5vw;
-    font-weight: bold;
 }
 
 html.style-monospace p.text {
