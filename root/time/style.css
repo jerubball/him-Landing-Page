@@ -4,6 +4,13 @@ html {
     background-color: #000000;
 }
 
+body, div, p, a {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
 body.main {
     background-color: inherit;
 }
@@ -41,17 +48,11 @@ html.style-default p.text {
 
 html.style-light {
     background-color: #FFFFFF;
-}
-
-html.style-light p.text {
     color: #000000;
 }
 
 html.style-dark {
     background-color: #000000;
-}
-
-html.style-dark p.text {
     color: #FFFFFF;
 }
 
