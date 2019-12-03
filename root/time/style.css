@@ -2,6 +2,10 @@
 
 html {
     background-color: #000000;
+    color: #00FF00;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5vw;
+    font-weight: bold;
 }
 
 body, div, p, a {
@@ -29,10 +33,6 @@ p.text {
     line-height: 1;
     margin: 0;
     padding: 0;
-    color: #00FF00;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 5vw;
-    font-weight: bold;
 }
 
 html.style-default {
