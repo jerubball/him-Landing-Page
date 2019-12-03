@@ -111,8 +111,8 @@ const Script = {
         this.update = (() => {
             if (this.mode == 'unix') {
                 return (now) => Math.round(now.getTime() / 1000).toString(this.base).toUpperCase();
-            } else if (this.mode == 'unix10') {
-                return (now) => this.number10(Math.round(now.getTime() / 1000), this.base).toString(this.base).toUpperCase();
+            } else if (this.mode == 'single') {
+                return (now) => this.leastSignificantNumber(Math.round(now.getTime() / 1000), this.base).toUpperCase();
             } else if (this.mode == 'countdown') {
                 return (now) => Core.Math.formatTrailing(Core.Math.round((this.timelapse - now.getTime()) / this.timefactor, this.digit), this.digit);
             } else if (this.mode == 'countup') {
@@ -357,21 +357,16 @@ const Script = {
     },
     
     /** return only rightmost nonzero digit */
-    number10(number, base) {
-        if (number > 0) {
-            var count = 0;
-            while (number % base == 0) {
-                number /= base;
-                count++;
-            }
-            number %= base;
-            while (count-- > 0) {
-                number *= base;
-            }
-            return number;
-        } else {
-            return 0;
+    leastSignificantNumber(number, base = 10) {
+        if (typeof(number) !== 'number') {
+            number = Number(number);
         }
+        var str = number.toString(base);
+        for (var i = str.length - 1; i > 0; i--) {
+            if (str[i] !== '.' || str[i] !== '0')
+                return str[i];
+        }
+        return str[0]; // gurarenteed to have nonempty string
     },
     
     copyElement(elem) {
@@ -394,3 +389,42 @@ const Script = {
     },
     
 }.init();
+
+
+/*
+    numberFormat(number, size) {
+        var str = number.toString();
+        while (str.length < size) {
+            str = '0' + str;
+        }
+        return str;
+    },
+    numberFormatDecimal(number) {
+        var str = number.toString();
+        var dot = str.indexOf('.') + 1;
+        if (dot == 0) {
+            str += '.';
+            dot = str.length;
+        }
+        for (var pos = str.length - dot; pos < this.digit; pos++) {
+            str += '0';
+        }
+        return str;
+    },
+    leastSignificantNumber(number, base) {
+        if (number > 0) {
+            var count = 0;
+            while (number % base == 0) {
+                number /= base;
+                count++;
+            }
+            number %= base;
+            while (count-- > 0) {
+                number *= base;
+            }
+            return number;
+        } else {
+            return 0;
+        }
+    },
+*/
