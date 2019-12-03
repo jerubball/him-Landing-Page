@@ -2,35 +2,36 @@
 const Core = {
     
     init(proto) {
-        if (!Object.isFrozen(this)) {
-            var keep = false;
-            if (proto === undefined) {
-                keep = true;
-                proto = {
-                    get self() {
-                        return this;
-                    },
-                };
-            }
-            var parent = this;
-            var childproto = {
-                __proto__: proto,
-                get parent() {
-                    return parent;
+        if (Object.isFrozen(this)) {
+            return; // stop if object is frozen
+        }
+        var keep = false;
+        if (proto === undefined) {
+            keep = true;
+            proto = { // top level prototype for root object
+                get self() {
+                    return this;
                 },
             };
-            for (var i in this) {
-                if (this[i] !== null && typeof(this[i]) === 'object' && (this[i].__proto__ === Object.prototype || this[i].__proto__ === Array.prototype)) {
-                    this[i].init = this.init;
-                    this[i].init(childproto);
-                }
-            }
-            this.__proto__ = proto;
-            if (!keep) {
-                delete this.init;
-            }
-            return Object.freeze(this);
         }
+        var parent = this;
+        var childproto = {
+            __proto__: proto,
+            get parent() {
+                return parent;
+            },
+        };
+        for (var i in this) {
+            if (this[i] !== null && typeof(this[i]) === 'object' && (this[i].__proto__ === Object.prototype || this[i].__proto__ === Array.prototype)) {
+                this[i].init = this.init;
+                this[i].init(childproto);
+            }
+        }
+        this.__proto__ = proto;
+        if (!keep) {
+            delete this.init;
+        }
+        return Object.freeze(this);
     },
     
     
@@ -192,16 +193,22 @@ const Core = {
     
     Math: {
         
+        /** generate random number from 0 to min (if no max), or min to max */
         randomInt(min, max, inclusive) {
-            if (max === undefined) {
-                return Math.floor(Math.random() * min);
-            } else {
+            if (max === undefined || typeof(max) === boolean) { // only one number is given
+                if (max === true) {
+                    min += 1;
+                }
+                return Math.floor(Math.random() * min); // first argument defines max value
+            } else { // two numbers are given
                 if (inclusive === true) {
                     max += 1;
                 }
                 return Math.floor(Math.random() * (max - min)) + min;
             }
         },
+        
+        
         
     },
     
@@ -228,10 +235,7 @@ const Core = {
             return a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'});
         },
         
-        objectKeyComparator(func, key, mode) { // get comparator function for object.
-            if (mode === undefined) {
-                mode = 1;
-            }
+        objectKeyComparator(func, key, mode = 1) { // get comparator function for object
             if (key === undefined) {
                 var keys = this.arrayIntersect(Object.keys(a), Object.keys(b));
                 if (keys.length > 0) {
@@ -245,7 +249,7 @@ const Core = {
             };
         },
         
-        arrayIntersect(a, b) { // get new array with elements from both arrays.
+        arrayIntersect(a, b) { // get new array with elements from both arrays
             return a.filter(value => b.includes(value));
         },
         
@@ -303,7 +307,7 @@ const Core = {
                 }
                 cell.classList.add('asc');
                 var create = true;
-                for (var j = 0; create && j < cell.children.length; j++) { // detect presence of sort indicator.
+                for (var j = 0; create && j < cell.children.length; j++) { // detect presence of sort indicator
                     if (cell.children[j].tagName == 'I' && cell.children[j].classList.contains('sort')) {
                         create = false;
                     }
