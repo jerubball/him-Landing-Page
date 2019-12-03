@@ -361,13 +361,15 @@ const Script = {
         if (typeof(number) !== 'number') {
             number = Number(number);
         }
-        var str = number.toString(base);
+        var str = number.toString(base).split('');
         for (var i = str.length - 1; i > 0; i--) {
             if (str[i] !== '.' && str[i] !== '0') {
-                return str[i];
+                return str.splice(i).join('');
+            } else if (str[i] !== '.') {
+                str[i] = '0';
             }
         }
-        return str[0]; // gurarenteed to have nonempty string
+        return str.join(''); // gurarenteed to have nonempty string
     },
     
     copyElement(elem) {
