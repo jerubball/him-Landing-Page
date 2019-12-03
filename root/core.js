@@ -237,7 +237,7 @@ const Core = {
             return this.formatZeros(num, 0, digit, base);
         },
         
-        /** round number to given digit, 0 for normal rounding, negative for decimal rounding */
+        /** round number to given digit, 0 for normal rounding, positive for decimal rounding */
         round(num, digit = 0, base = 10, func = Math.round) {
             if (typeof(func) !== 'function') {
                 if (func === 'ceil' || func === 'ceiling' || func === 'up' || func > 0) {
@@ -254,7 +254,7 @@ const Core = {
                 num = Number(num);
             }
             var div = Math.pow(base, digit);
-            return func(number * divisor) / divisor;
+            return func(num * div) / div;
         },
         
     },
