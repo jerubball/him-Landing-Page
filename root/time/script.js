@@ -363,8 +363,9 @@ const Script = {
         }
         var str = number.toString(base);
         for (var i = str.length - 1; i > 0; i--) {
-            if (str[i] !== '.' || str[i] !== '0')
+            if (str[i] !== '.' && str[i] !== '0') {
                 return str[i];
+            }
         }
         return str[0]; // gurarenteed to have nonempty string
     },
