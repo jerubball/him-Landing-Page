@@ -217,7 +217,7 @@ const Core = {
             while (str[0].length < before) {
                 str[0] = '0' + str[0];
             }
-            if (str.length === 1 && after === 0) { // integer with trailing zero
+            if (str.length === 1 && after !== 0) { // integer with trailing zero
                 str.push(''); // setting after to negative will print dot for integer.
             }
             if (str.length === 1) { // integer only
