@@ -102,7 +102,7 @@ const Script = {
             var item1 = now.getFullYear() + this.space + now.toLocaleString(this.locale, {month: 'short'}).toUpperCase() + this.space + now.toLocaleString(this.locale, {day: '2-digit'}) + this.space + now.toLocaleString(this.locale, {weekday: 'short'}).toUpperCase() + this.space;
             var timezone = now.toLocaleTimeString(this.locale, {timeZoneName: 'short'});
             timezone = timezone.substring(timezone.length - 3).toUpperCase();
-            var item2 = this.space + this.numberFormat(now.getHours(), 2) + this.space + this.numberFormat(now.getMinutes(), 2) + this.space + timezone + this.space + this.numberFormat(now.getSeconds(), 2);
+            var item2 = this.space + Core.Math.formatLeading(now.getHours(), 2) + this.space + Core.Math.formatLeading(now.getMinutes(), 2) + this.space + timezone + this.space + Core.Math.formatLeading(now.getSeconds(), 2);
             return item1 + item2;
             //var item = now.toLocaleString(this.locale, format).toUpperCase();
             //return item.substring(13,17) + this.space + item.substring(5,8) + this.space + item.substring(9,11) + this.space + item.substring(0,3) + this.space + item.substring(19,21) + this.space + item.substring(22,24) + this.space + item.substring(28,31) + this.space + item.substring(25,27);
@@ -114,9 +114,9 @@ const Script = {
             } else if (this.mode == 'unix10') {
                 return (now) => this.number10(Math.round(now.getTime() / 1000), this.base).toString(this.base).toUpperCase();
             } else if (this.mode == 'countdown') {
-                return (now) => this.numberFormatDecimal(this.numberDigit((this.timelapse - now.getTime()) / this.timefactor));
+                return (now) => Core.Math.formatTrailing(Core.Math.round((this.timelapse - now.getTime()) / this.timefactor, this.digit), this.digit);
             } else if (this.mode == 'countup') {
-                return (now) => this.numberFormatDecimal(this.numberDigit((now.getTime() - this.timestamp) / this.timefactor));
+                return (now) => Core.Math.formatTrailing(Core.Math.round((now.getTime() - this.timestamp) / this.timefactor, this.digit), this.digit);
             } else if (this.mode == 'simple') {
                 return (now) => now.toLocaleDateString() + this.line + now.toLocaleTimeString();
             } else if (this.mode == 'plain') {
@@ -354,36 +354,6 @@ const Script = {
             }
         }
         return result;
-    },
-    
-    /** add leading zeros to number */
-    numberFormat(number, size) {
-        var str = number.toString();
-        while (str.length < size) {
-            str = '0' + str;
-        }
-        return str;
-    },
-    
-    /** add trailing zeros to decimal number */
-    numberFormatDecimal(number) {
-        var str = number.toString();
-        var dot = str.indexOf('.') + 1;
-        if (dot == 0) {
-            str += '.';
-            dot = str.length;
-        }
-        for (var pos = str.length - dot; pos < this.digit; pos++) {
-            str += '0';
-        }
-        return str;
-    },
-    
-    
-    /** truncate decimal number to digits */
-    numberDigit(number) {
-        var divisor = Math.pow(10, this.digit);
-        return Math.round(number * divisor) / divisor;
     },
     
     /** return only rightmost nonzero digit */

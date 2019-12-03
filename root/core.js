@@ -195,7 +195,7 @@ const Core = {
         
         /** generate random number from 0 to min (if no max), or min to max */
         randomInt(min, max, inclusive) {
-            if (max === undefined || typeof(max) === boolean) { // only one number is given
+            if (max === undefined || typeof(max) === 'boolean') { // only one number is given
                 if (max === true) {
                     min += 1;
                 }
@@ -208,7 +208,54 @@ const Core = {
             }
         },
         
+        /** pad leading and trailing zeros to number */
+        formatZeros(num, before = 0, after = 0, base = 10) {
+            if (typeof(num) !== 'number') {
+                num = Number(num);
+            }
+            var str = num.toString(base).split('.'); // gurarnteed to have one or no dot
+            while (str[0].length < before) {
+                str[0] = '0' + str[0];
+            }
+            if (str.length === 1 && after === 0) { // integer with trailing zero
+                str.push(''); // setting after to negative will print dot for integer.
+            }
+            if (str.length === 1) { // integer only
+                return str[0];
+            }
+            while (str[1].length < after) {
+                str[1] += '0';
+            }
+            return str[0] + '.' + str[1];
+        },
         
+        formatLeading(num, digit = 0, base = 10) {
+            return this.formatZeros(num, digit, 0, base);
+        },
+        
+        formatTrailing(num, digit = 0, base = 10) {
+            return this.formatZeros(num, 0, digit, base);
+        },
+        
+        /** round number to given digit, 0 for normal rounding, negative for decimal rounding */
+        round(num, digit = 0, base = 10, func = Math.round) {
+            if (typeof(func) !== 'function') {
+                if (func === 'ceil' || func === 'ceiling' || func === 'up' || func > 0) {
+                    func = Math.ceil;
+                } else if (func === 'floor' || func === 'down' || func < 0) {
+                    func = Math.floor;
+                } else if (func === 'trunc' || func === 'truncate') {
+                    func = Math.trunc;
+                } else {
+                    func = Math.round;
+                }
+            }
+            if (typeof(num) !== 'number') {
+                num = Number(num);
+            }
+            var div = Math.pow(base, digit);
+            return func(number * divisor) / divisor;
+        },
         
     },
     
