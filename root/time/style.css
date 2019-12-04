@@ -6,13 +6,15 @@ html {
     font-family: 'Orbitron', sans-serif;
     font-size: 5vw;
     font-weight: bold;
+    font-style: normal;
 }
 
-body, div, p, a {
+body, div, p, a, span {
     color: inherit;
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
+    font-style: inherit;
 }
 
 body.main {
@@ -37,13 +39,11 @@ p.text {
 
 html.style-default {
     background-color: #000000;
-}
-
-html.style-default p.text {
     color: #00FF00;
     font-family: 'Orbitron', sans-serif;
     font-size: 5vw;
     font-weight: bold;
+    font-style: normal;
 }
 
 html.style-light {
@@ -56,6 +56,39 @@ html.style-dark {
     color: #FFFFFF;
 }
 
-html.style-monospace p.text {
+html.style-font-normal {
+    font-weight: normal;
+    font-style: normal;
+}
+
+html.style-font-bold {
+    font-weight: bold;
+}
+
+html.style-font-bolder {
+    font-weight: bolder;
+}
+
+html.style-font-lighter {
+    font-weight: lighter;
+}
+
+html.style-font-italic {
+    font-style: italic;
+}
+
+html.style-font-oblique {
+    font-style: oblique;
+}
+
+html.style-orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
+
+html.style-monospace {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, Hack, "Liberation Mono", "Roboto Mono", "Courier New", monospace;
+}
+
+html.style-serif {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
