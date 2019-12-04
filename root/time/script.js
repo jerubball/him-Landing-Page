@@ -361,15 +361,13 @@ const Script = {
         if (typeof(number) !== 'number') {
             number = Number(number);
         }
-        var str = number.toString(base).split('');
+        var str = number.toString(base);
         for (var i = str.length - 1; i > 0; i--) {
             if (str[i] !== '.' && str[i] !== '0') {
-                return str.splice(i).join('');
-            } else if (str[i] !== '.') {
-                str[i] = '0';
+                return str.substring(i);
             }
         }
-        return str.join(''); // gurarenteed to have nonempty string
+        return str; // gurarenteed to have nonempty string
     },
     
     copyElement(elem) {
@@ -429,5 +427,19 @@ const Script = {
         } else {
             return 0;
         }
+    },
+    leastSignificantNumber(number, base = 10) {
+        if (typeof(number) !== 'number') {
+            number = Number(number);
+        }
+        var str = number.toString(base).split('');
+        for (var i = str.length - 1; i > 0; i--) {
+            if (str[i] !== '.' && str[i] !== '0') {
+                return str.splice(i).join('');
+            } else if (str[i] !== '.') {
+                str[i] = '0';
+            }
+        }
+        return str.join(''); // gurarenteed to have nonempty string
     },
 */
