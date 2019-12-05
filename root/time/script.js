@@ -122,7 +122,7 @@ const Script = {
             } else if (this.mode == 'plain') {
                 return (now) => now.toLocaleString(locale, this.format_date).toUpperCase() + this.line + now.toLocaleTimeString(locale, this.format_time).toUpperCase();
             } else if (this.mode == 'custom') {
-                return (now) => this.convertHTML(this.dateFormat(now, this.format));
+                return (now) => this.convertHTML(this.dateFormat(now, this.format, this.locale));
             } else if (this.mode == 'him') {
                 return (now) => this.timeFormat(now);
             }
@@ -221,7 +221,7 @@ const Script = {
     },
     
     /** convert date to php style date format */
-    dateFormat(now, str) {
+    dateFormat(now, str, locale) {
         var result = "";
         for (var i = 0; i < str.length; i++) {
             switch (str[i]) {
