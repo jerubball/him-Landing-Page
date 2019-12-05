@@ -68,6 +68,8 @@
                     Date and time in number.
                     <li><b>plain</b></li>
                     Date and time in full text.
+                    <li><b>custom</b></li>
+                    Customized time format specified by <b>format</b> parameter.
                     <li><b>him</b> (default)</li>
                     HIM timestamp.
                   </ul>
@@ -141,7 +143,7 @@
                     base 16.
                   </ul>
                 </td>
-                <td>unix<br>unix10</td>
+                <td>unix<br>single</td>
               </tr>
               <tr>
                 <th scope="row">digit</th>
@@ -178,6 +180,18 @@
                   </ul>
                 </td>
                 <td>simple<br>plain</td>
+              </tr>
+              <tr>
+                <th scope="row">format</th>
+                <td>Specifies custom time format.</td>
+                <td>
+                  <ul>
+                    <li>PHP style date format. See table below.</li>
+                    <li><b>YMdDHiTs</b> (default)</li>
+                    Same output as HIM timestamp.
+                  </ul>
+                </td>
+                <td>custom</td>
               </tr>
               <tr>
                 <th scope="row">style</th>

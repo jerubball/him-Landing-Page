@@ -121,6 +121,8 @@ const Script = {
                 return (now) => now.toLocaleDateString() + this.line + now.toLocaleTimeString();
             } else if (this.mode == 'plain') {
                 return (now) => now.toLocaleString(locale, this.format_date).toUpperCase() + this.line + now.toLocaleTimeString(locale, this.format_time).toUpperCase();
+            } else if (this.mode == 'custom') {
+                return (now) => this.convertHTML(this.dateFormat(now, this.format));
             } else if (this.mode == 'him') {
                 return (now) => this.timeFormat(now);
             }
@@ -148,6 +150,10 @@ const Script = {
     mode: function(input) {
         return input == null ? '' : input;
     }(Core.Window.param.get('mode')),
+    
+    format: function(input) {
+        return input == null ? 'YMdDHiTs' : input;
+    }(Core.Window.param.get('format'));
     
     /** process time parameter for start time */
     timestamp: function(input) {
