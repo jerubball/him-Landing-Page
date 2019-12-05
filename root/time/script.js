@@ -255,7 +255,6 @@ const Script = {
                     break;
                 // Week
                 case 'W': // ISO-8601 week number of year, weeks starting on Monday
-                
                     break;
                 // Month
                 case 'F': // A full textual representation of a month, such as January or March
@@ -276,10 +275,9 @@ const Script = {
                 // Year
                 case 'L': // Whether it's a leap year
                 // 1 or 0
-                
+                    result += (2 - new Date(now.getFullYear(), 1, 29).getMonth());
                     break;
                 case 'o': // ISO-8601 week-numbering year. This has the same value as Y, except that if the ISO week number (W) belongs to the previous or next year, that year is used instead.
-                
                     break;
                 case 'Y': // A full numeric representation of a year, 4 digits
                     result += now.toLocaleString(locale, {year: 'numeric'});
@@ -314,10 +312,11 @@ const Script = {
                     result += now.toLocaleString(locale, {minute: '2-digit'});
                     break;
                 case 's': // Seconds with leading zeros
-                    result += now.toLocaleString(locale, {second: '2-digit'});
+                    //result += now.toLocaleString(locale, {second: '2-digit'});
+                    var num = now.toLocaleString(locale, {second: '2-digit'});
+                    result += num.length === 1 ? '0' + num : num;
                     break;
                 case 'u': // Microseconds
-                
                     break;
                 case 'v': // Milliseconds
                     result += now.getMilliseconds();
