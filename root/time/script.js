@@ -303,7 +303,7 @@ const Script = {
                     result += now.toLocaleString(locale, {hour12: true, hour: 'numeric'}).split(' ')[1];
                     break;
                 case 'B': // Swatch Internet time
-                    var num = Math.floor((now.getMilliseconds / 1000 + now.getSeconds() + now.getMinutes() * 60 + now.getHours() * 3600) / 86.4);
+                    var num = Math.floor((now.getMilliseconds() / 1000 + now.getSeconds() + now.getMinutes() * 60 + now.getHours() * 3600) / 86.4);
                     result += Core.Math.formatLeading(num, 3);
                     break;
                 case 'g': // 12-hour format of an hour without leading zeros
