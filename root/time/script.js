@@ -58,6 +58,9 @@ const Script = {
             if (input != null && input != '' && !isNaN(input)) {
                 return parseInt(input);
             }
+            if (this.mode == 'unix') {
+                return 0;
+            }
             if (this.timefactor > 1E9) {
                 return 6;
             } else if (this.timefactor > 1E7) {
@@ -70,7 +73,7 @@ const Script = {
         })(Core.Window.param.get('digit'));
         
         this.font = (() => {
-            if (this.mode == 'unix' || this.mode == 'unix10') {
+            if (this.mode == 'unix' || this.mode == 'single') {
                 if (this.base > 8) {
                     return '9vw';
                 } else if (this.base > 4) {
@@ -110,7 +113,7 @@ const Script = {
         
         this.update = (() => {
             if (this.mode == 'unix') {
-                return (now) => Math.round(now.getTime() / 1000).toString(this.base).toUpperCase();
+                return (now) => Core.Math.formatTrailing(Core.Math.round(now.getTime() / 1000, this.digit, this.base, Math.floor), this.digit, this.base).toUpperCase();
             } else if (this.mode == 'single') {
                 return (now) => this.leastSignificantNumber(Math.round(now.getTime() / 1000), this.base).toUpperCase();
             } else if (this.mode == 'countdown') {
