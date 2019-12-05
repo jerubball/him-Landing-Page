@@ -333,12 +333,12 @@ const Script = {
                 case 'O': // Difference to Greenwich time (GMT) in hours
                 // +0200
                     var num = -now.getTimezoneOffset() / 0.6;
-                    result += Core.Math.formatLeading(now, 4, undefined, true);
+                    result += Core.Math.formatLeading(num, 4, undefined, true);
                     break;
                 case 'P': // Difference to Greenwich time (GMT) with colon between hours and minutes
                 // +02:00
                     var num = -now.getTimezoneOffset() / 0.6;
-                    num = Core.Math.formatLeading(now, 4, undefined, true);
+                    num = Core.Math.formatLeading(num, 4, undefined, true);
                     result += num.substr(0, 3) + ':' + num.substr(3);
                     break;
                 case 'T': // Timezone abbreviation
