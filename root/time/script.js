@@ -113,7 +113,7 @@ const Script = {
         
         this.update = (() => {
             if (this.mode == 'unix') {
-                return (now) => Core.Math.formatTrailing(Core.Math.round(now.getTime() / 1000, this.digit, this.base, Math.floor), this.digit, this.base).toUpperCase();
+                return (now) => this.formatDecimal(now.getTime() / 1000, Math.floor).toUpperCase();
             } else if (this.mode == 'single') {
                 return (now) => this.leastSignificantNumber(Math.round(now.getTime() / 1000), this.base).toUpperCase();
             } else if (this.mode == 'countdown') {
@@ -221,6 +221,10 @@ const Script = {
             return 31556926000;
         }
         return null;
+    },
+    
+    formatDecimal(number, func, sign) {
+        return Core.Math.formatTrailing(Core.Math.round(number, this.digit, this.base, func), this.digit, this.base, sign);
     },
     
     /** convert date to php style date format */
