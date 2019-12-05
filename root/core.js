@@ -209,11 +209,18 @@ const Core = {
         },
         
         /** pad leading and trailing zeros to number */
-        formatZeros(num, before = 0, after = 0, base = 10) {
+        formatZeros(num, before = 0, after = 0, base = 10, sign = false) {
             if (typeof(num) !== 'number') {
                 num = Number(num);
             }
             var str = num.toString(base).split('.'); // gurarnteed to have one or no dot
+            var prepend = '';
+            if (str[0][0] === '-') {
+                str[0] = str[0].substr(1);
+                prepend = '-';
+            } else if (sign) {
+                prepend = '+';
+            }
             while (str[0].length < before) {
                 str[0] = '0' + str[0];
             }
@@ -221,20 +228,20 @@ const Core = {
                 str.push(''); // setting after to negative will print dot for integer.
             }
             if (str.length === 1) { // integer only
-                return str[0];
+                return prepend + str[0];
             }
             while (str[1].length < after) {
                 str[1] += '0';
             }
-            return str[0] + '.' + str[1];
+            return prepend + str[0] + '.' + str[1];
         },
         
-        formatLeading(num, digit = 0, base = 10) {
-            return this.formatZeros(num, digit, 0, base);
+        formatLeading(num, digit, base, sign) {
+            return this.formatZeros(num, digit, 0, base, sign);
         },
         
-        formatTrailing(num, digit = 0, base = 10) {
-            return this.formatZeros(num, 0, digit, base);
+        formatTrailing(num, digit, base, sign) {
+            return this.formatZeros(num, 0, digit, base, sign);
         },
         
         /** round number to given digit, 0 for normal rounding, positive for decimal rounding */

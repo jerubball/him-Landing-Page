@@ -152,7 +152,7 @@ const Script = {
     }(Core.Window.param.get('mode')),
     
     format: function(input) {
-        return input == null ? 'YMdDHiTs' : input;
+        return input == null ? 'YMdDHiTs' : input.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
     }(Core.Window.param.get('format')),
     
     /** process time parameter for start time */
@@ -195,7 +195,7 @@ const Script = {
     convertHTML(input, value) {
         if (input != null) {
             input = input.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            return input.replace(/\\n/g, '<br>').replace(/\\[a-z]/g, '');
+            return input.replace(/\\n|\n/g, '<br>').replace(/\\t|\t/g, '&emsp;').replace(/\\[a-z]|/g, '');
         }
         return value;
     },
@@ -332,14 +332,17 @@ const Script = {
                     break;
                 case 'O': // Difference to Greenwich time (GMT) in hours
                 // +0200
-                
+                    var num = -now.getTimezoneOffset() / 0.6;
+                    result += Core.Math.formatLeading(now, 4, undefined, true);
                     break;
                 case 'P': // Difference to Greenwich time (GMT) with colon between hours and minutes
                 // +02:00
-                
+                    var num = -now.getTimezoneOffset() / 0.6;
+                    num = Core.Math.formatLeading(now, 4, undefined, true);
+                    result += num.substr(0, 3) + ':' + num.substr(3);
                     break;
                 case 'T': // Timezone abbreviation
-                    result += now.toLocaleString(locale, {timeZoneName: 'short'});
+                    result += now.toLocaleString(locale, {timeZoneName: 'short'}).substr(-3);
                     break;
                 case 'Z': // Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive.
                     result += now.getTimezoneOffset() * 60;
