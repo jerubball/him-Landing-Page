@@ -153,7 +153,7 @@ const Script = {
     
     format: function(input) {
         return input == null ? 'YMdDHiTs' : input;
-    }(Core.Window.param.get('format'));
+    }(Core.Window.param.get('format')),
     
     /** process time parameter for start time */
     timestamp: function(input) {
