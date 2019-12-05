@@ -303,14 +303,15 @@ const Script = {
                     result += now.toLocaleString(locale, {hour12: true, hour: 'numeric'}).split(' ')[1];
                     break;
                 case 'B': // Swatch Internet time
-                // 000 through 999
-                
+                    var num = Math.floor((now.getMilliseconds / 1000 + now.getSeconds() + now.getMinutes() * 60 + now.getHours() * 3600) / 86.4);
+                    result += Core.Math.formatLeading(num, 3);
                     break;
                 case 'g': // 12-hour format of an hour without leading zeros
                     result += now.toLocaleString(locale, {hour12: true, hour: 'numeric'}).split(' ')[0];
                     break;
                 case 'G': // 24-hour format of an hour without leading zeros
-                    result += now.toLocaleString(locale, {hour12: false, hour: 'numeric'});
+                    //result += now.toLocaleString(locale, {hour12: false, hour: 'numeric'});
+                    result += now.getHours();
                     break;
                 case 'h': // 12-hour format of an hour with leading zeros
                     result += now.toLocaleString(locale, {hour12: true, hour: '2-digit'}).split(' ')[0];
@@ -350,6 +351,7 @@ const Script = {
                     result += num.substr(0, 3) + ':' + num.substr(3);
                     break;
                 case 'T': // Timezone abbreviation
+                    //result += now.toLocaleString(locale, {timeZoneName: 'short'}).substr(-3);
                     var num = now.toLocaleString(locale).length;
                     result += now.toLocaleString(locale, {timeZoneName: 'short'}).substr(num + 1);
                     break;
@@ -364,7 +366,7 @@ const Script = {
                     result += now.toString();
                     break;
                 case 'U': // Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)
-                    result += now.valueOf();
+                    result += Math.floor(now.valueOf() / 1000);
                     break;
                 default:
                     result += str[i];
