@@ -270,11 +270,21 @@ const Script = {
                     result += now.toLocaleString(locale, {month: 'numeric'});
                     break;
                 case 't': // Number of days in the given month
-                
+                    var num = now.getMonth();
+                    if (num === 1) {
+                        if (new Date(now.getFullYear(), 1, 29).getMonth() === 1) {
+                            result += '28';
+                        } else {
+                            result += '29';
+                        }
+                    } else if (num === 3 || num === 5 || num === 8 || num === 10) {
+                        result += '30';
+                    } else if (num === 0 || num === 2 || num === 4 || num === 6 || num === 7 || num === 9 || num === 11) {
+                        result += '31';
+                    }
                     break;
                 // Year
                 case 'L': // Whether it's a leap year
-                // 1 or 0
                     result += (2 - new Date(now.getFullYear(), 1, 29).getMonth());
                     break;
                 case 'o': // ISO-8601 week-numbering year. This has the same value as Y, except that if the ISO week number (W) belongs to the previous or next year, that year is used instead.
@@ -323,25 +333,25 @@ const Script = {
                     break;
                 // Timezone
                 case 'e': // Timezone identifier
-                    result += now.toLocaleString(locale, {timeZoneName: 'long'});
+                    var num = now.toLocaleString(locale).length;
+                    result += now.toLocaleString(locale, {timeZoneName: 'long'}).substr(num + 1);
                     break;
                 case 'I': // Whether or not the date is in daylight saving time
                 // 1 or 0
                 
                     break;
                 case 'O': // Difference to Greenwich time (GMT) in hours
-                // +0200
                     var num = -now.getTimezoneOffset() / 0.6;
                     result += Core.Math.formatLeading(num, 4, undefined, true);
                     break;
                 case 'P': // Difference to Greenwich time (GMT) with colon between hours and minutes
-                // +02:00
                     var num = -now.getTimezoneOffset() / 0.6;
                     num = Core.Math.formatLeading(num, 4, undefined, true);
                     result += num.substr(0, 3) + ':' + num.substr(3);
                     break;
                 case 'T': // Timezone abbreviation
-                    result += now.toLocaleString(locale, {timeZoneName: 'short'}).substr(-3);
+                    var num = now.toLocaleString(locale).length;
+                    result += now.toLocaleString(locale, {timeZoneName: 'short'}).substr(num + 1);
                     break;
                 case 'Z': // Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive.
                     result += now.getTimezoneOffset() * 60;
