@@ -1,0 +1,38 @@
+
+alias cd..='cd ..'
+alias cd~='cd ~'
+
+alias chdir='cd'
+alias chdir..='cd ..'
+alias chdir~='cd ~'
+alias md='mkdir'
+alias rd='rmdir'
+
+alias sus='sudo -Es'
+
+if [ $EUID != 0 ]; then
+    alias shutdown='sudo shutdown'
+    alias apt='sudo apt'
+fi
+alias restart='shutdown -r'
+
+alias apt-update='apt update -y; apt upgrade -y'
+alias apt-upgrade='apt update -y; apt full-upgrade -y; apt autoremove -y; apt autoclean -y'
+
+function pd {
+    if [ $# == 0 ]; then
+        popd
+    else
+        while [ $# != 0 ]; do
+            pushd $1
+            shift
+        done
+    fi
+}
+
+if [ -f ~/.selected_editor ]; then
+    . ~/.selected_editor
+fi
+
+EDITOR='nano'
+SUDO_EDITOR='nano'
