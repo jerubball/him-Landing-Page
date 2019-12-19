@@ -8,7 +8,11 @@ else
 fi
 
 
-if [[ "${response^^}" == "EGGC-603-14" || "$response" == "603-14" || "$response" == "14" ]]
+if [[ $response -gt 1023 ]]
+then
+    port=$response
+
+elif [[ "${response^^}" == "EGGC-603-14" || "$response" == "603-14" || "$response" == "14" ]]
 then
     port=0
 
@@ -47,10 +51,6 @@ then
 elif [[ "${response^^}" == "EGGC-603-23" || "$response" == "603-23" || "$response" == "23" ]]
 then
     port=0
-
-elif [[ $response -gt 1023 ]]
-then
-    port=$response
 
 else
     port=0
