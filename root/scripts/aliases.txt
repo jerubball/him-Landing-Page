@@ -1,4 +1,6 @@
 
+# .bash_aliases
+
 alias cd..='cd ..'
 alias cd~='cd ~'
 
@@ -18,6 +20,8 @@ alias restart='shutdown -r'
 
 alias apt-update='apt update -y; apt upgrade -y'
 alias apt-upgrade='apt update -y; apt full-upgrade -y; apt autoremove -y; apt autoclean -y'
+
+alias him-get='~/him-get.sh'
 
 function pd {
     if [ $# == 0 ]; then
