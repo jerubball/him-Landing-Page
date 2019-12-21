@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-compile version 1.8
+him-compile version 1.9
     quick edit and compiler from him-nyit.ddns.net
 "
 help="
@@ -84,7 +84,6 @@ do
         # default preset
         -d | --default )
             edit="nano -ASZcilm -T4 -$"
-            shift
         ;;
         # define editor
         -e | --editor )
