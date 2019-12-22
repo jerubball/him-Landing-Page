@@ -19,7 +19,7 @@ const Script = {
                 color.next = prev;
             }
         };
-        setInterval(next, interval);
+        return setInterval(next, interval);
     },
     
 }.init();
