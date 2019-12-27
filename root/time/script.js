@@ -73,7 +73,9 @@ const Script = {
         })(Core.Window.param.get('digit'));
         
         this.font = (() => {
-            if (this.mode == 'unix' || this.mode == 'single') {
+            if (this.size !== null) {
+                return this.size;
+            } else if (this.mode == 'unix' || this.mode == 'single') {
                 if (this.base > 8) {
                     return '9vw';
                 } else if (this.base > 4) {
@@ -182,6 +184,14 @@ const Script = {
         }
         return 10;
     }(Core.Window.param.get('base')),
+    
+    /** process size parameter */
+    size: function(input) {
+        if (input != null && input != '') {
+            return input;
+        }
+        return null;
+    }(Core.Window.param.get('size')),
     
     /** process input to escape for HTML */
     convertHTML(input, value) {
@@ -327,7 +337,9 @@ const Script = {
                     result += now.toLocaleString(locale, {hour12: false, hour: '2-digit'});
                     break;
                 case 'i': // Minutes with leading zeros
-                    result += now.toLocaleString(locale, {minute: '2-digit'});
+                    //result += now.toLocaleString(locale, {minute: '2-digit'});
+                    var num = now.toLocaleString(locale, {minute: '2-digit'});
+                    result += num.length === 1 ? '0' + num : num;
                     break;
                 case 's': // Seconds with leading zeros
                     //result += now.toLocaleString(locale, {second: '2-digit'});
