@@ -29,4 +29,5 @@ do
     do
         fg
     done
+    sleep 1
 done
