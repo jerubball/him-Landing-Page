@@ -153,3 +153,5 @@ elinks
 html2text
 sassc
 chrony
+pavucontrol
+alsa-tools-gui
