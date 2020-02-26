@@ -2,6 +2,7 @@ sudo
 apt
 dpkg
 yum
+yum-utils
 perlbrew
 linuxbrew-wrapper
 aptitude
