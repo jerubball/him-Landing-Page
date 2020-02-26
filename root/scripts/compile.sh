@@ -1,7 +1,7 @@
 #!/bin/bash
 
 version="
-him-compile version 1.9
+him-compile version 1.10
     quick edit and compiler from him-nyit.ddns.net
 "
 help="
