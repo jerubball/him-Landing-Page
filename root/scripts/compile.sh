@@ -188,5 +188,30 @@ case $ext in
         eval $prog $name $progarg $4
     ;;
     py )
+        if [[ $comp == 1 ]]
+        then
+            comp="python"
+        fi
+        if [[ $prog == 1 ]]
+        then
+            prog="$comp"
+        fi
+        eval $prog $1 $progarg $4
+    ;;
+    asm )
+        if [[ $comp == 1 ]]
+        then
+            comp="nasm"
+        fi
+        eval $comp $comparg $3 -f elf $1
+        if [[ -f $name.o && "$comp" == "nasm" ]]
+        then
+            eval ld -m elf_i386 -s -o $name $name.o
+        fi
+        if [[ $prog == 1 ]]
+        then
+            prog=""
+        fi
+        eval $prog ./$name $progarg $4
     ;;
 esac
