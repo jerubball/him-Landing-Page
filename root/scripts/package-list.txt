@@ -157,3 +157,4 @@ chrony
 pavucontrol
 alsa-tools-gui
 nasm
+uptimed
