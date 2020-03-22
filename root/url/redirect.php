@@ -42,6 +42,10 @@
           // expires date is past.
           $error = true;
           $message = 'Link is expired.';
+        } elseif ($db_array['redirect'] == '#' || $db_array['redirect'] == NULL) {
+          // Inactive link
+          $error = true;
+          $message = 'Link is inactive.';
         } else {
           // really do redirection.
           $visited = $db_array['visited'] + 1;
