@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <title>Chat</title>
+</head>
+
+<body onload="Core.Window.setTitle('Chat')">
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
+?>
+
+<div class="body">
+  <div class="p-1 ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="">Content</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-1 fixed-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form>
+            <input class="form-control" type="text" id="chatInput">
+            <button class="btn btn-primary" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="p-1 position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          &nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
