@@ -5,17 +5,18 @@
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
 ?>
+  <link rel="stylesheet" href="style.css">
   <title>Chat</title>
 </head>
 
-<body onload="Core.Window.setTitle('Chat')">
+<body onload="Core.Window.setTitle('Chat'); Core.Window.setProtocol('https:');">
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
 
 <div class="body">
   <div class="p-1 ">
-    <div class="container">
+    <div class="container bg-light">
       <div class="row">
         <div class="col-md-12">
           <h2 class="">Content</h2>
@@ -28,15 +29,17 @@
       <div class="row">
         <div class="col-md-12">
           <form>
-            <input class="form-control" type="text" id="chatInput">
-            <button class="btn btn-primary" type="submit">Send</button>
+            <div class="d-flex flex-row"> 
+              <input class="form-control mx-2" type="text" id="chatInput">
+              <button class="btn btn-primary" type="submit" id="chatSubmit">Send</button>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="p-1 position-relative">
+<div class="p-2 position-relative">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
