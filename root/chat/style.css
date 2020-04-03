@@ -5,4 +5,10 @@
 
 .chat-area {
   min-height: 100%;
+  border-radius: 0.5rem;
+}
+
+.chat-text {
+  background: white;
+  border-radius: 0.25rem;
 }
