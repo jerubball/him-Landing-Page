@@ -1,4 +1,8 @@
 
 .body {
-    overflow-y: scroll;
+  overflow-y: scroll;
+}
+
+.chat-area {
+  min-height: 100%;
 }
