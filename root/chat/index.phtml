@@ -10,7 +10,7 @@
   <title>Chat</title>
 </head>
 
-<body onload="Core.Window.setTitle('Chat'); Core.Window.setProtocol('https:');">
+<body onload="Core.Window.setTitle('Chat'); Core.Window.setProtocol('https:'); Script.start();">
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
@@ -36,7 +36,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <form class="" action="" autocomplete="off" name="chat-form" onsubmit="return false">
+          <form class="" action="" autocomplete="off" name="chat-form" onsubmit="return Script.send()">
             <div class="d-flex flex-row">
               <input class="form-control mr-2" type="text" id="chat-input" autocomplete="off">
               <button class="btn btn-primary" type="submit" id="chat-submit">Send</button>
