@@ -6,6 +6,7 @@
   require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
 ?>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
   <title>Chat</title>
 </head>
 
@@ -14,9 +15,13 @@
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
 
+<?php
+  require_once('initialize.php');
+?>
+
 <div class="body">
   <div class="p-1 h-100">
-    <div class="container bg-light chat-area" id="chatArea">
+    <div class="container bg-light chat-area" id="chat-area">
 <!--
       <div class="row" id="1">
         <div class="col-md-12">
@@ -31,10 +36,12 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="d-flex flex-row"> 
-            <input class="form-control mr-2" type="text" id="chatInput" autocomplete="off" onkeypress="">
-            <button class="btn btn-primary" type="submit" id="chatSubmit" onclick="">Send</button>
-          </div>
+          <form class="" action="" autocomplete="off" name="chat-form" onsubmit="return false">
+            <div class="d-flex flex-row">
+              <input class="form-control mr-2" type="text" id="chat-input" autocomplete="off">
+              <button class="btn btn-primary" type="submit" id="chat-submit">Send</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
