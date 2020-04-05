@@ -12,7 +12,7 @@
     echo '3 No message given.';
   } else {
     $chat = fopen('chat', 'a');
-    fwrite($chat, time()."\t".$_SERVER['REMOTE_ADDR']."\t".$_SESSION['username']."\t".$_GET['text']);
+    fwrite($chat, time()."\t".$_SERVER['REMOTE_ADDR']."\t".$_SESSION['username']."\t".$_GET['text']."\n");
     fclose($chat);
     echo '0 Success.';
   }
