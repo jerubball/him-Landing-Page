@@ -25,7 +25,8 @@ fi
     
 echo "Reading for new password..."
 passhash=$(openssl passwd -6)
-#passhash=$(python -c "import crypt; print(crypt.crypt(input('Password: '),'\$6\$$(openssl rand -base64 12)\$'))")
+echo "New Password: "
+#passhash=$(python -c "from crypt import crypt; print(crypt(input(),'\$6\$$(openssl rand -base64 12)\$'))")
 
 if [ $? -ne 0 ]
 then
