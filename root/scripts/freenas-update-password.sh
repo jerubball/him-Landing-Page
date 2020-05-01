@@ -25,6 +25,7 @@ fi
     
 echo "Reading for new password..."
 passhash=$(openssl passwd -6)
+#passhash=$(python -c "import crypt; print crypt.crypt(input('Password: '),'\$6\$$(openssl rand -base64 12)\$')")
 
 if [ $? -ne 0 ]
 then
@@ -40,4 +41,6 @@ then
     exit 1
 fi
 
+echo "Password updated"
+echo "Please request system restart"
 exit 0
