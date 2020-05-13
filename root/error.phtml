@@ -262,6 +262,9 @@
       $style = "text-primary";
       break;
   }
+  if ($status !== "Error") {
+    http_response_code(intval($status));
+  }
 ?>
 
 <!DOCTYPE html>
