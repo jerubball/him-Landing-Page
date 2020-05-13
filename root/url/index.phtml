@@ -1,4 +1,7 @@
 <?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/core.php');
+  require_https();
+  
   require_once('redirect.php');
 ?>
 
@@ -13,7 +16,7 @@
   <title>URL shortening &amp; redirect</title>
 </head>
 
-<body onload="Core.Window.setTitle('URL shortening &amp; redirect'); Core.Window.setProtocol('https:');">
+<body onload="Core.Window.setTitle('URL shortening &amp; redirect');">
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
