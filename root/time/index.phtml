@@ -1,3 +1,7 @@
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/core.php');
+  require_https();
+?>
 <!DOCTYPE html>
 <html onclick="Core.Window.toggleFullscreen()">
 <head>
@@ -8,7 +12,7 @@
   <script src="script.js"></script>
   <title id="title">Time</title>
 </head>
-<body class="main" id="main" onload="Core.Window.setTitle('Time'); Core.Window.setProtocol('https:'); Script.setup();">
+<body class="main" id="main" onload="Core.Window.setTitle('Time'); Script.setup();">
   <div class="box" id="box">
     <p class="text" id="text" onclick="Script.copyElement(this)"></p>
   </div>
