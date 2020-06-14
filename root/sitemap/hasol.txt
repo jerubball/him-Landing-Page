@@ -1,10 +1,10 @@
 
 http://hasol.co/
 https://hasol.co/
-http://hasol.co/about.phtml
-https://hasol.co/about.phtml
-http://hasol.co/links.phtml
-https://hasol.co/links.phtml
+http://hasol.co/about/
+https://hasol.co/about/
+http://hasol.co/links/
+https://hasol.co/links/
 
 https://hasol.co/TrackingSystem/
 https://hasol.co/TrackingSystem/index.html
