@@ -1,10 +1,10 @@
 
-about.phtml
+about/
 directory.phtml
 download/
 error.phtml
 index.phtml
-links.phtml
+links/
 sitemap/
 test/
 
