@@ -1,10 +1,10 @@
 
 http://him-nyit.ddns.net/
 https://him-nyit.ddns.net/
-http://him-nyit.ddns.net/about.phtml
-https://him-nyit.ddns.net/about.phtml
-http://him-nyit.ddns.net/links.phtml
-https://him-nyit.ddns.net/links.phtml
+http://him-nyit.ddns.net/about/
+https://him-nyit.ddns.net/about/
+http://him-nyit.ddns.net/links/
+https://him-nyit.ddns.net/links/
 
 https://him-nyit.ddns.net/TrackingSystem/
 https://him-nyit.ddns.net/TrackingSystem/index.html
