@@ -23,6 +23,18 @@
             echo 'color: '.htmlspecialchars($_GET['foreground']).";\r\n";
         }
     }
+    if (isset($_GET['font'])) {
+        echo 'font-family: '.htmlspecialchars($_GET['font']).";\r\n";
+    }
+    if (isset($_GET['size'])) {
+        echo 'font-size: '.htmlspecialchars($_GET['size']).";\r\n";
+    }
+    if (isset($_GET['weight'])) {
+        echo 'font-weight: '.htmlspecialchars($_GET['weight']).";\r\n";
+    }
+    if (isset($_GET['style'])) {
+        echo 'font-style: '.htmlspecialchars($_GET['style']).";\r\n";
+    }
 ?>
     }
   </style>
