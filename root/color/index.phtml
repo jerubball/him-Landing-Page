@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <title id="title">Color</title>
   <style>
+    html {
 <?php
     if (isset($_GET['background'])) {
         echo 'background-color: '.htmlspecialchars($_GET['background']).";\r\n";
@@ -15,6 +16,7 @@
         echo 'color: '.htmlspecialchars($_GET['foreground']).";\r\n";
     }
 ?>
+    }
   </style>
 </head>
 <body class="main" id="main" onload="Core.Window.setTitle('Color')">
