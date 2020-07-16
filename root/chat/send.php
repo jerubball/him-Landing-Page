@@ -18,7 +18,7 @@
         getenv('HTTP_FORWARDED')?:
         getenv('REMOTE_ADDR');
     $chat = fopen('chat', 'a');
-    fwrite($chat, time()."\t".$ip."\t".$_SESSION['username']."\t".$_GET['text']."\n");
+    fwrite($chat, microtime()."\t".$ip."\t".$_SESSION['username']."\t".$_GET['text']."\n");
     fclose($chat);
     echo '0 Success.';
   }

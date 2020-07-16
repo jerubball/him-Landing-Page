@@ -10,7 +10,7 @@
     echo '2 Chat room not found.';
   } else {
     $_SESSION['lasttime'] = $_SESSION['timestamp'];
-    $_SESSION['timestamp'] = time();
+    $_SESSION['timestamp'] = microtime();
     $chat = fopen('chat', 'r');
     $data = [];
     while (!feof($chat)) {
@@ -19,16 +19,19 @@
         if (strlen($line) > 0 && $line[0] !== '#') {
             $items = explode("\t", $line);
             // when time was after last check
-            if (sizeof($items) > 0 && intval($items) > $_SESSION['lasttime']) {
-                // use line.
-                array_push($data, $line);
+            if (sizeof($items) > 0) {
+                $timestamp = intval($items[0]);
+                if ($timestamp >= $_SESSION['lasttime'] && $timestamp < $_SESSION['timestamp']) {
+                    // use line.
+                    array_push($data, $line);
+                }
             }
         }
     }
     fclose($chat);
     
     foreach ($data as $entry) {
-        echo $entry."\r\n"
+        echo $entry."\r\n";
     }
   }
   
