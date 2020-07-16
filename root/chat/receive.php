@@ -10,7 +10,7 @@
     echo '2 Chat room not found.';
   } else {
     $_SESSION['lasttime'] = $_SESSION['timestamp'];
-    $_SESSION['timestamp'] = microtime();
+    $_SESSION['timestamp'] = microtime(true);
     $chat = fopen('chat', 'r');
     $data = [];
     while (!feof($chat)) {
@@ -20,7 +20,7 @@
             $items = explode("\t", $line);
             // when time was after last check
             if (sizeof($items) > 0) {
-                $timestamp = intval($items[0]);
+                $timestamp = floatval($items[0]);
                 if ($timestamp >= $_SESSION['lasttime'] && $timestamp < $_SESSION['timestamp']) {
                     // use line.
                     array_push($data, $line);
