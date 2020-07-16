@@ -1,0 +1,34 @@
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/core.php');
+  require_https();
+?>
+<!DOCTYPE html>
+<html onclick="Core.Window.toggleFullscreen()">
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <link rel="stylesheet" href="style.css">
+  <title id="title">Color</title>
+  <style>
+<?php
+    if (isset($_GET['background'])) {
+        echo 'background-color: '.htmlspecialchars($_GET['background']).";\r\n";
+    }
+    if (isset($_GET['foreground'])) {
+        echo 'color: '.htmlspecialchars($_GET['foreground']).";\r\n";
+    }
+?>
+  </style>
+</head>
+<body class="main" id="main" onload="Core.Window.setTitle('Color')">
+  <div class="box" id="box">
+    <p class="text" id="text">
+<?php
+    if (isset($_GET['text'])) {
+        echo htmlspecialchars($_GET['text']);
+    }
+?>
+    </p>
+  </div>
+</body>
