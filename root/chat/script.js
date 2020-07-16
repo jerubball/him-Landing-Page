@@ -16,7 +16,7 @@ const Script = {
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 if (this.responseText.length > 0 && this.responseText[0] != '0') {
-                    alert(this.responseText.substr(2);
+                    alert(this.responseText.substr(2));
                 }
             }
         };
