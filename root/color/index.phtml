@@ -10,10 +10,18 @@
     html {
 <?php
     if (isset($_GET['background'])) {
-        echo 'background-color: '.htmlspecialchars($_GET['background']).";\r\n";
+        if (ctype_xdigit($_GET['background'])) {
+            echo 'background-color: #'.$_GET['background'].";\r\n";
+        } else {
+            echo 'background-color: '.htmlspecialchars($_GET['background']).";\r\n";
+        }
     }
     if (isset($_GET['foreground'])) {
-        echo 'color: '.htmlspecialchars($_GET['foreground']).";\r\n";
+        if (ctype_xdigit($_GET['background'])) {
+            echo 'color: #'.$_GET['background'].";\r\n";
+        } else {
+            echo 'color: '.htmlspecialchars($_GET['foreground']).";\r\n";
+        }
     }
 ?>
     }
