@@ -38,8 +38,7 @@ const Script = {
                     if (this.responseText[0] != '0') {
                         console.log(this.responseText.substr(2));
                     } else {
-                        console.log(this.responseText);
-                        //append(this.responseText);
+                        append(this.responseText);
                     }
                 }
             }
