@@ -14,7 +14,7 @@
     $chat = fopen('chat', 'r');
     $data = [];
     while (!feof($chat)) {
-        $line = $fgets($chat);
+        $line = fgets($chat);
         // skip empty or commented line
         if (strlen($line) > 0 && $line[0] !== '#') {
             $items = explode("\t", $line);
