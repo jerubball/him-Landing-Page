@@ -30,8 +30,9 @@
     }
     fclose($chat);
     
+    echo "0 Success.\r\n";
     foreach ($data as $entry) {
-        echo $entry."\r\n";
+        echo $entry;
     }
   }
   
