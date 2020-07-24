@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE KSysGuardWorkSheet>
+<WorkSheet interval="1" columns="1" rows="3" locked="0" title="System Load">
+ <host command="ksysguardd" port="-1" name="localhost" shell=""/>
+ <display class="FancyPlotter" unit="" vScroll="1" columnSpan="1" showUnit="0" title="Memory and Swap History" stacked="0" hLines="1" manualRange="0" vLines="1" rowSpan="1" column="0" row="1" svgBackground="" hScale="6" version="1" labels="1" fontSize="8" autoRange="1" vDistance="30">
+  <beam hostName="localhost" color="0xffaaaa00" sensorName="mem/physical/application" sensorType="integer"/>
+  <beam hostName="localhost" color="0xff00aa00" sensorName="mem/swap/used" sensorType="integer"/>
+ </display>
+ <display class="FancyPlotter" unit="" vScroll="1" columnSpan="1" showUnit="0" title="CPU History" stacked="0" hLines="1" manualRange="0" vLines="1" rowSpan="1" column="0" row="0" svgBackground="" hScale="6" version="1" labels="1" fontSize="8" autoRange="1" vDistance="30">
+  <beam hostName="localhost" color="0xffaa0000" sensorName="cpu/cpu0/TotalLoad" sensorType="float"/>
+  <beam hostName="localhost" color="0xffaa5500" sensorName="cpu/cpu1/TotalLoad" sensorType="float"/>
+ </display>
+ <display class="FancyPlotter" unit="" vScroll="1" columnSpan="1" showUnit="0" title="Network History" stacked="0" hLines="1" manualRange="0" vLines="1" rowSpan="1" column="0" row="2" svgBackground="" hScale="6" version="1" labels="1" fontSize="8" autoRange="1" vDistance="30">
+  <beam hostName="localhost" color="0xff0055aa" sensorName="network/interfaces/enp2s0/receiver/data" sensorType="float"/>
+  <beam hostName="localhost" color="0xff5500aa" sensorName="network/interfaces/enp2s0/transmitter/data" sensorType="float"/>
+ </display>
+</WorkSheet>

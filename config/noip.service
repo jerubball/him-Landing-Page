@@ -1,0 +1,17 @@
+[Unit]
+Description=No-ip dynamic update client
+After=sysinit.target
+After=network.target
+After=network-online.target
+After=nss-lookup.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/usr/local/bin/noip2 -c /usr/local/etc/no-ip2.conf
+ExecStop=/usr/local/bin/noip2 -K $MAINPID
+Restart=always
+#TimeoutSec=infinity
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE KSysGuardWorkSheet>
+<WorkSheet rows="3" locked="0" columns="1" title="Device Info" interval="1">
+ <host shell="" name="localhost" port="-1" command="ksysguardd"/>
+ <display unit="" vScroll="1" row="0" vDistance="30" hScale="6" vLines="1" showUnit="0" stacked="0" fontSize="8" columnSpan="1" autoRange="1" manualRange="1" title="Temperature" version="1" svgBackground="" min="30" labels="1" rowSpan="1" hLines="1" column="0" class="FancyPlotter" max="60">
+  <beam sensorName="lmsensors/coretemp-isa-0000/Core_0" color="0xffaa0000" hostName="localhost" sensorType="float"/>
+  <beam sensorName="lmsensors/coretemp-isa-0000/Core_1" color="0xffaa5500" hostName="localhost" sensorType="float"/>
+ </display>
+ <display unit="s" row="2" sensorType="float" showUnit="1" mAlarmDigitColor="0xffaa0055" backgroundColor="0xffaaaaaa" columnSpan="1" sensorName="system/uptime" title="Uptime" upperLimit="0" upperLimitActive="0" lowerLimitActive="0" hostName="localhost" rowSpan="1" column="0" lowerLimit="0" class="MultiMeter" normalDigitColor="0xff555555"/>
+ <display unit="" vScroll="1" row="1" vDistance="30" hScale="6" vLines="1" showUnit="0" stacked="0" fontSize="8" columnSpan="1" autoRange="1" manualRange="0" title="Process Count" version="1" svgBackground="" labels="1" rowSpan="1" hLines="1" column="0" class="FancyPlotter">
+  <beam sensorName="pscount" color="0xff55aa00" hostName="localhost" sensorType="integer"/>
+ </display>
+</WorkSheet>

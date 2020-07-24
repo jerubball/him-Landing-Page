@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE KSysGuardWorkSheet>
+<WorkSheet title="Monitor" locked="0" rows="3" interval="1" columns="1">
+ <host name="localhost" port="-1" shell="" command="ksysguardd"/>
+ <display class="FancyPlotter" hScale="6" row="0" stacked="0" column="0" svgBackground="" rowSpan="1" hLines="1" title="Process Count" columnSpan="1" manualRange="0" version="1" unit="" fontSize="8" vDistance="30" showUnit="0" vLines="1" autoRange="1" vScroll="1" labels="1">
+  <beam sensorType="integer" sensorName="pscount" hostName="localhost" color="0xffaa0055"/>
+ </display>
+ <display class="FancyPlotter" hScale="6" row="1" stacked="0" column="0" svgBackground="" rowSpan="1" hLines="1" title="Context Switches and Total Interrupts" columnSpan="1" manualRange="0" version="1" unit="" fontSize="8" vDistance="30" showUnit="0" vLines="1" autoRange="1" vScroll="1" labels="1">
+  <beam sensorType="float" sensorName="cpu/context" hostName="localhost" color="0xff00aa55"/>
+  <beam sensorType="float" sensorName="cpu/interrupts/int00" hostName="localhost" color="0xff00aaaa"/>
+ </display>
+ <display class="FancyPlotter" hScale="6" min="30" row="2" stacked="0" column="0" svgBackground="" rowSpan="1" hLines="1" max="60" title="Temperature" columnSpan="1" manualRange="1" version="1" unit="" fontSize="8" vDistance="30" showUnit="0" vLines="1" autoRange="1" vScroll="1" labels="1">
+  <beam sensorType="float" sensorName="lmsensors/coretemp-isa-0000/Core_0" hostName="localhost" color="0xff0000aa"/>
+  <beam sensorType="float" sensorName="lmsensors/coretemp-isa-0000/Core_1" hostName="localhost" color="0xffaa00aa"/>
+ </display>
+</WorkSheet>

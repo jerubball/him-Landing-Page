@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE KSysGuardWorkSheet>
+<WorkSheet rows="3" locked="0" columns="1" title="Disk Usage" interval="1">
+ <host shell="" name="localhost" port="-1" command="ksysguardd"/>
+ <display unit="" vScroll="1" row="0" vDistance="30" hScale="6" vLines="1" showUnit="0" stacked="0" fontSize="8" columnSpan="1" autoRange="1" manualRange="0" title="Context Switches and Total Interrupts" version="1" svgBackground="" labels="1" rowSpan="1" hLines="1" column="0" class="FancyPlotter">
+  <beam sensorName="cpu/context" color="0xff00aa55" hostName="localhost" sensorType="float"/>
+  <beam sensorName="cpu/interrupts/int00" color="0xff00aaaa" hostName="localhost" sensorType="float"/>
+ </display>
+ <display unit="" vScroll="1" row="1" vDistance="30" hScale="6" vLines="1" showUnit="0" stacked="1" fontSize="8" columnSpan="1" autoRange="1" manualRange="0" title="Used Space" version="1" svgBackground="" labels="1" rowSpan="1" hLines="1" column="0" class="FancyPlotter">
+  <beam sensorName="partitions//usedspace" color="0xff0000aa" hostName="localhost" sensorType="integer"/>
+  <beam sensorName="partitions//freespace" color="0xffaa00aa" hostName="localhost" sensorType="integer"/>
+ </display>
+ <display unit="" vScroll="1" row="2" vDistance="30" hScale="6" vLines="1" showUnit="0" stacked="0" fontSize="8" columnSpan="1" autoRange="1" manualRange="0" title="/dev/sda Read and Write" version="1" svgBackground="" labels="1" rowSpan="1" hLines="1" column="0" class="FancyPlotter">
+  <beam sensorName="disk/sda_(8:0)/Rate/rblk" color="0xff0055aa" hostName="localhost" sensorType="float"/>
+  <beam sensorName="disk/sda_(8:0)/Rate/wblk" color="0xff5500aa" hostName="localhost" sensorType="float"/>
+ </display>
+</WorkSheet>
