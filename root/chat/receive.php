@@ -1,13 +1,17 @@
 <?php
   
-  header('Content-Type: text/plain');
+  header('Content-Type: application/json');
   
   session_start();
   
+  $response = [];
+  
   if (!$_SESSION['init']) {
-    echo '1 Session not initialized.';
+    $response['code'] = 1;
+    $response['status'] = 'Session not initialized.';
   } elseif (!file_exists('.chat') || !file_exists('chat')) {
-    echo '2 Chat room not found.';
+    $response['code'] = 2;
+    $response['status'] = 'Chat room not found.';
   } else {
     $_SESSION['lasttime'] = $_SESSION['timestamp'];
     $_SESSION['timestamp'] = microtime(true);
@@ -24,16 +28,18 @@
                 if ($timestamp >= $_SESSION['lasttime'] && $timestamp < $_SESSION['timestamp']) {
                     // use line.
                     array_push($data, $line);
+                    // use json.
                 }
             }
         }
     }
     fclose($chat);
     
-    echo "0 Success.\r\n";
-    foreach ($data as $entry) {
-        echo $entry;
-    }
+    $response['code'] = 0;
+    $response['status'] = 'Success.';
+    $response['data'] = $data;
   }
+  
+  echo json_encode($response);
   
 ?>

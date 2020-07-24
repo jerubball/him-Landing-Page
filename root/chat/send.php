@@ -1,15 +1,20 @@
 <?php
   
-  header('Content-Type: text/plain');
+  header('Content-Type: application/json');
   
   session_start();
   
+  $response = [];
+  
   if (!$_SESSION['init']) {
-    echo '1 Session not initialized.';
+    $response['code'] = 1;
+    $response['status'] = 'Session not initialized.';
   } elseif (!file_exists('.chat') || !file_exists('chat')) {
-    echo '2 Chat room not found.';
+    $response['code'] = 2;
+    $response['status'] = 'Chat room not found.';
   } elseif (!isset($_GET['text'])) {
-    echo '3 No message given.';
+    $response['code'] = 3;
+    $response['status'] = 'No message given.';
   } else {
     $ip = getenv('HTTP_CLIENT_IP')?:
         getenv('HTTP_X_FORWARDED_FOR')?:
@@ -17,10 +22,14 @@
         getenv('HTTP_FORWARDED_FOR')?:
         getenv('HTTP_FORWARDED')?:
         getenv('REMOTE_ADDR');
+    $text = str_replace(["\n", "\r", "\t"], " ", $_GET['text']);
     $chat = fopen('chat', 'a');
-    fwrite($chat, microtime(true)."\t".$ip."\t".$_SESSION['username']."\t".$_GET['text']."\n");
+    fwrite($chat, microtime(true)."\t".$ip."\t".$_SESSION['username']."\t".$text."\n");
     fclose($chat);
-    echo '0 Success.';
+    $response['code'] = 0;
+    $response['status'] = 'Success.';
   }
+  
+  echo json_encode($response);
   
 ?>

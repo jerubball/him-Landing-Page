@@ -13,47 +13,48 @@ const Script = {
     send() {
         var input = document.getElementById('chat-input');
         var data = encodeURIComponent(input.value);
-        var xmlhttp = new XMLHttpRequest ();
-        xmlhttp.onreadystatechange = function() {
+        var request = new XMLHttpRequest ();
+        request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                if (this.responseText.length > 0) {
-                    if (this.responseText[0] != '0') {
-                        alert(this.responseText.substr(2));
-                    } else {
+                if (this.response && this.response instanceof Object) {
+                    if (this.response['code'] === 0) {
                         input.value = '';
+                    } else {
+                        alert(this.response['status']);
                     }
                 }
             }
         };
-        xmlhttp.open('GET', 'send.php?text=' + data, true);
-        xmlhttp.send();
+        request.responseType = 'json';
+        request.open('GET', 'send.php?text=' + data, true);
+        request.send();
         return false;
     },
     
     receive() {
-        var xmlhttp = new XMLHttpRequest ();
-        xmlhttp.onreadystatechange = function() {
+        var request = new XMLHttpRequest ();
+        request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                if (this.responseText.length > 0) {
-                    if (this.responseText[0] != '0') {
-                        console.log(this.responseText.substr(2));
+                if (this.response && this.response instanceof Object) {
+                    if (this.response['code'] === 0) {
+                        Script.append(this.response['data']);
                     } else {
-                        Script.append(this.responseText);
+                        console.log(this.response['status']);
                     }
                 }
             }
         };
-        xmlhttp.open('GET', 'receive.php', true);
-        xmlhttp.send();
+        request.responseType = 'json';
+        request.open('GET', 'receive.php', true);
+        request.send();
         return false;
     },
     
     append(data) {
         if (data.length > 0) {
             var chatarea = document.getElementById('chat-area');
-            var lines = data.split('\n');
-            for (var i = 1; i < lines.length && lines[i].length > 0; i++) {
-                var parts = lines[i].trim().split('\t');
+            for (var i = 0; i < data.length && data[i].length > 0; i++) {
+                var parts = data[i].trim().split('\t');
                 if (parts.length == 4) {
                     // process successful entry [timestamp, ip, name, text]
                     var row = document.createElement('div');
