@@ -1,6 +1,6 @@
 <?php
   
-  header("Content-Type: text/plain")."\n";
+  header('Content-Type: text/plain')."\n";
   
   echo getenv('HTTP_CLIENT_IP')."\n";
   echo getenv('HTTP_X_FORWARDED_FOR')."\n";

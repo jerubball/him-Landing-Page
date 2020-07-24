@@ -5,7 +5,7 @@
   
   $error = false;
   
-  header("Content-Type: text/plain");
+  header('Content-Type: text/plain');
   
   if (sizeof($_GET) > 0) {
     if (!isset($_GET['url']) || $_GET['url'] == '') {
