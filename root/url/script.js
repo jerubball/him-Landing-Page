@@ -95,13 +95,12 @@ const Script = {
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4) {
                     if (this.status == 200) {
-                        if (this.responseText.length > 2) { // response is 0 or 1 followed by message.
-                            var response = this.responseText.substring(2);
-                            if (this.responseText.charAt(0) == '0') {
-                                Script.successAction(window.location.origin + '/url?' + response);
+                        if (this.response && this.response instanceof Object) {
+                            if (this.response['code'] === 0) {
+                                Script.successAction(window.location.origin + '/url?' + this.response['url']);
                                 Script.copyToClipboard();
                             } else {
-                                Script.failAction(response);
+                                Script.failAction(this.response['status']);
                             }
                         } else {
                             Script.failAction('Unknown error occurred.');
@@ -114,6 +113,7 @@ const Script = {
                     wait.hidden = false;
                 }
             };
+            xmlhttp.responseType = 'json';
             xmlhttp.open('GET', 'create.php?url=' + encodeURIComponent(url.value) + expireParameter, true);
             xmlhttp.send();
         }
