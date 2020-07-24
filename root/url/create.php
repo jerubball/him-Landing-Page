@@ -3,20 +3,20 @@
   $db_username = 'website.local';
   $db_password = '13579';
   
-  $data = [];
+  $response = [];
   
   header('Content-Type: application/json');
   
   if (sizeof($_GET) > 0) {
     if (!isset($_GET['url']) || $_GET['url'] == '') {
-      $data['code'] = 1;
-      $data['status'] = 'No URL given.';
+      $response['code'] = 1;
+      $response['status'] = 'No URL given.';
     } else {
       $db_connection = new mysqli($db_server, $db_username, $db_password);
       
       if ($db_connection->connect_error) {
-        $data['code'] = 2;
-        $data['status'] = 'Database connection failed.';
+        $response['code'] = 2;
+        $response['status'] = 'Database connection failed.';
         //die ('Connection failed: ' . $db_connection->connect_error);
       } else {
         $charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_';
@@ -44,7 +44,7 @@
           }
         }
         
-        // insert into database.
+        // insert into responsebase.
         $redirect = $db_connection->real_escape_string($_GET['url']);
         $expires = '';
         if (!isset($_GET['expires']) || $_GET['expires'] == '') {
@@ -57,22 +57,22 @@
         
         if ($db_answer) {
           // success.
-          $data['code'] = 0;
-          $data['status'] = 'Success.';
-          $data['url'] = $url;
+          $response['code'] = 0;
+          $response['status'] = 'Success.';
+          $response['url'] = $url;
         } else {
           // failed.
-          $data['code'] = 3;
-          $data['status'] = 'Database query failed.';
+          $response['code'] = 3;
+          $response['status'] = 'Database query failed.';
         }
       }
       
       $db_connection->close();
     }
   } else {
-    $data['code'] = 4;
-    $data['status'] = 'No parameter given.';
+    $response['code'] = 4;
+    $response['status'] = 'No parameter given.';
   }
   
-  echo json_encode($data);
+  echo json_encode($response);
 ?>
