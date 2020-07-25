@@ -24,7 +24,10 @@
         getenv('REMOTE_ADDR');
     $text = str_replace(["\n", "\r", "\t"], " ", $_GET['text']);
     $chat = fopen('chat', 'a');
+    flock($chat, LOCK_EX);
     fwrite($chat, microtime(true)."\t".$ip."\t".$_SESSION['username']."\t".$text."\n");
+    fflush($chat);
+    flock($chat, LOCK_UN);
     fclose($chat);
     $response['code'] = 0;
     $response['status'] = 'Success.';
