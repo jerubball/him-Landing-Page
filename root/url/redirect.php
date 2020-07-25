@@ -1,17 +1,16 @@
 <?php
   $param_keys = array_keys($_GET);
   
-  $db_server = 'localhost:3306';
+  $db_server = 'localhost';
   $db_username = 'website.local';
-  $db_password = '13579';
   
   $error = false;
   
   if (sizeof($param_keys) > 0) {
     // do redirect attempt.
-    $db_connection = new mysqli($db_server, $db_username, $db_password);
+    $db_connection = new mysqli($db_server, $db_username);
     
-    if ($db_connection->connect_error) {
+    if ($db_connection->connect_errno) {
       $error = true;
       $message = 'Database connection failed.';
       //die ('Connection failed: ' . $db_connection->connect_error);

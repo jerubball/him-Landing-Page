@@ -1,7 +1,6 @@
 <?php
-  $db_server = 'localhost:3306';
+  $db_server = 'localhost';
   $db_username = 'website.local';
-  $db_password = '13579';
   
   $response = [];
   
@@ -12,9 +11,9 @@
       $response['code'] = 1;
       $response['status'] = 'No URL given.';
     } else {
-      $db_connection = new mysqli($db_server, $db_username, $db_password);
+      $db_connection = new mysqli($db_server, $db_username);
       
-      if ($db_connection->connect_error) {
+      if ($db_connection->connect_errno) {
         $response['code'] = 2;
         $response['status'] = 'Database connection failed.';
         //die ('Connection failed: ' . $db_connection->connect_error);
