@@ -1,10 +1,12 @@
 <?php
+  
+  header('Content-Type: application/json');
+  
   $db_server = 'localhost';
   $db_username = 'website.local';
   
   $response = [];
   
-  header('Content-Type: application/json');
   
   if (sizeof($_GET) > 0) {
     if (!isset($_GET['url']) || $_GET['url'] == '') {
