@@ -45,7 +45,7 @@
           }
         }
         
-        // insert into responsebase.
+        // insert into database.
         $redirect = $db_connection->real_escape_string($_GET['url']);
         $expires = '';
         if (!isset($_GET['expires']) || $_GET['expires'] == '') {
