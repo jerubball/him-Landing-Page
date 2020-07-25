@@ -22,7 +22,7 @@
       if (touch($id_meta)) {
         
         chmod($id_meta, 0660);
-        $metadata = ['mode' => $mode, 'created' => microtime(true)];
+        $metadata = ['mode' => $mode, 'created' => microtime(true), 'expires' => null, 'enabled' => true];
         file_put_contents($id_meta, json_encode($metadata), FILE_APPEND | LOCK_EX);
         
         if ($mode == 'text') {

@@ -15,8 +15,9 @@
   } else {
     $_SESSION['lasttime'] = $_SESSION['timestamp'];
     $_SESSION['timestamp'] = microtime(true);
-    $chat = fopen('chat', 'r');
     $data = [];
+    $chat = fopen('chat', 'r');
+    flock($chat, LOCK_SH);
     while (!feof($chat)) {
         $line = fgets($chat);
         // skip empty or commented line
@@ -33,6 +34,7 @@
             }
         }
     }
+    flock($chat, LOCK_UN);
     fclose($chat);
     
     $response['code'] = 0;
