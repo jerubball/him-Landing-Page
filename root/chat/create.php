@@ -77,8 +77,10 @@
                 }
                 
               }
-              $db_connection->close();
               
+              if ($db_connection->close) {
+                $db_connection->close();
+              }              
             }
           } else {
             $response['code'] = 5;
