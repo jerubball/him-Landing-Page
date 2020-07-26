@@ -72,6 +72,10 @@
                   $response['code'] = 4;
                   $response['status'] = 'Database query failed.';
                 }
+                if ($db_answer->free_result) {
+                  $db_answer->free_result();
+                }
+                
               }
               $db_connection->close();
               
