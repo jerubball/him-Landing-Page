@@ -49,8 +49,21 @@
           // really do redirection.
           $visited = $db_array['visited'] + 1;
           
+          
+          if ($db_answer->free_result) {
+            $db_answer->free_result();
+          }
+          
           $db_query = 'update Website.url set visited = '.$visited.' where url = "'.$url_key.'"';
-          $db_connection->query($db_query);
+          $db_answer = $db_connection->query($db_query);
+          
+          if ($db_answer->free_result) {
+            $db_answer->free_result();
+          }
+          
+          if ($db_connection->close) {
+            $db_connection->close();
+          }
           
           header('Location: '.$db_array['redirect']);
           exit();
@@ -61,8 +74,13 @@
         $error = true;
         $message = 'URL not found.';
       }
+      if ($db_answer->free_result) {
+        $db_answer->free_result();
+      }
       
-      $db_connection->close();
+      if ($db_connection->close) {
+        $db_connection->close();
+      }
     }
   }
 ?>

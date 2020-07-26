@@ -53,6 +53,10 @@
         } else {
           $expires = 'date_add(now(), interval '.$db_connection->real_escape_string($_GET['expires']).')';
         }
+        if ($db_answer->free_result) {
+          $db_answer->free_result();
+        }
+        
         $db_query = 'insert into Website.url (url, redirect, created, expires) values ("'.$url.'", "'.$redirect.'", now(), '.$expires.');';
         $db_answer = $db_connection->query($db_query);
         
@@ -66,9 +70,14 @@
           $response['code'] = 3;
           $response['status'] = 'Database query failed.';
         }
+        if ($db_answer->free_result) {
+          $db_answer->free_result();
+        }
       }
       
-      $db_connection->close();
+      if ($db_connection->close) {
+        $db_connection->close();
+      }
     }
   } else {
     $response['code'] = 4;
