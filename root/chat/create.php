@@ -16,13 +16,12 @@
         $mode = 'text';
       }
       
-      
       $created = microtime(true);
       $expires = '';
       if (isset($_GET['expires']) && $_GET['expires'] != '' && is_numeric($_GET['expires'])) {
         $expires = $created + intval($_GET['expires']);
       } else {
-        $expires = null;
+        $expires = 'null';
       }
       
       if ($mode == 'text' || $mode == 'mysql') {
@@ -61,20 +60,19 @@
                 $response['status'] = 'Database connection failed.';
               } else {
                 $id_escape = $db_connection->real_escape_string($_GET['id']);
-                $db_query = 'insert into Website.chat_metadata (id, save, created, expires) values ("'.$id_escape.'", "'.$mode.'", from_unixtime('.$created.'), from_unixtime('.$expires.');';
+                $db_query = 'insert into Website.chat_metadata (id, save, created, expires) values ("'.$id_escape.'", "'.$mode.'", from_unixtime('.$created.'), from_unixtime('.$expires.'));';
                 $db_answer = $db_connection->query($db_query);
                 
                 if ($db_answer) {
                   // success.
                   $response['code'] = 0;
                   $response['status'] = 'Success.';
-                  $response['url'] = $url;
                 } else {
                   // failed.
                   $response['code'] = 4;
                   $response['status'] = 'Database query failed.';
                 }
-                
+                $db_answer->free_result();
               }
               $db_connection->close();
               
