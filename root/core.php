@@ -21,12 +21,12 @@
   
   function random_string($length = 5, $charset = 0b0000111) {
     if (isset($length) && isset($charset)) {
-      if (is_numeric($length) && intval($length) > 0 {
-        $length = intval($length)
+      if (is_numeric($length) && intval($length) > 0) {
+        $length = intval($length);
         
         // !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
         if (is_numeric($charset)) {
-          $code = intval($charset)
+          $code = intval($charset);
           $charset = '';
           
           if ($code & CHARSET_NUMERIC) {
