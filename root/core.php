@@ -19,7 +19,7 @@
   define("CHARSET_SYMBOLS",            0b01111000);
   define("CHARSET_SPACE",              0b10000000);
   
-  function random_string($length = 5, $charset = 0b0000111) {
+  function random_string(int $length = 5, $charset = 0b0000111) {
     if (isset($length) && isset($charset)) {
       if (is_numeric($length) && intval($length) > 0) {
         $length = intval($length);
