@@ -1,0 +1,705 @@
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/core.php');
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <title>Resume</title>
+
+<style>
+  a.collapse-control {
+    color: inherit;
+  }
+  a.collapse-control > i.fa {
+    visibility: hidden;
+    display: none;
+    position: absolute;
+    top: 0.5em;
+    //top: 20%;
+    left: 0;
+  }
+  a.collapse-control.collapsed > i.collapse-indicator.fa.fa-caret-left,
+  a.collapse-control.collapsed > i.collapse-indicator.fa.fa-caret-right {
+    visibility: visible;
+    display: inline-block;
+  }
+  a.collapse-control:not(.collapsed) > i.collapse-indicator.fa.fa-caret-down {
+    visibility: visible;
+    display: inline-block;
+  }
+  a.collapse-control > i.fa.fa-caret-down {
+    color: var(--link-default);
+  }
+  div.header.sticky {
+    position: sticky;
+    top: 0;
+  }
+
+</style>
+<script>
+const Script = {
+    
+    init() {
+        this.init = Core.init;
+        return this.init(Core.None.__proto__);
+    },
+    
+    collapseAll(id, state) {
+        document.querySelectorAll('#' + id + ' a.collapse-control').forEach(function(item) {
+            if (item.classList.contains('collapsed') !== state) {
+                item.click();
+            }
+        });
+        return false;
+    },
+    
+}.init();
+</script>
+
+</head>
+
+<body onload="Core.Window.setTitle('Resume')">
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
+  
+  $leading_space = '';
+  
+  function set_leading_space(int $depth) {
+    global $leading_space;
+    $leading_space = '';
+    for ($i = 0; $i < $depth; $i++) {
+      $leading_space .= '  ';
+    }
+  }
+  
+  function adjust_leading_space(int $offset) {
+    global $leading_space;
+    if ($offset > 0) {
+      for ($i = 0; $i < $offset; $i++) {
+        $leading_space .= '  ';
+      }
+    } elseif ($offset < 0) {
+      if (-2 * $offset < strlen($leading_space)) {
+        $leading_space = substr($leading_space, 0, 2*$offset);
+      } else {
+        $leading_space = '';
+      }
+    }
+  }
+  
+  function println($string) {
+    global $leading_space;
+    echo $leading_space.$string."\r\n";
+  }
+  
+  function make_title($title, $head) {
+    println('<div class="p-4">');
+    println('  <div class="container">');
+    println('    <div class="row">');
+    println('      <div class="col-md-12">');
+    println('        <'.$head.' class="">'.$title.'</'.$head.'>');
+    println('      </div>');
+    println('    </div>');
+    println('  </div>');
+    println('</div>');
+  }
+  
+  function make_section_start($title, $head, $sectionid = null, bool $collapse = false, bool $sticky = false, $class1 = null, $class2 = null, $class3 = null) {
+    println('<div class="p-2">');
+    println('  <div class="container">');
+    println('    <div class="row'.($class1 ? ' '.$class1.'">' : '">'));
+    println('      <div class="col-md-3'.($class2 ? ' '.$class2.'">' : '">'));
+    println('        <div class="py-2 header'.($sticky ? ' sticky">' : '">'));
+    println('          <'.$head.' class="">'.$title.'</'.$head.'>');
+    if ($collapse) {
+    println('          <a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll(\''.($sectionid ?: '').'\', false)"><i class="collapse-all fa fa-expand"></i></a>');
+    println('          <a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll(\''.($sectionid ?: '').'\', true)"><i class="collapse-all fa fa-compress"></i></a>');
+    }
+    println('        </div>');
+    println('      </div>');
+    println('      <div class="col-md-9'.($class3 ? ' '.$class3.'">' : '">'));
+    println('        <div class="container"'.($sectionid ? ' id="'.$sectionid.'">' : '>'));
+    adjust_leading_space(5);
+    
+  }
+  
+  function make_section_end() {
+    adjust_leading_space(-5);
+    println('        </div>');
+    println('      </div>');
+    println('    </div>');
+    println('  </div>');
+    println('</div>');
+  }
+  
+  function make_collapse_control($title, $head, bool $shown, ...$controls) {
+    println('<a class="collapse-control'.($shown ? '' : ' collapsed').'" href="#'.implode(', #', $controls).'" data-toggle="collapse" role="button" aria-controls="'.implode(' ', $controls).'" aria-expanded="'.($shown ? 'true' : 'false').'">');
+    println('  <'.$head.' class="d-inline-block">'.$title.'</'.$head.'>');
+    println('  <i class="collapse-indicator fa fa-caret-down"></i>');
+    println('  <i class="collapse-indicator fa fa-caret-right"></i>');
+    println('</a>');
+  }
+  
+  function make_container_start($containerid, bool $shown = false) {
+    println('<div class="container collapse'.($shown ? ' show' : '').'" id="'.$containerid.'">');
+    adjust_leading_space(1);
+  }
+  
+  function make_container_end() {
+    adjust_leading_space(-1);
+    println('</div>');
+  }
+  
+  function make_item_start($class1 = null, $divid = null, $class2 = null) {
+    println('<div class="row'.($class1 ? ' '.$class1.'"' : '"').($divid ? ' id="'.$divid.'">' : '>'));
+    println('  <div class="col-lg-8'.($class2 ? ' '.$class2.'">' : '">'));
+    adjust_leading_space(2);
+  }
+  
+  function make_item_middle($class = null, $divid = null) {
+    adjust_leading_space(-1);
+    println('</div>');
+    println('<div class="col-lg-4 text-right text-lg-left'.($class ? ' '.$class.'"' : '"').($divid ? ' id="'.$divid.'">' : '>'));
+    adjust_leading_space(1);
+  }
+  
+  function make_item_end() {
+    adjust_leading_space(-2);
+    println('  </div>');
+    println('</div>');
+  }
+  
+  function make_div_start($class, $divid = null) {
+    println('<div class="'.$class.'"'.($divid ? ' id="'.$divid.'">' : '>'));
+    adjust_leading_space(1);
+  }
+  
+  function make_div_end() {
+    adjust_leading_space(-1);
+    println('</div>');
+  }
+  
+  function make_head($text, $head, $class = null) {
+    println('<'.$head.' class="'.($class ? $class : '').'">'.$text.'</'.$head.'>');
+  }
+  
+  function make_item_simple($text, $head = 'h6') {
+    make_item_start();
+    make_head($text, $head);
+    make_item_end();
+  }
+      /*
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    println('');
+    */
+  
+?>
+
+<div class="body">
+<?php
+  set_leading_space(1);
+  make_title('HIM&apos;s Resume', 'h1');
+  make_section_start('Hasol&nbsp;Im', 'h2', 'name');
+    make_item_start('pt-2');
+      make_head('<a href="mailto:him@nyit.edu">him@nyit.edu</a>', 'h4');
+      make_head('<a href="mailto:him.nyit@gmail.com">him.nyit@gmail.com</a>', 'h4');
+    make_item_end();
+  make_section_end();
+  
+  make_section_start('Skills', 'h2', 'skills', true, true);
+    make_item_start('pt-2');
+      make_collapse_control('Computer Science', 'h3', true, 'skills-cs');
+    make_item_end();
+    make_container_start('skills-cs', true);
+      make_item_start('pt-2');
+        make_collapse_control('Programming Language', 'h4', true, 'skills-cs-language');
+      make_item_end();
+      make_container_start('skills-cs-language', true);
+        make_item_simple('Java 8', 'h5');
+        
+        make_item_simple('JavaScript', 'h5');
+        
+        make_item_simple('Python3', 'h5');
+        
+        make_item_simple('PHP7', 'h5');
+        
+        make_item_simple('C/C++', 'h5');
+      make_container_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Web Development', 'h4', false, 'skills-cs-web');
+      make_item_end();
+      make_container_start('skills-cs-web', false);
+        make_item_simple('HTML5', 'h5');
+        
+        make_item_simple('CSS3', 'h5');
+        
+        make_item_simple('Bootstrap 4', 'h5');
+      make_container_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Database Management', 'h4', false, 'skills-cs-database');
+      make_item_end();
+      make_container_start('skills-cs-database', false);
+        make_item_simple('MySQL 8.0', 'h5');
+      make_container_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Version Control', 'h4', false, 'skills-cs-version');
+      make_item_end();
+      make_container_start('skills-cs-version', false);
+        make_item_simple('GitHub', 'h5');
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('Information Technology', 'h3', true, 'skills-it');
+    make_item_end();
+    make_container_start('skills-it', true);
+      make_item_start('pt-2');
+        make_collapse_control('Operating Systems', 'h4', true, 'skills-it-os');
+      make_item_end();
+      make_container_start('skills-it-os', true);
+        make_item_start();
+          make_collapse_control('Windows', 'h5', false, 'skills-it-os-windows');
+        make_item_end();
+        make_container_start('skills-it-os-windows', false);
+          make_item_simple('Command Prompt');
+          
+          make_item_simple('Batch Script');
+          
+          make_item_simple('Registry Editor');
+          
+          make_item_simple('System Administration');
+          
+          make_item_simple('Local Machine Settings and Policies');
+        make_container_end();
+        
+        make_item_start();
+          make_collapse_control('Linux', 'h5', true, 'skills-it-os-linux');
+        make_item_end();
+        make_container_start('skills-it-os-linux', true);
+          make_item_simple('Debian/Ubuntu/Kubuntu');
+          
+          make_item_simple('Bash');
+          
+          make_item_simple('Shell Script');
+          
+          make_item_simple('System Administration');
+        make_container_end();
+      make_container_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Computer Networks', 'h4', false, 'skills-it-network');
+      make_item_end();
+      make_container_start('skills-it-network', false);
+        make_item_simple('Cat5/5e Cable Termination', 'h5');
+        
+        make_item_simple('Router Management', 'h5');
+        
+        make_item_simple('Create Access Point Router', 'h5');
+        
+        make_item_simple('Port Forwarding, Firewall Settings', 'h5');
+      make_container_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Office Productivity', 'h4', false, 'skills-it-office');
+      make_item_end();
+      make_container_start('skills-it-office', false);
+        make_item_simple('Microsoft Word', 'h5');
+        
+        make_item_simple('Microsoft Excel', 'h5');
+        
+        make_item_simple('Microsoft PowerPoint', 'h5');
+        
+        make_item_simple('Adobe Photoshop', 'h5');
+        
+        make_item_simple('GNU Image Manipulator Program', 'h5');
+        
+        make_item_simple('Notepad++', 'h5');
+        
+        make_item_simple('GNU nano (Linux command line)', 'h5');
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('General Technology', 'h3', false, 'skills-technology');
+    make_item_end();
+    make_container_start('skills-technology', false);
+      make_item_start('pt-2');
+        make_collapse_control('Electronics', 'h4', false, 'skills-technology-electronics');
+      make_item_end();
+      make_container_start('skills-technology-electronics', false);
+      make_container_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Live Sound System', 'h4', false, 'skills-technology-audio');
+      make_item_end();
+      make_container_start('skills-technology-audio');
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('Communication', 'h3', true, 'skills-communication');
+    make_item_end();
+    make_container_start('skills-communication', true);
+      make_item_start('pt-2');
+        make_collapse_control('Language', 'h4', true, 'skills-communication-language');
+      make_item_end();
+      make_container_start('skills-communication-language', true);
+        make_item_start();
+          make_head('Korean', 'h5');
+        make_item_middle();
+          make_head('First Language', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('English', 'h5');
+        make_item_middle();
+          make_head('Full Professional Proficiency', 'h6');
+        make_item_end();
+      make_container_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Speech', 'h4', false, 'skills-communication-speech');
+      make_item_end();
+      make_container_start('skills-communication-speech', false);
+        make_item_simple('Public Speaking', 'h5');
+        make_item_simple('Presentation', 'h5');
+        make_item_simple('Teaching, Training', 'h5');
+        make_item_simple('Explaining', 'h5');
+      make_container_end();
+    make_container_end();
+    
+  make_section_end();
+  
+  make_section_start('Education', 'h2', 'education', true, true);
+    make_item_start('pt-2');
+      make_collapse_control('New York Institute of Technology', 'h3', true, 'education-nyit');
+    make_item_middle();
+      make_head('Sep.&nbsp;2015 - Dec.&nbsp;2018', 'h5');
+    make_item_end();
+    make_container_start('education-nyit', true);
+      make_item_simple('New York, NY', 'h5');
+      
+      make_item_start('pt-2');
+        make_head('Bachelor&nbsp;of&nbsp;Science, Computer&nbsp;Science', 'h4');
+        make_head('Mathematics Minor', 'h5');
+      make_item_middle();
+        make_head('Dec.&nbsp;2018', 'h5');
+      make_item_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Honors', 'h4', true, 'education-nyit-honors');
+      make_item_end();
+      make_container_start('education-nyit-honors', true);
+        make_item_start();
+          make_head('summa&nbsp;cum&nbsp;laude', 'h5');
+        make_item_middle();
+          make_head('CGPA: 3.96/4.00', 'h5');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Computer&nbsp;Science Faculty&nbsp;Award', 'h5');
+        make_item_middle();
+          make_head('May.&nbsp;2019', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_collapse_control('Presidential Honor List', 'h5', false, 'education-nyit-honors-presidential');
+        make_item_end();
+        make_container_start('education-nyit-honors-presidential');
+          make_item_simple('Fall 2015');
+          make_item_simple('Spring 2016');
+          make_item_simple('Fall 2016');
+          make_item_simple('Spring 2017');
+          make_item_simple('Fall 2017');
+          make_item_simple('Spring 2018');
+          make_item_simple('Fall 2018');
+        make_container_end();
+      make_container_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Courses', 'h4', true, 'education-nyit-courses');
+      make_item_end();
+      make_container_start('education-nyit-courses', true);
+        make_item_start();
+          make_head('Senior Proejct', 'h5');
+        make_item_middle();
+          make_head('CSCI 455', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Big Data Management &amp; Analytics', 'h5');
+        make_item_middle();
+          make_head('CSCI 436', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Information Retrieval', 'h5');
+        make_item_middle();
+          make_head('CSCI 426', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Introduction to Data Mining', 'h5');
+        make_item_middle();
+          make_head('CSCI 415', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Introduction to Software Engineering', 'h5');
+        make_item_middle();
+          make_head('CSCI 380', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Artificial Intelligence', 'h5');
+        make_item_middle();
+          make_head('CSCI 355', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Introduction to Network and Internet Security', 'h5');
+        make_item_middle();
+          make_head('CSCI 352', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Computer Networks', 'h5');
+        make_item_middle();
+          make_head('CSCI 345', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Design and Analysis of Algorithms', 'h5');
+        make_item_middle();
+          make_head('CSCI 335', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_collapse_control('More Computer Science Courses', 'h5', false, 'education-nyit-courses-csci');
+        make_item_end();
+        make_container_start('education-nyit-courses-csci');
+          
+          make_item_start();
+            make_head('Operating Systems', 'h6');
+          make_item_middle();
+            make_head('CSCI 330', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Programming Language Concepts', 'h6');
+          make_item_middle();
+            make_head('CSCI 318', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Theory of Computation', 'h6');
+          make_item_middle();
+            make_head('CSCI 312', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Database Management', 'h6');
+          make_item_middle();
+            make_head('CSCI 300', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Probability and Statistics for Computer Science', 'h6');
+          make_item_middle();
+            make_head('CSCI 270', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Data Structures', 'h6');
+          make_item_middle();
+            make_head('CSCI 260', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Elements of Discrete Structures', 'h6');
+          make_item_middle();
+            make_head('CSCI 235', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Computer Programming II', 'h6');
+          make_item_middle();
+            make_head('CSCI 185', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Computer Organization and Architecture', 'h6');
+          make_item_middle();
+            make_head('CSCI 155', 'h6');
+          make_item_end();
+        make_container_end();
+        
+        make_item_start();
+          make_collapse_control('Mathematics Courses', 'h5', false, 'education-nyit-courses-math');
+        make_item_end();
+        make_container_start('education-nyit-courses-math');
+          make_item_start();
+            make_head('Advanced Seminar', 'h6');
+          make_item_middle();
+            make_head('MATH 460', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Functions of a Complex Variable', 'h6');
+          make_item_middle();
+            make_head('MATH 360', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Differential Equations', 'h6');
+          make_item_middle();
+            make_head('MATH 320', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Linear Algebra', 'h6');
+          make_item_middle();
+            make_head('MATH 310', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Calculus III', 'h6');
+          make_item_middle();
+            make_head('MATH 260', 'h6');
+          make_item_end();
+        make_container_end();
+        
+        make_item_start();
+          make_collapse_control('Other Courses', 'h5', false, 'education-nyit-courses-other');
+        make_item_end();
+        make_container_start('education-nyit-courses-other');
+          make_item_start();
+            make_head('Technology and Global Issues', 'h6');
+          make_item_middle();
+            make_head('IENG 400', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Modern New York', 'h6');
+          make_item_middle();
+            make_head('ICSS 306', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Ethics and Social Philosophy', 'h6');
+          make_item_middle();
+            make_head('ICPH 304', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Communication for Technical Professions', 'h6');
+          make_item_middle();
+            make_head('FCWR 304', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('American Immigrant Literature', 'h6');
+          make_item_middle();
+            make_head('ICLT 301', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Writing II: Foundations of Research Writing for International Students', 'h6');
+          make_item_middle();
+            make_head('FCWR 161', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Writing I: Foundations of College Composition for International Students', 'h6');
+          make_item_middle();
+            make_head('FCWR 111', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Computer, Internet and Society', 'h6');
+          make_item_middle();
+            make_head('ETCS 108', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Career Discovery', 'h6');
+          make_item_middle();
+            make_head('ETCS 105', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Foundations of Speech Communication', 'h6');
+          make_item_middle();
+            make_head('FCSP 105', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Foundations of Scientific Process', 'h6');
+          make_item_middle();
+            make_head('FCSC 101', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('Foundations of Inquiry', 'h6');
+          make_item_middle();
+            make_head('FCIQ 101', 'h6');
+          make_item_end();
+        make_container_end();
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('George W. Hewlett High School', 'h3', false, 'education-hewlett');
+    make_item_middle();
+      make_head('Sep.&nbsp;2011 - Jun.&nbsp;2015', 'h5');
+    make_item_end();
+    make_container_start('education-hewlett');
+      make_item_simple('Hewlett, NY', 'h5');
+      
+      make_item_start('pt-2');
+        make_head('New York State Regents Diploma', 'h4');
+        make_head('Advanced Designation with Honors', 'h5');
+        make_head('Mastery in Math & Science', 'h5');
+      make_item_middle();
+        make_head('Jun.&nbsp;2015', 'h5');
+      make_item_end();
+      
+    make_container_end();
+  make_section_end();
+  
+  make_section_start('Work&nbsp;Experience', 'h2', 'work');
+  make_section_end();
+  
+  make_section_start('Leadership&nbsp;Roles', 'h2', 'leadership');
+  make_section_end();
+  
+  make_section_start('Projects', 'h2', 'projects');
+  make_section_end();
+?>
+</div>
+
+</body>
+
+</html>
