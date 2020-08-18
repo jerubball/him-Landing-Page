@@ -1,0 +1,1739 @@
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/core.php');
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <title>Resume</title>
+</head>
+
+<body onload="Core.Window.setTitle('Resume')">
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
+?>
+
+<div class="body">
+  <div class="p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="" id="title">HIM&apos;s Resume</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="py-2 header">
+            <h2 class="">Hasol&nbsp;Im</h2>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="container" id="name">
+            <div class="row pt-2">
+              <div class="col-lg-8">
+                <h4 class=""><a href="mailto:him@nyit.edu">him@nyit.edu</a></h4>
+                <h4 class=""><a href="mailto:him.nyit@gmail.com">him.nyit@gmail.com</a></h4>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control collapsed" href="#name-jump" data-toggle="collapse" role="button" aria-controls="name-jump" aria-expanded="false">
+                  <h4 class="d-inline-block">Jump down to ...</h4>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+            </div>
+            <div class="container collapse" id="name-jump">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class=""><a href="#skills">Skills</a></h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class=""><a href="#education">Education</a></h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class=""><a href="#work">Work Experience</a></h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class=""><a href="#leadership">Leadership Roles</a></h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class=""><a href="#projects">Projects</a></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="py-2 header sticky">
+            <h2 class="">Skills</h2>
+            <a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll('skills', false)"><i class="collapse-all fa fa-expand"></i></a>
+            <a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll('skills', true)"><i class="collapse-all fa fa-compress"></i></a>
+            <a class="pl-1" title="jump to top" role="button" href="#title"><i class="collapse-all fa fa-level-up"></i></a>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="container" id="skills">
+            <div class="row pt-2">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#skills-cs" data-toggle="collapse" role="button" aria-controls="skills-cs" aria-expanded="true">
+                  <h3 class="d-inline-block">Computer Science</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+            </div>
+            <div class="container collapse show" id="skills-cs">
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#skills-cs-language" data-toggle="collapse" role="button" aria-controls="skills-cs-language" aria-expanded="true">
+                    <h4 class="d-inline-block">Programming Language</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="skills-cs-language">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Java 8</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">JavaScript</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Python3</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">PHP7</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">C/C++</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control collapsed" href="#skills-cs-web" data-toggle="collapse" role="button" aria-controls="skills-cs-web" aria-expanded="false">
+                    <h4 class="d-inline-block">Web Development</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse" id="skills-cs-web">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">HTML5</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">CSS3</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Bootstrap 4</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control collapsed" href="#skills-cs-database" data-toggle="collapse" role="button" aria-controls="skills-cs-database" aria-expanded="false">
+                    <h4 class="d-inline-block">Database Management</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse" id="skills-cs-database">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">MySQL 8.0</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control collapsed" href="#skills-cs-version" data-toggle="collapse" role="button" aria-controls="skills-cs-version" aria-expanded="false">
+                    <h4 class="d-inline-block">Version Control</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse" id="skills-cs-version">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">GitHub</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#skills-it" data-toggle="collapse" role="button" aria-controls="skills-it" aria-expanded="true">
+                  <h3 class="d-inline-block">Information Technology</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+            </div>
+            <div class="container collapse show" id="skills-it">
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#skills-it-os" data-toggle="collapse" role="button" aria-controls="skills-it-os" aria-expanded="true">
+                    <h4 class="d-inline-block">Operating Systems</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="skills-it-os">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <a class="collapse-control collapsed" href="#skills-it-os-windows" data-toggle="collapse" role="button" aria-controls="skills-it-os-windows" aria-expanded="false">
+                      <h5 class="d-inline-block">Windows</h5>
+                      <i class="collapse-indicator fa fa-caret-down"></i>
+                      <i class="collapse-indicator fa fa-caret-right"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="container collapse" id="skills-it-os-windows">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Command Prompt</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Batch Script</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Registry Editor</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">System Administration</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Local Machine Settings and Policies</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <a class="collapse-control" href="#skills-it-os-linux" data-toggle="collapse" role="button" aria-controls="skills-it-os-linux" aria-expanded="true">
+                      <h5 class="d-inline-block">Linux</h5>
+                      <i class="collapse-indicator fa fa-caret-down"></i>
+                      <i class="collapse-indicator fa fa-caret-right"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="container collapse show" id="skills-it-os-linux">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Debian/Ubuntu/Kubuntu</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Bash</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Shell Script</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">System Administration</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control collapsed" href="#skills-it-network" data-toggle="collapse" role="button" aria-controls="skills-it-network" aria-expanded="false">
+                    <h4 class="d-inline-block">Computer Networks</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse" id="skills-it-network">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Cat5/5e Cable Termination</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Router Management</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Create Access Point Router</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Port Forwarding, Firewall Settings</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control collapsed" href="#skills-it-office" data-toggle="collapse" role="button" aria-controls="skills-it-office" aria-expanded="false">
+                    <h4 class="d-inline-block">Office Productivity</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse" id="skills-it-office">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Microsoft Word</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Microsoft Excel</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Microsoft PowerPoint</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Adobe Photoshop</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">GNU Image Manipulator Program</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Notepad++</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">GNU nano (Linux command line)</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control collapsed" href="#skills-technology" data-toggle="collapse" role="button" aria-controls="skills-technology" aria-expanded="false">
+                  <h3 class="d-inline-block">General Technology</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+            </div>
+            <div class="container collapse" id="skills-technology">
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control collapsed" href="#skills-technology-electronics" data-toggle="collapse" role="button" aria-controls="skills-technology-electronics" aria-expanded="false">
+                    <h4 class="d-inline-block">Electronics</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse" id="skills-technology-electronics">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Soldering</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Simple Circuit Assembly</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Breadboard</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control collapsed" href="#skills-technology-audio" data-toggle="collapse" role="button" aria-controls="skills-technology-audio" aria-expanded="false">
+                    <h4 class="d-inline-block">Live Sound System</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse" id="skills-technology-audio">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Sound System Configuration</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Analog Mixer Control</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#skills-communication" data-toggle="collapse" role="button" aria-controls="skills-communication" aria-expanded="true">
+                  <h3 class="d-inline-block">Communication</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+            </div>
+            <div class="container collapse show" id="skills-communication">
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#skills-communication-language" data-toggle="collapse" role="button" aria-controls="skills-communication-language" aria-expanded="true">
+                    <h4 class="d-inline-block">Language</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="skills-communication-language">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Korean</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">First Language</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">English</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">Full Professional Proficiency</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control collapsed" href="#skills-communication-speech" data-toggle="collapse" role="button" aria-controls="skills-communication-speech" aria-expanded="false">
+                    <h4 class="d-inline-block">Speech</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse" id="skills-communication-speech">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Public Speaking</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Presentation</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Teaching, Training</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Explaining</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="py-2 header sticky">
+            <h2 class="">Education</h2>
+            <a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll('education', false)"><i class="collapse-all fa fa-expand"></i></a>
+            <a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll('education', true)"><i class="collapse-all fa fa-compress"></i></a>
+            <a class="pl-1" title="jump to top" role="button" href="#title"><i class="collapse-all fa fa-level-up"></i></a>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="container" id="education">
+            <div class="row pt-2">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#education-nyit" data-toggle="collapse" role="button" aria-controls="education-nyit" aria-expanded="true">
+                  <h3 class="d-inline-block">New York Institute of Technology</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Sep.&nbsp;2015 - Dec.&nbsp;2018</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="education-nyit">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">New York, NY</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <h4 class="">Bachelor&nbsp;of&nbsp;Science, Computer&nbsp;Science</h4>
+                  <h5 class="">Mathematics Minor</h5>
+                </div>
+                <div class="col-lg-4 text-right text-lg-left">
+                  <h5 class="">Dec.&nbsp;2018</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#education-nyit-honors" data-toggle="collapse" role="button" aria-controls="education-nyit-honors" aria-expanded="true">
+                    <h4 class="d-inline-block">Honors</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="education-nyit-honors">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">summa&nbsp;cum&nbsp;laude</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h5 class="">CGPA: 3.96/4.00</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Computer&nbsp;Science Faculty&nbsp;Award</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">May.&nbsp;2019</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <a class="collapse-control collapsed" href="#education-nyit-honors-presidential" data-toggle="collapse" role="button" aria-controls="education-nyit-honors-presidential" aria-expanded="false">
+                      <h5 class="d-inline-block">Presidential Honor List</h5>
+                      <i class="collapse-indicator fa fa-caret-down"></i>
+                      <i class="collapse-indicator fa fa-caret-right"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="container collapse" id="education-nyit-honors-presidential">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Fall 2015</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Spring 2016</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Fall 2016</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Spring 2017</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Fall 2017</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Spring 2018</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Fall 2018</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#education-nyit-courses" data-toggle="collapse" role="button" aria-controls="education-nyit-courses" aria-expanded="true">
+                    <h4 class="d-inline-block">Courses</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="education-nyit-courses">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Senior Proejct</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">CSCI 455</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Big Data Management &amp; Analytics</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">CSCI 436</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Information Retrieval</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">CSCI 426</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Introduction to Data Mining</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">CSCI 415</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Introduction to Software Engineering</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">CSCI 380</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Artificial Intelligence I</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">CSCI 355</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Introduction to Network and Internet Security</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">CSCI 352</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Computer Networks</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">CSCI 345</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Design and Analysis of Algorithms</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">CSCI 335</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <a class="collapse-control collapsed" href="#education-nyit-courses-csci" data-toggle="collapse" role="button" aria-controls="education-nyit-courses-csci" aria-expanded="false">
+                      <h5 class="d-inline-block">More Computer Science Courses</h5>
+                      <i class="collapse-indicator fa fa-caret-down"></i>
+                      <i class="collapse-indicator fa fa-caret-right"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="container collapse" id="education-nyit-courses-csci">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Operating Systems</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">CSCI 330</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Programming Language Concepts</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">CSCI 318</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Theory of Computation</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">CSCI 312</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Database Management</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">CSCI 300</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Probability and Statistics for Computer Science</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">CSCI 270</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Data Structures</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">CSCI 260</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Elements of Discrete Structures</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">CSCI 235</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Computer Programming II</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">CSCI 185</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Computer Organization and Architecture</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">CSCI 155</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <a class="collapse-control collapsed" href="#education-nyit-courses-math" data-toggle="collapse" role="button" aria-controls="education-nyit-courses-math" aria-expanded="false">
+                      <h5 class="d-inline-block">Mathematics Courses</h5>
+                      <i class="collapse-indicator fa fa-caret-down"></i>
+                      <i class="collapse-indicator fa fa-caret-right"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="container collapse" id="education-nyit-courses-math">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Advanced Seminar</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">MATH 460</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Functions of a Complex Variable</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">MATH 360</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Differential Equations</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">MATH 320</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Linear Algebra</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">MATH 310</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Calculus III</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">MATH 260</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <a class="collapse-control collapsed" href="#education-nyit-courses-other" data-toggle="collapse" role="button" aria-controls="education-nyit-courses-other" aria-expanded="false">
+                      <h5 class="d-inline-block">Other Courses</h5>
+                      <i class="collapse-indicator fa fa-caret-down"></i>
+                      <i class="collapse-indicator fa fa-caret-right"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="container collapse" id="education-nyit-courses-other">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Technology and Global Issues</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">IENG 400</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Modern New York</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">ICSS 306</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Ethics and Social Philosophy</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">ICPH 304</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Communication for Technical Professions</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">FCWR 304</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">American Immigrant Literature</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">ICLT 301</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Writing II: Foundations of Research Writing for International Students</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">FCWR 161</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Writing I: Foundations of College Composition for International Students</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">FCWR 111</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Computer, Internet and Society</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">ETCS 108</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Career Discovery</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">ETCS 105</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Foundations of Speech Communication</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">FCSP 105</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Foundations of Scientific Process</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">FCSC 101</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Foundations of Inquiry</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">FCIQ 101</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control collapsed" href="#education-hewlett" data-toggle="collapse" role="button" aria-controls="education-hewlett" aria-expanded="false">
+                  <h3 class="d-inline-block">George W. Hewlett High School</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Sep.&nbsp;2011 - Jun.&nbsp;2015</h5>
+              </div>
+            </div>
+            <div class="container collapse" id="education-hewlett">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">Hewlett, NY</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#education-hewlett-diploma" data-toggle="collapse" role="button" aria-controls="education-hewlett-diploma" aria-expanded="true">
+                    <h4 class="d-inline-block">New York State Regents Diploma</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+                <div class="col-lg-4 text-right text-lg-left">
+                  <h5 class="">Jun.&nbsp;2015</h5>
+                </div>
+              </div>
+              <div class="container collapse show" id="education-hewlett-diploma">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Advanced Designation with Honors</h5>
+                    <h5 class="">Mastery in Math & Science</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h5 class="">WGPA: 98.21/100.00</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#education-hewlett-courses" data-toggle="collapse" role="button" aria-controls="education-hewlett-courses" aria-expanded="true">
+                    <h4 class="d-inline-block">Courses</h4>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="education-hewlett-courses">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <a class="collapse-control" href="#education-hewlett-courses-ap" data-toggle="collapse" role="button" aria-controls="education-hewlett-courses-ap" aria-expanded="true">
+                      <h5 class="d-inline-block">College Board Advanced Placement</h5>
+                      <i class="collapse-indicator fa fa-caret-down"></i>
+                      <i class="collapse-indicator fa fa-caret-right"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="container collapse show" id="education-hewlett-courses-ap">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Computer Science A</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Calculus BC</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Chemistry</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="">Physics 1</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <a class="collapse-control" href="#education-hewlett-courses-supa" data-toggle="collapse" role="button" aria-controls="education-hewlett-courses-supa" aria-expanded="true">
+                      <h5 class="d-inline-block">Syracuse University Project Advance</h5>
+                      <i class="collapse-indicator fa fa-caret-down"></i>
+                      <i class="collapse-indicator fa fa-caret-right"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="container collapse show" id="education-hewlett-courses-supa">
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">Economic Ideas and Issues</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">ECN 203</h6>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <h6 class="">An Introduction to the Analysis of Public Policy</h6>
+                    </div>
+                    <div class="col-lg-4 text-right text-lg-left">
+                      <h6 class="">PAF 101</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="py-2 header sticky">
+            <h2 class="">Work Experience</h2>
+            <a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll('work', false)"><i class="collapse-all fa fa-expand"></i></a>
+            <a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll('work', true)"><i class="collapse-all fa fa-compress"></i></a>
+            <a class="pl-1" title="jump to top" role="button" href="#title"><i class="collapse-all fa fa-level-up"></i></a>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="container" id="work">
+            <div class="row pt-2">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#work-nyit" data-toggle="collapse" role="button" aria-controls="work-nyit" aria-expanded="true">
+                  <h3 class="d-inline-block">New York Institute of Technology</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Jul.&nbsp;2016 - Dec.&nbsp;2018</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="work-nyit">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">New York, NY</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <h4 class="">Tutor/Assistant</h4>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#work-nyit-summary" data-toggle="collapse" role="button" aria-controls="work-nyit-summary" aria-expanded="true">
+                    <h5 class="d-inline-block">Summary</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="work-nyit-summary">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">In-campus tutoring as student employee</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Computer Science and Mathematics Courses</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Teaching concepts and helping courseworks</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Active email communication with students</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#work-newvision" data-toggle="collapse" role="button" aria-controls="work-newvision" aria-expanded="true">
+                  <h3 class="d-inline-block">New Vision Korean Methodist Church</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Jul.&nbsp;2016 - Current</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="work-newvision">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">East Rockaway, NY</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <h4 class="">Staff/Technician</h4>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#work-newvision-summary" data-toggle="collapse" role="button" aria-controls="work-newvision-summary" aria-expanded="true">
+                    <h5 class="d-inline-block">Summary</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="work-newvision-summary">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Streaming worship to YouTube using Open Broadcaster Software</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Setting up Live Sound System</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Preparing PowerPoint Presentation</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Maintaing printing and networking equipments</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="py-2 header sticky">
+            <h2 class="">Leadership Roles</h2>
+            <a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll('leadership', false)"><i class="collapse-all fa fa-expand"></i></a>
+            <a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll('leadership', true)"><i class="collapse-all fa fa-compress"></i></a>
+            <a class="pl-1" title="jump to top" role="button" href="#title"><i class="collapse-all fa fa-level-up"></i></a>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="container" id="leadership">
+            <div class="row pt-2">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#leadership-gk" data-toggle="collapse" role="button" aria-controls="leadership-gk" aria-expanded="true">
+                  <h3 class="d-inline-block">Golden Key International Honour Society</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Sep.&nbsp;2016 - Dec.&nbsp;2018</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="leadership-gk">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">NYIT Chapter, New York, NY</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <h4 class="">President</h4>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#leadership-gk-summary" data-toggle="collapse" role="button" aria-controls="leadership-gk-summary" aria-expanded="true">
+                    <h5 class="d-inline-block">Summary</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="leadership-gk-summary">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Coordinating Events</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Communicating with Chapter Advisor</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Maintaing student portal, member roster</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Sending email announcements</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#leadership-ieee" data-toggle="collapse" role="button" aria-controls="leadership-ieee" aria-expanded="true">
+                  <h3 class="d-inline-block">Institute of Electrical and Electronics Engineers</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Feb.&nbsp;2018 - Dec.&nbsp;2018</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="leadership-ieee">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">NYIT Chapter, New York, NY</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <h4 class="">Administrator for United Engineering</h4>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#leadership-ieee-summary" data-toggle="collapse" role="button" aria-controls="leadership-ieee-summary" aria-expanded="true">
+                    <h5 class="d-inline-block">Summary</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="leadership-ieee-summary">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Organizing shared club room</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Installed and managed Linux OS in computers</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Set up cluster computing, server hosting, remote access</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#leadership-innovo" data-toggle="collapse" role="button" aria-controls="leadership-innovo" aria-expanded="true">
+                  <h3 class="d-inline-block">FIRST Tech Challenge Robotics Team</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Sep.&nbsp;2011 - May.&nbsp;2015</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="leadership-innovo">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">Hewlett Robotics Team, Hewlett, NY</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <h4 class="">Lead Programmer of Team 5477: Innovo</h4>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#leadership-innovo-summary" data-toggle="collapse" role="button" aria-controls="leadership-innovo-summary" aria-expanded="true">
+                    <h5 class="d-inline-block">Summary</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="leadership-innovo-summary">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">RobotC programming for Lego Mindstorm</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">TETRIX Motor Controller</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Documentation using Engineering Notebook</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Hosting Robotics Competition Events</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#leadership-innovo-awards" data-toggle="collapse" role="button" aria-controls="leadership-innovo-awards" aria-expanded="true">
+                    <h5 class="d-inline-block">Awards</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="leadership-innovo-awards">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Hudson Valley Championship Winning Alliance</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">2011-12</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">NYC Regional Tournament Champion Team</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">2012-13</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Promote Award</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">2012-13</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">NYC Qualifier Winning Alliance, Inspire Award Winning Team</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">2013-14</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">NYC/LI Syosset Qualifier Inspire Award Winning Team</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">2014-15</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="py-2 header sticky">
+            <h2 class="">Projects</h2>
+            <a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll('projects', false)"><i class="collapse-all fa fa-expand"></i></a>
+            <a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll('projects', true)"><i class="collapse-all fa fa-compress"></i></a>
+            <a class="pl-1" title="jump to top" role="button" href="#title"><i class="collapse-all fa fa-level-up"></i></a>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="container" id="projects">
+            <div class="row pt-2">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#projects-website" data-toggle="collapse" role="button" aria-controls="projects-website" aria-expanded="true">
+                  <h3 class="d-inline-block">This Website</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Jun.&nbsp;2018 - Current</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="projects-website">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">Portfolio Website & Home Server</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#projects-website-summary" data-toggle="collapse" role="button" aria-controls="projects-website-summary" aria-expanded="true">
+                    <h5 class="d-inline-block">Summary</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="projects-website-summary">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Debian/Ubuntu with Apache HTTPD server</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">HTML and CSS with Bootstrap 4 for responsive user interface</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">JavaScript for front-end code & PHP for back-end code</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Synchronization using GitHub</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">SSH access for test workstation</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#projects-micromouse" data-toggle="collapse" role="button" aria-controls="projects-micromouse" aria-expanded="true">
+                  <h3 class="d-inline-block">Micromouse Project</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Feb.&nbsp;2018 - Mar.&nbsp;2018</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="projects-micromouse">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">Project for IEEE Student Conference</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#projects-micromouse-summary" data-toggle="collapse" role="button" aria-controls="projects-micromouse-summary" aria-expanded="true">
+                    <h5 class="d-inline-block">Summary</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="projects-micromouse-summary">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Arduino Zero based robot</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Utilized motor encoders and IR sensors</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Performed backtracking search on 16-by-16 maze</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#projects-micromouse-awards" data-toggle="collapse" role="button" aria-controls="projects-micromouse-awards" aria-expanded="true">
+                    <h5 class="d-inline-block">Awards</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="projects-micromouse-awards">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Region 1 Student Conference First Place</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">2018</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <h5 class="">Region 1 Student Conference First Place</h5>
+                  </div>
+                  <div class="col-lg-4 text-right text-lg-left">
+                    <h6 class="">2019</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#projects-mirror" data-toggle="collapse" role="button" aria-controls="projects-mirror" aria-expanded="true">
+                  <h3 class="d-inline-block">Smart Mirror Project</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Sep.&nbsp;2018 - Dec.&nbsp;2018</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="projects-mirror">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">Coursework for Senior Project: CSCI 455</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#projects-mirror-summary" data-toggle="collapse" role="button" aria-controls="projects-mirror-summary" aria-expanded="true">
+                    <h5 class="d-inline-block">Summary</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="projects-mirror-summary">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Raspberry-Pi based smart display with mirror</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Python-based program with Graphicsl User Interface</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Displays useful information such as weather or train times</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Integrates OpenCV face recognition for user detection</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">GitHub repository was included in Arctic Code Vault</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#projects-tracking" data-toggle="collapse" role="button" aria-controls="projects-tracking" aria-expanded="true">
+                  <h3 class="d-inline-block">Child Location Tracking System</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Mar.&nbsp;2018 - May.&nbsp;2018</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="projects-tracking">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">Coursework for Intro to Software Engineering: CSCI 380</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#projects-tracking-summary" data-toggle="collapse" role="button" aria-controls="projects-tracking-summary" aria-expanded="true">
+                    <h5 class="d-inline-block">Summary</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="projects-tracking-summary">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Web Application for parents to see children's location</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">HTML, CSS, Javascript for front-end</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">PHP, and MySQL for back-end</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Demonstrate software engineering principles</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Work in team environment using GitHub</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-3">
+              <div class="col-lg-8">
+                <a class="collapse-control" href="#projects-puzzle" data-toggle="collapse" role="button" aria-controls="projects-puzzle" aria-expanded="true">
+                  <h3 class="d-inline-block">8-Puzzle Solver</h3>
+                  <i class="collapse-indicator fa fa-caret-down"></i>
+                  <i class="collapse-indicator fa fa-caret-right"></i>
+                </a>
+              </div>
+              <div class="col-lg-4 text-right text-lg-left">
+                <h5 class="">Feb.&nbsp;2017 - Apr.&nbsp;2017</h5>
+              </div>
+            </div>
+            <div class="container collapse show" id="projects-puzzle">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5 class="">Coursework for Artificial Intelligence I: CSCI 355</h5>
+                </div>
+              </div>
+              <div class="row pt-2">
+                <div class="col-lg-8">
+                  <a class="collapse-control" href="#projects-puzzle-summary" data-toggle="collapse" role="button" aria-controls="projects-puzzle-summary" aria-expanded="true">
+                    <h5 class="d-inline-block">Summary</h5>
+                    <i class="collapse-indicator fa fa-caret-down"></i>
+                    <i class="collapse-indicator fa fa-caret-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="container collapse show" id="projects-puzzle-summary">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Used A* search algorithm to develop solution for 8-puzzle</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Python-based program with command-line interface</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Constructed different heuristic functions to study various efficiencies</h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h5 class="">Program is modified to perform search on larger size puzzles</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="py-2 header">
+            <h6 class=""></h6>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="container">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
