@@ -1,0 +1,32 @@
+
+div.body {
+    scroll-behavior: smooth;
+}
+
+a.collapse-control {
+    color: inherit;
+}
+a.collapse-control > i.fa {
+    visibility: hidden;
+    display: none;
+    position: absolute;
+    top: 0.5em;
+    //top: 20%;
+    left: 0;
+}
+a.collapse-control.collapsed > i.collapse-indicator.fa.fa-caret-left,
+a.collapse-control.collapsed > i.collapse-indicator.fa.fa-caret-right {
+    visibility: visible;
+    display: inline-block;
+}
+a.collapse-control:not(.collapsed) > i.collapse-indicator.fa.fa-caret-down {
+    visibility: visible;
+    display: inline-block;
+}
+a.collapse-control > i.fa.fa-caret-down {
+    color: var(--link-default);
+}
+div.header.sticky {
+    position: sticky;
+    top: 0;
+}

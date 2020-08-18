@@ -8,58 +8,9 @@
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
 ?>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
   <title>Resume</title>
-
-<style>
-  a.collapse-control {
-    color: inherit;
-  }
-  a.collapse-control > i.fa {
-    visibility: hidden;
-    display: none;
-    position: absolute;
-    top: 0.5em;
-    //top: 20%;
-    left: 0;
-  }
-  a.collapse-control.collapsed > i.collapse-indicator.fa.fa-caret-left,
-  a.collapse-control.collapsed > i.collapse-indicator.fa.fa-caret-right {
-    visibility: visible;
-    display: inline-block;
-  }
-  a.collapse-control:not(.collapsed) > i.collapse-indicator.fa.fa-caret-down {
-    visibility: visible;
-    display: inline-block;
-  }
-  a.collapse-control > i.fa.fa-caret-down {
-    color: var(--link-default);
-  }
-  div.header.sticky {
-    position: sticky;
-    top: 0;
-  }
-
-</style>
-<script>
-const Script = {
-    
-    init() {
-        this.init = Core.init;
-        return this.init(Core.None.__proto__);
-    },
-    
-    collapseAll(id, state) {
-        document.querySelectorAll('#' + id + ' a.collapse-control').forEach(function(item) {
-            if (item.classList.contains('collapsed') !== state) {
-                item.click();
-            }
-        });
-        return false;
-    },
-    
-}.init();
-</script>
-
 </head>
 
 <body onload="Core.Window.setTitle('Resume')">
@@ -101,14 +52,14 @@ const Script = {
     println('  <div class="container">');
     println('    <div class="row">');
     println('      <div class="col-md-12">');
-    println('        <'.$head.' class="">'.$title.'</'.$head.'>');
+    println('        <'.$head.' class="" id="title">'.$title.'</'.$head.'>');
     println('      </div>');
     println('    </div>');
     println('  </div>');
     println('</div>');
   }
   
-  function make_section_start($title, $head, $sectionid = null, bool $collapse = false, bool $sticky = false, $class1 = null, $class2 = null, $class3 = null) {
+  function make_section_start($title, $head, $sectionid = null, bool $collapse = true, bool $sticky = true, $class1 = null, $class2 = null, $class3 = null) {
     println('<div class="p-2">');
     println('  <div class="container">');
     println('    <div class="row'.($class1 ? ' '.$class1.'">' : '">'));
@@ -118,6 +69,7 @@ const Script = {
     if ($collapse) {
     println('          <a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll(\''.($sectionid ?: '').'\', false)"><i class="collapse-all fa fa-expand"></i></a>');
     println('          <a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll(\''.($sectionid ?: '').'\', true)"><i class="collapse-all fa fa-compress"></i></a>');
+    println('          <a class="pl-1" title="jump to top" role="button" href="#title"><i class="collapse-all fa fa-level-up"></i></a>');
     }
     println('        </div>');
     println('      </div>');
@@ -188,9 +140,13 @@ const Script = {
   }
   
   function make_item_simple($text, $head = 'h6') {
-    make_item_start();
+    println('<div class="row">');
+    println('  <div class="col-lg-12">');
+    adjust_leading_space(2);
     make_head($text, $head);
-    make_item_end();
+    adjust_leading_space(-2);
+    println('  </div>');
+    println('</div>');
   }
       /*
     println('');
@@ -218,14 +174,29 @@ const Script = {
 <?php
   set_leading_space(1);
   make_title('HIM&apos;s Resume', 'h1');
-  make_section_start('Hasol&nbsp;Im', 'h2', 'name');
+  make_section_start('Hasol&nbsp;Im', 'h2', 'name', false, false);
     make_item_start('pt-2');
       make_head('<a href="mailto:him@nyit.edu">him@nyit.edu</a>', 'h4');
       make_head('<a href="mailto:him.nyit@gmail.com">him.nyit@gmail.com</a>', 'h4');
     make_item_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('Jump down to ...', 'h4', false, 'name-jump');
+    make_item_end();
+    make_container_start('name-jump');
+      make_item_simple('<a href="#skills">Skills</a>', 'h5');
+      
+      make_item_simple('<a href="#education">Education</a>', 'h5');
+      
+      make_item_simple('<a href="#work">Work Experience</a>', 'h5');
+      
+      make_item_simple('<a href="#leadership">Leadership Roles</a>', 'h5');
+      
+      make_item_simple('<a href="#projects">Projects</a>', 'h5');
+    make_container_end();
   make_section_end();
   
-  make_section_start('Skills', 'h2', 'skills', true, true);
+  make_section_start('Skills', 'h2', 'skills');
     make_item_start('pt-2');
       make_collapse_control('Computer Science', 'h3', true, 'skills-cs');
     make_item_end();
@@ -349,12 +320,20 @@ const Script = {
         make_collapse_control('Electronics', 'h4', false, 'skills-technology-electronics');
       make_item_end();
       make_container_start('skills-technology-electronics', false);
+        make_item_simple('Soldering', 'h5');
+        
+        make_item_simple('Simple Circuit Assembly', 'h5');
+        
+        make_item_simple('Breadboard', 'h5');
       make_container_end();
       
       make_item_start('pt-2');
         make_collapse_control('Live Sound System', 'h4', false, 'skills-technology-audio');
       make_item_end();
       make_container_start('skills-technology-audio');
+        make_item_simple('Sound System Configuration', 'h5');
+        
+        make_item_simple('Analog Mixer Control', 'h5');
       make_container_end();
     make_container_end();
     
@@ -389,10 +368,9 @@ const Script = {
         make_item_simple('Explaining', 'h5');
       make_container_end();
     make_container_end();
-    
   make_section_end();
   
-  make_section_start('Education', 'h2', 'education', true, true);
+  make_section_start('Education', 'h2', 'education');
     make_item_start('pt-2');
       make_collapse_control('New York Institute of Technology', 'h3', true, 'education-nyit');
     make_item_middle();
@@ -473,7 +451,7 @@ const Script = {
         make_item_end();
         
         make_item_start();
-          make_head('Artificial Intelligence', 'h5');
+          make_head('Artificial Intelligence I', 'h5');
         make_item_middle();
           make_head('CSCI 355', 'h6');
         make_item_end();
@@ -679,23 +657,357 @@ const Script = {
       make_item_simple('Hewlett, NY', 'h5');
       
       make_item_start('pt-2');
-        make_head('New York State Regents Diploma', 'h4');
-        make_head('Advanced Designation with Honors', 'h5');
-        make_head('Mastery in Math & Science', 'h5');
+        make_collapse_control('New York State Regents Diploma', 'h4', true, 'education-hewlett-diploma');
       make_item_middle();
         make_head('Jun.&nbsp;2015', 'h5');
       make_item_end();
+      make_container_start('education-hewlett-diploma', true);
+        make_item_start();
+          make_head('Advanced Designation with Honors', 'h5');
+          make_head('Mastery in Math & Science', 'h5');
+        make_item_middle();
+          make_head('WGPA: 98.21/100.00', 'h5');
+        make_item_end();
+      make_container_end();
       
+      make_item_start('pt-2');
+        make_collapse_control('Courses', 'h4', true, 'education-hewlett-courses');
+      make_item_end();
+      make_container_start('education-hewlett-courses', true);
+        make_item_start();
+          make_collapse_control('College Board Advanced Placement', 'h5', true, 'education-hewlett-courses-ap');
+        make_item_end();
+        make_container_start('education-hewlett-courses-ap', true);
+          make_item_simple('Computer Science A', 'h6');
+          
+          make_item_simple('Calculus BC', 'h6');
+          
+          make_item_simple('Chemistry', 'h6');
+          
+          make_item_simple('Physics 1', 'h6');
+        make_container_end();
+        
+        make_item_start();
+          make_collapse_control('Syracuse University Project Advance', 'h5', true, 'education-hewlett-courses-supa');
+        make_item_end();
+        make_container_start('education-hewlett-courses-supa', true);
+          make_item_start();
+            make_head('Economic Ideas and Issues', 'h6');
+          make_item_middle();
+            make_head('ECN 203', 'h6');
+          make_item_end();
+          
+          make_item_start();
+            make_head('An Introduction to the Analysis of Public Policy', 'h6');
+          make_item_middle();
+            make_head('PAF 101', 'h6');
+          make_item_end();
+        make_container_end();
+      make_container_end();
     make_container_end();
   make_section_end();
   
-  make_section_start('Work&nbsp;Experience', 'h2', 'work');
+  make_section_start('Work Experience', 'h2', 'work');
+    make_item_start('pt-2');
+      make_collapse_control('New York Institute of Technology', 'h3', true, 'work-nyit');
+    make_item_middle();
+      make_head('Jul.&nbsp;2016 - Dec.&nbsp;2018', 'h5');
+    make_item_end();
+    make_container_start('work-nyit', true);
+      make_item_simple('New York, NY', 'h5');
+      
+      make_item_start('pt-2');
+        make_head('Tutor/Assistant', 'h4');
+      make_item_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Summary', 'h5', true, 'work-nyit-summary');
+      make_item_end();
+      make_container_start('work-nyit-summary', true);
+        make_item_simple('In-campus tutoring as student employee', 'h5');
+        
+        make_item_simple('Computer Science and Mathematics Courses', 'h5');
+        
+        make_item_simple('Teaching concepts and helping courseworks', 'h5');
+        
+        make_item_simple('Active email communication with students', 'h5');
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('New Vision Korean Methodist Church', 'h3', true, 'work-newvision');
+    make_item_middle();
+      make_head('Jul.&nbsp;2016 - Current', 'h5');
+    make_item_end();
+    make_container_start('work-newvision', true);
+      make_item_simple('East Rockaway, NY', 'h5');
+      
+      make_item_start('pt-2');
+        make_head('Staff/Technician', 'h4');
+      make_item_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Summary', 'h5', true, 'work-newvision-summary');
+      make_item_end();
+      make_container_start('work-newvision-summary', true);
+        make_item_simple('Streaming worship to YouTube using Open Broadcaster Software', 'h5');
+        
+        make_item_simple('Setting up Live Sound System', 'h5');
+        
+        make_item_simple('Preparing PowerPoint Presentation', 'h5');
+        
+        make_item_simple('Maintaing printing and networking equipments', 'h5');
+      make_container_end();
+    make_container_end();
   make_section_end();
   
-  make_section_start('Leadership&nbsp;Roles', 'h2', 'leadership');
+  make_section_start('Leadership Roles', 'h2', 'leadership');
+    make_item_start('pt-2');
+      make_collapse_control('Golden Key International Honour Society', 'h3', true, 'leadership-gk');
+    make_item_middle();
+      make_head('Sep.&nbsp;2016 - Dec.&nbsp;2018', 'h5');
+    make_item_end();
+    make_container_start('leadership-gk', true);
+      make_item_simple('NYIT Chapter, New York, NY', 'h5');
+      
+      make_item_start('pt-2');
+        make_head('President', 'h4');
+      make_item_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Summary', 'h5', true, 'leadership-gk-summary');
+      make_item_end();
+      make_container_start('leadership-gk-summary', true);
+        make_item_simple('Coordinating Events', 'h5');
+        
+        make_item_simple('Communicating with Chapter Advisor', 'h5');
+        
+        make_item_simple('Maintaing student portal, member roster', 'h5');
+        
+        make_item_simple('Sending email announcements', 'h5');
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('Institute of Electrical and Electronics Engineers', 'h3', true, 'leadership-ieee');
+    make_item_middle();
+      make_head('Feb.&nbsp;2018 - Dec.&nbsp;2018', 'h5');
+    make_item_end();
+    make_container_start('leadership-ieee', true);
+      make_item_simple('NYIT Chapter, New York, NY', 'h5');
+      
+      make_item_start('pt-2');
+        make_head('Administrator for United Engineering', 'h4');
+      make_item_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Summary', 'h5', true, 'leadership-ieee-summary');
+      make_item_end();
+      make_container_start('leadership-ieee-summary', true);
+        make_item_simple('Organizing shared club room', 'h5');
+        
+        make_item_simple('Installed and managed Linux OS in computers', 'h5');
+        
+        make_item_simple('Set up cluster computing, server hosting, remote access', 'h5');
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('FIRST Tech Challenge Robotics Team', 'h3', true, 'leadership-innovo');
+    make_item_middle();
+      make_head('Sep.&nbsp;2011 - May.&nbsp;2015', 'h5');
+    make_item_end();
+    make_container_start('leadership-innovo', true);
+      make_item_simple('Hewlett Robotics Team, Hewlett, NY', 'h5');
+      
+      make_item_start('pt-2');
+        make_head('Lead Programmer of Team 5477: Innovo', 'h4');
+      make_item_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Summary', 'h5', true, 'leadership-innovo-summary');
+      make_item_end();
+      make_container_start('leadership-innovo-summary', true);
+        make_item_simple('RobotC programming for Lego Mindstorm', 'h5');
+        
+        make_item_simple('TETRIX Motor Controller', 'h5');
+        
+        make_item_simple('Documentation using Engineering Notebook', 'h5');
+        
+        make_item_simple('Hosting Robotics Competition Events', 'h5');
+      make_container_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Awards', 'h5', true, 'leadership-innovo-awards');
+      make_item_end();
+      make_container_start('leadership-innovo-awards', true);
+        make_item_start();
+          make_head('Hudson Valley Championship Winning Alliance', 'h5');
+        make_item_middle();
+          make_head('2011-12', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('NYC Regional Tournament Champion Team', 'h5');
+        make_item_middle();
+          make_head('2012-13', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Promote Award', 'h5');
+        make_item_middle();
+          make_head('2012-13', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('NYC Qualifier Winning Alliance, Inspire Award Winning Team', 'h5');
+        make_item_middle();
+          make_head('2013-14', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('NYC/LI Syosset Qualifier Inspire Award Winning Team', 'h5');
+        make_item_middle();
+          make_head('2014-15', 'h6');
+        make_item_end();
+      make_container_end();
+    make_container_end();
   make_section_end();
   
   make_section_start('Projects', 'h2', 'projects');
+    make_item_start('pt-2');
+      make_collapse_control('This Website', 'h3', true, 'projects-website');
+    make_item_middle();
+      make_head('Jun.&nbsp;2018 - Current', 'h5');
+    make_item_end();
+    make_container_start('projects-website', true);
+      make_item_simple('Portfolio Website & Home Server', 'h5');
+      
+      make_item_start('pt-2');
+        make_collapse_control('Summary', 'h5', true, 'projects-website-summary');
+      make_item_end();
+      make_container_start('projects-website-summary', true);
+        make_item_simple('Debian/Ubuntu with Apache HTTPD server', 'h5');
+        
+        make_item_simple('HTML and CSS with Bootstrap 4 for responsive user interface', 'h5');
+        
+        make_item_simple('JavaScript for front-end code & PHP for back-end code', 'h5');
+        
+        make_item_simple('Synchronization using GitHub', 'h5');
+        
+        make_item_simple('SSH access for test workstation', 'h5');
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('Micromouse Project', 'h3', true, 'projects-micromouse');
+    make_item_middle();
+      make_head('Feb.&nbsp;2018 - Mar.&nbsp;2018', 'h5');
+    make_item_end();
+    make_container_start('projects-micromouse', true);
+      make_item_simple('Project for IEEE Student Conference', 'h5');
+      
+      make_item_start('pt-2');
+        make_collapse_control('Summary', 'h5', true, 'projects-micromouse-summary');
+      make_item_end();
+      make_container_start('projects-micromouse-summary', true);
+        make_item_simple('Arduino Zero based robot', 'h5');
+        
+        make_item_simple('Utilized motor encoders and IR sensors', 'h5');
+        
+        make_item_simple('Performed backtracking search on 16-by-16 maze', 'h5');
+      make_container_end();
+      
+      make_item_start('pt-2');
+        make_collapse_control('Awards', 'h5', true, 'projects-micromouse-awards');
+      make_item_end();
+      make_container_start('projects-micromouse-awards', true);
+        make_item_start();
+          make_head('Region 1 Student Conference First Place', 'h5');
+        make_item_middle();
+          make_head('2018', 'h6');
+        make_item_end();
+        
+        make_item_start();
+          make_head('Region 1 Student Conference First Place', 'h5');
+        make_item_middle();
+          make_head('2019', 'h6');
+        make_item_end();
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('Smart Mirror Project', 'h3', true, 'projects-mirror');
+    make_item_middle();
+      make_head('Sep.&nbsp;2018 - Dec.&nbsp;2018', 'h5');
+    make_item_end();
+    make_container_start('projects-mirror', true);
+      make_item_simple('Coursework for Senior Project: CSCI 455', 'h5');
+      
+      make_item_start('pt-2');
+        make_collapse_control('Summary', 'h5', true, 'projects-mirror-summary');
+      make_item_end();
+      make_container_start('projects-mirror-summary', true);
+        make_item_simple('Raspberry-Pi based smart display with mirror', 'h5');
+        
+        make_item_simple('Python-based program with Graphicsl User Interface', 'h5');
+        
+        make_item_simple('Displays useful information such as weather or train times', 'h5');
+        
+        make_item_simple('Integrates OpenCV face recognition for user detection', 'h5');
+        
+        make_item_simple('GitHub repository was included in Arctic Code Vault', 'h5');
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('Child Location Tracking System', 'h3', true, 'projects-tracking');
+    make_item_middle();
+      make_head('Mar.&nbsp;2018 - May.&nbsp;2018', 'h5');
+    make_item_end();
+    make_container_start('projects-tracking', true);
+      make_item_simple('Coursework for Intro to Software Engineering: CSCI 380', 'h5');
+      
+      make_item_start('pt-2');
+        make_collapse_control('Summary', 'h5', true, 'projects-tracking-summary');
+      make_item_end();
+      make_container_start('projects-tracking-summary', true);
+        make_item_simple('Web Application for parents to see children\'s location', 'h5');
+        
+        make_item_simple('HTML, CSS, Javascript for front-end', 'h5');
+        
+        make_item_simple('PHP, and MySQL for back-end', 'h5');
+        
+        make_item_simple('Demonstrate software engineering principles', 'h5');
+        
+        make_item_simple('Work in team environment using GitHub', 'h5');
+      make_container_end();
+    make_container_end();
+    
+    make_item_start('pt-3');
+      make_collapse_control('8-Puzzle Solver', 'h3', true, 'projects-puzzle');
+    make_item_middle();
+      make_head('Feb.&nbsp;2017 - Apr.&nbsp;2017', 'h5');
+    make_item_end();
+    make_container_start('projects-puzzle', true);
+      make_item_simple('Coursework for Artificial Intelligence I: CSCI 355', 'h5');
+      
+      make_item_start('pt-2');
+        make_collapse_control('Summary', 'h5', true, 'projects-puzzle-summary');
+      make_item_end();
+      make_container_start('projects-puzzle-summary', true);
+        make_item_simple('Used A* search algorithm to develop solution for 8-puzzle', 'h5');
+        
+        make_item_simple('Python-based program with command-line interface', 'h5');
+        
+        make_item_simple('Constructed different heuristic functions to study various efficiencies', 'h5');
+        
+        make_item_simple('Program is modified to perform search on larger size puzzles', 'h5');
+      make_container_end();
+    make_container_end();
+  make_section_end();
+  
+  make_section_start('', 'h6', null, false, false);
   make_section_end();
 ?>
 </div>
