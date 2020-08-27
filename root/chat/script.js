@@ -55,26 +55,26 @@ const Script = {
     append(data) {
         if (data.length > 0) {
             var chatarea = document.getElementById('chat-area');
-            for (var i = 0; i < data.length && data[i].length > 0; i++) {
-                var parts = data[i].trim().split('\t');
-                if (parts.length == 4) {
-                    // process successful entry [timestamp, ip, name, text]
-                    var row = document.createElement('div');
-                    row.id = chatarea.childElementCount;
-                    row.classList.add('row');
-                    chatarea.appendChild(row);
-                    var col = document.createElement('div');
-                    col.classList.add('col-md-12');
-                    row.appendChild(col);
-                    var name = document.createElement('p');
-                    name.classList.add('m-0');
-                    name.innerHTML = parts[2] + " (....) @ " + parts[0];
-                    col.appendChild(name);
-                    var entry = document.createElement('p');
-                    entry.classList.add('chat-text', 'px-1', 'm-0', 'mr-2');
-                    entry.innerText = parts[3];
-                    col.appendChild(entry);
-                }
+            for (var i = 0; i < data.length && data[i].length == 4; i++) {
+                //var parts = data[i].trim().split('\t');
+                //if (parts.length == 4) {
+                // process successful entry [timestamp, ip, name, text]
+                var row = document.createElement('div');
+                row.id = chatarea.childElementCount;
+                row.classList.add('row');
+                chatarea.appendChild(row);
+                var col = document.createElement('div');
+                col.classList.add('col-md-12');
+                row.appendChild(col);
+                var name = document.createElement('p');
+                name.classList.add('m-0');
+                name.innerHTML = data[i][2] + " (....) @ " + data[i][0];
+                col.appendChild(name);
+                var entry = document.createElement('p');
+                entry.classList.add('chat-text', 'px-1', 'm-0', 'mr-2');
+                entry.innerText = data[i][3];
+                col.appendChild(entry);
+                //}
             }
         }
     },

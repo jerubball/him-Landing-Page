@@ -16,6 +16,7 @@
       $response['code'] = 2;
       $response['status'] = 'Chat room not found.';
     } else {
+      // read metadata
       $metadata = json_decode(file_get_contents($id_meta), true);
       if (!isset($metadata) || !is_array($metadata)) {
         $response['code'] = 3;
@@ -25,6 +26,7 @@
         $_SESSION['timestamp'] = microtime(true);
         
         $data = [];
+        // read data as text
         if ($metadata['mode'] == 'text') {
           $chat = fopen($id, 'r');
           flock($chat, LOCK_SH);
@@ -34,20 +36,24 @@
             if (strlen($line) > 0 && $line[0] !== '#') {
               $items = explode("\t", $line);
               // when time was after last check
-              if (sizeof($items) > 0) {
+              if (sizeof($items) >= 4) {
                 $timestamp = floatval($items[0]);
                 if ($timestamp >= $_SESSION['lasttime'] && $timestamp < $_SESSION['timestamp']) {
                   // use line.
-                  array_push($data, $line);
+                  //array_push($data, $line);
                   // use json.
+                  array_push($data, ['time' => $timestamp, 'ip' => $items[1], 'name' => $items[2], 'text' => $items[3]]);
                 }
               }
             }
           }
           flock($chat, LOCK_UN);
           fclose($chat);
+        // read data as json
         } elseif ($metadata['mode'] == 'json') {
+          $chat = json_decode(file_get_contents($id), true);
           
+        // read data from mysql
         } elseif ($metadata['mode'] == 'mysql') {
         }
         
