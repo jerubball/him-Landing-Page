@@ -55,7 +55,8 @@ const Script = {
     append(data) {
         if (data.length > 0) {
             var chatarea = document.getElementById('chat-area');
-            for (var i = 0; i < data.length && data[i].length == 4; i++) {
+            for (var i = 0; i < data.length; i++) {
+                // && data[i].length > 0
                 //var parts = data[i].trim().split('\t');
                 //if (parts.length == 4) {
                 // process successful entry [timestamp, ip, name, text]
