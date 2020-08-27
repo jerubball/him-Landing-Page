@@ -52,23 +52,36 @@
           }
           flock($chat, LOCK_UN);
           fclose($chat);
+          $response['code'] = 0;
+          $response['status'] = 'Success.';
+          $response['data'] = $data;
         // read data as json
         } elseif ($metadata['mode'] == 'json') {
           $chat = json_decode(file_get_contents($id, LOCK_SH), true);
-          $index = $_SESSION['lasttime'] == 0 ? 0 : sizeof($chat);
-          while ($index > 0 && $chat[$index-1]['time'] >= $_SESSION['lasttime']) {
-            $index--;
-          }
-          while ($index < sizeof($chat) && $chat[$index]['time'] < $_SESSION['timestamp']) {
-            array_push($data, $chat[$index++];
+          if (!isset($chat) || !is_array($chat)) {
+            $response['code'] = 5;
+            $response['status'] = 'Unable to read chat.';
+          } else {
+            $index = $_SESSION['lasttime'] == 0 ? 1 : sizeof($chat);
+            while ($index > 0 && $chat[$index-1]['time'] >= $_SESSION['lasttime']) {
+              $index--;
+            }
+            while ($index < sizeof($chat) && $chat[$index]['time'] < $_SESSION['timestamp']) {
+              array_push($data, $chat[$index++];
+            }
+            $response['code'] = 0;
+            $response['status'] = 'Success.';
+            $response['data'] = $data;
           }
         // read data from mysql
         } elseif ($metadata['mode'] == 'mysql') {
+          
+          
+          
+          $response['code'] = 0;
+          $response['status'] = 'Success.';
+          $response['data'] = $data;
         }
-        
-        $response['code'] = 0;
-        $response['status'] = 'Success.';
-        $response['data'] = $data;
       }
     }
   }

@@ -68,6 +68,11 @@
           fclose($chat);
         // write data to mysql
         } elseif ($metadata['mode'] == 'mysql') {
+          
+          
+          
+          $response['code'] = 0;
+          $response['status'] = 'Success.';
         }
       }
     }
