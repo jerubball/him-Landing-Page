@@ -38,7 +38,7 @@
         $text = str_replace(["\n", "\r", "\t"], " ", $_GET['text']);
         // write as text
         if ($metadata['mode'] == 'text') {
-          $chat = fopen('chat', 'a');
+          $chat = fopen($id, 'a');
           flock($chat, LOCK_EX);
           fwrite($chat, microtime(true)."\t".$ip."\t".$_SESSION['username']."\t".$text."\n");
           fflush($chat);
@@ -48,8 +48,23 @@
           $response['status'] = 'Success.';
         // write data as json
         } elseif ($metadata['mode'] == 'json') {
-          $chat = json_decode(file_get_contents($id), true);
-          
+          //$chat = json_decode(file_get_contents($id), true);
+          $chat = fopen($id, 'r+');
+          flock($chat, LOCK_EX);
+          $data = json_decode(fread($chat, filesize($id)), true);
+          if (!isset($data) || !is_array($data)) {
+            $response['code'] = 6;
+            $response['status'] = 'Unable to read chat.';
+          } else {
+            array_push($data, ['time' => $timestamp, 'ip' => $items[1], 'name' => $items[2], 'text' => $items[3]]);
+            ftruncate($chat, 0);
+            fwrite($chat, json_encode($data);
+            fflush($chat);
+            $response['code'] = 0;
+            $response['status'] = 'Success.';
+          }
+          flock($chat, LOCK_UN);
+          fclose($chat);
         // write data to mysql
         } elseif ($metadata['mode'] == 'mysql') {
         }
