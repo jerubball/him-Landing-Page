@@ -17,7 +17,7 @@
       $response['status'] = 'Chat room not found.';
     } else {
       $metadata = json_decode(file_get_contents($id_meta));
-      if (!isset($metadata) || !is_array($metadata)) {
+      if (!isset($metadata) || !is_object($metadata)) {
         $response['code'] = 3;
         $response['status'] = 'Unable to read metadata.';
       } else {
