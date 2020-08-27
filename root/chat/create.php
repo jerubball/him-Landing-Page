@@ -24,7 +24,7 @@
         $expires = 'null';
       }
       
-      if ($mode == 'text' || $mode == 'mysql') {
+      if ($mode == 'text' || $mode == 'json' || $mode == 'mysql') {
         // create metadata
         $id_meta = '.'.$_GET['id'];
         if (!file_exists($id_meta)) {
@@ -35,7 +35,7 @@
             file_put_contents($id_meta, json_encode($metadata), FILE_APPEND | LOCK_EX);
             
             // create chat file.
-            if ($mode == 'text') {
+            if ($mode == 'text' || $mode == 'json') {
               
               if (!file_exists($_GET['id'])) {
                 if (touch($_GET['id'])) {

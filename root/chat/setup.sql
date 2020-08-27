@@ -9,7 +9,7 @@ use Website;
 
 create table if not exists chat_metadata (
   id  varchar(10)  primary key,
-  save  enum('mysql', 'text')  not null,
+  save  enum('mysql', 'json', 'text')  not null,
   enabled  boolean  not null  default true,
   created  datetime,
   expires  datetime
