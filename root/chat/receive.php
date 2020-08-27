@@ -21,6 +21,9 @@
       if (!isset($metadata) || !is_array($metadata)) {
         $response['code'] = 3;
         $response['status'] = 'Unable to read metadata.';
+      } elseif (!$metadata['enabled']) { // || $metadata['expired'] || $metadata['created']
+        $response['code'] = 4;
+        $response['status'] = 'Chatroom expired.';
       } else {
         $_SESSION['lasttime'] = $_SESSION['timestamp'];
         $_SESSION['timestamp'] = microtime(true);
