@@ -28,7 +28,8 @@
       
       if ($mode == 'text' || $mode == 'json' || $mode == 'mysql') {
         // create metadata
-        $id_meta = '.'.$_GET['id'];
+        $id = $_GET['id'];
+        $id_meta = '.'.$id;
         if (!file_exists($id_meta)) {
           if (touch($id_meta)) {
             
@@ -39,11 +40,11 @@
             // create chat file.
             if ($mode == 'text' || $mode == 'json') {
               
-              if (!file_exists($_GET['id'])) {
-                if (touch($_GET['id'])) {
-                  chmod($_GET['id'], 0660);
+              if (!file_exists($id)) {
+                if (touch($id)) {
+                  chmod($id, 0660);
                   if ($mode == 'json') {
-                     file_put_contents($id, json_encode([]), LOCK_EX);
+                    file_put_contents($id, json_encode([]));
                   }
                   $response['code'] = 0;
                   $response['status'] = 'Success.';
@@ -64,7 +65,7 @@
                 $response['code'] = 3;
                 $response['status'] = 'Database connection failed.';
               } else {
-                $id_escape = $db_connection->real_escape_string($_GET['id']);
+                $id_escape = $db_connection->real_escape_string($id);
                 $db_query = 'insert into Website.chat_metadata (id, save, created, expires) values ("'.$id_escape.'", "'.$mode.'", from_unixtime('.$created.'), from_unixtime('.$expires_sql.'));';
                 $db_answer = $db_connection->query($db_query);
                 
