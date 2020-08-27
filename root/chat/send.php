@@ -58,7 +58,7 @@
           } else {
             array_push($data, ['time' => $timestamp, 'ip' => $items[1], 'name' => $items[2], 'text' => $items[3]]);
             ftruncate($chat, 0);
-            fwrite($chat, json_encode($data);
+            fwrite($chat, json_encode($data));
             fflush($chat);
             $response['code'] = 0;
             $response['status'] = 'Success.';
