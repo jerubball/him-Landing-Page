@@ -68,11 +68,11 @@ const Script = {
                 row.appendChild(col);
                 var name = document.createElement('p');
                 name.classList.add('m-0');
-                name.innerHTML = data[i][2] + " (....) @ " + data[i][0];
+                name.innerHTML = data[i]['name'] + " (....) @ " + data[i]['time'];
                 col.appendChild(name);
                 var entry = document.createElement('p');
                 entry.classList.add('chat-text', 'px-1', 'm-0', 'mr-2');
-                entry.innerText = data[i][3];
+                entry.innerText = data[i]['text'];
                 col.appendChild(entry);
                 //}
             }
