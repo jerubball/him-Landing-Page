@@ -20,8 +20,10 @@
       $expires = '';
       if (isset($_GET['expires']) && $_GET['expires'] != '' && is_numeric($_GET['expires'])) {
         $expires = $created + intval($_GET['expires']);
+        $expires_sql = $expires;
       } else {
-        $expires = 'null';
+        $expires = null;
+        $expires_sql = 'null';
       }
       
       if ($mode == 'text' || $mode == 'json' || $mode == 'mysql') {
@@ -31,7 +33,7 @@
           if (touch($id_meta)) {
             
             chmod($id_meta, 0660);
-            $metadata = ['mode' => $mode, 'enabled' => true, 'created' => $created, 'expires' => $expires];
+            $metadata = ['name' => $id, 'mode' => $mode, 'enabled' => true, 'created' => $created, 'expires' => $expires];
             file_put_contents($id_meta, json_encode($metadata), FILE_APPEND | LOCK_EX);
             
             // create chat file.
@@ -60,7 +62,7 @@
                 $response['status'] = 'Database connection failed.';
               } else {
                 $id_escape = $db_connection->real_escape_string($_GET['id']);
-                $db_query = 'insert into Website.chat_metadata (id, save, created, expires) values ("'.$id_escape.'", "'.$mode.'", from_unixtime('.$created.'), from_unixtime('.$expires.'));';
+                $db_query = 'insert into Website.chat_metadata (id, save, created, expires) values ("'.$id_escape.'", "'.$mode.'", from_unixtime('.$created.'), from_unixtime('.$expires_sql.'));';
                 $db_answer = $db_connection->query($db_query);
                 
                 if ($db_answer) {
