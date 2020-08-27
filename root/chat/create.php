@@ -42,6 +42,9 @@
               if (!file_exists($_GET['id'])) {
                 if (touch($_GET['id'])) {
                   chmod($_GET['id'], 0660);
+                  if ($mode == 'json') {
+                     file_put_contents($id, json_encode([]), LOCK_EX);
+                  }
                   $response['code'] = 0;
                   $response['status'] = 'Success.';
                 } else {
@@ -52,7 +55,7 @@
                 $response['code'] = 2;
                 $response['status'] = 'File already exists.';
               }
-              
+            
             // enter metadata for mysql.
             } elseif ($mode == 'mysql') {
               
@@ -77,12 +80,11 @@
                 if ($db_answer->free_result) {
                   $db_answer->free_result();
                 }
-                
               }
               
               if ($db_connection->close) {
                 $db_connection->close();
-              }              
+              }
             }
           } else {
             $response['code'] = 5;
