@@ -21,6 +21,7 @@ const Script = {
                         input.value = '';
                     } else {
                         alert(this.response['status']);
+                        console.log(this.response);
                     }
                 }
             }
@@ -39,7 +40,8 @@ const Script = {
                     if (this.response['code'] === 0) {
                         Script.append(this.response['data']);
                     } else {
-                        console.log(this.response['status']);
+                        //alert(this.response['status']);
+                        console.log(this.response);
                     }
                 }
             }
