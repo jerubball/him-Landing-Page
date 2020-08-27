@@ -62,12 +62,12 @@
             $response['code'] = 5;
             $response['status'] = 'Unable to read chat.';
           } else {
-            $index = $_SESSION['lasttime'] == 0 ? 1 : sizeof($chat);
+            $index = $_SESSION['lasttime'] == 0 ? 0 : sizeof($chat);
             while ($index > 0 && $chat[$index-1]['time'] >= $_SESSION['lasttime']) {
               $index--;
             }
             while ($index < sizeof($chat) && $chat[$index]['time'] < $_SESSION['timestamp']) {
-              array_push($data, $chat[$index++];
+              array_push($data, $chat[$index++]);
             }
             $response['code'] = 0;
             $response['status'] = 'Success.';
