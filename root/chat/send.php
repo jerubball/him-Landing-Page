@@ -56,7 +56,7 @@
             $response['code'] = 6;
             $response['status'] = 'Unable to read chat.';
           } else {
-            array_push($data, ['time' => microtime(true), 'ip' => $ip, 'name' => $_SESSION['username'], 'text' => $text);
+            array_push($data, ['time' => microtime(true), 'ip' => $ip, 'name' => $_SESSION['username'], 'text' => $text]);
             ftruncate($chat, 0);
             rewind($chat);
             fwrite($chat, json_encode($data));
