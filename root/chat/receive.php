@@ -54,8 +54,14 @@
           fclose($chat);
         // read data as json
         } elseif ($metadata['mode'] == 'json') {
-          $chat = json_decode(file_get_contents($id), true);
-          
+          $chat = json_decode(file_get_contents($id, LOCK_SH), true);
+          $index = $_SESSION['lasttime'] == 0 ? 0 : sizeof($chat);
+          while ($index > 0 && $chat[$index-1]['time'] >= $_SESSION['lasttime']) {
+            $index--;
+          }
+          while ($index < sizeof($chat) && $chat[$index]['time'] < $_SESSION['timestamp']) {
+            array_push($data, $chat[$index++];
+          }
         // read data from mysql
         } elseif ($metadata['mode'] == 'mysql') {
         }
