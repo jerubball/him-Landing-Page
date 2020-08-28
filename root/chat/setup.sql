@@ -20,7 +20,7 @@ create table if not exists chat_metadata (
 create table if not exists chat (
   id  varchar(10)  not null,
   stamp  timestamp  not null,
-  ip  varchar(15),
+  ip  varchar(45),
   username  varchar(50)  not null,
   entry  varchar(100)  not null,
   constraint chat_primary  primary key (id, stamp, username),

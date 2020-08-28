@@ -4,6 +4,9 @@
   
   session_start();
   
+  $db_server = 'localhost';
+  $db_username = 'website.local';
+  
   $response = [];
   
   if (!$_SESSION['init']) {
