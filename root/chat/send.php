@@ -80,7 +80,7 @@
           } else {
             $id_escape = $db_connection->real_escape_string($id);
             $text_escape = $db_connection->real_escape_string($text);
-            $db_query = 'insert into Website.chat (id, stamp, ip, username, entry) values ("'.$id_escape.'", from_unixtime("'.microtime(true).'"), '.$ip.', '.$_SESSION['username'].', '.$text_escape.');';
+            $db_query = 'insert into Website.chat (id, stamp, ip, username, entry) values ("'.$id_escape.'", from_unixtime('.microtime(true).'), "'.$ip.'", "'.$_SESSION['username'].'", "'.$text_escape.'");';
             $db_answer = $db_connection->query($db_query);
             
             if ($db_answer) {
