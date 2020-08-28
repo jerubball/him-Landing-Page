@@ -86,7 +86,7 @@
             $response['status'] = 'Database connection failed.';
           } else {
             $id_escape = $db_connection->real_escape_string($id);
-            $db_query = 'select * from Website.chat where id = "'.$id_escape.' and stamp >= from_unixtime('.$_SESSION['lasttime'].') and stamp < from_unixtime('.$_SESSION['timestamp'].');';
+            $db_query = 'select * from Website.chat where id = "'.$id_escape.'" and stamp >= from_unixtime('.$_SESSION['lasttime'].') and stamp < from_unixtime('.$_SESSION['timestamp'].');';
             $db_answer = $db_connection->query($db_query);
             
             if ($db_answer) {
