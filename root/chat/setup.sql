@@ -22,7 +22,7 @@ create table if not exists chat (
   stamp  timestamp  not null,
   ip  varchar(45),
   username  varchar(50)  not null,
-  entry  varchar(100)  not null,
+  entry  text  not null,
   constraint chat_primary  primary key (id, stamp, username),
   constraint chat_id  foreign key (id) references chat_metadata(id)  on update cascade on delete cascade
 );
