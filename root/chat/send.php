@@ -72,10 +72,34 @@
         // write data to mysql
         } elseif ($metadata['mode'] == 'mysql') {
           
+          $db_connection = new mysqli($db_server, $db_username);
           
+          if ($db_connection->connect_errno) {
+            $response['code'] = 7;
+            $response['status'] = 'Database connection failed.';
+          } else {
+            $id_escape = $db_connection->real_escape_string($id);
+            $text_escape = $db_connection->real_escape_string($text);
+            $db_query = 'insert into Website.chat (id, stamp, ip, username, entry) values ("'.$id_escape.'", from_unixtime("'.microtime(true).'"), '.$ip.', '.$_SESSION['username'].', '.$text_escape.');';
+            $db_answer = $db_connection->query($db_query);
+            
+            if ($db_answer) {
+              // success.
+              $response['code'] = 0;
+              $response['status'] = 'Success.';
+            } else {
+              // failed.
+              $response['code'] = 8;
+              $response['status'] = 'Database query failed.';
+            }
+            if ($db_answer->free_result) {
+              $db_answer->free_result();
+            }
+          }
           
-          $response['code'] = 0;
-          $response['status'] = 'Success.';
+          if ($db_connection->close) {
+            $db_connection->close();
+          }
         }
       }
     }
