@@ -79,11 +79,37 @@
         // read data from mysql
         } elseif ($metadata['mode'] == 'mysql') {
           
+          $db_connection = new mysqli($db_server, $db_username);
           
+          if ($db_connection->connect_errno) {
+            $response['code'] = 6;
+            $response['status'] = 'Database connection failed.';
+          } else {
+            $id_escape = $db_connection->real_escape_string($id);
+            $db_query = 'select * from Website.chat where id = "'.$id_escape.' and stamp >= from_unixtime('.$_SESSION['lasttime'].') and stamp < from_unixtime('.$_SESSION['timestamp'].');';
+            $db_answer = $db_connection->query($db_query);
+            
+            if ($db_answer) {
+              // success.
+              while ($line = $db_answer->fetch_assoc()) {
+                array_push($data, ['time' => $line['stamp'], 'ip' => $line['ip'], 'name' => $line['username'], 'text' => $line['entry']]);
+              }
+              $response['code'] = 0;
+              $response['status'] = 'Success.';
+              $response['data'] = $data;
+            } else {
+              // failed.
+              $response['code'] = 7;
+              $response['status'] = 'Database query failed.';
+            }
+            if ($db_answer->free_result) {
+              $db_answer->free_result();
+            }
+          }
           
-          $response['code'] = 0;
-          $response['status'] = 'Success.';
-          $response['data'] = $data;
+          if ($db_connection->close) {
+            $db_connection->close();
+          }
         }
       }
     }
