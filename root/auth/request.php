@@ -14,7 +14,31 @@
   } elseif (strlen($_GET['email']) < 255 && preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]+\.[a-zA-Z]+$/', $_GET['email'])) {
     $token = random_string();
     $subject = 'hasol.co authentication string';
-    $message = '<html><head><title>'.$subject.'</title></head> <body><p>Your hasol.co authentication string is<p><p style="font-family:monospace;font-size:150%;color:black;background-color:#b0b0b0">'.$token.'</p></body></html>';
+    $message = <<<EOS
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>$subject</title>
+    <style>
+      a.token {
+        font-family: monospace;
+        font-size: 150%;
+        color: black;
+        background-color: #b0b0b0;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      Your hasol.co authentication string is: 
+      <br>
+      <a class="token">
+        $token
+      </a>
+    </p>
+  </body>
+</html>
+EOS;
     $header = ['From' => '"hasol.co" <him.nyit@gmail.com>', 'Reply-To' => '"hasol.co" <postmaster@hasol.co>', 'MIME-Version' => '1.0', 'Content-Type' => 'text/html', 'X-Mailer' => 'PHP/'.phpversion()];
     if (mail($_GET['email'], $subject, $message, $header)) {
       
