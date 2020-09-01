@@ -20,7 +20,7 @@
   <head>
     <title>$subject</title>
     <style>
-      a.token {
+      span.token {
         font-family: monospace;
         font-size: 150%;
         color: black;
@@ -32,9 +32,9 @@
     <p>
       Your hasol.co authentication string is: 
       <br>
-      <a class="token">
+      <span class="token">
         $token
-      </a>
+      </span>
     </p>
   </body>
 </html>
