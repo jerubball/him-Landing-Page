@@ -1,6 +1,7 @@
 <?php
-  
   //header('Content-Type: text/plain');
+  
+  require_once($_SERVER['DOCUMENT_ROOT'].'/core.php');
   
   session_start();
   
