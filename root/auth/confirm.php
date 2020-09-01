@@ -6,8 +6,26 @@
   $db_server = 'localhost';
   $db_username = 'website.local';
   
-  if (isset($_GET['email']) && strlen($_GET['email']) > 0 && preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]+\.[a-zA-Z]+$/', $_GET['email'])) {
-    mail($_GET['email'], 'hasol.co authentication string', random_string());
+  $response = [];
+  
+  if (!isset($_GET['email']) || strlen($_GET['email']) == 0) {
+    $response['code'] = 1;
+    $response['status'] = 'No email provided.';
+  } elseif (preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]+\.[a-zA-Z]+$/', $_GET['email'])) {
+    $token = random_string();
+    if (mail($_GET['email'], 'hasol.co authentication string', $token)) {
+      
+      $response['code'] = 0;
+      $response['status'] = 'Success.';
+    } else {
+      $response['code'] = 2;
+      $response['status'] = 'Unable to send email.';
+    }
+  } else {
+    $response['code'] = 3;
+    $response['status'] = 'Not a vaild email.';
   }
+  
+  echo json_encode($response);
   
 ?>
