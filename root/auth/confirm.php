@@ -11,7 +11,7 @@
   if (!isset($_GET['email']) || strlen($_GET['email']) == 0) {
     $response['code'] = 1;
     $response['status'] = 'No email provided.';
-  } elseif (preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]+\.[a-zA-Z]+$/', $_GET['email'])) {
+  } elseif (strlen($_GET['email']) < 255 && preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]+\.[a-zA-Z]+$/', $_GET['email'])) {
     $token = random_string();
     if (mail($_GET['email'], 'hasol.co authentication string', $token)) {
       
