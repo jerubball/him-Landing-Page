@@ -31,7 +31,7 @@
           if ($ans['suspended'] && $ans['suspended'] > time()) {
             // email suspended.
             $response['code'] = 3;
-            $response['status'] = 'Account is suspended for abuse.'
+            $response['status'] = 'Account is suspended for abuse.';
           }
         } else {
           // no info
