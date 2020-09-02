@@ -55,7 +55,7 @@
       }
       
       // proceed if no error
-      if (!isset($response['code']) {
+      if (!isset($response['code'])) {
         $token = random_string();
         $subject = 'hasol.co authentication string';
         $message = <<<EOS
@@ -111,7 +111,7 @@ EOS;
       }
       
       // commit if no error
-      if (!isset($response['code']) {
+      if (!isset($response['code'])) {
         if (!$db_connection->commit()) {
           $response['code'] = 9;
           $response['status'] = 'Unable to commit.';
@@ -119,7 +119,7 @@ EOS;
       }
       
       // rollback if error
-      if (!isset($response['code']) {
+      if (!isset($response['code'])) {
         if (!$db_connection->rollback()) {
           $response['code'] = 10;
           $response['status'] = 'Unable to rollback.';
