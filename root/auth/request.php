@@ -55,10 +55,19 @@
       }
       
       // increment attempt and suspend if needed
-      $db_query = 'update Website.authentication set attempts = attempts + 1 where email = "'.$email.'"; update Website.authentication set suspended = adddate(now(), interval 1 week), attempts = 0 where attempts > 5;';
+      $db_query = 'update Website.authentication set attempts = attempts + 1 where email = "'.$email.'";';
       $db_answer3 = $db_connection->query($db_query);
       if (!$db_answer3) {
-        $response['code'] = 8;
+        $response['code'] = 6;
+        $response['status'] = 'Database query failed.';
+      }
+      if ($db_answer3->free_result) {
+        $db_answer3->free_result();
+      }
+      $db_query = 'update Website.authentication set suspended = adddate(now(), interval 1 week), attempts = 0 where attempts > 5;';
+      $db_answer3 = $db_connection->query($db_query);
+      if (!$db_answer3) {
+        $response['code'] = 7;
         $response['status'] = 'Database query failed.';
       }
       if ($db_answer3->free_result) {
@@ -99,14 +108,14 @@ EOS;
           $db_query = 'update Website.authentication set token = "'.$token.'", expires = adddate(now(), interval 1 week) where email = "'.$email.'";';
           $db_answer4 = $db_connection->query($db_query);
           if (!$db_answer4) {
-            $response['code'] = 6;
+            $response['code'] = 8;
             $response['status'] = 'Database query failed.';
           }
           if ($db_answer4->free_result) {
             $db_answer4->free_result();
           }
         } else {
-          $response['code'] = 7;
+          $response['code'] = 9;
           $response['status'] = 'Unable to send email.';
         }
       }
@@ -114,7 +123,7 @@ EOS;
       // commit if no error
       if (!isset($response['code'])) {
         if (!$db_connection->commit()) {
-          $response['code'] = 9;
+          $response['code'] = 10;
           $response['status'] = 'Unable to commit.';
         }
       }
@@ -122,7 +131,7 @@ EOS;
       // rollback if error
       if (isset($response['code'])) {
         if (!$db_connection->rollback()) {
-          $response['code'] = 10;
+          $response['code'] += 100;
           $response['status'] = 'Unable to rollback.';
         }
       } else {
