@@ -54,6 +54,17 @@
         $db_answer1->free_result();
       }
       
+      // increment attempt and suspend if needed
+      $db_query = 'update Website.authentication set attempts = attempts + 1 where email = "'.$email.'"; update Website.authentication set suspended = adddate(now(), interval 1 week), attempts = 0 where attempts > 5;';
+      $db_answer3 = $db_connection->query($db_query);
+      if (!$db_answer3) {
+        $response['code'] = 8;
+        $response['status'] = 'Database query failed.';
+      }
+      if ($db_answer3->free_result) {
+        $db_answer3->free_result();
+      }
+      
       // proceed if no error
       if (!isset($response['code'])) {
         $token = random_string();
@@ -86,27 +97,17 @@ EOS;
         $header = ['From' => '"hasol.co" <him.nyit@gmail.com>', 'Reply-To' => '"hasol.co" <postmaster@hasol.co>', 'MIME-Version' => '1.0', 'Content-Type' => 'text/html', 'X-Mailer' => 'PHP/'.phpversion()];
         if (mail($_GET['email'], $subject, $message, $header)) {
           $db_query = 'update Website.authentication set token = "'.$token.'", expires = adddate(now(), interval 1 week) where email = "'.$email.'";';
-          if (!$db_answer3) {
+          $db_answer4 = $db_connection->query($db_query);
+          if (!$db_answer4) {
             $response['code'] = 6;
             $response['status'] = 'Database query failed.';
           }
-          if ($db_answer3->free_result) {
-            $db_answer3->free_result();
+          if ($db_answer4->free_result) {
+            $db_answer4->free_result();
           }
         } else {
           $response['code'] = 7;
           $response['status'] = 'Unable to send email.';
-        }
-        
-        // increment attempt and suspend if needed
-        $db_query = 'update Website.authentication set attempts = attempts + 1 where email = "'.$email.'"; update Website.authentication set suspended = adddate(now(), interval 1 week), attempts = 0 where attempts > 5;';
-        $db_answer4 = $db_connection->query($db_query);
-        if (!$db_answer4) {
-          $response['code'] = 8;
-          $response['status'] = 'Database query failed.';
-        }
-        if ($db_answer4->free_result) {
-          $db_answer4->free_result();
         }
       }
       
