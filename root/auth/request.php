@@ -55,7 +55,7 @@
       }
       
       // increment attempt and suspend if needed
-      $db_query = 'update Website.authentication set attempts = attempts + 1 where email = "'.$email.'";';
+      $db_query = 'update Website.authentication set attempts = if(attempts is null, 1, attempts + 1) where email = "'.$email.'";';
       $db_answer3 = $db_connection->query($db_query);
       if (!$db_answer3) {
         $response['code'] = 6;
