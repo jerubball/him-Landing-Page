@@ -119,7 +119,7 @@ EOS;
       }
       
       // rollback if error
-      if (!isset($response['code'])) {
+      if (isset($response['code'])) {
         if (!$db_connection->rollback()) {
           $response['code'] = 10;
           $response['status'] = 'Unable to rollback.';
