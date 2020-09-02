@@ -14,5 +14,5 @@ create table if not exists authentication (
     token  varchar(50),
     expires  datetime,
     suspended  datetime,
-    attempts  int
+    attempts  int  not null  default 0
 );
