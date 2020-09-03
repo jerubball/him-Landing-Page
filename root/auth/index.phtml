@@ -28,10 +28,58 @@
     </div>
   </div>
   <div class="p-3">
-    <div class="container">
+    <div class="container" id="main">
       <div class="row">
-        <div class="col-md-12">
-          <h2 class="">Content</h2>
+        <div class="col-md-6">
+          <h2 class="">Enter your email.</h2>
+          <form id="form-main" class="" action="" onsubmit="return false;">
+            <div class="form-group">
+              <label form="form-main" for="form-main-email">Email address:</label>
+              <input type="email" class="form-control" id="form-main-email" placeholder="Enter email">
+            </div>
+            <button type="submit" class="btn btn-primary" id="form-main-submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="auth" hidden>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="">Enter received code.</h2>
+          <form id="form-auth" class="" action="" onsubmit="console.log(1); return false;">
+            <div class="form-group">
+              <label form="form-auth" for="form-auth-code">Authentication code:</label>
+              <input type="text" class="form-control" id="form-auth-code" placeholder="Enter code" autocomplete="off">
+            </div>
+            <button type="submit" class="btn btn-primary" id="form-auth-submit">Submit</button>
+            <button type="button" class="btn btn-primary" id="success-button" onclick="return false; //Script.backToForm()">Back</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="wait" hidden>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="">Processing...</h2>
+          <p class="lead" id="wait-body">Please wait.</p>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="fail" hidden>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="">Error.</h2>
+          <p class="lead" id="fail-body"></p>
+          <button type="button" class="btn btn-primary" id="fail-button" onclick="return false; //Script.backToForm()">Back</button>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="success" hidden>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="">Success.</h2>
+          <p class="lead" id="success-body"></p>
+          <button type="button" class="btn btn-primary" id="success-button" onclick="return false; //Script.backToForm()">Back</button>
         </div>
       </div>
     </div>
