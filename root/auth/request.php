@@ -99,6 +99,8 @@
       <span class="token">
         $token
       </span>
+      <br>
+      The code expires in 1 week.
     </p>
   </body>
 </html>
