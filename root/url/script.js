@@ -82,6 +82,7 @@ const Script = {
         var main = document.getElementById('main');
         var wait = document.getElementById('wait');
         
+        url.value = url.value.trim();
         if (url.value == '') {
             this.failAction('Please enter URL.');
         } else if (url.value.charAt(0) != '/' && !this.isValidURL(url.value)) {
