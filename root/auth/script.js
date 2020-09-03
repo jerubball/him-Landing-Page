@@ -53,7 +53,7 @@ const Script = {
         } else if (!this.isValidEmail(email.value)) {
             this.failMessage('Please enter valid email.', main);
         } else {
-            document.cookie = 'email='+email.value+';max-age=604800;path=/;secure;samesite';
+            document.cookie = 'auth-email='+email.value+';max-age=604800;path=/;secure;samesite';
             var xmlhttp = new XMLHttpRequest ();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4) {
@@ -92,6 +92,7 @@ const Script = {
         if (code.value == '') {
             this.failMessage('Please enter authentication code.', auth);
         } else {
+            document.cookie = 'auth-code='+code.value+';max-age=604800;path=/;secure;samesite';
             var xmlhttp = new XMLHttpRequest ();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4) {
@@ -115,7 +116,7 @@ const Script = {
                 }
             };
             xmlhttp.responseType = 'json';
-            xmlhttp.open('GET', 'submit.php?code=' + encodeURIComponent(code.value), true);
+            xmlhttp.open('GET', 'verify.php?true', true);
             xmlhttp.send();
         }
         return false;
