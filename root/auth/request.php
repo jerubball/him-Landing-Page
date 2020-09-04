@@ -4,9 +4,6 @@
   require_once($_SERVER['DOCUMENT_ROOT'].'/core.php');
   require_once('common.php');
   
-  $db_server = 'localhost';
-  $db_username = 'website.local';
-  
   $response = [];
   
   if (!is_email($_COOKIE['auth-email'])) {
@@ -64,7 +61,7 @@
         $response['status'] = 'Database query failed.';
       }
       // no need to free result
-      $db_query = 'update Website.authentication set suspended = adddate(now(), interval 1 week), attempts = 0 where attempts > 5;';
+      $db_query = 'update Website.authentication set suspended = adddate(now(), '.$time_suspend.'), attempts = 0 where attempts > '.$max_attempt.';';
       $db_answer = $db_connection->query($db_query);
       if (!$db_answer) {
         $response['code'] = 8;
@@ -98,14 +95,14 @@
         $token
       </span>
       <br>
-      The code expires in 1 week.
+      The code expires in $text_expire.
     </p>
   </body>
 </html>
 EOS;
         $header = ['From' => '"hasol.co" <him.nyit@gmail.com>', 'Reply-To' => '"hasol.co" <postmaster@hasol.co>', 'MIME-Version' => '1.0', 'Content-Type' => 'text/html', 'X-Mailer' => 'PHP/'.phpversion()];
         if (mail($_COOKIE['auth-email'], $subject, $message, $header)) {
-          $db_query = 'update Website.authentication set token = "'.$token.'", expires = adddate(now(), interval 1 week) where email = "'.$email.'";';
+          $db_query = 'update Website.authentication set token = "'.$token.'", expires = adddate(now(), '.$time_expire.') where email = "'.$email.'";';
           $db_answer = $db_connection->query($db_query);
           if (!$db_answer) {
             $response['code'] = 9;
