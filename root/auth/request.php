@@ -104,7 +104,7 @@
 </html>
 EOS;
         $header = ['From' => '"hasol.co" <him.nyit@gmail.com>', 'Reply-To' => '"hasol.co" <postmaster@hasol.co>', 'MIME-Version' => '1.0', 'Content-Type' => 'text/html', 'X-Mailer' => 'PHP/'.phpversion()];
-        if (mail($_GET['email'], $subject, $message, $header)) {
+        if (mail($_COOKIE['auth-email'], $subject, $message, $header)) {
           $db_query = 'update Website.authentication set token = "'.$token.'", expires = adddate(now(), interval 1 week) where email = "'.$email.'";';
           $db_answer = $db_connection->query($db_query);
           if (!$db_answer) {
