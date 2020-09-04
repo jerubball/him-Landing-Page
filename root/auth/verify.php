@@ -46,7 +46,7 @@
             // code expired.
             $response['code'] = 6;
             $response['status'] = 'Authenticaion code has expired.';
-          } elseif ($ans['token'] && $ans['token'] === $token) {
+          } elseif ($ans['token'] && $ans['token'] === $_COOKIE['auth-code']) {
             // valid entry; reset attempts
             $db_query = 'update Website.authentication set attempts = 0 where email = "'.$email.'";';
             $db_answer = $db_connection->query($db_query);
