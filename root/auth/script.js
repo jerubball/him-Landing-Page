@@ -104,7 +104,7 @@ const Script = {
                         if (this.response && this.response instanceof Object) {
                             if (this.response['code'] === 0) {
                                 wait.hidden = true;
-                                Script.successMessage('', auth, wait);
+                                Script.successMessage('Authentication successful.', auth, wait);
                             } else {
                                 Script.failMessage(this.response['status'], auth, wait);
                             }
