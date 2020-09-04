@@ -32,7 +32,7 @@ const Script = {
         }
         successBody.innerHTML = message;
         success.hidden = false;
-    }
+    },
     
     backToTarget(elem) {
         elem.hidden = true;
@@ -40,6 +40,7 @@ const Script = {
             var target = document.getElementById(elem.dataset.target);
             target.hidden = false;
         }
+        return false;
     },
     
     submitEmail() {
