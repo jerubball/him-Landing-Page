@@ -14,11 +14,11 @@ const Script = {
     failMessage(message, ...targets) {
         var fail = document.getElementById('fail');
         var failBody = document.getElementById('fail-body');
-        for (let target of targets) {
-            target.hidden = true;
-        }
         if (targets.length > 0) {
             fail.dataset.target = targets[0].id;
+            for (let target of targets) {
+                target.hidden = true;
+            }
         }
         failBody.innerHTML = message;
         fail.hidden = false;
@@ -104,7 +104,7 @@ const Script = {
                         if (this.response && this.response instanceof Object) {
                             if (this.response['code'] === 0) {
                                 wait.hidden = true;
-                                Script.backToTarget(auth);
+                                Script.successMessage('', auth, wait);
                             } else {
                                 Script.failMessage(this.response['status'], auth, wait);
                             }
