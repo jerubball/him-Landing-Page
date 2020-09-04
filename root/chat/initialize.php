@@ -10,6 +10,7 @@
     
     if (!isset($_SESSION['username'])) {
       $_SESSION['username'] = base_convert(rand(), 10, 36);
+      setcookie('chat-username', $_SESSION['username'], time() + 604800, '', '', true);
     }
   }
   
