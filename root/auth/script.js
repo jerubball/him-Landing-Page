@@ -35,8 +35,11 @@ const Script = {
     },
     
     backToTarget(elem) {
+        if (typeof(elem) === 'string') {
+            elem = document.getElementById(elem);
+        }
         elem.hidden = true;
-        if (elem.dataset.target != undefined || elem.dataset.target.length > 0) {
+        if (elem.dataset.target != undefined && elem.dataset.target.length > 0) {
             var target = document.getElementById(elem.dataset.target);
             target.hidden = false;
         }
