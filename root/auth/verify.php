@@ -73,7 +73,7 @@
             // no need to free result
             
             if (!isset($response['code'])) {
-              $response['code'] = 10;
+              $response['code'] = -10;
               $response['status'] = 'Incorrect authentication code.';
             }
           }
@@ -91,21 +91,22 @@
         $db_answer1->free_result();
       }
       
-      // commit if no error
-      if (!isset($response['code'])) {
+      // commit if no error or negative error codes
+      if (!isset($response['code']) || $response['code'] < 0) {
         if (!$db_connection->commit()) {
           $response['code'] = 13;
           $response['status'] = 'Unable to commit.';
         }
       }
-      
-      // rollback if error
-      if (isset($response['code'])) {
+      // rollback if error and positive error codes
+      if (isset($response['code']) && $response['code'] > 0) {
         if (!$db_connection->rollback()) {
           $response['code'] += 100;
           $response['status'] = 'Unable to rollback.';
         }
-      } else {
+      }
+      // set success coide
+      if (!isset($response['code'])) {
         $response['code'] = 0;
         $response['status'] = 'Success.';
       }
