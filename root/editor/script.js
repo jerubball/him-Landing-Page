@@ -11,7 +11,7 @@ const Script = {
         if (elem.selectionStart == elem.selectionEnd) {
             info.innerHTML = elem.selectionStart + '/' + elem.textLength;
         } else {
-            info.innerHTML = elem.selectionStart + '-' elem.selectionEnd + '/' + elem.textLength;
+            info.innerHTML = elem.selectionStart + '-' + elem.selectionEnd + '/' + elem.textLength;
         }
     },
     
