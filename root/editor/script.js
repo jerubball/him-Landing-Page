@@ -24,7 +24,7 @@ const Script = {
         elem.onclick = listener;
         elem.onmouseup = listener;
         elem.onmousemove = listener;
-    }
+    },
     
     updateInfo(elem, info) {
         if (elem == undefined) {
