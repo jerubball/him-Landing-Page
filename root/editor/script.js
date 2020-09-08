@@ -30,6 +30,7 @@ const Script = {
         elem.addEventListener('pointerdown', listener, false);
         elem.addEventListener('pointerup', listener, false);
         elem.addEventListener('pointermove', listener, false);
+        window.setTimeout(listener, 1000);
     },
     
     updateInfo(elem, info) {
