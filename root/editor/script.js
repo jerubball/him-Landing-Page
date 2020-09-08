@@ -24,6 +24,10 @@ const Script = {
         elem.onclick = listener;
         elem.onmouseup = listener;
         elem.onmousemove = listener;
+        elem.addEventListener('touchstart', listener, false);
+        elem.addEventListener('touchmove', listener, false);
+        elem.addEventListener('touchcancel', listener, false);
+        elem.addEventListener('touchend', listener, false);
     },
     
     updateInfo(elem, info) {
