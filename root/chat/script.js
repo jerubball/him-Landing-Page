@@ -76,7 +76,7 @@ const Script = {
                 if (data[i]['text'] && data[i]['text'].trim().length > 0) {
                     entry.innerText = data[i]['text'];
                 } else {
-                    entry.innerText = '&nbsp;';
+                    entry.innerText = '\u00A0';
                 }
                 col.appendChild(entry);
                 //}
