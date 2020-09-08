@@ -73,7 +73,11 @@ const Script = {
                 col.appendChild(name);
                 var entry = document.createElement('p');
                 entry.classList.add('chat-text', 'px-1', 'm-0', 'mr-2');
-                entry.innerText = data[i]['text'];
+                if (data[i]['text'] && data[i]['text'].trim().length > 0) {
+                    entry.innerText = data[i]['text'];
+                } else {
+                    entry.innerText = '&nbsp;';
+                }
                 col.appendChild(entry);
                 //}
             }
