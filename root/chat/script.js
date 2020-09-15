@@ -63,6 +63,7 @@ const Script = {
                 var row = document.createElement('div');
                 row.id = chatarea.childElementCount;
                 row.classList.add('row');
+                row.classList.add('mr-0');
                 chatarea.appendChild(row);
                 var col = document.createElement('div');
                 col.classList.add('col-md-12');
