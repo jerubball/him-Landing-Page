@@ -30,9 +30,9 @@
         $response['status'] = 'Chatroom expired.';
       } else {
         // update userdata
-        $user = fopen($id_user, 'r+');
-        flock($user, LOCK_EX);
-        $userdata = json_decode(fread($user, filesize($id_user)), true);
+        $users = fopen($id_user, 'r+');
+        flock($users, LOCK_EX);
+        $userdata = json_decode(fread($users, filesize($id_user)), true);
         if (!isset($userdata) || !is_array($userdata)) {
           $response['code'] = 5;
           $response['status'] = 'Unable to read userdata.';
@@ -47,13 +47,13 @@
             }
           }
           
-          ftruncate($user, 0);
-          rewind($user);
-          fwrite($user, json_encode($userdata));
-          fflush($user);
+          ftruncate($users, 0);
+          rewind($users);
+          fwrite($users, json_encode($userdata));
+          fflush($users);
         }
-        flock($user, LOCK_UN);
-        fclose($user);
+        flock($users, LOCK_UN);
+        fclose($users);
         
         // continue if no error
         if (!isset($response['code'])) {
