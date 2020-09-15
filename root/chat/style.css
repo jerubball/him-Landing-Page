@@ -5,13 +5,19 @@
   flex-direction: column;
 }
 
-#main {
-  overflow-y: scroll;
+.chat-wrapper {
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-#chat-area {
-  min-height: 100%;
+.chat-background {
   border-radius: 0.5rem;
+}
+
+.chat-area {
+  overflow-y: scroll;
 }
 
 .chat-text {
