@@ -59,6 +59,7 @@
         if (!isset($response['code'])) {
           $_SESSION['lasttime'] = $_SESSION['timestamp'];
           $_SESSION['timestamp'] = microtime(true);
+          setcookie('chat-timestamp', $_SESSION['timestamp'], time() + 604800, '', '', true);
           
           $data = [];
           $response['users'] = sizeof($userdata);
