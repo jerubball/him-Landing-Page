@@ -41,6 +41,7 @@
         $text = str_replace(["\n", "\r", "\t"], " ", $_GET['text']);
         // write as text
         if ($metadata['mode'] == 'text') {
+          //file_put_contents($id, 'text', FILE_APPEND | LOCK_EX);
           $chat = fopen($id, 'a');
           flock($chat, LOCK_EX);
           fwrite($chat, microtime(true)."\t".$ip."\t".$_SESSION['username']."\t".$text."\n");

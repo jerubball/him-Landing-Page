@@ -35,7 +35,7 @@
             
             chmod($id_meta, 0660);
             $metadata = ['name' => $id, 'mode' => $mode, 'enabled' => true, 'created' => $created, 'expires' => $expires];
-            file_put_contents($id_meta, json_encode($metadata), FILE_APPEND | LOCK_EX);
+            file_put_contents($id_meta, json_encode($metadata), LOCK_EX);
             
             // create userdata
             $id_user = '..'.$id;
