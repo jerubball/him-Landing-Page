@@ -2,7 +2,7 @@
 .body {
   overflow: hidden !important;
   display: flex;
-  flex-grow: column;
+  flex-direction: column;
 }
 
 .main {
