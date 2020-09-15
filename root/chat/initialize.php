@@ -9,13 +9,21 @@
     $_SESSION['init'] = true;
     
     if (!isset($_SESSION['username'])) {
-      $_SESSION['username'] = base_convert(rand(), 10, 36);
-      setcookie('chat-username', $_SESSION['username'], time() + 604800, '', '', true);
+      if (!isset($_COOKIE['chat-username'])) {
+        $_SESSION['username'] = base_convert(rand(), 10, 36);
+        setcookie('chat-username', $_SESSION['username'], time() + 604800, '', '', true);
+      } else {
+        $_SESSION['username'] = $_COOKIE['chat-username'];
+      }
     }
   }
   
   if (isset($_GET['all']) && $_GET['all'] == 'true') {
     $_SESSION['timestamp'] = 0;
+  } elseif (isset($_GET['all']) && $_GET['all'] == 'false') {
+    $_SESSION['timestamp'] = microtime(true);
+  } elseif (isset($_COOKIE['chat-timestamp'])) {
+    $_SESSION['timestamp'] = $_COOKIE['chat-timestamp'];
   } else {
     $_SESSION['timestamp'] = microtime(true);
   }
