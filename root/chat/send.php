@@ -14,7 +14,7 @@
     $response['status'] = 'Session not initialized.';
   } else {
     $id = $_SESSION['chatroom'];
-    $id_meta = '.'.$_SESSION['chatroom'];
+    $id_meta = '.'.$id;
     if (!file_exists($id_meta)) {
       $response['code'] = 2;
       $response['status'] = 'Chat room not found.';

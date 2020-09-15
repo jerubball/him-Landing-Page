@@ -102,7 +102,7 @@
           $response['status'] = 'Unable to rollback.';
         }
       }
-      // set success coide
+      // set success code
       if (!isset($response['code'])) {
         $response['code'] = 0;
         $response['status'] = 'Success.';

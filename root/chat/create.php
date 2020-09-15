@@ -37,13 +37,13 @@
             $metadata = ['name' => $id, 'mode' => $mode, 'enabled' => true, 'created' => $created, 'expires' => $expires];
             file_put_contents($id_meta, json_encode($metadata), FILE_APPEND | LOCK_EX);
             
-            // create secondary metadata
-            $id_data = '..'.$id;
-            if (!file_exists($id_data)) {
-              if (touch($id_data)) {
+            // create userdata
+            $id_user = '..'.$id;
+            if (!file_exists($id_user)) {
+              if (touch($id_user)) {
                 
-                chmod($id_data, 0660);
-                file_put_contents($id_data, json_encode([]));
+                chmod($id_user, 0660);
+                file_put_contents($id_user, json_encode([]));
                 
                 // create chat file.
                 if ($mode == 'text' || $mode == 'json') {
@@ -98,11 +98,11 @@
                 
               } else {
                 $response['code'] = 5;
-                $response['status'] = 'Unable to create metadata.';
+                $response['status'] = 'Unable to create userdata.';
               }
             } else {
               $response['code'] = 6;
-              $response['status'] = 'Metadata already exists.';
+              $response['status'] = 'Userdata already exists.';
             }
           } else {
             $response['code'] = 7;
