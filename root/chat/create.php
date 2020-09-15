@@ -37,76 +37,93 @@
             $metadata = ['name' => $id, 'mode' => $mode, 'enabled' => true, 'created' => $created, 'expires' => $expires];
             file_put_contents($id_meta, json_encode($metadata), FILE_APPEND | LOCK_EX);
             
-            // create chat file.
-            if ($mode == 'text' || $mode == 'json') {
-              
-              if (!file_exists($id)) {
-                if (touch($id)) {
-                  chmod($id, 0660);
-                  if ($mode == 'json') {
-                    file_put_contents($id, json_encode([]));
-                  }
-                  $response['code'] = 0;
-                  $response['status'] = 'Success.';
-                } else {
-                  $response['code'] = 1;
-                  $response['status'] = 'Unable to create file.';
-                }
-              } else {
-                $response['code'] = 2;
-                $response['status'] = 'File already exists.';
-              }
-            
-            // enter metadata for mysql.
-            } elseif ($mode == 'mysql') {
-              
-              $db_connection = new mysqli($db_server, $db_username);
-              if ($db_connection->connect_errno) {
-                $response['code'] = 3;
-                $response['status'] = 'Database connection failed.';
-              } else {
-                $id_escape = $db_connection->real_escape_string($id);
-                $db_query = 'insert into Website.chat_metadata (id, save, created, expires) values ("'.$id_escape.'", "'.$mode.'", from_unixtime('.$created.'), from_unixtime('.$expires_sql.'));';
-                $db_answer = $db_connection->query($db_query);
+            // create secondary metadata
+            $id_data = '..'.$id;
+            if (!file_exists($id_data)) {
+              if (touch($id_data)) {
                 
-                if ($db_answer) {
-                  // success.
-                  $response['code'] = 0;
-                  $response['status'] = 'Success.';
-                } else {
-                  // failed.
-                  $response['code'] = 4;
-                  $response['status'] = 'Database query failed.';
+                chmod($id_data, 0660);
+                file_put_contents($id_data, json_encode([]));
+                
+                // create chat file.
+                if ($mode == 'text' || $mode == 'json') {
+                  
+                  if (!file_exists($id)) {
+                    if (touch($id)) {
+                      chmod($id, 0660);
+                      if ($mode == 'json') {
+                        file_put_contents($id, json_encode([]));
+                      }
+                      $response['code'] = 0;
+                      $response['status'] = 'Success.';
+                    } else {
+                      $response['code'] = 1;
+                      $response['status'] = 'Unable to create file.';
+                    }
+                  } else {
+                    $response['code'] = 2;
+                    $response['status'] = 'File already exists.';
+                  }
+                
+                // enter metadata for mysql.
+                } elseif ($mode == 'mysql') {
+                  
+                  $db_connection = new mysqli($db_server, $db_username);
+                  if ($db_connection->connect_errno) {
+                    $response['code'] = 3;
+                    $response['status'] = 'Database connection failed.';
+                  } else {
+                    $id_escape = $db_connection->real_escape_string($id);
+                    $db_query = 'insert into Website.chat_metadata (id, save, created, expires) values ("'.$id_escape.'", "'.$mode.'", from_unixtime('.$created.'), from_unixtime('.$expires_sql.'));';
+                    $db_answer = $db_connection->query($db_query);
+                    
+                    if ($db_answer) {
+                      // success.
+                      $response['code'] = 0;
+                      $response['status'] = 'Success.';
+                    } else {
+                      // failed.
+                      $response['code'] = 4;
+                      $response['status'] = 'Database query failed.';
+                    }
+                    if ($db_answer->free_result) {
+                      $db_answer->free_result();
+                    }
+                  }
+                  
+                  if ($db_connection->close) {
+                    $db_connection->close();
+                  }
                 }
-                if ($db_answer->free_result) {
-                  $db_answer->free_result();
-                }
+                
+              } else {
+                $response['code'] = 5;
+                $response['status'] = 'Unable to create metadata.';
               }
-              
-              if ($db_connection->close) {
-                $db_connection->close();
-              }
+            } else {
+              $response['code'] = 6;
+              $response['status'] = 'Metadata already exists.';
             }
           } else {
-            $response['code'] = 5;
+            $response['code'] = 7;
             $response['status'] = 'Unable to create metadata.';
           }
         } else {
-          $response['code'] = 6;
+          $response['code'] = 8;
           $response['status'] = 'Metadata already exists.';
         }
         
       } else { // unknown mode
-        $response['code'] = 7;
+        $response['code'] = 9;
         $response['status'] = 'Invalid mode.';
       }
     
     } else {
-      $response['code'] = 8;
+      $response['code'] = 10;
       $response['status'] = 'No id given.';
     }
   } else {
-    $response['code'] = 9;
+    $response['code'] = 11;
     $response['status'] = 'No parameter given.';
   }
   
