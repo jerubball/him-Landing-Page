@@ -39,6 +39,7 @@ const Script = {
                 if (this.response && this.response instanceof Object) {
                     if (this.response['code'] === 0) {
                         Script.append(this.response['data']);
+                        Script.updateInfo(this.response['users']);
                     } else {
                         //alert(this.response['status']);
                         console.log(this.response);
@@ -50,6 +51,11 @@ const Script = {
         request.open('GET', 'receive.php', true);
         request.send();
         return false;
+    },
+    
+    updateInfo(users) {
+        var info = document.getElementById('info');
+        info.innerHTML = users + ' online';
     },
     
     append(data) {
@@ -64,6 +70,7 @@ const Script = {
                 row.id = chatarea.childElementCount;
                 row.classList.add('row');
                 row.classList.add('mr-0');
+                row.classList.add('pl-1');
                 chatarea.appendChild(row);
                 var col = document.createElement('div');
                 col.classList.add('col-md-12');
