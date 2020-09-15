@@ -1,5 +1,11 @@
 
 .body {
+  overflow: hidden !important;
+  display: flex;
+  flex-grow: column;
+}
+
+.main {
   overflow-y: scroll;
 }
 
