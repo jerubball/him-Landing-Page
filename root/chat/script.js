@@ -69,7 +69,7 @@ const Script = {
                 row.appendChild(col);
                 var name = document.createElement('p');
                 name.classList.add('m-0');
-                name.innerHTML = data[i]['name'] + ' (' + data[i]['ip'] + ') @ ' + data[i]['time'];
+                name.innerHTML = data[i]['name'] + ' (' + data[i]['ip'] + ') @ ' + new Date(data[i]['time'] * 1000).toLocaleString();
                 col.appendChild(name);
                 var entry = document.createElement('p');
                 entry.classList.add('chat-text', 'px-1', 'm-0', 'mr-2');
