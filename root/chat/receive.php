@@ -61,6 +61,7 @@
           $_SESSION['timestamp'] = microtime(true);
           
           $data = [];
+          $response['users'] = sizeof($userdata);
           // read data as text
           if ($metadata['mode'] == 'text') {
             $chat = fopen($id, 'r');
@@ -87,7 +88,6 @@
             $response['code'] = 0;
             $response['status'] = 'Success.';
             $response['data'] = $data;
-            $response['users'] = sizeof($userdata);
           // read data as json
           } elseif ($metadata['mode'] == 'json') {
             $chat = json_decode(file_get_contents($id, LOCK_SH), true);
