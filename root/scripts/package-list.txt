@@ -16,6 +16,7 @@ net-tools
 wget
 dialog
 screen
+reptyr
 grep
 ed
 vim
