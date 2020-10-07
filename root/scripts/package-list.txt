@@ -65,6 +65,7 @@ basic256
 brandy
 bwbasic
 yabasic
+wine
 wine-stable
 wine32
 wine64
@@ -101,6 +102,7 @@ texworks
 boinc
 virtualbox
 virtualbox-qt
+virtualbox-ext-pack
 numlockx
 pvm
 pvm-dev
