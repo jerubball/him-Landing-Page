@@ -10,6 +10,7 @@ snapd
 apt-file
 tree
 htop
+strace
 hwinfo
 hardinfo
 net-tools
