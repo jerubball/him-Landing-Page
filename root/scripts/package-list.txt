@@ -69,11 +69,14 @@ wine
 wine-stable
 wine32
 wine64
+libwine
 winetricks
 mono-runtime
 mono-utils
+systemd-timesyncd
 ntp
 ntpdate
+chrony
 gimp
 exfat-fuse
 exfat-utils
@@ -158,7 +161,6 @@ links2
 elinks
 html2text
 sassc
-chrony
 pavucontrol
 alsa-tools-gui
 nasm
