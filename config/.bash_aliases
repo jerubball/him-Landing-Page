@@ -48,6 +48,8 @@ fi
 
 if [ $EUID != 0 ]; then
 	alias shutdown='sudo shutdown'
+	alias reboot='sudo reboot'
+	alias init='sudo init'
 	#alias apt='sudo apt'
 fi
 alias restart='shutdown -r'
