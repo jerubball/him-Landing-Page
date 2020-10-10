@@ -166,3 +166,6 @@ alsa-tools-gui
 nasm
 uptimed
 spell
+firefox
+chromium
+chromium-browser
