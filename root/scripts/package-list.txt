@@ -177,4 +177,5 @@ ifupdown
 gadmintools
 xxd
 hexedit
+dhex
 ghex
