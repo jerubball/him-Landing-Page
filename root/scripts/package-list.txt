@@ -175,3 +175,6 @@ chromium-browser
 bridge-utils
 ifupdown
 gadmintools
+xxd
+hexedit
+ghex
