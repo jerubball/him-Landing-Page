@@ -50,6 +50,8 @@ python
 python3
 python-pip
 python3-pip
+python3-numpy
+python3-sympy
 idle
 curl
 apache2
@@ -71,6 +73,7 @@ wine
 wine-stable
 wine32
 wine64
+wine64-tools
 libwine
 winetricks
 mono-runtime
