@@ -97,6 +97,7 @@ gdisk
 parted
 gparted
 gnome-disk-utility
+gnome-tweak-tool
 git
 git-all
 easygit
