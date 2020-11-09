@@ -7,9 +7,9 @@ p.line {
 }
 
 b.item {
-    text-color: darkgray;
+    color: darkgray;
 }
 
 b.item.active {
-    text-color: inherit;
+    color: inherit;
 }
