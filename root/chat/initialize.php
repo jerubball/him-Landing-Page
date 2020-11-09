@@ -25,7 +25,7 @@
   } elseif (isset($_COOKIE['chat-timestamp'])) {
     $_SESSION['timestamp'] = $_COOKIE['chat-timestamp'];
   } else {
-    $_SESSION['timestamp'] = microtime(true);
+    $_SESSION['timestamp'] = 0;
   }
   
   $param = array_keys($_GET);
