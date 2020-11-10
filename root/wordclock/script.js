@@ -87,10 +87,10 @@ const Script = {
         };
         let lastItems = {};
         var timer = setInterval(function () {
-            if (!words['it'].classList.contains('active') {
+            if (!words['it'].classList.contains('active')) {
                 words['it'].classList.add('active');
             }
-            if (!words['is'].classList.contains('active') {
+            if (!words['is'].classList.contains('active')) {
                 words['is'].classList.add('active');
             }
             let now = new Date();
