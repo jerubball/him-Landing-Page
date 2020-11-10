@@ -97,13 +97,13 @@ const Script = {
             let newItems = Script.getItems(now.getHours(), now.getMinutes());
             for (let item in lastItems) {
                 if (!(item in newItems)) {
-                    item.classList.remove('active');
+                    words[item].classList.remove('active');
                     delete lastItems[item];
                 }
             }
             for (let item in newItems) {
                 if (!(item in lastItems)) {
-                    item.classList.add('active');
+                    words[item].classList.add('active');
                     lastItems[item] = true;
                 }
             }
