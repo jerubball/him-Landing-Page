@@ -41,7 +41,7 @@ const Script = {
             }
         }
         
-        let num = hour < 12 ? hour : hour - 12;
+        num = hour < 12 ? hour : hour - 12;
         if (hour < 12) {
             items['am'] = true;
         } else {
