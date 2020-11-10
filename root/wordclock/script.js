@@ -102,7 +102,7 @@ const Script = {
                 }
             }
             for (let item in newItems) {
-                if (!(item in newItems)) {
+                if (!(item in lastItems)) {
                     item.classList.add('active');
                     lastItems[item] = true;
                 }
