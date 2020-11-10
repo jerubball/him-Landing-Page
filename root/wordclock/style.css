@@ -13,7 +13,7 @@ p.line {
 }
 
 b.item {
-    color: darkgray;
+    color: lightgray;
 }
 
 b.item.active {
