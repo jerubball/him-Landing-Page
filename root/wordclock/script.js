@@ -48,7 +48,7 @@ const Script = {
         };
         var timer = setInterval(function () {
             let now = new Date();
-            words[this.getHourNumber(now.getHours())].classList.add("active");
+            words[Script.getHourNumber(now.getHours())].classList.add("active");
         }, 250);
     },
     
