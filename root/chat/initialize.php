@@ -23,8 +23,10 @@
   } elseif (isset($_GET['all']) && $_GET['all'] == 'false') {
     $_SESSION['timestamp'] = microtime(true);
   } elseif (isset($_COOKIE['chat-timestamp'])) {
-    $_SESSION['timestamp'] = $_COOKIE['chat-timestamp'];
+    //$_SESSION['timestamp'] = $_COOKIE['chat-timestamp'];
+    $_SESSION['timestamp'] = 0;
   } else {
+    //$_SESSION['timestamp'] = microtime(true);
     $_SESSION['timestamp'] = 0;
   }
   
