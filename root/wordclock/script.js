@@ -84,6 +84,7 @@ const Script = {
             'clock': document.getElementById('item-clock'),
             'am': document.getElementById('item-am'),
             'pm': document.getElementById('item-pm'),
+            'indicator': document.getElementById('item-indicator'),
         };
         let lastItems = {};
         var timer = setInterval(function () {
@@ -106,6 +107,11 @@ const Script = {
                     words[item].classList.add('active');
                     lastItems[item] = true;
                 }
+            }
+            if (now.getMilliseconds() < 500) {
+                words['indicator'].classList.add('active');
+            } else {
+                words['indicator'].classList.remove('active');
             }
         }, 250);
     },
