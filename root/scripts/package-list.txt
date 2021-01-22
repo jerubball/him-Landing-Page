@@ -185,3 +185,5 @@ hexedit
 dhex
 ghex
 bsdgames
+iperf
+iperf3
