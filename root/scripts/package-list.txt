@@ -187,3 +187,4 @@ ghex
 bsdgames
 iperf
 iperf3
+gtkhash
