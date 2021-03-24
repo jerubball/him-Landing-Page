@@ -101,6 +101,8 @@ gdisk
 parted
 gparted
 gnome-disk-utility
+partimage
+partclone
 gnome-tweak-tool
 git
 git-all
