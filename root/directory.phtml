@@ -30,9 +30,6 @@
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
 
-<?php $starttime = microtime(true); ?>
-<script>console.log('Start: <?= $starttime ?>')</script>
-
 <?php
   $mimetypes = unserialize(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/mimetypes.bin'));
   function getmimetype($filename) {
@@ -167,10 +164,6 @@
     </div>
   </div>
 </div>
-
-<?php $endtime = microtime(true); ?>
-<script>console.log('End:   <?= $endtime ?>')</script>
-<script>console.log('Diff:  <?= $endtime - $starttime ?>')</script>
 
 </body>
 
