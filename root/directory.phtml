@@ -22,35 +22,31 @@
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
 ?>
-  <title>Index of <?php echo $name; ?></title>
+  <title>Index of <?= $name ?></title>
 </head>
 
-<body onload="Core.Window.setTitle('Index of <?php echo $name; ?>')">
+<body onload="Core.Window.setTitle('Index of <?= $name ?>')">
 <?php
   require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
 ?>
 
+<?php $starttime = microtime(true); ?>
+<script>console.log('Start: <?= $starttime ?>')</script>
+
 <?php
-  if ($dir = opendir('.')) {
-    $table = array();
-    $finfo = finfo_open(FILEINFO_MIME);
-    while ($item = readdir($dir)) {
-      if ($item[0] !== '.') {
-        $entry = array();
-        $entry['dir'] = is_dir($item);
-        $entry['name'] = $item;
-        $entry['type'] = filetype($item);
-        $entry['mime'] = mime_content_type($item);
-        $entry['title'] = finfo_file($finfo, $item);
-        $entry['modified'] = filemtime($item);
-        $entry['size'] = $entry['dir'] ? '-' : filesize($item);
-        $table[] = $entry;
+  $mimetypes = unserialize(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/mimetypes.bin'));
+  function getmimetype($filename) {
+    global $mimetypes;
+    $index = strlen($filename);
+    while (--$index > 0) {
+      if ($filename[$index] === '.') {
+        $ext = substr($filename, $index+1);
+        if (isset($mimetypes[$ext])) {
+          return $mimetypes[$ext];
+        }
       }
     }
-    closedir($dir);
-    uasort($table, function($a, $b) {
-      return strnatcasecmp($a['name'], $b['name']);
-    });
+    return mime_content_type($filename);
   }
   function format_name($entry) {
     return $entry['dir'] ? $entry['name'].'/' : $entry['name'];
@@ -59,7 +55,7 @@
     return $entry['mime'];
   }
   function format_title($entry) {
-    return $entry['type'].'; mime='.$entry['title'];
+    return $entry['type']; //.'; mime='.$entry['mime'].'; charset='.$entry['charset'];
   }
   function format_modified($entry) {
     return date('M d Y, g:i:s a', $entry['modified']);
@@ -81,6 +77,31 @@
     } else {
       return $entry['size'];
     }
+  }
+  if ($dir = opendir('.')) {
+    $table = array();
+    //$finfo = finfo_open(FILEINFO_MIME_ENCODING); // FILEINFO_MIME | FILEINFO_MIME_TYPE
+    while ($item = readdir($dir)) {
+      if ($item[0] !== '.') {
+        $entry = array();
+        $entry['dir'] = is_dir($item);
+        $entry['name'] = $item;
+        $entry['type'] = filetype($item);
+        if ($entry['type'] === 'dir') {
+          $entry['mime'] = 'directory';
+        } else {
+          $entry['mime'] = getmimetype($item);
+        }
+        //$entry['charset'] = finfo_file($finfo, $item);
+        $entry['modified'] = filemtime($item);
+        $entry['size'] = $entry['dir'] ? '-' : filesize($item);
+        $table[] = $entry;
+      }
+    }
+    closedir($dir);
+    uasort($table, function($a, $b) {
+      return strnatcasecmp($a['name'], $b['name']);
+    });
   }
 ?>
 
@@ -128,10 +149,10 @@
     foreach ($table as $entry) {
 ?>
               <tr>
-                <th scope="row" data-sort="<?php echo ++$index; ?>"><a href="./<?php echo $entry['name']; ?>"><?php echo format_name($entry); ?></a></th>
-                <td data-sort="<?php echo $entry['mime']; ?>" title="<?php echo format_title($entry); ?>"><?php echo format_type($entry); ?></td>
-                <td data-sort="<?php echo $entry['modified']; ?>"><?php echo format_modified($entry); ?></td>
-                <td data-sort="<?php echo $entry['size']; ?>"><?php echo format_size($entry); ?></td>
+                <th scope="row" data-sort="<?= ++$index ?>"><a href="./<?= $entry['name']; ?>"><?= format_name($entry) ?></a></th>
+                <td data-sort="<?= $entry['mime'] ?>" title="<?= format_title($entry) ?>"><?= format_type($entry) ?></td>
+                <td data-sort="<?= $entry['modified'] ?>"><?= format_modified($entry) ?></td>
+                <td data-sort="<?= $entry['size'] ?>"><?= format_size($entry) ?></td>
               </tr>
 <?php
     }
@@ -146,6 +167,10 @@
     </div>
   </div>
 </div>
+
+<?php $endtime = microtime(true); ?>
+<script>console.log('End:   <?= $endtime ?>')</script>
+<script>console.log('Diff:  <?= $endtime - $starttime ?>')</script>
 
 </body>
 
@@ -174,5 +199,22 @@
       };
       break;
   }
+  
+  $fileentry = file_get_contents('http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types');
+  $fileentry = file_get_contents('mime.types');
+  $lineentries = explode("\n", $fileentry);
+  $mimetypes = array();
+  foreach ($lineentries as $lineentry) {
+    if ($lineentry && strlen($lineentry) > 0 && $lineentry[0] !== '#') {
+      $typepair = preg_split('/\t+/', $lineentry);
+      if (sizeof($typepair) === 2) {
+        $extensions = explode(' ', $typepair[1]);
+        foreach ($extensions as $extension) {
+          $mimetypes[$extension] = $typepair[0];
+        }
+      }
+    }
+  }
+  file_put_contents('mimetypes.bin', serialize($mimetypes));
 */
 ?>
