@@ -1,0 +1,61 @@
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/core.php');
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <title>table</title>
+</head>
+
+<body onload="Core.Window.setTitle('table')">
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
+?>
+
+<div class="body">
+  <div class="p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="">Table</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table" id="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">1</th>
+                <th scope="col">2</th>
+                <th scope="col">3</th>
+                <th scope="col">4</th>
+              </tr>
+            </thead>
+              <tr>
+                <th scope="row">a</th>
+                <td>b</td>
+                <td>c</td>
+                <td>d</td>
+              </tr>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
