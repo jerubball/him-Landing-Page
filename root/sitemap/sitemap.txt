@@ -1,29 +1,69 @@
 
 about/
-directory.phtml
-download/
-error.phtml
-index.phtml
-links/
-sitemap/
-test/
+about/index.phtml
 
-TrackingSystem/
-TrackingSystem/index.html
-TrackingSystem/login.html
+auth/
+auth/index.phtml
+
+chat/
+chat/index.phtml
+
+cluster/
+cluster/index.html
+
+color/
+color/index.phtml
+
+directory.phtml
+
+download/
+
+editor/
+editor/index.phtml
+
+error.phtml
+
+index.phtml
+
+links/
+links/index.phtml
+
+mcsinglecommand/
+mcsinglecommand/index.phtml
+
+micromouse/
+micromouse/index.phtml
+
+random/
+random/index.phtml
+
+rantadi/
+rantadi/index.phtml
+
+resume/
+resume/index.phtml
 
 scripts/
 scripts/index.phtml
 
-rantadi/
-rantadi/index.phtml
+sitemap/
+
+template/
+template/index.phtml
+template/table.phtml
+
+test/
 
 time/
 time/index.phtml
 time/help.phtml
 
-micromouse/
-micromouse/index.phtml
+TrackingSystem/
+TrackingSystem/index.html
+TrackingSystem/login.html
 
 url/
 url/index.phtml
+
+wordclock/
+wordclock/index.phtml
