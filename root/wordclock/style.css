@@ -3,7 +3,9 @@ p.line {
     margin: 0;
     text-align: center;
     font-family: consolas, hack, monospace;
-    font-size: 5vh;
+    font-size: min(5.5vh,5.5vw);
+    white-space: nowrap;
+    overflow-wrap: normal;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
