@@ -1,8 +1,10 @@
 
 http://nyit-him.ddns.net/
 https://nyit-him.ddns.net/
+
 http://nyit-him.ddns.net/about/
 https://nyit-him.ddns.net/about/
+
 http://nyit-him.ddns.net/links/
 https://nyit-him.ddns.net/links/
 
@@ -15,24 +17,12 @@ https://nyit-him.ddns.net/scripts/
 http://nyit-him.ddns.net/scripts/index.phtml
 https://nyit-him.ddns.net/scripts/index.phtml
 
-http://nyit-him.ddns.net/rantadi/
-https://nyit-him.ddns.net/rantadi/
-http://nyit-him.ddns.net/rantadi/index.phtml
-https://nyit-him.ddns.net/rantadi/index.phtml
-
-http://nyit-him.ddns.net/time/
-https://nyit-him.ddns.net/time/
-http://nyit-him.ddns.net/time/index.phtml
-https://nyit-him.ddns.net/time/index.phtml
-http://nyit-him.ddns.net/time/help.phtml
-https://nyit-him.ddns.net/time/help.phtml
-
 http://nyit-him.ddns.net/micromouse/
 https://nyit-him.ddns.net/micromouse/
 http://nyit-him.ddns.net/micromouse/index.phtml
 https://nyit-him.ddns.net/micromouse/index.phtml
 
-http://nyit-him.ddns.net/url/
-https://nyit-him.ddns.net/url/
-http://nyit-him.ddns.net/url/index.phtml
-https://nyit-him.ddns.net/url/index.phtml
+http://nyit-him.ddns.net/resume/
+https://nyit-him.ddns.net/resume/
+http://nyit-him.ddns.net/resume/index.phtml
+https://nyit-him.ddns.net/resume/index.phtml
