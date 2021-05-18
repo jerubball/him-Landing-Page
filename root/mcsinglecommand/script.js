@@ -7,7 +7,40 @@ const Script = {
         return this.init(Core.None.__proto__);
     },
     
-    parse(infile) {
+    run() {
+        var inputtext = document.getElementById('inputtext');
+        var outputtext = document.getElementById('outputtext');
+        var errortext = document.getElementById('errortext');
+        $('#outputcontainer').collapse('show');
+        Script.parse(inputtext, outputtext, errortext);
+        return false;
+    },
+    
+    copy() {
+        var outputtext = document.getElementById('outputtext');
+        var errortext = document.getElementById('errortext');
+        if (outputtext.value.length > 0) {
+            function alternative() {
+                outputtext.select();
+                document.execCommand("paste");
+                errortext.value = 'Copied to clipboard';
+            };
+            if (navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(outputtext.value).then(
+                    () => {errortext.value = 'Copied to clipboard';}, alternative);
+            } else {
+                alternative();
+            }
+        } else {
+            errortext.value = 'Nothing to copy';
+        }
+        return false;
+    },
+    
+    parse(inputtext, outputtext, errortext) {
+        outputtext.value = '';
+        errortext.value = '';
+        
         function escapeString(string) {
             return string.replaceAll('\\', '\\\\').replaceAll('"', '\\"');
         }
@@ -23,7 +56,7 @@ const Script = {
             meta = {},
             entry = {'position': 0};
         
-        for (let line of infile) {
+        for (let line of inputtext.value.split('\n')) {
             line = line.trim();
             // command
             if (line.length > 0 && line[0] !== '#') {
@@ -65,7 +98,7 @@ const Script = {
         var num = cmd.length;
         if (num > 0) {
             if (num > 250)
-                console.log('Input command of ' + num + ' is more than limit of 250 commands');
+                errortext.value += 'Input command of ' + num + ' is more than limit of 250 commands\n';
             
             var horizontal = 'axis' in meta && meta['axis'] !== 'vertical';
             var horizontal
@@ -190,16 +223,16 @@ const Script = {
             } else
                 wrapper['Passengers'] = [data];
             
-            console.log(wrapper);
             var command = 'summon falling_block ~ ~1 ~ ' + convert(wrapper);
             
             if (command.length > 32500)
-                console.log('Output command of ' + command.length + ' is longer than limit of 32500 characters')
+                errortext.value += 'Output command of ' + command.length + ' is longer than limit of 32500 characters\n';
             
-            console.log(command);
+            outputtext.value = command;
             return command;
             
         } else {
+            errortext.value = 'No commands entered\n';
             return null;
         }
     },

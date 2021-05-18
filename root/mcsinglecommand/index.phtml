@@ -28,11 +28,200 @@
       </div>
     </div>
   </div>
-  <div class="p-3">
+  <div class="p-1">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <textarea id="text" class="form-control text-editor" autocapitalize="none" autocomplete="off" spellcheck="false" placeholder="Enter commands/function"></textarea>
+          <textarea id="inputtext" class="form-control text-editor" autocapitalize="none" autocomplete="off" spellcheck="false" placeholder="Enter commands/function"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-primary" onclick="return Script.run();">Generate</button>
+          <button class="btn btn-primary" onclick="return Script.copy();">Copy</button>
+          <a data-toggle="collapse" href="#moreinfo" role="button" aria-expanded="false" aria-controls="moreinfo">
+            <button class="btn btn-primary" data-toggle="button" aria-pressed="false">More info</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-1 collapse" id="outputcontainer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <textarea id="outputtext" class="form-control text-editor" autocapitalize="none" autocomplete="off" spellcheck="false" placeholder="Get output here" readonly></textarea>
+          <textarea id="errortext" class="form-control text-editor" autocapitalize="none" autocomplete="off" spellcheck="false" placeholder="No errors" disabled></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-1 collapse" id="moreinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class=""><b>Information</b></h3>
+          <p class="">This is my take on generating single command in minecraft 1.16 Java edition. The program was originally written in Python, and was ported to JavaScript.</p>
+          <p class="">Python source code and command samples can be found in <a href="https://github.com/jerubball/Game-Server-Tools/tree/master/Minecraft/commands">my GitHub. (link)</a></p>
+          <h4 class=""><b>Parameters</b></h4>
+          <p class="">Any blank space or any line starting with # (hash comment) will be ignored.</p>
+          <p class="">Special kind of hash comments can be inserted before each command. These are prefixed by <code>#@ [parameter]</code>.</p>
+          <p class="">Following table lists parameters that can be used. Note that some parameters apply on global context, meaning it will apply to all commands unless overridden by another parameter. Duplicated parameters are ignored.</p>
+          <table class="table" id="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Group</th>
+                <th scope="col">Description</th>
+                <th scope="col">Context</th>
+              </tr>
+            </thead>
+              <tr>
+                <th scope="row">keep</th>
+                <td>keep/remove</td>
+                <td>Keeps all command blocks after execution.</td>
+                <td>global</td>
+              </tr>
+              <tr>
+                <th scope="row">optional</th>
+                <td>keep/remove</td>
+                <td>Keeps all command blocks after execution, but include a command block (second from bottom) to remove all blocks.</td>
+                <td>global</td>
+              </tr>
+              <tr>
+                <th scope="row">remove</th>
+                <td>keep/remove</td>
+                <td>Removes all command blocks after execution.<br>This is the default behavior.</td>
+                <td>global</td>
+              </tr>
+              <tr>
+                <th scope="row">remove+</th>
+                <td>keep/remove</td>
+                <td>Removes all command blocks after execution.</td>
+                <td>global</td>
+              </tr>
+              <tr>
+                <th scope="row">vertical</th>
+                <td>block stack</td>
+                <td>Command blocks are stacked upwards.<br>This is the default behavior.</td>
+                <td>global</td>
+              </tr>
+              <tr>
+                <th scope="row">positive-x</th>
+                <td>block stack</td>
+                <td>First command blocks are stacked upwards, which then summons second command blocks that are placed horizontally towards east.</td>
+                <td>global</td>
+              </tr>
+              <tr>
+                <th scope="row">positive-z</th>
+                <td>block stack</td>
+                <td>First command blocks are stacked upwards, which then summons second command blocks that are placed horizontally towards north.</td>
+                <td>global</td>
+              </tr>
+              <tr>
+                <th scope="row">negative-x</th>
+                <td>block stack</td>
+                <td>First command blocks are stacked upwards, which then summons second command blocks that are placed horizontally towards west.</td>
+                <td>global</td>
+              </tr>
+              <tr>
+                <th scope="row">negative-z</th>
+                <td>block stack</td>
+                <td>First command blocks are stacked upwards, which then summons second command blocks that are placed horizontally towards south.</td>
+                <td>global</td>
+              </tr>
+              <tr>
+                <th scope="row">default&nbsp;[parameter]</th>
+                <td>-</td>
+                <td>Sets up default value for local parameters to be automatically applied.<br>Only local context parameters are accpeted.</td>
+                <td>global</td>
+              </tr>
+              <tr>
+                <th scope="row">impulse</th>
+                <td>block type</td>
+                <td>Makes a command block to be in impulse mode.</td>
+                <td>local</td>
+              </tr>
+              <tr>
+                <th scope="row">repeat</th>
+                <td>block type</td>
+                <td>Makes a command block to be in repeating mode.</td>
+                <td>local</td>
+              </tr>
+              <tr>
+                <th scope="row">chain</th>
+                <td>block type</td>
+                <td>Makes a command block to be in chain mode.<br>This is the default behavior.</td>
+                <td>local</td>
+              </tr>
+              <tr>
+                <th scope="row">auto</th>
+                <td>redstone power</td>
+                <td>Command block is always active, and no redstone power is needed.<br>This is the default behavior.</td>
+                <td>local</td>
+              </tr>
+              <tr>
+                <th scope="row">manual</th>
+                <td>redstone power</td>
+                <td>Command block needs redstone to activate.</td>
+                <td>local</td>
+              </tr>
+              <tr>
+                <th scope="row">conditional</th>
+                <td>conditional mode</td>
+                <td>Marks a command block conditional, requiring successful execution from previous block to activate.</td>
+                <td>local</td>
+              </tr>
+              <tr>
+                <th scope="row">unconditional</th>
+                <td>conditional mode</td>
+                <td>Marks a command block unconditional. The command block executes right away with power.<br>This is the default behavior.</td>
+                <td>local</td>
+              </tr>
+              <tr>
+                <th scope="row">up</th>
+                <td>face direction</td>
+                <td>Rotates command block to set direction.<br>These option groups are only applied alongside non-vertical stack option.</td>
+                <td>local</td>
+              <tr>
+                <th scope="row">down</th>
+                <td>face direction</td>
+                <td>Rotates command block to set direction.<br>All vertical command blocks are always in down position.</td>
+                <td>local</td>
+              <tr>
+                <th scope="row">east</th>
+                <td>face direction</td>
+                <td>Rotates command block to set direction.<br>This is the default behavior for non-vertical stack option.</td>
+                <td>local</td>
+              <tr>
+                <th scope="row">north</th>
+                <td>face direction</td>
+                <td>Rotates command block to set direction.</td>
+                <td>local</td>
+              <tr>
+                <th scope="row">west</th>
+                <td>face direction</td>
+                <td>Rotates command block to set direction.</td>
+                <td>local</td>
+              <tr>
+                <th scope="row">south</th>
+                <td>face direction</td>
+                <td>Rotates command block to set direction.</td>
+                <td>local</td>
+              </tr>
+            <tbody>
+            </tbody>
+          </table>
+          <h4 class=""><b>How this works</b></h4>
+          <p class="">Although we had glorious days of many one command block creations, such contraptions are becoming part of history as functions and datapacks proved to be more powerful. Still, pasing single command into a command block is much more convenient than creating own datapack from a scratch.</p>
+          <p class="">However, finding working one command generator online for latest minecraft update yields no good result. Summoning only a bunch of falling blocks will fail as they will just fall together at the same time, becoming item as they cannot be turned into blocks at that one place. Summoning a bunch of command block minecarts is still a viable option, but those are permanent entities, which may not be reliable.</p>
+          <p class="">This program sets up to summon a command block as falling block entity, on top of that is an invisible armor stand, and on top of that is another command block entity. This repeats to add an armor stand and a command block entity for each line of command.</p>
+          <p class="">When the bottom-most command block hits ground and turns into a block, it executes command to kill all invisible armor stands. This then allows all other commands to fall, with ehough space between them to nicely build up. This prevents them from falling all together at the same place and then breaking into item.</p>
+          <p class="">To ensure correct order of execution, the commands are designed to run top-down. All chain of commands start executing when the top-most command block entity hits ground and executes the whole chain of command blocks below.</p>
         </div>
       </div>
     </div>

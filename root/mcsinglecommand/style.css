@@ -1,7 +1,18 @@
 
 textarea.text-editor {
-  /* height: 70vh; */
-  height: 100%;
-  resize: none;
+  height: 25vh;
+  line-height: 1.25em;
   font-family: consolas, hack, monospace;
+}
+
+textarea.text-editor#errortext {
+  height: 3.5em;
+  resize: none;
+  overflow: hidden;
+  white-space: pre;
+  overflow-wrap: normal;
+}
+
+textarea.text-editor[readonly] {
+  background: unset;
 }
