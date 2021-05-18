@@ -1,0 +1,7 @@
+
+textarea.text-editor {
+  /* height: 70vh; */
+  height: 100%;
+  resize: none;
+  font-family: consolas, hack, monospace;
+}
