@@ -23,8 +23,6 @@ https://him-nyit.ddns.net/download/
 https://him-nyit.ddns.net/editor/
 https://him-nyit.ddns.net/editor/index.phtml
 
-https://him-nyit.ddns.net/error.phtml
-
 https://him-nyit.ddns.net/index.phtml
 
 https://him-nyit.ddns.net/links/
@@ -84,8 +82,6 @@ http://him-nyit.ddns.net/color/index.phtml
 
 http://him-nyit.ddns.net/editor/
 http://him-nyit.ddns.net/editor/index.phtml
-
-http://him-nyit.ddns.net/error.phtml
 
 http://him-nyit.ddns.net/index.phtml
 
