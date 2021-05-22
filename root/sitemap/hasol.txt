@@ -23,8 +23,6 @@ https://hasol.co/download/
 https://hasol.co/editor/
 https://hasol.co/editor/index.phtml
 
-https://hasol.co/error.phtml
-
 https://hasol.co/index.phtml
 
 https://hasol.co/links/
