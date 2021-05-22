@@ -83,8 +83,6 @@ http://hasol.co/color/index.phtml
 http://hasol.co/editor/
 http://hasol.co/editor/index.phtml
 
-http://hasol.co/error.phtml
-
 http://hasol.co/index.phtml
 
 http://hasol.co/links/
