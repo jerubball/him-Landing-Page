@@ -172,7 +172,7 @@ const Script = {
                 else if (entry['mode'] === 'repeat')
                     data['BlockState']['Name'] = '"repeating_command_block"';
                 if (entry['cond'] === 'conditional')
-                    data['BlockState']['Properties'] = {'conditional': 'true'};
+                    data['BlockState']['Properties'] = {'conditional': '"true"'};
                 else if (!horizontal || 'face' in entry)
                     data['BlockState']['Properties'] = {};
                 if (horizontal) {
