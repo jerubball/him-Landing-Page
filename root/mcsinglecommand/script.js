@@ -50,7 +50,8 @@ const Script = {
             mode = {'impulse':null, 'chain':null, 'repeat':null},
             auto = {'auto':null, 'manual':null},
             cond = {'conditional':null, 'unconditional':null},
-            face = {'up':null, 'down':null, 'east':null, 'north':null, 'west':null, 'south':null};
+            face = {'up':null, 'down':null, 'east':null, 'north':null, 'west':null, 'south':null},
+            skip = {'skip': null};
         
         let cmd = [],
             meta = {},
@@ -70,7 +71,10 @@ const Script = {
                     meta['keep'] = param;
                 else if (!('axis' in meta) && param in axis)
                     meta['axis'] = param;
-                else if (param.substring(0,7) === 'default') {
+                else if (!('skip' in meta) && param in skip) {
+                    param = param.substr(4).trim();
+                    meta['skip'] = parseInt(param);
+                } else if (param.substring(0,7) === 'default') {
                     param = param.substr(7).trim();
                     if (!('mode' in meta) && param in mode)
                         meta['mode'] = param;
@@ -105,6 +109,8 @@ const Script = {
             if (horizontal) {
                 var horizontal_dir = meta['axis'][meta['axis'].length-1] === 'x';
                 var horizontal_sign = meta['axis'][0] === 'p' ? 1 : -1;
+                if (!('skip' in meta))
+                    meta['skip'] = 1;
             }
             
             // determine automatic behavior of keep
@@ -194,9 +200,9 @@ const Script = {
                     }
                     var pos = entry['position'] + 1;
                     if (horizontal_dir)
-                        var position = (pos * horizontal_sign) + ' ~' + pos + ' ~ ';
+                        var position = (pos * horizontal_sign * meta['skip']) + ' ~' + pos + ' ~ ';
                     else
-                        var position = ' ~' + pos + ' ~' + (pos * horizontal_sign) + ' ';
+                        var position = ' ~' + pos + ' ~' + (pos * horizontal_sign * meta['skip']) + ' ';
                     wrapper['TileEntityData']['Command'] = '"summon falling_block ~' + position + escapeString(convert(data)) + '"'
                     data = wrapper
                 }
