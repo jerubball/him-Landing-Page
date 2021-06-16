@@ -50,8 +50,7 @@ const Script = {
             mode = {'impulse':null, 'chain':null, 'repeat':null},
             auto = {'auto':null, 'manual':null},
             cond = {'conditional':null, 'unconditional':null},
-            face = {'up':null, 'down':null, 'east':null, 'north':null, 'west':null, 'south':null},
-            skip = {'skip': null};
+            face = {'up':null, 'down':null, 'east':null, 'north':null, 'west':null, 'south':null};
         
         let cmd = [],
             meta = {},
@@ -71,7 +70,7 @@ const Script = {
                     meta['keep'] = param;
                 else if (!('axis' in meta) && param in axis)
                     meta['axis'] = param;
-                else if (!('skip' in meta) && param in skip) {
+                else if (!('skip' in meta) && param.substring(0,4) === 'skip') {
                     param = param.substr(4).trim();
                     meta['skip'] = parseInt(param);
                 } else if (param.substring(0,7) === 'default') {
