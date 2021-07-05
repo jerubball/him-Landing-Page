@@ -171,7 +171,7 @@ const Script = {
                 if (!('face' in entry) && 'face' in meta)
                     entry['face'] = meta['face'];
                 
-                var data = {'id': 'falling_block', 'Time': '1', 'BlockState': {'Name': '"chain_command_block"'}, 'TileEntityData': {}};
+                var data = {'id': 'falling_block', 'Time': '1', 'BlockState': {'Name': '"chain_command_block"'}, 'TileEntityData': {'TrackOutput': '0b'}};
                 if (entry['mode'] === 'impulse')
                     data['BlockState']['Name'] = '"command_block"';
                 else if (entry['mode'] === 'repeat')
@@ -192,7 +192,7 @@ const Script = {
                 data['TileEntityData']['Command'] = '"' + entry['command'] + '"';
                 
                 if (horizontal) {
-                    var wrapper = {'id': 'falling_block', 'Time': '1', 'BlockState': {'Name': '"chain_command_block"', 'Properties': {'facing': '"down"'}}, 'TileEntityData': {}};
+                    var wrapper = {'id': 'falling_block', 'Time': '1', 'BlockState': {'Name': '"chain_command_block"', 'Properties': {'facing': '"down"'}}, 'TileEntityData': {'TrackOutput': '0b'}};
                     if (entry['position'] === 0) {
                         wrapper['BlockState']['Name'] = '"command_block"';
                         wrapper['TileEntityData']['auto'] = '1';
@@ -217,10 +217,10 @@ const Script = {
                     spacer['Passengers'][0]['Passengers'] = [data];
                 data = spacer;
             }
-            var wrapper = {'Time': '1', 'BlockState': {'Name': '"command_block"', 'Properties': {'facing': '"down"'}}, 'TileEntityData': {'auto': '1'}};
+            var wrapper = {'Time': '1', 'BlockState': {'Name': '"command_block"', 'Properties': {'facing': '"down"'}}, 'TileEntityData': {'auto': '1', 'TrackOutput': '0b'}};
             wrapper['TileEntityData']['Command'] = '"kill @e[type=armor_stand,tag=CMDSPACER,sort=nearest,limit=' + nsp + ']"';
             if (meta['keep'] !== 'keep') {
-                var spacer = {'id': 'falling_block', 'Time': '1', 'BlockState': {'Name': '"chain_command_block"', 'Properties': {'facing': '"down"'}}, 'TileEntityData': {}, 'Passengers': [data]};
+                var spacer = {'id': 'falling_block', 'Time': '1', 'BlockState': {'Name': '"chain_command_block"', 'Properties': {'facing': '"down"'}}, 'TileEntityData': {'TrackOutput': '0b'}, 'Passengers': [data]};
                 if (meta['keep'] === 'optional')
                     spacer['BlockState']['Name'] = '"command_block"';
                 spacer['TileEntityData']['Command'] = '"fill ~ ~' + (meta['keep'][meta['keep'].length-1] === '+' ? '-2' : '-1') + ' ~ ~ ~' + num + ' ~ air"';
