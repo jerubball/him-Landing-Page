@@ -70,6 +70,7 @@ basic256
 brandy
 bwbasic
 yabasic
+rust-all
 wine
 wine-stable
 wine32
