@@ -413,19 +413,39 @@ const Script = {
         var select = window.getSelection();
         select.selectAllChildren(elem);
         document.execCommand("copy");
+        select.removeAllRanges();
     },
     
     setup() {
+        let texti = document.getElementById('texti');
+        let text = document.getElementById('text');
+        let textf = document.getElementById('textf');
+
         var update = this.update;
         var timer = setInterval(function() {
-            document.getElementById('text').innerHTML = update(new Date());
+            let result = update(new Date());
+            let splitResult = result.split('.')
+            if (splitResult.length == 2) {
+                texti.innerText = splitResult[0];
+                text.innerText = '.';
+                textf.innerText = splitResult[1];
+            } else {
+                texti.innerText = '';
+                text.innerText = result;
+                textf.innerText = '';
+            }
+            texti.style.flexBasis = (texti.innerText.length)*1.2 + 'ex';
+            text.style.flexBasis = (text.innerText.length-1) + 'ex';
+            textf.style.flexBasis = (textf.innerText.length)*1.2 + 'ex';
         }, 250);
         
         for (var i = 0; i < this.style.length; i++) {
             document.documentElement.classList.add('style-' + this.style[i]);
         }
-        
-        document.getElementById('text').style.fontSize = this.font;
+
+        texti.style.fontSize = this.font;
+        text.style.fontSize = this.font;
+        textf.style.fontSize = this.font;
     },
     
 }.init();

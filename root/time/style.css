@@ -32,22 +32,33 @@ body, div, p, a, span {
 
 body.main {
     background-color: inherit;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
 }
 
 div.box {
-    width: 95%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    vertical-align: middle;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
 }
 
 p.text {
     line-height: 1;
     margin: 0;
     padding: 0;
+    flex-grow: 1;
+}
+
+p#texti {
+    text-align: right;
+}
+
+p#text {
+    flex-grow: 0;
 }
 
 html.style-default {

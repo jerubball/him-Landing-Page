@@ -13,7 +13,9 @@
   <title id="title">Time</title>
 </head>
 <body class="main" id="main" onload="Core.Window.setTitle('Time'); Script.setup();">
-  <div class="box" id="box">
-    <p class="text" id="text" onclick="Script.copyElement(this)"></p>
+  <div class="box" id="box" onclick="Script.copyElement(this.parentElement)">
+    <p class="text" id="texti"></p>
+    <p class="text" id="text"></p>
+    <p class="text" id="textf"></p>
   </div>
 </body>

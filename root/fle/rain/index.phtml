@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/header.html');
+?>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <title>Editor</title>
+</head>
+
+<body onload="Core.Window.setTitle('Editor'); Script.setListeners();">
+<?php
+  require_once($_SERVER['DOCUMENT_ROOT'].'/navbar.html');
+?>
+
+<div class="body d-flex flex-column">
+  <div class="pt-2 px-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="">Monospace Text Editor</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-1 flex-grow-1">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 h-100">
+          <textarea id="text" class="form-control text-editor" autocapitalize="none" autocomplete="off" spellcheck="false" placeholder=" !&quot;#$%&amp;'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pb-2 px-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p id="info">0/0</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
