@@ -104,6 +104,7 @@ gparted
 gnome-disk-utility
 partimage
 partclone
+util-linux
 gnome-tweak-tool
 git
 git-all
@@ -191,3 +192,4 @@ bsdgames
 iperf
 iperf3
 gtkhash
+ncdu
