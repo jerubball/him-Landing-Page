@@ -13,12 +13,12 @@ body {
   flex-grow: 1;
 }
 
-.vertical.carousel-item-next:not(.carousel-item-left),
-.vertical.active.carousel-item-right {
+.carousel-inner.vertical > .carousel-item.carousel-item-next:not(.carousel-item-start),
+.carousel-inner.vertical > .carousel-item.active.carousel-item-end {
   transform: translateY(100%);
 }
-.vertical.carousel-item-prev:not(.carousel-item-right),
-.vertical.active.carousel-item-left {
+.carousel-inner.vertical > .carousel-item.carousel-item-prev:not(.carousel-item-end),
+.carousel-inner.vertical > .carousel-item.active.carousel-item-start {
   transform: translateY(-100%);
 }
 

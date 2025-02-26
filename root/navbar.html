@@ -2,17 +2,17 @@
   <!-- Beginning of Global Navigation Bar -->
   <nav id="navbar" class="navbar navbar-expand-md bg-secondary navbar-dark fixed-top">
     <div class="container">
-      <div id="navbar-brand-carousel" class="carousel slide" data-ride="carousel" data-interval="3000" style="width:6.5em;">
-        <div class="carousel-inner">
-          <div class="carousel-item vertical active">
+      <div id="navbar-brand-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="width:6.5em;">
+        <div class="carousel-inner vertical">
+          <div class="carousel-item active">
             <a class="navbar-brand" href="/">hasol.co</a>
           </div>
-          <div class="carousel-item vertical">
+          <div class="carousel-item">
             <a class="navbar-brand" href="/">him-NYIT</a>
           </div>
         </div>
       </div>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -36,8 +36,8 @@
             <a class="nav-link text-white mr-2" href="mailto:him.nyit@gmail.com">Contact me</a>
           </li>
           <li class="nav-item">
-            <a id="ssl-indicator" class="btn btn-outline-light my-sm-0 mr-2" href="#" aria-pressed="false" autocomplete="off" data-toggle="button" onclick="Core.Window.toggleProtocol()"><b>SSL</b></a>
-            <a id="dark-indicator" class="btn btn-outline-light my-sm-0 mr-2" href="#" aria-pressed="false" autocomplete="off" data-toggle="button" onclick="Core.Window.toggleDarkMode()"><b>Dark</b></a>
+            <a id="ssl-indicator" class="btn btn-outline-light my-sm-0 mr-2" href="#" aria-pressed="false" autocomplete="off" data-bs-toggle="button" onclick="Core.Window.toggleProtocol()"><b>SSL</b></a>
+            <a id="dark-indicator" class="btn btn-outline-light my-sm-0 mr-2" href="#" aria-pressed="false" autocomplete="off" data-bs-toggle="button" onclick="Core.Window.toggleDarkMode()"><b>Dark</b></a>
             <script>
               Core.Window.setSSLindicator(document.getElementById('ssl-indicator'));
               Core.Window.setDarkIndicator(document.getElementById('dark-indicator'));

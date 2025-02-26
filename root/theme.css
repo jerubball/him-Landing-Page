@@ -4319,6 +4319,7 @@ button.close {
   padding: 0.5rem 0.75rem;
   color: #333; }
 
+/*
 .carousel {
   position: relative; }
 
@@ -4494,6 +4495,7 @@ button.close {
   padding-bottom: 20px;
   color: #fff;
   text-align: center; }
+*/
 
 .align-baseline {
   vertical-align: baseline !important; }
