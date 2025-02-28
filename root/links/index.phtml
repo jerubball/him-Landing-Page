@@ -35,22 +35,27 @@
           <ul class="">
             <li>
               <h3 class="">
-                <a href="#" onclick="Core.Window.setHostname('hasol.co', true)">hasol.co</a>
+                <a href="<?= isset($_SERVER['HTTPS']) ? 'https' : 'http' ?>://hasol.co">hasol.co</a>
               </h3>
             </li>
             <li>
               <h3 class="">
-                <a href="#" onclick="Core.Window.setHostname('him-nyit.ddns.net', true)">him-nyit.ddns.net</a>
+                <a href="<?= isset($_SERVER['HTTPS']) ? 'https' : 'http' ?>://him-nyit.ddns.net">him-nyit.ddns.net</a>
               </h3>
             </li>
             <li>
               <h3 class="">
-                <a href="#" onclick="Core.Window.setHostname('nyit-him.ddns.net', true)">nyit-him.ddns.net</a>
+                <a href="<?= isset($_SERVER['HTTPS']) ? 'https' : 'http' ?>://nyit-him.ddns.net">nyit-him.ddns.net</a>
               </h3>
             </li>
             <li>
               <h3 class="">
-                <a href="#" onclick="Core.Window.setProtocol('ftp:', true)">FTP site</a>
+                <s><a href="#" onclick="Core.Window.setProtocol('ftp:', true)">FTP site</a></s>
+              </h3>
+            </li>
+            <li>
+              <h3 class="">
+                <a href="https://nj.hasol.co">nj.hasol.co</a>
               </h3>
             </li>
           </ul>
