@@ -30,3 +30,8 @@ div.header.sticky {
     position: sticky;
     top: 0;
 }
+
+div.container .container {
+    padding-right: 7.5px;
+    padding-left: 15px;
+}

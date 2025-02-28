@@ -55,7 +55,7 @@ function wrap_head(string $text, string $head, string $class = null) {
     ];
 }
 
-function wrap_section(string $title, string $head, string $sectionid = null, bool $collapse = true, bool $sticky = true, string $class1 = null, string $class2 = null, string $class3 = null, $children = []) {
+function wrap_section(string $title, string $head, string $sectionid = null, bool $collapse_button = true, bool $sticky = true, string $class1 = null, string $class2 = null, string $class3 = null, $children = []) {
     $result = [
         '<div class="p-2">',
         '  <div class="container _section">',
@@ -64,11 +64,11 @@ function wrap_section(string $title, string $head, string $sectionid = null, boo
         '        <div class="py-2 header'.($sticky ? ' sticky' : '').'">',
         '          <'.$head.' class="">'.$title.'</'.$head.'>',
     ];
-    if ($collapse) {
+    if ($collapse_button) {
         array_push($result,
-            '<a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll(\''.($sectionid ?: '').'\', false)"><i class="collapse-all fa fa-expand"></i></a>',
-            '<a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll(\''.($sectionid ?: '').'\', true)"><i class="collapse-all fa fa-compress"></i></a>',
-            '<a class="pl-1" title="jump to top" role="button" href="#title"><i class="collapse-all fa fa-level-up"></i></a>',
+            '          <a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll(\''.($sectionid ?: '').'\', false)"><i class="collapse-all fa fa-expand"></i></a>',
+            '          <a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll(\''.($sectionid ?: '').'\', true)"><i class="collapse-all fa fa-compress"></i></a>',
+            '          <a class="pl-1" title="jump to top" role="button" href="#title"><i class="collapse-all fa fa-level-up"></i></a>',
         );
     }
     array_push($result,
@@ -90,7 +90,7 @@ function wrap_section(string $title, string $head, string $sectionid = null, boo
 
 function wrap_collapse_control(string $title, string $head, bool $shown, string $target) {
     return [
-        '<a class="collapse-control'.($shown ? '' : ' collapsed').'" href="#'.$target.'" data-toggle="collapse" role="button" aria-controls="'.$target.'" aria-expanded="'.($shown ? 'true' : 'false').'">',
+        '<a class="collapse-control'.($shown ? '' : ' collapsed').'" href="#'.$target.'" data-bs-toggle="collapse" role="button" aria-controls="'.$target.'" aria-expanded="'.($shown ? 'true' : 'false').'">',
         '  <'.$head.' class="d-inline-block">'.$title.'</'.$head.'>',
         '  <i class="collapse-indicator fa fa-caret-down"></i>',
         '  <i class="collapse-indicator fa fa-caret-right"></i>',
@@ -98,9 +98,9 @@ function wrap_collapse_control(string $title, string $head, bool $shown, string 
     ];
 }
 
-function wrap_container(string $containerid, bool $shown = false, $children = []) {
+function wrap_container(string $containerid, string $class = null, bool $shown = false, $children = []) {
     $result = [
-        '<div class="container collapse'.($shown ? ' show' : '').'" id="'.$containerid.'">',
+        '<div class="container collapse'.($shown ? ' show' : '').($class ? ' '.$class : '').'" id="'.$containerid.'">',
     ];
     append_children($result, $children, 1);
     array_push($result,
@@ -153,6 +153,23 @@ function wrap_item_simple(string $text, string $head = 'h6') {
         '</div>',
     ];
 }
+
+function wrap_item_list(string $width = null, $children = []) {
+    $result = [
+        '<div class="row _list">'
+    ];
+    foreach ($children as &$item) {
+        array_push($result,
+            '  <div class="col"'.( $width ? ' style="flex: 0 0 '.$width.';"' : '').'>',
+            '    <span>'.$item.'</span>',
+            '  </div>',
+        );
+    }
+    array_push($result,
+        '</div>',
+    );
+    return $result;
+}
 ?>
 
 <div class="body">
@@ -162,36 +179,36 @@ echo "  ";
 echo implode("\n  ", array_merge(
     wrap_title('HIM&apos;s Resume', 'h1'),
 
-    wrap_section('Hasol&nbsp;Im', 'h2', 'name', collapse: false, sticky: false, children: [
+    wrap_section('Hasol&nbsp;Im', 'h2', 'name', collapse_button: false, sticky: true, children: [
         wrap_items('pt-2', children1: [
-            wrap_head('<a href="mailto:him.nyit@gmail.com">him.nyit@gmail.com</a>', 'h4'),
-            wrap_head('<a href="mailto:contact@hasol.co">contact@hasol.co</a>', 'h4'),
-            wrap_head('<a href="https://www.linkedin.com/in/hasol-im/">LinkedIn Profile</a>', 'h4'),
-            wrap_head('<a href="https://github.com/jerubball">GitHub Profile</a>', 'h4'),
+            wrap_head('<a href="mailto:him.nyit@gmail.com"><i class="fa fa-envelope-square" aria-hidden="true"></i> him.nyit@gmail.com</a>', 'h4'),
+            wrap_head('<a href="mailto:contact@hasol.co"><i class="fa fa-envelope-square" aria-hidden="true"></i> contact@hasol.co</a>', 'h4'),
+            wrap_head('<a href="https://www.linkedin.com/in/hasol-im/"><i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn Profile</a>', 'h4'),
+            wrap_head('<a href="https://github.com/jerubball"><i class="fa fa-github-square" aria-hidden="true"></i> GitHub Profile</a>', 'h4'),
         ]),
         wrap_items('pt-3', children1: [
-            wrap_collapse_control('Jump down to ...', 'h4', shown: false, target: 'name-jump'),
+            wrap_collapse_control('Jump down to ...', 'h4', shown: true, target: 'name-jump'),
         ]),
-        wrap_container('name-jump', children: [
-            wrap_item_simple('<a href="#work">Work Experience</a>', 'h5'),
-            wrap_item_simple('<a href="#education">Education</a>', 'h5'),
-            wrap_item_simple('<a href="#skills">Skills</a>', 'h5'),
-            wrap_item_simple('<a href="#volunteer">Volunteer Experience</a>', 'h5'),
-            wrap_item_simple('<a href="#leadership">Leadership Roles</a>', 'h5'),
-            wrap_item_simple('<a href="#projects">Projects</a>', 'h5'),
+        wrap_container('name-jump', shown: true, children: [
+            wrap_item_simple('<a href="#work"><i class="fa-solid fa-briefcase fa-fw"></i> Work Experience</a>', 'h5'),
+            wrap_item_simple('<a href="#education"><i class="fa-solid fa-graduation-cap fa-fw"></i> Education</a>', 'h5'),
+            wrap_item_simple('<a href="#skills"><i class="fa-solid fa-hammer fa-fw"></i> Skills</a>', 'h5'),
+            wrap_item_simple('<a href="#volunteer"><i class="fa-solid fa-hand-holding-heart fa-fw"></i> Volunteer Roles</a>', 'h5'),
+            wrap_item_simple('<a href="#activities"><i class="fa-solid fa-users fa-fw"></i> Activities</a>', 'h5'),
+            wrap_item_simple('<a href="#projects"><i class="fa-solid fa-diagram-project fa-fw"></i> Projects</a>', 'h5'),
         ]),
     ]),
 
-    wrap_section('Work Experience', 'h2', 'work', children: [
-        wrap_items('py-2', children1: [
+    wrap_section('Work Experience', 'h2', 'work', class1: 'pb-2', children: [
+        wrap_items('pt-2', children1: [
             wrap_collapse_control('Samsung Electronics America', 'h3', shown: true, target: 'work-samsung'),
         ], children2: [
             wrap_head('Oct.&nbsp;2021 - Present', 'h5'),
         ]),
-        wrap_container('work-samsung', shown: true, children: [
+        wrap_container('work-samsung', class: 'pb-1', shown: true, children: [
             wrap_item_simple('Berkeley Heights, NJ', 'h5'),
             wrap_items('pt-2 pb-1', children1: [
-                wrap_head('Automation Enginner', 'h4'),
+                wrap_head('<i class="fa-solid fa-gears"></i> Automation Enginner', 'h4'),
             ]),
             wrap_items('pt-0', children1: [
                 wrap_head('Contract vendor: Populus Group', 'h5'),
@@ -219,52 +236,373 @@ echo implode("\n  ", array_merge(
             ]),
         ]),
 
-        wrap_items('py-2', children1: [
+        wrap_items('pt-3', children1: [
             wrap_collapse_control('New York Institute of Technology', 'h3', shown: true, target: 'work-nyit'),
         ], children2: [
             wrap_head('Jul.&nbsp;2016 - Dec.&nbsp;2018', 'h5'),
         ]),
-        wrap_container('work-nyit', shown: true, children: [
+        wrap_container('work-nyit', class: 'pb-1', shown: true, children: [
             wrap_item_simple('New York, NY', 'h5'),
-            wrap_items('pt-2', children1: [
-                wrap_head('Tutor/Assistant', 'h4'),
+            wrap_items('pt-2 pb-1', children1: [
+                wrap_head('<i class="fa-solid fa-chalkboard-user"></i> Tutor/Assistant', 'h4'),
             ]),
             wrap_items('pt-2', children1: [
                 wrap_collapse_control('Summary', 'h5', shown: true, target: 'work-nyit-summary'),
             ]),
             wrap_container('work-nyit-summary', shown: true, children: [
-                wrap_item_simple('In-campus tutoring as student employee', 'h5'),
-                wrap_item_simple('Computer Science and Mathematics Courses', 'h5'),
-                wrap_item_simple('Teaching concepts and helping courseworks', 'h5'),
-                wrap_item_simple('Active email communication with students', 'h5'),
+                wrap_item_simple('Tutored in-campus for peer tutoring initiatives in multiple departments.', 'h5'),
+                wrap_item_simple('Explained Computer Science courses and Mathematics courses.', 'h5'),
+                wrap_item_simple('Helped students with clarifying important concepts and working on assignments.', 'h5'),
+                wrap_item_simple('Maintained active email communication with students.', 'h5'),
+                wrap_item_simple('Provided off-hour tutoring sessions through online messaging.', 'h5'),
             ]),
         ]),
     ]),
+
+    wrap_section('Education', 'h2', 'education', class1: 'pb-2', children: [
+        wrap_items('pt-2', children1: [
+            wrap_collapse_control('New York Institute of Technology', 'h3', shown: true, target: 'education-nyit'),
+        ], children2: [
+            wrap_head('Sep.&nbsp;2015 - Dec.&nbsp;2018', 'h5'),
+        ]),
+        wrap_container('education-nyit', class: 'pb-1', shown: true, children: [
+            wrap_item_simple('New York, NY', 'h5'),
+            wrap_items('pt-2', children1: [
+                wrap_head('Bachelor&nbsp;of&nbsp;Science, Computer&nbsp;Science', 'h4'),
+                wrap_head('Mathematics Minor', 'h5'),
+            ], children2: [
+                wrap_head('Dec.&nbsp;2018', 'h5'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Honors', 'h4', shown: true, target: 'education-nyit-honors'),
+            ]),
+            wrap_container('education-nyit-honors', shown: true, children: [
+                wrap_items(children1: [
+                    wrap_head('summa&nbsp;cum&nbsp;laude', 'h5'),
+                ], children2: [
+                    wrap_head('CGPA: 3.96/4.00', 'h5'),
+                ]),
+                wrap_items(children1: [
+                    wrap_head('Computer&nbsp;Science Faculty&nbsp;Award', 'h5'),
+                ], children2: [
+                    wrap_head('May.&nbsp;2019', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    wrap_collapse_control('Presidential Honor List', 'h5', shown: false, target: 'education-nyit-honors-presidential'),
+                ]),
+                wrap_container('education-nyit-honors-presidential', children: [
+                    wrap_item_simple('Fall 2015'),
+                    wrap_item_simple('Spring 2016'),
+                    wrap_item_simple('Fall 2016'),
+                    wrap_item_simple('Spring 2017'),
+                    wrap_item_simple('Fall 2017'),
+                    wrap_item_simple('Spring 2018'),
+                    wrap_item_simple('Fall 2018'),
+                ]),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Courses', 'h4', shown: true, target: 'education-nyit-courses'),
+            ]),
+            wrap_container('education-nyit-courses', shown: true, children: [
+                wrap_items(children1: [
+                    wrap_head('Senior Proejct', 'h5'),
+                ], children2: [
+                    wrap_head('CSCI 455', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    wrap_head('Big Data Management &amp, Analytics', 'h5'),
+                ], children2: [
+                    wrap_head('CSCI 436', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    wrap_head('Information Retrieval', 'h5'),
+                ], children2: [
+                    wrap_head('CSCI 426', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    wrap_head('Introduction to Data Mining', 'h5'),
+                ], children2: [
+                    wrap_head('CSCI 415', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    wrap_head('Introduction to Software Engineering', 'h5'),
+                ], children2: [
+                    wrap_head('CSCI 380', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    wrap_head('Artificial Intelligence I', 'h5'),
+                ], children2: [
+                    wrap_head('CSCI 355', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    wrap_head('Introduction to Network and Internet Security', 'h5'),
+                ], children2: [
+                    wrap_head('CSCI 352', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    wrap_head('Computer Networks', 'h5'),
+                ], children2: [
+                    wrap_head('CSCI 345', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    wrap_head('Design and Analysis of Algorithms', 'h5'),
+                ], children2: [
+                    wrap_head('CSCI 335', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    wrap_collapse_control('More Computer Science Courses', 'h5', shown: false, target: 'education-nyit-courses-csci'),
+                ]),
+                wrap_container('education-nyit-courses-csci', children: [
+                    wrap_items(children1: [
+                        wrap_head('Operating Systems', 'h6'),
+                    ], children2: [
+                        wrap_head('CSCI 330', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Programming Language Concepts', 'h6'),
+                    ], children2: [
+                        wrap_head('CSCI 318', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Theory of Computation', 'h6'),
+                    ], children2: [
+                        wrap_head('CSCI 312', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Database Management', 'h6'),
+                    ], children2: [
+                        wrap_head('CSCI 300', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Probability and Statistics for Computer Science', 'h6'),
+                    ], children2: [
+                        wrap_head('CSCI 270', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Data Structures', 'h6'),
+                    ], children2: [
+                        wrap_head('CSCI 260', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Elements of Discrete Structures', 'h6'),
+                    ], children2: [
+                        wrap_head('CSCI 235', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Computer Programming II', 'h6'),
+                    ], children2: [
+                        wrap_head('CSCI 185', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Computer Organization and Architecture', 'h6'),
+                    ], children2: [
+                        wrap_head('CSCI 155', 'h6'),
+                    ]),
+                ]),
+                wrap_items(children1: [
+                    wrap_collapse_control('Mathematics Courses', 'h5', shown: false, target: 'education-nyit-courses-math'),
+                ]),
+                wrap_container('education-nyit-courses-math', children: [
+                    wrap_items(children1: [
+                        wrap_head('Advanced Seminar', 'h6'),
+                    ], children2: [
+                        wrap_head('MATH 460', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Functions of a Complex Variable', 'h6'),
+                    ], children2: [
+                        wrap_head('MATH 360', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Differential Equations', 'h6'),
+                    ], children2: [
+                        wrap_head('MATH 320', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Linear Algebra', 'h6'),
+                    ], children2: [
+                        wrap_head('MATH 310', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Calculus III', 'h6'),
+                    ], children2: [
+                        wrap_head('MATH 260', 'h6'),
+                    ]),
+                ]),
+                wrap_items(children1: [
+                    wrap_collapse_control('Other Courses', 'h5', shown: false, target: 'education-nyit-courses-other'),
+                ]),
+                wrap_container('education-nyit-courses-other', children: [
+                    wrap_items(children1: [
+                        wrap_head('Technology and Global Issues', 'h6'),
+                    ], children2: [
+                        wrap_head('IENG 400', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Modern New York', 'h6'),
+                    ], children2: [
+                        wrap_head('ICSS 306', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Ethics and Social Philosophy', 'h6'),
+                    ], children2: [
+                        wrap_head('ICPH 304', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Communication for Technical Professions', 'h6'),
+                    ], children2: [
+                        wrap_head('FCWR 304', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('American Immigrant Literature', 'h6'),
+                    ], children2: [
+                        wrap_head('ICLT 301', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Writing II: Foundations of Research Writing for International Students', 'h6'),
+                    ], children2: [
+                        wrap_head('FCWR 161', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Writing I: Foundations of College Composition for International Students', 'h6'),
+                    ], children2: [
+                        wrap_head('FCWR 111', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Computer, Internet and Society', 'h6'),
+                    ], children2: [
+                        wrap_head('ETCS 108', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Career Discovery', 'h6'),
+                    ], children2: [
+                        wrap_head('ETCS 105', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Foundations of Speech Communication', 'h6'),
+                    ], children2: [
+                        wrap_head('FCSP 105', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Foundations of Scientific Process', 'h6'),
+                    ], children2: [
+                        wrap_head('FCSC 101', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('Foundations of Inquiry', 'h6'),
+                    ], children2: [
+                        wrap_head('FCIQ 101', 'h6'),
+                    ]),
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3', children1: [
+            wrap_collapse_control('George W. Hewlett High School', 'h3', shown: false, target: 'education-hewlett'),
+        ], children2: [
+            wrap_head('Sep.&nbsp;2011 - Jun.&nbsp;2015', 'h5'),
+        ]),
+        wrap_container('education-hewlett', class: 'pb-1', children: [
+            wrap_item_simple('Hewlett, NY', 'h5'),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('New York State Regents Diploma', 'h4', shown: true, target: 'education-hewlett-diploma'),
+            ], children2: [
+                wrap_head('Jun.&nbsp;2015', 'h5'),
+            ]),
+            wrap_container('education-hewlett-diploma', shown: true, children: [
+                wrap_items(children1: [
+                    wrap_head('Advanced Designation with Honors', 'h5'),
+                    wrap_head('Mastery in Math & Science', 'h5'),
+                ], children2: [
+                    wrap_head('WGPA: 98.21/100.00', 'h5'),
+                ]),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Courses', 'h4', shown: true, target: 'education-hewlett-courses'),
+            ]),
+            wrap_container('education-hewlett-courses', shown: true, children: [
+                wrap_items(children1: [
+                    // wrap_collapse_control('College Board Advanced Placement', 'h5', shown: true, target: 'education-hewlett-courses-ap'),
+                    wrap_item_simple('College Board Advanced Placement', 'h5'),
+                ]),
+                wrap_container('education-hewlett-courses-ap', shown: true, children: [
+                    wrap_item_simple('Computer Science A', 'h6'),
+                    wrap_item_simple('Calculus BC', 'h6'),
+                    wrap_item_simple('Chemistry', 'h6'),
+                    wrap_item_simple('Physics 1', 'h6'),
+                ]),
+                wrap_items(children1: [
+                    // wrap_collapse_control('Syracuse University Project Advance', 'h5', shown: true, target: 'education-hewlett-courses-supa'),
+                    wrap_item_simple('Syracuse University Project Advance', 'h5'),
+                ]),
+                wrap_container('education-hewlett-courses-supa', shown: true, children: [
+                    wrap_items(children1: [
+                        wrap_head('Economic Ideas and Issues', 'h6'),
+                    ], children2: [
+                        wrap_head('ECN 203', 'h6'),
+                    ]),
+                    wrap_items(children1: [
+                        wrap_head('An Introduction to the Analysis of Public Policy', 'h6'),
+                    ], children2: [
+                        wrap_head('PAF 101', 'h6'),
+                    ]),
+                ]),
+            ]),
+        ]),
+    ]),
+
+    wrap_section('Skills', 'h2', 'skills', class1: 'pb-2', children: [
+        wrap_items('pt-2', children1: [
+            wrap_collapse_control('Computer Science', 'h3', shown: true, target: 'skills-cs'),
+        ]),
+        wrap_container('skills-cs', class: 'pb-1', shown: true, children: [
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Programming Language', 'h4', shown: true, target: 'skills-cs-language'),
+            ]),
+            wrap_container('skills-cs-language', shown: true, children: [
+                wrap_item_simple('<b>Python3</b>', 'h5'),
+                wrap_container('skills-cs-language-python', class: 'pb-2', shown: true, children: [
+                    wrap_item_list(width: '11em', children: [
+                        'atlassian-python-api',
+                        'xlwings/pywin32',
+                        'pyodbc',
+                        'pyotp',
+                        'Selenium',
+                        'Scrapy',
+                        'xlsxwriter',
+                        'matplotlib',
+                        'tk/ttkthemes',
+                        'PySimpleGUI',
+                    ]),
+                ]),
+                wrap_item_simple('<b>JavaScript</b>', 'h5'),
+                wrap_item_simple('Java 8', 'h5'),
+                wrap_item_simple('PHP 8.3', 'h5'),
+                wrap_item_simple('C23/C++23', 'h5'),
+            ]),
+        ]),
+    ]),
+
+    wrap_section('Volunteer Roles', 'h2', 'volunteer', children: [
+    ]),
+
+    wrap_section('Activities', 'h2', 'activities', children: [
+    ]),
+
+    wrap_section('Projects', 'h2', 'projects', children: [
+    ]),
+
 ));
 echo "\n";
 
 /*
 
-
-
-
-
-
-
-  make_section_start('Skills', 'h2', 'skills');
-    make_item_start('pt-2');
-      make_collapse_control('Computer Science', 'h3', true, 'skills-cs');
-    make_item_end();
-    make_container_start('skills-cs', true);
-      make_item_start('pt-2');
-        make_collapse_control('Programming Language', 'h4', true, 'skills-cs-language');
-      make_item_end();
-      make_container_start('skills-cs-language', true);
         make_item_simple('Java 8', 'h5');
         
         make_item_simple('JavaScript', 'h5');
         
         make_item_simple('Python3', 'h5');
+        // python packages
         
         make_item_simple('PHP8', 'h5');
         
@@ -429,344 +767,17 @@ echo "\n";
       make_container_end();
     make_container_end();
   make_section_end();
-  
-  make_section_start('Education', 'h2', 'education');
-    make_item_start('pt-2');
-      make_collapse_control('New York Institute of Technology', 'h3', true, 'education-nyit');
-    make_item_middle();
-      make_head('Sep.&nbsp;2015 - Dec.&nbsp;2018', 'h5');
-    make_item_end();
-    make_container_start('education-nyit', true);
-      make_item_simple('New York, NY', 'h5');
-      
-      make_item_start('pt-2');
-        make_head('Bachelor&nbsp;of&nbsp;Science, Computer&nbsp;Science', 'h4');
-        make_head('Mathematics Minor', 'h5');
-      make_item_middle();
-        make_head('Dec.&nbsp;2018', 'h5');
-      make_item_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Honors', 'h4', true, 'education-nyit-honors');
-      make_item_end();
-      make_container_start('education-nyit-honors', true);
-        make_item_start();
-          make_head('summa&nbsp;cum&nbsp;laude', 'h5');
-        make_item_middle();
-          make_head('CGPA: 3.96/4.00', 'h5');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Computer&nbsp;Science Faculty&nbsp;Award', 'h5');
-        make_item_middle();
-          make_head('May.&nbsp;2019', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_collapse_control('Presidential Honor List', 'h5', false, 'education-nyit-honors-presidential');
-        make_item_end();
-        make_container_start('education-nyit-honors-presidential');
-          make_item_simple('Fall 2015');
-          make_item_simple('Spring 2016');
-          make_item_simple('Fall 2016');
-          make_item_simple('Spring 2017');
-          make_item_simple('Fall 2017');
-          make_item_simple('Spring 2018');
-          make_item_simple('Fall 2018');
-        make_container_end();
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Courses', 'h4', true, 'education-nyit-courses');
-      make_item_end();
-      make_container_start('education-nyit-courses', true);
-        make_item_start();
-          make_head('Senior Proejct', 'h5');
-        make_item_middle();
-          make_head('CSCI 455', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Big Data Management &amp; Analytics', 'h5');
-        make_item_middle();
-          make_head('CSCI 436', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Information Retrieval', 'h5');
-        make_item_middle();
-          make_head('CSCI 426', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Introduction to Data Mining', 'h5');
-        make_item_middle();
-          make_head('CSCI 415', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Introduction to Software Engineering', 'h5');
-        make_item_middle();
-          make_head('CSCI 380', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Artificial Intelligence I', 'h5');
-        make_item_middle();
-          make_head('CSCI 355', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Introduction to Network and Internet Security', 'h5');
-        make_item_middle();
-          make_head('CSCI 352', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Computer Networks', 'h5');
-        make_item_middle();
-          make_head('CSCI 345', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Design and Analysis of Algorithms', 'h5');
-        make_item_middle();
-          make_head('CSCI 335', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_collapse_control('More Computer Science Courses', 'h5', false, 'education-nyit-courses-csci');
-        make_item_end();
-        make_container_start('education-nyit-courses-csci');
-          
-          make_item_start();
-            make_head('Operating Systems', 'h6');
-          make_item_middle();
-            make_head('CSCI 330', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Programming Language Concepts', 'h6');
-          make_item_middle();
-            make_head('CSCI 318', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Theory of Computation', 'h6');
-          make_item_middle();
-            make_head('CSCI 312', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Database Management', 'h6');
-          make_item_middle();
-            make_head('CSCI 300', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Probability and Statistics for Computer Science', 'h6');
-          make_item_middle();
-            make_head('CSCI 270', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Data Structures', 'h6');
-          make_item_middle();
-            make_head('CSCI 260', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Elements of Discrete Structures', 'h6');
-          make_item_middle();
-            make_head('CSCI 235', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Computer Programming II', 'h6');
-          make_item_middle();
-            make_head('CSCI 185', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Computer Organization and Architecture', 'h6');
-          make_item_middle();
-            make_head('CSCI 155', 'h6');
-          make_item_end();
-        make_container_end();
-        
-        make_item_start();
-          make_collapse_control('Mathematics Courses', 'h5', false, 'education-nyit-courses-math');
-        make_item_end();
-        make_container_start('education-nyit-courses-math');
-          make_item_start();
-            make_head('Advanced Seminar', 'h6');
-          make_item_middle();
-            make_head('MATH 460', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Functions of a Complex Variable', 'h6');
-          make_item_middle();
-            make_head('MATH 360', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Differential Equations', 'h6');
-          make_item_middle();
-            make_head('MATH 320', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Linear Algebra', 'h6');
-          make_item_middle();
-            make_head('MATH 310', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Calculus III', 'h6');
-          make_item_middle();
-            make_head('MATH 260', 'h6');
-          make_item_end();
-        make_container_end();
-        
-        make_item_start();
-          make_collapse_control('Other Courses', 'h5', false, 'education-nyit-courses-other');
-        make_item_end();
-        make_container_start('education-nyit-courses-other');
-          make_item_start();
-            make_head('Technology and Global Issues', 'h6');
-          make_item_middle();
-            make_head('IENG 400', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Modern New York', 'h6');
-          make_item_middle();
-            make_head('ICSS 306', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Ethics and Social Philosophy', 'h6');
-          make_item_middle();
-            make_head('ICPH 304', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Communication for Technical Professions', 'h6');
-          make_item_middle();
-            make_head('FCWR 304', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('American Immigrant Literature', 'h6');
-          make_item_middle();
-            make_head('ICLT 301', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Writing II: Foundations of Research Writing for International Students', 'h6');
-          make_item_middle();
-            make_head('FCWR 161', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Writing I: Foundations of College Composition for International Students', 'h6');
-          make_item_middle();
-            make_head('FCWR 111', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Computer, Internet and Society', 'h6');
-          make_item_middle();
-            make_head('ETCS 108', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Career Discovery', 'h6');
-          make_item_middle();
-            make_head('ETCS 105', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Foundations of Speech Communication', 'h6');
-          make_item_middle();
-            make_head('FCSP 105', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Foundations of Scientific Process', 'h6');
-          make_item_middle();
-            make_head('FCSC 101', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('Foundations of Inquiry', 'h6');
-          make_item_middle();
-            make_head('FCIQ 101', 'h6');
-          make_item_end();
-        make_container_end();
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('George W. Hewlett High School', 'h3', false, 'education-hewlett');
-    make_item_middle();
-      make_head('Sep.&nbsp;2011 - Jun.&nbsp;2015', 'h5');
-    make_item_end();
-    make_container_start('education-hewlett');
-      make_item_simple('Hewlett, NY', 'h5');
-      
-      make_item_start('pt-2');
-        make_collapse_control('New York State Regents Diploma', 'h4', true, 'education-hewlett-diploma');
-      make_item_middle();
-        make_head('Jun.&nbsp;2015', 'h5');
-      make_item_end();
-      make_container_start('education-hewlett-diploma', true);
-        make_item_start();
-          make_head('Advanced Designation with Honors', 'h5');
-          make_head('Mastery in Math & Science', 'h5');
-        make_item_middle();
-          make_head('WGPA: 98.21/100.00', 'h5');
-        make_item_end();
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Courses', 'h4', true, 'education-hewlett-courses');
-      make_item_end();
-      make_container_start('education-hewlett-courses', true);
-        make_item_start();
-          make_collapse_control('College Board Advanced Placement', 'h5', true, 'education-hewlett-courses-ap');
-        make_item_end();
-        make_container_start('education-hewlett-courses-ap', true);
-          make_item_simple('Computer Science A', 'h6');
-          
-          make_item_simple('Calculus BC', 'h6');
-          
-          make_item_simple('Chemistry', 'h6');
-          
-          make_item_simple('Physics 1', 'h6');
-        make_container_end();
-        
-        make_item_start();
-          make_collapse_control('Syracuse University Project Advance', 'h5', true, 'education-hewlett-courses-supa');
-        make_item_end();
-        make_container_start('education-hewlett-courses-supa', true);
-          make_item_start();
-            make_head('Economic Ideas and Issues', 'h6');
-          make_item_middle();
-            make_head('ECN 203', 'h6');
-          make_item_end();
-          
-          make_item_start();
-            make_head('An Introduction to the Analysis of Public Policy', 'h6');
-          make_item_middle();
-            make_head('PAF 101', 'h6');
-          make_item_end();
-        make_container_end();
-      make_container_end();
-    make_container_end();
-  make_section_end();
-  
+
+
+
+
+
+
+
+
+
+
+
   make_section_start('Work Experience', 'h2', 'work');
     make_item_start('pt-2');
       make_collapse_control('New York Institute of Technology', 'h3', true, 'work-nyit');
