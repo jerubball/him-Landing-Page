@@ -49,33 +49,40 @@ function wrap_title(string $title, string $head) {
     ];
 }
 
-function wrap_head(string $text, string $head, string $class = null) {
+function wrap_head(string $text, string $head = 'span', string $class = '') {
     return [
-        '<'.$head.' class="'.($class ? $class : '').'">'.$text.'</'.$head.'>',
+        '<'.$head.($class ? ' class="'.$class.'"' : '').'>'.$text.'</'.$head.'>',
     ];
 }
 
-function wrap_section(string $title, string $head, string $sectionid = null, bool $collapse_button = true, bool $sticky = true, string $class1 = null, string $class2 = null, string $class3 = null, $children = []) {
+function wrap_spacer(string $class = 'p-2') {
+    return [
+        '<div class="'.$class.'">',
+        '</div>'
+    ];
+}
+
+function wrap_section(string $title, string $sectionid, string $head = 'h2', bool $collapse_button = true, bool $sticky = true, string $class_row = 'pb-2', string $class_title = '', string $class_content = '', $children = []) {
     $result = [
         '<div class="p-2">',
-        '  <div class="container _section">',
-        '    <div class="row'.($class1 ? ' '.$class1 : '').'">',
-        '      <div class="col-md-3'.($class2 ? ' '.$class2 : '').'">',
+        '  <div class="container _section" id="'.$sectionid.'">',
+        '    <div class="row'.($class_row ? ' '.$class_row : '').'">',
+        '      <div class="col-md-3'.($class_title ? ' '.$class_title : '').'">',
         '        <div class="py-2 header'.($sticky ? ' sticky' : '').'">',
-        '          <'.$head.' class="">'.$title.'</'.$head.'>',
+        '          <'.$head.'>'.$title.'</'.$head.'>',
     ];
     if ($collapse_button) {
         array_push($result,
-            '          <a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll(\''.($sectionid ?: '').'\', false)"><i class="collapse-all fa fa-expand"></i></a>',
-            '          <a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll(\''.($sectionid ?: '').'\', true)"><i class="collapse-all fa fa-compress"></i></a>',
+            '          <a class="pl-1" title="expand all" role="button" href="" onclick="return Script.collapseAll(\''.$sectionid.'\', false)"><i class="collapse-all fa fa-expand"></i></a>',
+            '          <a class="pl-1" title="collapse all" role="button" href="" onclick="return Script.collapseAll(\''.$sectionid.'\', true)"><i class="collapse-all fa fa-compress"></i></a>',
             '          <a class="pl-1" title="jump to top" role="button" href="#title"><i class="collapse-all fa fa-level-up"></i></a>',
         );
     }
     array_push($result,
         '        </div>',
         '      </div>',
-        '      <div class="col-md-9'.($class3 ? ' '.$class3 : '').'">',
-        '        <div class="container _content"'.($sectionid ? ' id="'.$sectionid : '').'">',
+        '      <div class="col-md-9'.($class_content ? ' '.$class_content : '').'">',
+        '        <div class="container _content" id="'.$sectionid.'-content">',
     );
     append_children($result, $children, 5);
     array_push($result,
@@ -98,7 +105,7 @@ function wrap_collapse_control(string $title, string $head, bool $shown, string 
     ];
 }
 
-function wrap_container(string $containerid, string $class = null, bool $shown = false, $children = []) {
+function wrap_container(string $containerid, string $class = '', bool $shown = false, $children = []) {
     $result = [
         '<div class="container collapse'.($shown ? ' show' : '').($class ? ' '.$class : '').'" id="'.$containerid.'">',
     ];
@@ -109,7 +116,7 @@ function wrap_container(string $containerid, string $class = null, bool $shown =
     return $result;
 }
 
-function wrap_div(string $class, string $divid = null, $children = []) {
+function wrap_div(string $class = '', string $divid = '', $children = []) {
     $result = [
         '<div class="'.$class.'"'.($divid ? ' id="'.$divid.'"' : '').'>',
     ];
@@ -144,24 +151,24 @@ function wrap_items(string $class1 = null, string $divid = null, string $class2 
     return $result;
 }
 
-function wrap_item_simple(string $text, string $head = 'h6') {
+function wrap_item_simple(string $text, string $head = 'span') {
     return [
         '<div class="row _item">', 
-        '  <div class="col-lg-12">', 
+        '  <div class="col-12">', 
         '    '.wrap_head($text, $head)[0],
         '  </div>',
         '</div>',
     ];
 }
 
-function wrap_item_list(string $width = null, $children = []) {
+function wrap_item_list(string $width = '', string $class_col = '', $children = []) {
     $result = [
-        '<div class="row _list">'
+        '<div class="row _list pb-2">'
     ];
     foreach ($children as &$item) {
         array_push($result,
-            '  <div class="col"'.( $width ? ' style="flex: 0 0 '.$width.';"' : '').'>',
-            '    <span>'.$item.'</span>',
+            '  <div class="col'.($class_col ? ' '.$class_col : '').'"'.($width ? ' style="flex-basis:'.$width.';"' : '').'>',
+            '    <span class="pb-1">'.$item.'</span>',
             '  </div>',
         );
     }
@@ -179,7 +186,7 @@ echo "  ";
 echo implode("\n  ", array_merge(
     wrap_title('HIM&apos;s Resume', 'h1'),
 
-    wrap_section('Hasol&nbsp;Im', 'h2', 'name', collapse_button: false, sticky: true, children: [
+    wrap_section('Hasol&nbsp;Im', 'name', collapse_button: false, sticky: true, children: [
         wrap_items('pt-2', children1: [
             wrap_head('<a href="mailto:him.nyit@gmail.com"><i class="fa fa-envelope-square" aria-hidden="true"></i> him.nyit@gmail.com</a>', 'h4'),
             wrap_head('<a href="mailto:contact@hasol.co"><i class="fa fa-envelope-square" aria-hidden="true"></i> contact@hasol.co</a>', 'h4'),
@@ -194,21 +201,21 @@ echo implode("\n  ", array_merge(
             wrap_item_simple('<a href="#education"><i class="fa-solid fa-graduation-cap fa-fw"></i> Education</a>', 'h5'),
             wrap_item_simple('<a href="#skills"><i class="fa-solid fa-hammer fa-fw"></i> Skills</a>', 'h5'),
             wrap_item_simple('<a href="#volunteer"><i class="fa-solid fa-hand-holding-heart fa-fw"></i> Volunteer Roles</a>', 'h5'),
-            wrap_item_simple('<a href="#activities"><i class="fa-solid fa-users fa-fw"></i> Activities</a>', 'h5'),
-            wrap_item_simple('<a href="#projects"><i class="fa-solid fa-diagram-project fa-fw"></i> Projects</a>', 'h5'),
+            wrap_item_simple('<a href="#activity"><i class="fa-solid fa-users fa-fw"></i> Activities</a>', 'h5'),
+            wrap_item_simple('<a href="#project"><i class="fa-solid fa-diagram-project fa-fw"></i> Projects</a>', 'h5'),
         ]),
     ]),
 
-    wrap_section('Work Experience', 'h2', 'work', class1: 'pb-2', children: [
-        wrap_items('pt-2', children1: [
+    wrap_section('Work Experience', 'work', children: [
+        wrap_items('pt-2 align-items-center', children1: [
             wrap_collapse_control('Samsung Electronics America', 'h3', shown: true, target: 'work-samsung'),
         ], children2: [
             wrap_head('Oct.&nbsp;2021 - Present', 'h5'),
         ]),
-        wrap_container('work-samsung', class: 'pb-1', shown: true, children: [
+        wrap_container('work-samsung', class: '_section_content_item pb-1', shown: true, children: [
             wrap_item_simple('Berkeley Heights, NJ', 'h5'),
             wrap_items('pt-2 pb-1', children1: [
-                wrap_head('<i class="fa-solid fa-gears"></i> Automation Enginner', 'h4'),
+                wrap_head('<i class="fa-solid fa-gears"></i> Automation Engineer', 'h4'),
             ]),
             wrap_items('pt-0', children1: [
                 wrap_head('Contract vendor: Populus Group', 'h5'),
@@ -224,7 +231,7 @@ echo implode("\n  ", array_merge(
                 wrap_collapse_control('Highlight', 'h5', shown: true, target: 'work-samsung-summary'),
             ]),
             wrap_container('work-samsung-summary', shown: true, children: [
-                wrap_item_simple('Created computer automation projects to save time on repetitive works.', 'h5'),
+                wrap_item_simple('Created Robotic Process Automation (RPA) projects to save time on repetitive works.', 'h5'),
                 wrap_item_simple('Maintained existing automation projects to support feature changes.', 'h5'),
                 wrap_item_simple('Developed program for Chrome automation to extract and enter data on web systems.', 'h5'),
                 wrap_item_simple('Developed program for Excel automation to generate statistical reports.', 'h5'),
@@ -234,14 +241,22 @@ echo implode("\n  ", array_merge(
                 wrap_item_simple('Maintained company&apos;s remote testing infrastructure running on Linux/Ubuntu environment.', 'h5'),
                 wrap_item_simple('Collaborated on team&apos;s network testing application.', 'h5'),
             ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Recognitions', 'h5', shown: true, target: 'work-samsung-recognition'),
+            ]),
+            wrap_container('work-samsung-recognition', shown: true, children: [
+                wrap_item_simple('RPA Best Practice 2022 - FOTA Report saved 800 hours annually', 'h5'),
+                wrap_item_simple('RPA Best Practice 2023 - Binary Uploader saved 800 hours annually', 'h5'),
+                wrap_item_simple('RPA Best Practice 2024 - Excel Automation saved 200 hours annually', 'h5'),
+            ]),
         ]),
 
-        wrap_items('pt-3', children1: [
+        wrap_items('pt-3 align-items-center', children1: [
             wrap_collapse_control('New York Institute of Technology', 'h3', shown: true, target: 'work-nyit'),
         ], children2: [
             wrap_head('Jul.&nbsp;2016 - Dec.&nbsp;2018', 'h5'),
         ]),
-        wrap_container('work-nyit', class: 'pb-1', shown: true, children: [
+        wrap_container('work-nyit', class: '_section_content_item pb-1', shown: true, children: [
             wrap_item_simple('New York, NY', 'h5'),
             wrap_items('pt-2 pb-1', children1: [
                 wrap_head('<i class="fa-solid fa-chalkboard-user"></i> Tutor/Assistant', 'h4'),
@@ -259,13 +274,13 @@ echo implode("\n  ", array_merge(
         ]),
     ]),
 
-    wrap_section('Education', 'h2', 'education', class1: 'pb-2', children: [
-        wrap_items('pt-2', children1: [
+    wrap_section('Education', 'education', children: [
+        wrap_items('pt-2 align-items-center', children1: [
             wrap_collapse_control('New York Institute of Technology', 'h3', shown: true, target: 'education-nyit'),
         ], children2: [
             wrap_head('Sep.&nbsp;2015 - Dec.&nbsp;2018', 'h5'),
         ]),
-        wrap_container('education-nyit', class: 'pb-1', shown: true, children: [
+        wrap_container('education-nyit', class: '_section_content_item pb-1', shown: true, children: [
             wrap_item_simple('New York, NY', 'h5'),
             wrap_items('pt-2', children1: [
                 wrap_head('Bachelor&nbsp;of&nbsp;Science, Computer&nbsp;Science', 'h4'),
@@ -291,218 +306,220 @@ echo implode("\n  ", array_merge(
                     wrap_collapse_control('Presidential Honor List', 'h5', shown: false, target: 'education-nyit-honors-presidential'),
                 ]),
                 wrap_container('education-nyit-honors-presidential', children: [
-                    wrap_item_simple('Fall 2015'),
-                    wrap_item_simple('Spring 2016'),
-                    wrap_item_simple('Fall 2016'),
-                    wrap_item_simple('Spring 2017'),
-                    wrap_item_simple('Fall 2017'),
-                    wrap_item_simple('Spring 2018'),
-                    wrap_item_simple('Fall 2018'),
+                    wrap_item_list(class_col: 'col-6 text-nowrap', children: [
+                        'Fall 2015',
+                        'Spring 2016',
+                        'Fall 2016',
+                        'Spring 2017',
+                        'Fall 2017',
+                        'Spring 2018',
+                        'Fall 2018',
+                    ]),
                 ]),
             ]),
             wrap_items('pt-2', children1: [
                 wrap_collapse_control('Courses', 'h4', shown: true, target: 'education-nyit-courses'),
             ]),
             wrap_container('education-nyit-courses', shown: true, children: [
-                wrap_items(children1: [
-                    wrap_head('Senior Proejct', 'h5'),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Senior Project - Smart Mirror Project'),
                 ], children2: [
-                    wrap_head('CSCI 455', 'h6'),
+                    wrap_head('CSCI 455'),
                 ]),
-                wrap_items(children1: [
-                    wrap_head('Big Data Management &amp, Analytics', 'h5'),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Big Data Management &amp, Analytics'),
                 ], children2: [
-                    wrap_head('CSCI 436', 'h6'),
+                    wrap_head('CSCI 436'),
                 ]),
-                wrap_items(children1: [
-                    wrap_head('Information Retrieval', 'h5'),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Information Retrieval'),
                 ], children2: [
-                    wrap_head('CSCI 426', 'h6'),
+                    wrap_head('CSCI 426'),
                 ]),
-                wrap_items(children1: [
-                    wrap_head('Introduction to Data Mining', 'h5'),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Introduction to Data Mining'),
                 ], children2: [
-                    wrap_head('CSCI 415', 'h6'),
+                    wrap_head('CSCI 415'),
                 ]),
-                wrap_items(children1: [
-                    wrap_head('Introduction to Software Engineering', 'h5'),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Introduction to Software Engineering'),
                 ], children2: [
-                    wrap_head('CSCI 380', 'h6'),
+                    wrap_head('CSCI 380'),
                 ]),
-                wrap_items(children1: [
-                    wrap_head('Artificial Intelligence I', 'h5'),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Artificial Intelligence I'),
                 ], children2: [
-                    wrap_head('CSCI 355', 'h6'),
+                    wrap_head('CSCI 355'),
                 ]),
-                wrap_items(children1: [
-                    wrap_head('Introduction to Network and Internet Security', 'h5'),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Introduction to Network and Internet Security'),
                 ], children2: [
-                    wrap_head('CSCI 352', 'h6'),
+                    wrap_head('CSCI 352'),
                 ]),
-                wrap_items(children1: [
-                    wrap_head('Computer Networks', 'h5'),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Computer Networks'),
                 ], children2: [
-                    wrap_head('CSCI 345', 'h6'),
+                    wrap_head('CSCI 345'),
                 ]),
-                wrap_items(children1: [
-                    wrap_head('Design and Analysis of Algorithms', 'h5'),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Design and Analysis of Algorithms'),
                 ], children2: [
-                    wrap_head('CSCI 335', 'h6'),
+                    wrap_head('CSCI 335'),
                 ]),
-                wrap_items(children1: [
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Operating Systems'),
+                ], children2: [
+                    wrap_head('CSCI 330'),
+                ]),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Database Management'),
+                ], children2: [
+                    wrap_head('CSCI 300'),
+                ]),
+                wrap_items(class1: 'pt-2', children1: [
                     wrap_collapse_control('More Computer Science Courses', 'h5', shown: false, target: 'education-nyit-courses-csci'),
                 ]),
-                wrap_container('education-nyit-courses-csci', children: [
-                    wrap_items(children1: [
-                        wrap_head('Operating Systems', 'h6'),
+                wrap_container('education-nyit-courses-csci', class: 'pb-2', children: [
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Programming Language Concepts'),
                     ], children2: [
-                        wrap_head('CSCI 330', 'h6'),
+                        wrap_head('CSCI 318'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Programming Language Concepts', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Theory of Computation'),
                     ], children2: [
-                        wrap_head('CSCI 318', 'h6'),
+                        wrap_head('CSCI 312'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Theory of Computation', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Probability and Statistics for Computer Science'),
                     ], children2: [
-                        wrap_head('CSCI 312', 'h6'),
+                        wrap_head('CSCI 270'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Database Management', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Data Structures'),
                     ], children2: [
-                        wrap_head('CSCI 300', 'h6'),
+                        wrap_head('CSCI 260'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Probability and Statistics for Computer Science', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Elements of Discrete Structures'),
                     ], children2: [
-                        wrap_head('CSCI 270', 'h6'),
+                        wrap_head('CSCI 235'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Data Structures', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Computer Programming II'),
                     ], children2: [
-                        wrap_head('CSCI 260', 'h6'),
+                        wrap_head('CSCI 185'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Elements of Discrete Structures', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Computer Organization and Architecture'),
                     ], children2: [
-                        wrap_head('CSCI 235', 'h6'),
-                    ]),
-                    wrap_items(children1: [
-                        wrap_head('Computer Programming II', 'h6'),
-                    ], children2: [
-                        wrap_head('CSCI 185', 'h6'),
-                    ]),
-                    wrap_items(children1: [
-                        wrap_head('Computer Organization and Architecture', 'h6'),
-                    ], children2: [
-                        wrap_head('CSCI 155', 'h6'),
+                        wrap_head('CSCI 155'),
                     ]),
                 ]),
                 wrap_items(children1: [
                     wrap_collapse_control('Mathematics Courses', 'h5', shown: false, target: 'education-nyit-courses-math'),
                 ]),
-                wrap_container('education-nyit-courses-math', children: [
-                    wrap_items(children1: [
-                        wrap_head('Advanced Seminar', 'h6'),
+                wrap_container('education-nyit-courses-math', class: 'pb-2', children: [
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Advanced Seminar'),
                     ], children2: [
-                        wrap_head('MATH 460', 'h6'),
+                        wrap_head('MATH 460'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Functions of a Complex Variable', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Functions of a Complex Variable'),
                     ], children2: [
-                        wrap_head('MATH 360', 'h6'),
+                        wrap_head('MATH 360'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Differential Equations', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Differential Equations'),
                     ], children2: [
-                        wrap_head('MATH 320', 'h6'),
+                        wrap_head('MATH 320'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Linear Algebra', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Linear Algebra'),
                     ], children2: [
-                        wrap_head('MATH 310', 'h6'),
+                        wrap_head('MATH 310'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Calculus III', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Calculus III'),
                     ], children2: [
-                        wrap_head('MATH 260', 'h6'),
+                        wrap_head('MATH 260'),
                     ]),
                 ]),
                 wrap_items(children1: [
                     wrap_collapse_control('Other Courses', 'h5', shown: false, target: 'education-nyit-courses-other'),
                 ]),
-                wrap_container('education-nyit-courses-other', children: [
-                    wrap_items(children1: [
-                        wrap_head('Technology and Global Issues', 'h6'),
+                wrap_container('education-nyit-courses-other', class: 'pb-2', children: [
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Technology and Global Issues'),
                     ], children2: [
-                        wrap_head('IENG 400', 'h6'),
+                        wrap_head('IENG 400'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Modern New York', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Modern New York'),
                     ], children2: [
-                        wrap_head('ICSS 306', 'h6'),
+                        wrap_head('ICSS 306'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Ethics and Social Philosophy', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Ethics and Social Philosophy'),
                     ], children2: [
-                        wrap_head('ICPH 304', 'h6'),
+                        wrap_head('ICPH 304'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Communication for Technical Professions', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Communication for Technical Professions'),
                     ], children2: [
-                        wrap_head('FCWR 304', 'h6'),
+                        wrap_head('FCWR 304'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('American Immigrant Literature', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('American Immigrant Literature'),
                     ], children2: [
-                        wrap_head('ICLT 301', 'h6'),
+                        wrap_head('ICLT 301'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Writing II: Foundations of Research Writing for International Students', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Writing II: Foundations of Research Writing for International Students'),
                     ], children2: [
-                        wrap_head('FCWR 161', 'h6'),
+                        wrap_head('FCWR 161'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Writing I: Foundations of College Composition for International Students', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Writing I: Foundations of College Composition for International Students'),
                     ], children2: [
-                        wrap_head('FCWR 111', 'h6'),
+                        wrap_head('FCWR 111'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Computer, Internet and Society', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Computer, Internet and Society'),
                     ], children2: [
-                        wrap_head('ETCS 108', 'h6'),
+                        wrap_head('ETCS 108'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Career Discovery', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Career Discovery'),
                     ], children2: [
-                        wrap_head('ETCS 105', 'h6'),
+                        wrap_head('ETCS 105'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Foundations of Speech Communication', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Foundations of Speech Communication'),
                     ], children2: [
-                        wrap_head('FCSP 105', 'h6'),
+                        wrap_head('FCSP 105'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Foundations of Scientific Process', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Foundations of Scientific Process'),
                     ], children2: [
-                        wrap_head('FCSC 101', 'h6'),
+                        wrap_head('FCSC 101'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('Foundations of Inquiry', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Foundations of Inquiry'),
                     ], children2: [
-                        wrap_head('FCIQ 101', 'h6'),
+                        wrap_head('FCIQ 101'),
                     ]),
                 ]),
             ]),
         ]),
 
-        wrap_items('pt-3', children1: [
+        wrap_items('pt-3 align-items-center', children1: [
             wrap_collapse_control('George W. Hewlett High School', 'h3', shown: false, target: 'education-hewlett'),
         ], children2: [
             wrap_head('Sep.&nbsp;2011 - Jun.&nbsp;2015', 'h5'),
         ]),
-        wrap_container('education-hewlett', class: 'pb-1', children: [
+        wrap_container('education-hewlett', class: '_section_content_item pb-1', children: [
             wrap_item_simple('Hewlett, NY', 'h5'),
             wrap_items('pt-2', children1: [
                 wrap_collapse_control('New York State Regents Diploma', 'h4', shown: true, target: 'education-hewlett-diploma'),
@@ -526,561 +543,503 @@ echo implode("\n  ", array_merge(
                     wrap_item_simple('College Board Advanced Placement', 'h5'),
                 ]),
                 wrap_container('education-hewlett-courses-ap', shown: true, children: [
-                    wrap_item_simple('Computer Science A', 'h6'),
-                    wrap_item_simple('Calculus BC', 'h6'),
-                    wrap_item_simple('Chemistry', 'h6'),
-                    wrap_item_simple('Physics 1', 'h6'),
+                    wrap_item_list(class_col: 'col-12', children: [
+                        'Computer Science A',
+                        'Calculus BC',
+                        'Chemistry',
+                        'Physics 1',
+                    ]),
                 ]),
                 wrap_items(children1: [
                     // wrap_collapse_control('Syracuse University Project Advance', 'h5', shown: true, target: 'education-hewlett-courses-supa'),
                     wrap_item_simple('Syracuse University Project Advance', 'h5'),
                 ]),
-                wrap_container('education-hewlett-courses-supa', shown: true, children: [
-                    wrap_items(children1: [
-                        wrap_head('Economic Ideas and Issues', 'h6'),
+                wrap_container('education-hewlett-courses-supa', class: 'pb-2', shown: true, children: [
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('Economic Ideas and Issues'),
                     ], children2: [
-                        wrap_head('ECN 203', 'h6'),
+                        wrap_head('ECN 203'),
                     ]),
-                    wrap_items(children1: [
-                        wrap_head('An Introduction to the Analysis of Public Policy', 'h6'),
+                    wrap_items(class1: 'pb-1', children1: [
+                        wrap_head('An Introduction to the Analysis of Public Policy'),
                     ], children2: [
-                        wrap_head('PAF 101', 'h6'),
+                        wrap_head('PAF 101'),
                     ]),
                 ]),
             ]),
         ]),
     ]),
 
-    wrap_section('Skills', 'h2', 'skills', class1: 'pb-2', children: [
+    wrap_section('Skills', 'skills', children: [
         wrap_items('pt-2', children1: [
             wrap_collapse_control('Computer Science', 'h3', shown: true, target: 'skills-cs'),
         ]),
-        wrap_container('skills-cs', class: 'pb-1', shown: true, children: [
+        wrap_container('skills-cs', class: '_section_content_item pb-1', shown: true, children: [
             wrap_items('pt-2', children1: [
                 wrap_collapse_control('Programming Language', 'h4', shown: true, target: 'skills-cs-language'),
             ]),
             wrap_container('skills-cs-language', shown: true, children: [
-                wrap_item_simple('<b>Python3</b>', 'h5'),
-                wrap_container('skills-cs-language-python', class: 'pb-2', shown: true, children: [
-                    wrap_item_list(width: '11em', children: [
+                wrap_item_simple('<i class="fa-brands fa-python"></i> <b>Python3</b>', 'h5'),
+                wrap_container('skills-cs-language-python', shown: true, children: [
+                    wrap_item_list(width: '11em', class_col: 'flex-grow-0 text-nowrap', children: [
                         'atlassian-python-api',
-                        'xlwings/pywin32',
+                        'beautifulsoup4',
+                        'matplotlib',
+                        'psycopg',
                         'pyodbc',
                         'pyotp',
-                        'Selenium',
-                        'Scrapy',
+                        'pywin32',
+                        'tk/ttk/ttkthemes',
                         'xlsxwriter',
-                        'matplotlib',
-                        'tk/ttkthemes',
+                        'xlwings',
+                        'Django',
                         'PySimpleGUI',
+                        'Scrapy',
+                        'Selenium',
+                      ]),
+                ]),
+                wrap_item_simple('<i class="fa-brands fa-java"></i> Java 8', 'h5'),
+                wrap_item_simple('C23/C++23', 'h5'),
+                wrap_item_simple('VBA', 'h5'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Full Stack Web Development', 'h4', shown: true, target: 'skills-cs-webdev'),
+            ]),
+            wrap_container('skills-cs-webdev', shown: true, children: [
+                wrap_item_simple('<i class="fa-brands fa-js"></i> <b>JavaScript/ES2021</b>', 'h5'),
+                wrap_container('skills-cs-webdev-js', shown: true, children: [
+                    wrap_item_list(class_col: 'text-nowrap', children: [
+                        'fetch/async/await',
+                        'jQuery',
+                        'DataTables',
                     ]),
                 ]),
-                wrap_item_simple('<b>JavaScript</b>', 'h5'),
-                wrap_item_simple('Java 8', 'h5'),
-                wrap_item_simple('PHP 8.3', 'h5'),
-                wrap_item_simple('C23/C++23', 'h5'),
+                wrap_item_simple('<i class="fa-brands fa-php"></i> PHP 8.3', 'h5'),
+                wrap_item_simple('<i class="fa-brands fa-html5"></i> HTML5 / <i class="fa-brands fa-css3-alt"></i> CSS3', 'h5'),
+                wrap_container('skills-cs-webdev-html-css', shown: true, children: [
+                    wrap_item_list(class_col: 'text-nowrap', children: [
+                        'Bootstrap 5.2',
+                        'Font Awesome',
+                        'Atlassian User Interface',
+                    ]),
+                ]),
+                wrap_item_simple('Apache HTTPD 2.4', 'h5'),
+                wrap_item_simple('MySQL 8.4 / MariaDB 11.4', 'h5'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('System Administration', 'h4', shown: true, target: 'skills-cs-sysadmin'),
+            ]),
+            wrap_container('skills-cs-sysadmin', shown: true, children: [
+                wrap_item_simple('<i class="fa-brands fa-ubuntu"></i> Ubuntu 24.10 / <i class="fa-brands fa-linux"></i> Linux 6.11', 'h5'),
+                wrap_item_simple('<b>Bash Shell Script</b>', 'h5'),
+                wrap_item_simple('OpenSSH client, server, configuration, tunneling, and file transfer', 'h5'),
+                wrap_item_simple('Network, router, firewall management, and port forwarding', 'h5'),
+                wrap_item_simple('Git command line interface', 'h5'),
+                wrap_item_simple('Domain management and Dynamic DNS configuration', 'h5'),
+                wrap_item_simple('<i class="fa-brands fa-windows"></i> Windows Systems', 'h5'),
+                wrap_item_simple('Batch Script / PowerShell Script', 'h5'),
+                wrap_item_simple('Registry Editor / Group Policy Settings', 'h5'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Database Management', 'h4', shown: true, target: 'skills-cs-dbmgmt'),
+            ]),
+            wrap_container('skills-cs-dbmgmt', shown: true, children: [
+                wrap_item_simple('MySQL / MariaDB / PostgreSQL', 'h5'),
+                wrap_item_simple('System configuration', 'h5'),
+                wrap_item_simple('User management', 'h5'),
+                wrap_item_simple('Schema creation', 'h5'),
+                wrap_item_simple('CRUD operations', 'h5'),
+                wrap_item_simple('MongoDB / SQLite', 'h5'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Code Editors', 'h4', shown: false, target: 'skills-cs-editor'),
+            ]),
+            wrap_container('skills-cs-editor', children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Visual Studio Code',
+                    'IntelliJ IDEA / Android Studio',
+                    'Eclipse',
+                    'Notepad++',
+                    'GNU nano',
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3', children1: [
+            wrap_collapse_control('Technology', 'h3', shown: true, target: 'skills-technology'),
+        ]),
+        wrap_container('skills-technology', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Office Productivity', 'h4', shown: false, target: 'skills-technology-office'),
+            ]),
+            wrap_container('skills-technology-office', children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Microsoft Word',
+                    'Microsoft Excel',
+                    'Microsoft PowerPoint',
+                    'Adobe Photoshop',
+                    'GNU Image Manipulator Program',
+                ]),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Electronics', 'h4', shown: false, target: 'skills-technology-electronics'),
+            ]),
+            wrap_container('skills-technology-electronics', children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Cat5/5e/6 Cable Termination',
+                    'Soldering / Circuit Assembly',
+                    'Arduino / Breadboard',
+                ]),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Live Sound System', 'h4', shown: false, target: 'skills-technology-audio'),
+            ]),
+            wrap_container('skills-technology-audio', children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'System configuration',
+                    'Analog and Digital mixer control',
+                    'Setup and teardown',
+                    'Cable management',
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3', children1: [
+            wrap_collapse_control('Communication', 'h3', shown: true, target: 'skills-communication'),
+        ]),
+        wrap_container('skills-communication', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_items(children1: [
+                wrap_item_simple('Language', 'h5'),
+            ]),
+            wrap_container('skills-communication-language', class: 'pb-2', shown: true, children: [
+                wrap_items(class1: 'pb-1', class2: 'col-5', class3: 'col-7', children1: [
+                    wrap_head('Korean'),
+                ], children2: [
+                    wrap_head('First language'),
+                ]),
+                wrap_items(class1: 'pb-1', class2: 'col-5', class3: 'col-7', children1: [
+                    wrap_head('English'),
+                ], children2: [
+                    wrap_head('Full proficiency'),
+                ]),
+            ]),
+            wrap_items(children1: [
+                wrap_item_simple('Speech', 'h5'),
+            ]),
+            wrap_container('skills-communication-speech', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Public Speaking',
+                    'Presentation',
+                    'Teaching/Training',
+                ]),
             ]),
         ]),
     ]),
 
-    wrap_section('Volunteer Roles', 'h2', 'volunteer', children: [
+    wrap_section('Volunteer Roles', 'volunteer', children: [
+        wrap_items('pt-2 align-items-center', children1: [
+            wrap_collapse_control('New Vision Korean Methodist Church', 'h3', shown: true, target: 'volunteer-church'),
+        ], children2: [
+            wrap_head('Feb.&nbsp;2011 - Present', 'h5'),
+        ]),
+        wrap_container('volunteer-church', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('East Rockaway, NY', 'h5'),
+            wrap_items('pt-2 pb-1', children1: [
+                wrap_head('Technology Staff', 'h4'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'volunteer-church-summary'),
+            ]),
+            wrap_container('volunteer-church-summary', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Maintained organizational domain with associated website and email server.',
+                    'Configured network system of the church building to increase wi-fi coverage.',
+                    'Maintained shared network printer and other equipments.',
+                    'Managed soundboard for PA system to integrate with live streaming using OBS Studio.',
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3 align-items-center', children1: [
+            wrap_collapse_control('ALE Mission - Futuro Lleno de Esperanza', 'h3', shown: true, target: 'volunteer-mission'),
+        ], children2: [
+            wrap_head('May.&nbsp;2022 - Present', 'h5'),
+        ]),
+        wrap_container('volunteer-mission', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('Union Village, NJ', 'h5'),
+            wrap_items('pt-2 pb-1', children1: [
+                wrap_head('Director of Technology', 'h4'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'volunteer-mission-summary'),
+            ]),
+            wrap_container('volunteer-mission-summary', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Maintained organizational domain with associated website and email server.',
+                    'Deployed student laptops and tablets with selection of software for new learning environment.',
+                    'Organized team&apos;s Google Drive with project plans and meeting minutes.',
+                ]),
+            ]),
+        ]),
     ]),
 
-    wrap_section('Activities', 'h2', 'activities', children: [
+    wrap_section('Activities', 'activity', children: [
+        wrap_items('pt-2 align-items-center', children1: [
+            wrap_collapse_control('Institute of Electrical and Electronics Engineers', 'h3', shown: true, target: 'activity-ieee'),
+        ], children2: [
+            wrap_head('Feb.&nbsp;2018 - May.&nbsp;2019', 'h5'),
+        ]),
+        wrap_container('activity-ieee', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('NYIT Chapter, New York, NY', 'h5'),
+            wrap_items('pt-2 pb-1', children1: [
+                wrap_head('SysAdmin for United Engineering', 'h4'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'activity-ieee-summary'),
+            ]),
+            wrap_container('activity-ieee-summary', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Organizing shared club room',
+                    'Installed and managed Linux OS in computers',
+                    'Set up cluster computing, server hosting, remote access',
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3 align-items-center', children1: [
+            wrap_collapse_control('Golden Key International Honour Society', 'h3', shown: true, target: 'activity-gk'),
+        ], children2: [
+            wrap_head('Sep.&nbsp;2016 - Dec.&nbsp;2018', 'h5'),
+        ]),
+        wrap_container('activity-gk', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('NYIT Chapter, New York, NY', 'h5'),
+            wrap_items('pt-2 pb-1', children1: [
+                wrap_head('President', 'h4'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'activity-gk-summary'),
+            ]),
+            wrap_container('activity-gk-summary', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Coordinating events and sending email announcements',
+                    'Communicating with Chapter Advisor',
+                    'Maintaining student portal, member roster, and social media page',
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3 align-items-center', children1: [
+            wrap_collapse_control('FIRST Tech Challenge Robotics Team', 'h3', shown: true, target: 'activity-innovo'),
+        ], children2: [
+            wrap_head('Sep.&nbsp;2011 - May.&nbsp;2015', 'h5'),
+        ]),
+        wrap_container('activity-innovo', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('Hewlett Robotics Team, Hewlett, NY', 'h5'),
+            wrap_items('pt-2 pb-1', children1: [
+                wrap_head('<i class="fa-regular fa-lightbulb"></i> Lead Programmer of Team 5477: Innovo', 'h4'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'activity-innovo-summary'),
+            ]),
+            wrap_container('activity-innovo-summary', shown: true, children: [
+                wrap_item_simple('Programmed autonomous phase and manual control phase of the robot.', 'h5'),
+                wrap_item_simple('Used RobotC programming language for Lego Mindstorm with TETRIX motor controllers.', 'h5'),
+                wrap_item_simple('Documented weekly logs to the engineering notebook', 'h5'),
+                wrap_item_simple('Hosted robotics competition events on-site, and volunteered to assist other events', 'h5'),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Awards', 'h5', shown: true, target: 'activity-innovo-awards'),
+            ]),
+            wrap_container('activity-innovo-awards', class: 'pb-2', shown: true, children: [
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Hudson Valley Championship Winning Alliance', class: 'd-block'),
+                ], children2: [
+                    wrap_head('2011-12 season: Bowled Over!'),
+                ]),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('<b>NYC Regional Tournament Champion Team</b>', class: 'd-block'),
+                    wrap_head('NYC Regional Tournament Inspire Award Second Place', class: 'd-block'),
+                    wrap_head('NYC Regional Tournament Promote Award', class: 'd-block'),
+                ], children2: [
+                    wrap_head('2012-13 season: Ring It Up!'),
+                ]),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('NYC Qualifier Winning Alliance', class: 'd-block'),
+                    wrap_head('NYC Qualifier Inspire Award Winning Team', class: 'd-block'),
+                ], children2: [
+                    wrap_head('2013-14 season: Block Party!'),
+                ]),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('NYC/LI Syosset Qualifier Inspire Award Winning Team', class: 'd-block'),
+                ], children2: [
+                    wrap_head('2014-15 season: Cascade Effect'),
+                ]),
+            ]),
+        ]),
     ]),
 
-    wrap_section('Projects', 'h2', 'projects', children: [
+    wrap_section('Projects', 'project', children: [
+        wrap_items('pt-2 align-items-center', children1: [
+            wrap_collapse_control('This Website', 'h3', shown: true, target: 'project-website'),
+        ], children2: [
+            wrap_head('Jun.&nbsp;2018 - Present', 'h5'),
+        ]),
+        wrap_container('project-website', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('<i class="fa-solid fa-globe"></i> Portfolio Website & Home Server', 'h5'),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Highlight', 'h5', shown: true, target: 'project-website-summary'),
+            ]),
+            wrap_container('project-website-summary', shown: true, children: [
+                wrap_item_simple('Created home server by working on every aspect of web hosting and system administration.', 'h5'),
+                wrap_item_simple('Maintains dedicated Linux/Ubuntu machines with up-to-date softwares.', 'h5'),
+                wrap_item_simple('Managed domain services provided by Cloudflare, and used ddclient for dynamic DNS service.', 'h5'),
+                wrap_item_simple('Set up and configured Apache HTTP server, and used Certbot to install SSL certificates.', 'h5'),
+                wrap_item_simple('Webpage is created using HTML, CSS, JavaScript, and PHP.', 'h5'),
+                wrap_item_simple('Using GitHub to edit, save, and synchronize the website.', 'h5'),
+                wrap_item_simple('Configured home router to port forward network traffic.', 'h5'),
+                wrap_item_simple('SSH server is configured to be accessible from any remote place.', 'h5'),
+                wrap_item_simple('The website hosts frequently used files for personal tasks, and experimental pages for work environment.', 'h5'),
+            ]),
+        ]),
+
+        wrap_items('pt-3 align-items-center', children1: [
+            wrap_collapse_control('Automatic Record Uploader for Healthcare Web Application', 'h3', shown: true, target: 'project-healthcare'),
+        ], children2: [
+            wrap_head('Nov.&nbsp;2023', 'h5'),
+        ]),
+        wrap_container('project-healthcare', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('Personal project to assist Healthcare professional', 'h5'),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'project-healthcare-summary'),
+            ]),
+            wrap_container('project-healthcare-summary', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Developed Python automation program to populate new record.',
+                    'Read patient data from existing Excel file, and enter the data into web portal using Chrome driver.',
+                    '1 hour of manual labor is reduced to 15 minutes of automation.',
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3 align-items-center', children1: [
+            wrap_collapse_control('IEEE Micromouse Project', 'h3', shown: true, target: 'project-micromouse'),
+        ], children2: [
+            wrap_head('Feb.&nbsp;2018 - Mar.&nbsp;2018', 'h5'),
+        ]),
+        wrap_container('project-micromouse', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('Project for IEEE Student Conference', 'h5'),
+            wrap_item_simple('<a href="/micromouse/"><i class="fa-solid fa-link"></i> Project Link</a>', 'h5'),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'project-micromouse-summary'),
+            ]),
+            wrap_container('project-micromouse-summary', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Used backtracking search and uniform-cost search to traverse maze.',
+                    'Utilized Arduino Zero with motor encoders and infrared (IR) sensors.',
+                    'Awarded First Place in Region 1 competition for two years.',
+                ]),
+            ]),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Awards', 'h5', shown: true, target: 'project-micromouse-awards'),
+            ]),
+            wrap_container('project-micromouse-awards', class: 'pb-2', shown: true, children: [
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Region 1 Student Conference First Place'),
+                ], children2: [
+                    wrap_head('2018'),
+                ]),
+                wrap_items(class1: 'pb-1', children1: [
+                    wrap_head('Region 1 Student Conference First Place'),
+                ], children2: [
+                    wrap_head('2019'),
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3 align-items-center', children1: [
+            wrap_collapse_control('Smart Mirror Project', 'h3', shown: true, target: 'project-mirror'),
+        ], children2: [
+            wrap_head('Sep.&nbsp;2018 - Dec.&nbsp;2018', 'h5'),
+        ]),
+        wrap_container('project-mirror', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('Coursework for Senior Project: CSCI 455', 'h5'),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'project-mirror-summary'),
+            ]),
+            wrap_container('project-mirror-summary', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Raspberry-Pi based smart display with mirror.',
+                    'Python-based program with Graphical User Interface.',
+                    'Displays useful information such as weather or train times.',
+                    'Integrates OpenCV face recognition for user detection.',
+                    'GitHub repository was included in Arctic Code Vault.',
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3 align-items-center', children1: [
+            wrap_collapse_control('Sports News Search Engine', 'h3', shown: true, target: 'project-search'),
+        ], children2: [
+            wrap_head('Sep.&nbsp;2018 - Dec.&nbsp;2018', 'h5'),
+        ]),
+        wrap_container('project-search', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('Coursework for Information Retrieval: CSCI 426', 'h5'),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'project-search-summary'),
+            ]),
+            wrap_container('project-search-summary', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Applied n-gram search of sports news article using TF-IDF method.',
+                    'Utilized Scrapy web crawlers to get news data.',
+                    'Created simple UI to interact with python via CGI',
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3 align-items-center', children1: [
+            wrap_collapse_control('Child Location Tracking System', 'h3', shown: true, target: 'project-tracking'),
+        ], children2: [
+            wrap_head('Mar.&nbsp;2018 - May.&nbsp;2018', 'h5'),
+        ]),
+        wrap_container('project-tracking', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('Coursework for Intro to Software Engineering: CSCI 380', 'h5'),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'project-tracking-summary'),
+            ]),
+            wrap_container('project-tracking-summary', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Web Application for parents to see children&apos;s location',
+                    'Applied sound engineering practices to develop web application in a team.',
+                    'Used Bootstrap, JavaScript, and PHP for implementation.',
+                    'Deployed with Apache Server with SSL, MySQL Community Server, and GitHub.',
+                ]),
+            ]),
+        ]),
+
+        wrap_items('pt-3 align-items-center', children1: [
+            wrap_collapse_control('8-Puzzle Solver', 'h3', shown: true, target: 'project-puzzle'),
+        ], children2: [
+            wrap_head('Feb.&nbsp;2017 - Apr.&nbsp;2017', 'h5'),
+        ]),
+        wrap_container('project-puzzle', class: '_section_content_item pb-1', shown: true, children: [
+            wrap_item_simple('Coursework for Artificial Intelligence I: CSCI 355', 'h5'),
+            wrap_items('pt-2', children1: [
+                wrap_collapse_control('Summary', 'h5', shown: true, target: 'project-puzzle-summary'),
+            ]),
+            wrap_container('project-puzzle-summary', shown: true, children: [
+                wrap_item_list(class_col: 'col-12', children: [
+                    'Used A* search algorithm to develop solution for 8-puzzle.',
+                    'Python-based program with command-line interface.',
+                    'Constructed different heuristic functions to study various efficiencies.',
+                    'Program is modified to perform search on larger size puzzles.',
+                ]),
+            ]),
+        ]),
     ]),
 
+    wrap_spacer('p-2 py-3'),
 ));
 echo "\n";
-
-/*
-
-        make_item_simple('Java 8', 'h5');
-        
-        make_item_simple('JavaScript', 'h5');
-        
-        make_item_simple('Python3', 'h5');
-        // python packages
-        
-        make_item_simple('PHP8', 'h5');
-        
-        make_item_simple('C23/C++23', 'h5');
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Web Development', 'h4', false, 'skills-cs-web');
-      make_item_end();
-      make_container_start('skills-cs-web', false);
-        make_item_simple('HTML5', 'h5');
-        
-        make_item_simple('CSS3', 'h5');
-        
-        make_item_simple('Bootstrap 4', 'h5');
-        make_item_simple('Atlassian User Interface', 'h5');
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Database Management', 'h4', false, 'skills-cs-database');
-      make_item_end();
-      make_container_start('skills-cs-database', false);
-        make_item_simple('MySQL 8.0', 'h5');
-        make_item_simple('PostgreSQL', 'h5');
-        make_item_simple('MongoDB', 'h5');
-        make_item_simple('SQLite', 'h5');
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Version Control', 'h4', false, 'skills-cs-version');
-      make_item_end();
-      make_container_start('skills-cs-version', false);
-        make_item_simple('GitHub', 'h5');
-        make_item_simple('Git Command Line Interface', 'h5');
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('Information Technology', 'h3', true, 'skills-it');
-    make_item_end();
-    make_container_start('skills-it', true);
-      make_item_start('pt-2');
-        make_collapse_control('Operating Systems', 'h4', true, 'skills-it-os');
-      make_item_end();
-      make_container_start('skills-it-os', true);
-        make_item_start();
-          make_collapse_control('Windows', 'h5', false, 'skills-it-os-windows');
-        make_item_end();
-        make_container_start('skills-it-os-windows', false);
-          make_item_simple('Command Prompt');
-          
-          make_item_simple('Batch Script');
-          
-          make_item_simple('Registry Editor');
-          
-          make_item_simple('System Administration');
-          
-          make_item_simple('Local Machine Settings and Policies');
-        make_container_end();
-        
-        make_item_start();
-          make_collapse_control('Linux', 'h5', true, 'skills-it-os-linux');
-        make_item_end();
-        make_container_start('skills-it-os-linux', true);
-          make_item_simple('Debian/Ubuntu/Kubuntu');
-          
-          make_item_simple('Bash');
-          
-          make_item_simple('Shell Script');
-          
-          make_item_simple('System Administration');
-        make_container_end();
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Computer Networks', 'h4', false, 'skills-it-network');
-      make_item_end();
-      make_container_start('skills-it-network', false);
-        make_item_simple('Cat5/5e Cable Termination', 'h5');
-        
-        make_item_simple('Router Management', 'h5');
-        
-        make_item_simple('Create Access Point Router', 'h5');
-        
-        make_item_simple('Port Forwarding, Firewall Settings', 'h5');
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Office Productivity', 'h4', false, 'skills-it-office');
-      make_item_end();
-      make_container_start('skills-it-office', false);
-        make_item_simple('Microsoft Word', 'h5');
-        
-        make_item_simple('Microsoft Excel', 'h5');
-        
-        make_item_simple('Microsoft PowerPoint', 'h5');
-        
-        make_item_simple('Adobe Photoshop', 'h5');
-        
-        make_item_simple('GNU Image Manipulator Program', 'h5');
-        
-        make_item_simple('Notepad++', 'h5');
-        
-        make_item_simple('GNU nano (Linux command line)', 'h5');
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('General Technology', 'h3', false, 'skills-technology');
-    make_item_end();
-    make_container_start('skills-technology', false);
-      make_item_start('pt-2');
-        make_collapse_control('Electronics', 'h4', false, 'skills-technology-electronics');
-      make_item_end();
-      make_container_start('skills-technology-electronics', false);
-        make_item_simple('Soldering', 'h5');
-        
-        make_item_simple('Simple Circuit Assembly', 'h5');
-        
-        make_item_simple('Breadboard', 'h5');
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Live Sound System', 'h4', false, 'skills-technology-audio');
-      make_item_end();
-      make_container_start('skills-technology-audio');
-        make_item_simple('Sound System Configuration', 'h5');
-        
-        make_item_simple('Analog Mixer Control', 'h5');
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('Communication', 'h3', true, 'skills-communication');
-    make_item_end();
-    make_container_start('skills-communication', true);
-      make_item_start('pt-2');
-        make_collapse_control('Language', 'h4', true, 'skills-communication-language');
-      make_item_end();
-      make_container_start('skills-communication-language', true);
-        make_item_start();
-          make_head('Korean', 'h5');
-        make_item_middle();
-          make_head('First Language', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('English', 'h5');
-        make_item_middle();
-          make_head('Full Professional Proficiency', 'h6');
-        make_item_end();
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Speech', 'h4', false, 'skills-communication-speech');
-      make_item_end();
-      make_container_start('skills-communication-speech', false);
-        make_item_simple('Public Speaking', 'h5');
-        make_item_simple('Presentation', 'h5');
-        make_item_simple('Teaching, Training', 'h5');
-        make_item_simple('Explaining', 'h5');
-      make_container_end();
-    make_container_end();
-  make_section_end();
-
-
-
-
-
-
-
-
-
-
-
-  make_section_start('Work Experience', 'h2', 'work');
-    make_item_start('pt-2');
-      make_collapse_control('New York Institute of Technology', 'h3', true, 'work-nyit');
-    make_item_middle();
-      make_head('Jul.&nbsp;2016 - Dec.&nbsp;2018', 'h5');
-    make_item_end();
-    make_container_start('work-nyit', true);
-      make_item_simple('New York, NY', 'h5');
-      
-      make_item_start('pt-2');
-        make_head('Tutor/Assistant', 'h4');
-      make_item_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Summary', 'h5', true, 'work-nyit-summary');
-      make_item_end();
-      make_container_start('work-nyit-summary', true);
-        make_item_simple('In-campus tutoring as student employee', 'h5');
-        
-        make_item_simple('Computer Science and Mathematics Courses', 'h5');
-        
-        make_item_simple('Teaching concepts and helping courseworks', 'h5');
-        
-        make_item_simple('Active email communication with students', 'h5');
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('New Vision Korean Methodist Church', 'h3', true, 'work-newvision');
-    make_item_middle();
-      make_head('Jul.&nbsp;2016 - Current', 'h5');
-    make_item_end();
-    make_container_start('work-newvision', true);
-      make_item_simple('East Rockaway, NY', 'h5');
-      
-      make_item_start('pt-2');
-        make_head('Staff/Technician', 'h4');
-      make_item_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Summary', 'h5', true, 'work-newvision-summary');
-      make_item_end();
-      make_container_start('work-newvision-summary', true);
-        make_item_simple('Streaming worship to YouTube using Open Broadcaster Software', 'h5');
-        
-        make_item_simple('Setting up Live Sound System', 'h5');
-        
-        make_item_simple('Preparing PowerPoint Presentation', 'h5');
-        
-        make_item_simple('Maintaing printing and networking equipments', 'h5');
-      make_container_end();
-    make_container_end();
-  make_section_end();
-  
-  make_section_start('Leadership Roles', 'h2', 'leadership');
-    make_item_start('pt-2');
-      make_collapse_control('Golden Key International Honour Society', 'h3', true, 'leadership-gk');
-    make_item_middle();
-      make_head('Sep.&nbsp;2016 - Dec.&nbsp;2018', 'h5');
-    make_item_end();
-    make_container_start('leadership-gk', true);
-      make_item_simple('NYIT Chapter, New York, NY', 'h5');
-      
-      make_item_start('pt-2');
-        make_head('President', 'h4');
-      make_item_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Summary', 'h5', true, 'leadership-gk-summary');
-      make_item_end();
-      make_container_start('leadership-gk-summary', true);
-        make_item_simple('Coordinating Events', 'h5');
-        
-        make_item_simple('Communicating with Chapter Advisor', 'h5');
-        
-        make_item_simple('Maintaing student portal, member roster', 'h5');
-        
-        make_item_simple('Sending email announcements', 'h5');
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('Institute of Electrical and Electronics Engineers', 'h3', true, 'leadership-ieee');
-    make_item_middle();
-      make_head('Feb.&nbsp;2018 - Dec.&nbsp;2018', 'h5');
-    make_item_end();
-    make_container_start('leadership-ieee', true);
-      make_item_simple('NYIT Chapter, New York, NY', 'h5');
-      
-      make_item_start('pt-2');
-        make_head('Administrator for United Engineering', 'h4');
-      make_item_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Summary', 'h5', true, 'leadership-ieee-summary');
-      make_item_end();
-      make_container_start('leadership-ieee-summary', true);
-        make_item_simple('Organizing shared club room', 'h5');
-        
-        make_item_simple('Installed and managed Linux OS in computers', 'h5');
-        
-        make_item_simple('Set up cluster computing, server hosting, remote access', 'h5');
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('FIRST Tech Challenge Robotics Team', 'h3', true, 'leadership-innovo');
-    make_item_middle();
-      make_head('Sep.&nbsp;2011 - May.&nbsp;2015', 'h5');
-    make_item_end();
-    make_container_start('leadership-innovo', true);
-      make_item_simple('Hewlett Robotics Team, Hewlett, NY', 'h5');
-      
-      make_item_start('pt-2');
-        make_head('Lead Programmer of Team 5477: Innovo', 'h4');
-      make_item_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Summary', 'h5', true, 'leadership-innovo-summary');
-      make_item_end();
-      make_container_start('leadership-innovo-summary', true);
-        make_item_simple('RobotC programming for Lego Mindstorm', 'h5');
-        
-        make_item_simple('TETRIX Motor Controller', 'h5');
-        
-        make_item_simple('Documentation using Engineering Notebook', 'h5');
-        
-        make_item_simple('Hosting Robotics Competition Events', 'h5');
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Awards', 'h5', true, 'leadership-innovo-awards');
-      make_item_end();
-      make_container_start('leadership-innovo-awards', true);
-        make_item_start();
-          make_head('Hudson Valley Championship Winning Alliance', 'h5');
-        make_item_middle();
-          make_head('2011-12', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('NYC Regional Tournament Champion Team', 'h5');
-        make_item_middle();
-          make_head('2012-13', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Promote Award', 'h5');
-        make_item_middle();
-          make_head('2012-13', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('NYC Qualifier Winning Alliance, Inspire Award Winning Team', 'h5');
-        make_item_middle();
-          make_head('2013-14', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('NYC/LI Syosset Qualifier Inspire Award Winning Team', 'h5');
-        make_item_middle();
-          make_head('2014-15', 'h6');
-        make_item_end();
-      make_container_end();
-    make_container_end();
-  make_section_end();
-  
-  make_section_start('Projects', 'h2', 'projects');
-    make_item_start('pt-2');
-      make_collapse_control('This Website', 'h3', true, 'projects-website');
-    make_item_middle();
-      make_head('Jun.&nbsp;2018 - Current', 'h5');
-    make_item_end();
-    make_container_start('projects-website', true);
-      make_item_simple('Portfolio Website & Home Server', 'h5');
-      
-      make_item_start('pt-2');
-        make_collapse_control('Summary', 'h5', true, 'projects-website-summary');
-      make_item_end();
-      make_container_start('projects-website-summary', true);
-        make_item_simple('Debian/Ubuntu with Apache HTTPD server', 'h5');
-        
-        make_item_simple('HTML and CSS with Bootstrap 4 for responsive user interface', 'h5');
-        
-        make_item_simple('JavaScript for front-end code & PHP for back-end code', 'h5');
-        
-        make_item_simple('Synchronization using GitHub', 'h5');
-        
-        make_item_simple('SSH access for test workstation', 'h5');
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('Micromouse Project', 'h3', true, 'projects-micromouse');
-    make_item_middle();
-      make_head('Feb.&nbsp;2018 - Mar.&nbsp;2018', 'h5');
-    make_item_end();
-    make_container_start('projects-micromouse', true);
-      make_item_simple('Project for IEEE Student Conference', 'h5');
-      
-      make_item_start('pt-2');
-        make_collapse_control('Summary', 'h5', true, 'projects-micromouse-summary');
-      make_item_end();
-      make_container_start('projects-micromouse-summary', true);
-        make_item_simple('Arduino Zero based robot', 'h5');
-        
-        make_item_simple('Utilized motor encoders and IR sensors', 'h5');
-        
-        make_item_simple('Performed backtracking search on 16-by-16 maze', 'h5');
-      make_container_end();
-      
-      make_item_start('pt-2');
-        make_collapse_control('Awards', 'h5', true, 'projects-micromouse-awards');
-      make_item_end();
-      make_container_start('projects-micromouse-awards', true);
-        make_item_start();
-          make_head('Region 1 Student Conference First Place', 'h5');
-        make_item_middle();
-          make_head('2018', 'h6');
-        make_item_end();
-        
-        make_item_start();
-          make_head('Region 1 Student Conference First Place', 'h5');
-        make_item_middle();
-          make_head('2019', 'h6');
-        make_item_end();
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('Smart Mirror Project', 'h3', true, 'projects-mirror');
-    make_item_middle();
-      make_head('Sep.&nbsp;2018 - Dec.&nbsp;2018', 'h5');
-    make_item_end();
-    make_container_start('projects-mirror', true);
-      make_item_simple('Coursework for Senior Project: CSCI 455', 'h5');
-      
-      make_item_start('pt-2');
-        make_collapse_control('Summary', 'h5', true, 'projects-mirror-summary');
-      make_item_end();
-      make_container_start('projects-mirror-summary', true);
-        make_item_simple('Raspberry-Pi based smart display with mirror', 'h5');
-        
-        make_item_simple('Python-based program with Graphicsl User Interface', 'h5');
-        
-        make_item_simple('Displays useful information such as weather or train times', 'h5');
-        
-        make_item_simple('Integrates OpenCV face recognition for user detection', 'h5');
-        
-        make_item_simple('GitHub repository was included in Arctic Code Vault', 'h5');
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('Child Location Tracking System', 'h3', true, 'projects-tracking');
-    make_item_middle();
-      make_head('Mar.&nbsp;2018 - May.&nbsp;2018', 'h5');
-    make_item_end();
-    make_container_start('projects-tracking', true);
-      make_item_simple('Coursework for Intro to Software Engineering: CSCI 380', 'h5');
-      
-      make_item_start('pt-2');
-        make_collapse_control('Summary', 'h5', true, 'projects-tracking-summary');
-      make_item_end();
-      make_container_start('projects-tracking-summary', true);
-        make_item_simple('Web Application for parents to see children\'s location', 'h5');
-        
-        make_item_simple('HTML, CSS, Javascript for front-end', 'h5');
-        
-        make_item_simple('PHP, and MySQL for back-end', 'h5');
-        
-        make_item_simple('Demonstrate software engineering principles', 'h5');
-        
-        make_item_simple('Work in team environment using GitHub', 'h5');
-      make_container_end();
-    make_container_end();
-    
-    make_item_start('pt-3');
-      make_collapse_control('8-Puzzle Solver', 'h3', true, 'projects-puzzle');
-    make_item_middle();
-      make_head('Feb.&nbsp;2017 - Apr.&nbsp;2017', 'h5');
-    make_item_end();
-    make_container_start('projects-puzzle', true);
-      make_item_simple('Coursework for Artificial Intelligence I: CSCI 355', 'h5');
-      
-      make_item_start('pt-2');
-        make_collapse_control('Summary', 'h5', true, 'projects-puzzle-summary');
-      make_item_end();
-      make_container_start('projects-puzzle-summary', true);
-        make_item_simple('Used A* search algorithm to develop solution for 8-puzzle', 'h5');
-        
-        make_item_simple('Python-based program with command-line interface', 'h5');
-        
-        make_item_simple('Constructed different heuristic functions to study various efficiencies', 'h5');
-        
-        make_item_simple('Program is modified to perform search on larger size puzzles', 'h5');
-      make_container_end();
-    make_container_end();
-  make_section_end();
-  
-  make_section_start('', 'h6', null, false, false);
-  make_section_end();
-  */
 ?>
 </div>
 
